@@ -9,15 +9,19 @@
 class BoardReader {
 public:
     BoardReader();
+    BoardReader(string);
     void buildBoard();
     void printBoard() const;
-    void traverseBoard();
+    void SearchBoardHorizontal();
+    string to_string() const;
 
 private:
     int bestX, bestY;
     int curX, curY;
     string bestWord;
+    string hand;
     char board[15][15];
+    bool horizontal;
 };
 
 

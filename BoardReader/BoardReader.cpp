@@ -8,6 +8,14 @@
 BoardReader::BoardReader() {
     bestX = bestY = 8;
     curX =  curY = 8;
+    bestWord = "";
+}
+
+BoardReader::BoardReader(string passed) {
+    hand = passed;
+    bestX = bestY = 8;
+    curX =  curY = 8;
+    bestWord = "";
 }
 
 void BoardReader::buildBoard() {
@@ -43,6 +51,49 @@ void BoardReader::printBoard() const{
     }
 }
 
-void BoardReader::traverseBoard() {
+void BoardReader:SearchBoardHorizontal() {
+    int rowCount = 0;
+    int prev = 0;
+    for (const auto& word : board) {
+        int k = 0;
+        int subScrOfLastSubstr = 0;
+        while (k < 15) {
+            string subStr = "";
+            while(isalpha(word[k]) && k < 15){
+                subStr += word[k];
+                k++;
+                subScrOfLastSubstr = k;
+            }
+            if(!subStr.empty()){
+                HandManager handManager(hand + subStr);
+                handManager.SortManager();
+                handManager.PowerSet();
+                handManager.StartPermute();
+                handManager.CleanPossibleAnswers();
+                string curBestWord = handManager.GetBestWord(k - prev, subStr,15 - k);
+                cout << curBestWord << endl;
+                if(HandManager::gradeWord(curBestWord) > HandManager::gradeWord(bestWord)){
+                    bestWord = curBestWord;
+                    bestX = k;
+                    bestY = 15 - rowCount;
+                    horizontal = true;
+                }
+            }
+            k++;
+        }
+        rowCount++;
+        prev = subScrOfLastSubstr;
+    }
+}
 
+string BoardReader::to_string() const {
+    string buffer = "Best Word: " + bestWord + " - " + ::to_string(HandManager::gradeWord(bestWord));
+    buffer += "\nPostion X: " + ::to_string(bestX);
+    buffer += "\nPostion Y: " + ::to_string(bestY);
+    if(horizontal)
+        buffer += "\nHorizontal";
+    else
+        buffer += "\nVertical";
+
+    return buffer;
 }

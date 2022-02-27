@@ -1,19 +1,12 @@
 #include "BoardReader/BoardReader.h"
 
 int main(){
-    HandManager handManager("freaking"); //freaking
-    handManager.SortManager();
-    handManager.PowerSet();
-    handManager.StartPermute();
-    handManager.CleanPossibleAnswers();
-//    cout << handManager.GetBestWord() << endl;
-//    cout << handManager.GetBestWord(5, 'f', 2) << endl;
-//    cout << handManager.GetBestWord(6) << endl;
-//    handManager.toString();
-    BoardReader reader;
+    string hand = "reaking";
+    BoardReader reader(hand);
     reader.buildBoard();
     reader.printBoard();
-
+    reader.SearchBoardHorizontal();
+    cout << reader.to_string() << endl;
 
     return 0;
 }

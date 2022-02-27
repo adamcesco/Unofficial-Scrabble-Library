@@ -63,6 +63,8 @@ public:
         return cleanAnswers[0];}
     string GetBestWord(int);
     string GetBestWord(int, char, int);
+    static int gradeWord(string);
+    string GetBestWord(int, string, int);   //get the best word that contains a string that has left padding of size int1, and right padding of size int2
 
 private:
     string hand;

@@ -276,8 +276,37 @@ string HandManager::GetBestWord(int size, char requestedChar, int requestedSubsc
         throw invalid_argument("Error in GetBestWord | There are no clean answers.");
     char curChar = toupper(requestedChar);
     for(const auto& word : cleanAnswers){
-        if(word.length() == size && word[requestedSubscript] == curChar)
+        if(word.length() <= size && word[requestedSubscript] == curChar)
             return word;
     }
+    return "";
+}
+
+int HandManager::gradeWord(string passed) {
+    const int valLegend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8,  5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+    int sum = 0;
+    for(char it : passed){
+        sum += valLegend[(it & 31) - 1];
+    }
+    return sum;
+}
+
+string HandManager::GetBestWord(int leftPadding, string toFind, int rightPadding) {
+    if(cleanAnswers.empty())
+        throw invalid_argument("Error in HandManager::GetBestWord(int, string, int) | There are no clean answers.");
+
+    for(const auto& word : cleanAnswers) {
+        string slidingWindow = "";
+        for(int i = 0; i < word.length(); i++){
+            if(slidingWindow.length() > toFind.length())
+                slidingWindow.erase(0,1);
+
+            if((toFind == slidingWindow) && (((i + 1) - toFind.length()) >= leftPadding) && ((word.length() - (i + 1)) >= rightPadding))
+                return word;
+
+            slidingWindow += word[i];
+        }
+    }
+
     return "";
 }
