@@ -2,6 +2,10 @@
 
 int main(){
     string hand = "reaking";
+//    srand(time(NULL));
+//    for(int i = 0; i < 7; i++){
+//        hand[i] = (rand() % 26) + 'a';
+//    }
     BoardReader reader(hand);
     reader.buildBoard();
     reader.printBoard();

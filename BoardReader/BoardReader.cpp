@@ -88,7 +88,8 @@ void BoardReader::SearchBoardHorizontal() {
 }
 
 string BoardReader::to_string() const {
-    string buffer = "Best Word: " + bestWord + " - " + ::to_string(HandManager::gradeWord(bestWord));
+    string buffer = "Hand: " + hand + "\n";
+    buffer += "Best Word: " + bestWord + " - " + ::to_string(HandManager::gradeWord(bestWord));
     buffer += "\nPostion X: " + ::to_string(bestX);
     buffer += "\nPostion Y: " + ::to_string(bestY);
     if(horizontal)
