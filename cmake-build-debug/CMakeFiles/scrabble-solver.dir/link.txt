@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/scrabble-solver.dir/main.cpp.o CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.o CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o  -o scrabble-solver 

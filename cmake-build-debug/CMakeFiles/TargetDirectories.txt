@@ -1,0 +1,3 @@
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles/scrabble-solver.dir

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HandManager/HandManager.cpp
+HandManager.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HandManager/HandManager.h
+
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HandManager/HandManager.h
+iostream
+-
+vector
+-
+fstream
+-
+unordered_map
+-
+algorithm
+-
+
