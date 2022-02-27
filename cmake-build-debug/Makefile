@@ -177,6 +177,33 @@ HandManager/HandManager.cpp.s:
 	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.s
 .PHONY : HandManager/HandManager.cpp.s
 
+Letter/Letter.o: Letter/Letter.cpp.o
+
+.PHONY : Letter/Letter.o
+
+# target to build an object file
+Letter/Letter.cpp.o:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.o
+.PHONY : Letter/Letter.cpp.o
+
+Letter/Letter.i: Letter/Letter.cpp.i
+
+.PHONY : Letter/Letter.i
+
+# target to preprocess a source file
+Letter/Letter.cpp.i:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.i
+.PHONY : Letter/Letter.cpp.i
+
+Letter/Letter.s: Letter/Letter.cpp.s
+
+.PHONY : Letter/Letter.s
+
+# target to generate assembly for a file
+Letter/Letter.cpp.s:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.s
+.PHONY : Letter/Letter.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -219,6 +246,9 @@ help:
 	@echo "... HandManager/HandManager.o"
 	@echo "... HandManager/HandManager.i"
 	@echo "... HandManager/HandManager.s"
+	@echo "... Letter/Letter.o"
+	@echo "... Letter/Letter.i"
+	@echo "... Letter/Letter.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -11,6 +11,7 @@
 #include <fstream>
 #include <unordered_map>
 #include <algorithm>
+#include "../Letter/Letter.h"
 using namespace std;
 
 /*

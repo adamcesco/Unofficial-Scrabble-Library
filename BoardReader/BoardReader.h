@@ -20,7 +20,7 @@ private:
     int curX, curY;
     string bestWord;
     string hand;
-    char board[15][15];
+    Letter board[15][15];
     bool horizontal;
 };
 

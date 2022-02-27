@@ -45,7 +45,7 @@ void BoardReader::buildBoard() {
 void BoardReader::printBoard() const{
     for (const auto& row : board) {
         for (const auto& cell: row) {
-            cout << cell;
+            cout << cell.data;
         }
         cout << endl;
     }
@@ -59,8 +59,8 @@ void BoardReader::SearchBoardHorizontal() {
         int subScrOfLastSubstr = 0;
         while (k < 15) {
             string subStr = "";
-            while(isalpha(word[k]) && k < 15){
-                subStr += word[k];
+            while(isalpha(word[k].data) && k < 15){
+                subStr += word[k].data;
                 k++;
                 subScrOfLastSubstr = k;
             }
