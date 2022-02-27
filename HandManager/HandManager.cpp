@@ -4,6 +4,9 @@
 
 #include "HandManager.h"
 
+//TODO: make this class support words of any size
+//TODO: make boad letters an object
+
 HandManager::HandManager(string hand){
     this->hand = hand;
 }
