@@ -301,7 +301,7 @@ string HandManager::GetBestWord(int leftPadding, string toFind, int rightPadding
             if(slidingWindow.length() > toFind.length())
                 slidingWindow.erase(0,1);
 
-            if((toFind == slidingWindow) && (((i + 1) - toFind.length()) >= leftPadding) && ((word.length() - (i + 1)) >= rightPadding))
+            if((toFind == slidingWindow) && ((i - toFind.length()) <= leftPadding) && ((word.length() - i) <= rightPadding))
                 return word;
 
             slidingWindow += word[i];

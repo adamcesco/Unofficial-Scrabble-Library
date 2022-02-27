@@ -51,8 +51,8 @@ void BoardReader::printBoard() const{
     }
 }
 
-void BoardReader:SearchBoardHorizontal() {
-    int rowCount = 0;
+void BoardReader::SearchBoardHorizontal() {
+    int rowCount = 1;
     int prev = 0;
     for (const auto& word : board) {
         int k = 0;
@@ -70,19 +70,20 @@ void BoardReader:SearchBoardHorizontal() {
                 handManager.PowerSet();
                 handManager.StartPermute();
                 handManager.CleanPossibleAnswers();
-                string curBestWord = handManager.GetBestWord(k - prev, subStr,15 - k);
-                cout << curBestWord << endl;
-                if(HandManager::gradeWord(curBestWord) > HandManager::gradeWord(bestWord)){
-                    bestWord = curBestWord;
-                    bestX = k;
-                    bestY = 15 - rowCount;
-                    horizontal = true;
+                string curBestWord = handManager.GetBestWord((k - prev) - subStr.length(), subStr,15 - k);
+                if(HandManager::gradeWord(curBestWord) >= HandManager::gradeWord(bestWord)){
+                    if(curBestWord.length() < bestWord.length() || bestWord.empty()){
+                        bestWord = curBestWord;
+                        bestX = k;
+                        bestY = rowCount;
+                        horizontal = true;
+                    }
                 }
             }
             k++;
+            prev = subScrOfLastSubstr;
         }
         rowCount++;
-        prev = subScrOfLastSubstr;
     }
 }
 
