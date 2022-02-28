@@ -155,17 +155,17 @@ void HandManager::toString() const{
         output << sum << endl;
     }
 
-//    output << "Clean Answers: " << endl;
-//    for(int i = 0; i < cleanAnswers.size(); i++){
-//        output << cleanAnswers.at(i) << "-";
-//
-//        int sum = 0;
-//        for(int j = 0; j < cleanAnswers.at(i).length(); j++){
-//            sum += legend[(cleanAnswers.at(i).at(j) & 31) - 1];
-//        }
-//
-//        output << sum << endl;
-//    }
+    output << "Clean Answers: " << endl;
+    for(int i = 0; i < cleanAnswers.size(); i++){
+        output << cleanAnswers.at(i) << "-";
+
+        int sum = 0;
+        for(int j = 0; j < cleanAnswers.at(i).length(); j++){
+            sum += legend[(cleanAnswers.at(i).at(j) & 31) - 1];
+        }
+
+        output << sum << endl;
+    }
 
     output.close();
 }
@@ -354,42 +354,38 @@ string HandManager::GetBestWord(LString passed) {
         }
     }
 
-    for(auto& word : possibleAnswers){  //problem here
-        LString cleanWord;
-        bool foundAlpha = false;
-        for (char i : word) {
-            if(i == ' '){
-                if(foundAlpha){
-                    for (auto curSub: subLStrings) {
-                        if(cleanWord.contains(curSub))
-                            break;
-                    }
-                    cleanWord.clear();
-                    foundAlpha = false;
-                }
-            }
-            else {
-                cleanWord += i;
-                foundAlpha = true;
+    PAcopy = possibleAnswers;
+    possibleAnswers.clear();
+    for(auto& word : PAcopy){  //problem here
+        string curStr;
+        vector<string> seperatedWords;
+        for (auto i: word) {
+            if (i != ' ') {
+                curStr += i;
+                skip = false;
+            } else if (!curStr.empty()) {
+                seperatedWords.push_back(curStr);
+                curStr.clear();
             }
         }
-        word = "";
-        for (auto curSub: subLStrings) {
-            if(cleanWord.contains(curSub)) {
-                word = cleanWord.to_string();
-            }
+        for (auto curSWord : seperatedWords) {
+            possibleAnswers.push_back(curSWord);
+//            LString LcurSWord = curSWord;
+//            for (auto curSub: subLStrings) {
+//                if(LcurSWord.contains(curSub) && !(LcurSWord == curSub)) {
+//                    possibleAnswers.push_back(curSWord);
+//                }
+//            }
         }
     }
+
+
     CleanPossibleAnswers();
-
-    for (auto word : cleanAnswers) {
-        LString Lword = word;
-        for (auto curSub: subLStrings) {
-            if(Lword.contains(curSub)) {
-                return word;
-            }
-        }
+    if(subLStrings[0].to_string() == "ME"){
+        toString();
     }
 
+    if(cleanAnswers.size() > 0)
+        return cleanAnswers[0];
     return "";
 }

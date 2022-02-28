@@ -63,7 +63,6 @@ void BoardReader::SearchBoardHorizontal() {
         handManager.SortManager();
         handManager.PowerSet();
         handManager.StartPermute();
-        handManager.toString();
         string curBestWord = handManager.GetBestWord(row);
 
         cout << curBestWord << " - " << HandManager::gradeWord(curBestWord) << endl;
