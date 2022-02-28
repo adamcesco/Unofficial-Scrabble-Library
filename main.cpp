@@ -1,7 +1,7 @@
 #include "BoardReader/BoardReader.h"
 
 int main(){
-    string hand = "reaking";
+    string hand = "getaluq";
     BoardReader reader(hand);
     reader.buildBoard();
     reader.printBoard();
