@@ -327,8 +327,7 @@ string HandManager::GetBestWord(LString passed) {
             curLs += i;
             skip = false;
         }
-        else{
-            cout << curLs.to_string() << endl;
+        else if (!curLs.is_empty()){
             subLStrings.push_back(curLs);
             curLs.clear();
         }
@@ -373,9 +372,15 @@ string HandManager::GetBestWord(LString passed) {
                 foundAlpha = true;
             }
         }
-        word = cleanWord.to_string();
+        word = "";
+        for (auto curSub: subLStrings) {
+            if(cleanWord.contains(curSub)) {
+                word = cleanWord.to_string();
+            }
+        }
     }
 
     CleanPossibleAnswers();
+    //TODO: sort cleanAnswers
     return cleanAnswers[0];
 }
