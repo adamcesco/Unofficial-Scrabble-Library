@@ -32,16 +32,17 @@ void HandManager::Permute(string a, int l, int r){ //permute(str, 0, n-1);, wher
 }
 
 void HandManager::SortManager(){ //sorts hand by character value
-    int handVals[8];
+    int size = hand.size();
+    int handVals[size];
 
-    for(int i = 0; i < 8; i++){
+    for(int i = 0; i < size; i++){
         int curVal = map[(hand.at(i) & 31) - 1];
         handVals[i] = curVal;
     }
 
-    sort(handVals, 0, 7);
+    sort(handVals, 0, size - 1);
 
-    for(int i = 0; i < 8; i++){
+    for(int i = 0; i < size; i++){
         char curChar = char((handVals[i] % 100) | 64);
         hand[i] = curChar;
     }
@@ -94,12 +95,13 @@ void HandManager::merge(int *arr, int low, int high, int mid){
 void HandManager::PowerSet()
 {
     int counter, j;
-    vector<string> pointVals[80];
+    unsigned int powSize = pow(2, hand.size());
+    vector<string> pointVals[10 * hand.size()];
 
-    for(counter = 0; counter < 256; counter++)
+    for(counter = 0; counter < powSize; counter++)
     {
         string currentSet = "";
-        for(j = 0; j < 8; j++)
+        for(j = 0; j < hand.size(); j++)
         {
             if(counter & (1 << j))
                 currentSet += hand[j];
@@ -115,7 +117,7 @@ void HandManager::PowerSet()
 
     }
 
-    for(int i = 79; i >= 0; i--){
+    for(int i = (10 * hand.size()) - 1; i >= 0; i--){
         for(int j = 0; j < pointVals[i].size(); j++){
             handPowerSet.push_back(pointVals[i].at(j));
         }
@@ -234,6 +236,7 @@ void HandManager::CleanPossibleAnswers(){
     }
     englishWords.close();
 
+    cleanAnswers.clear();
     for (const auto& it : answers) {
         if(it.second){
             cleanAnswers.push_back(it.first);
@@ -312,4 +315,67 @@ string HandManager::GetBestWord(int leftPadding, string toFind, int rightPadding
     }
 
     return "";
+}
+
+string HandManager::GetBestWord(LString passed) {
+    //pass a string a letters, fill the string with every possible answer one by one, only overwritting spaces; then clean possible answers and return first word in possible answers
+    bool skip = true;
+    vector<LString> subLStrings;
+    LString curLs;
+    for (auto i : passed) {
+        if(i.LData != ' ') {
+            curLs += i;
+            skip = false;
+        }
+        else{
+            cout << curLs.to_string() << endl;
+            subLStrings.push_back(curLs);
+            curLs.clear();
+        }
+    }
+    if (skip){return "";}
+
+    possibleAnswers.clear();
+    for(auto& word : cleanAnswers) {
+        for (int i = 0; i < passed.size(); ++i){
+            string row = passed.to_string();
+            int skipCount = 0;
+            for (int j = 0; j < word.size(); ++j) {
+                if(i + j + skipCount > passed.size() - 1){break;}
+
+                if (row[i + j + skipCount] == ' ')
+                    row[i + j + skipCount] = word[j];
+                else {
+                    j--;
+                    skipCount += 2;
+                }
+            }
+            possibleAnswers.push_back(row);
+        }
+    }
+
+    for(auto& word : possibleAnswers){
+        LString cleanWord;
+        bool foundAlpha = false;
+        for (char i : word) {
+            if(i == ' '){
+                if(foundAlpha){
+                    for (auto curSub: subLStrings) {
+                        if(cleanWord.contains(curSub))
+                            break;
+                    }
+                    cleanWord.clear();
+                    foundAlpha = false;
+                }
+            }
+            else {
+                cleanWord += i;
+                foundAlpha = true;
+            }
+        }
+        word = cleanWord.to_string();
+    }
+
+    CleanPossibleAnswers();
+    return cleanAnswers[0];
 }

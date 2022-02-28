@@ -94,10 +94,10 @@
 		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HandManager/HandManager.h">
 			<Option target="scrabble-solver"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/Letter/Letter.cpp">
+		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.cpp">
 			<Option target="scrabble-solver"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/Letter/Letter.h">
+		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h">
 			<Option target="scrabble-solver"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/main.cpp">

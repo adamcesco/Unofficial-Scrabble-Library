@@ -96,25 +96,25 @@ CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.cpp -o CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.s
 
-CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.o: CMakeFiles/scrabble-solver.dir/flags.make
-CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.o: ../Letter/Letter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.o -c /mnt/c/Users/misc1/CLionProjects/scrabble-solver/Letter/Letter.cpp
+CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o: CMakeFiles/scrabble-solver.dir/flags.make
+CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o: ../LString/LString.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o -c /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.cpp
 
-CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/misc1/CLionProjects/scrabble-solver/Letter/Letter.cpp > CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.i
+CMakeFiles/scrabble-solver.dir/LString/LString.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/scrabble-solver.dir/LString/LString.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.cpp > CMakeFiles/scrabble-solver.dir/LString/LString.cpp.i
 
-CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/misc1/CLionProjects/scrabble-solver/Letter/Letter.cpp -o CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.s
+CMakeFiles/scrabble-solver.dir/LString/LString.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/scrabble-solver.dir/LString/LString.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.cpp -o CMakeFiles/scrabble-solver.dir/LString/LString.cpp.s
 
 # Object files for target scrabble-solver
 scrabble__solver_OBJECTS = \
 "CMakeFiles/scrabble-solver.dir/main.cpp.o" \
 "CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.o" \
 "CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o" \
-"CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.o"
+"CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o"
 
 # External object files for target scrabble-solver
 scrabble__solver_EXTERNAL_OBJECTS =
@@ -122,7 +122,7 @@ scrabble__solver_EXTERNAL_OBJECTS =
 scrabble-solver: CMakeFiles/scrabble-solver.dir/main.cpp.o
 scrabble-solver: CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.o
 scrabble-solver: CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o
-scrabble-solver: CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.o
+scrabble-solver: CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o
 scrabble-solver: CMakeFiles/scrabble-solver.dir/build.make
 scrabble-solver: CMakeFiles/scrabble-solver.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable scrabble-solver"

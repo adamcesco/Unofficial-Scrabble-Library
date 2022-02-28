@@ -177,32 +177,32 @@ HandManager/HandManager.cpp.s:
 	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.s
 .PHONY : HandManager/HandManager.cpp.s
 
-Letter/Letter.o: Letter/Letter.cpp.o
+LString/LString.o: LString/LString.cpp.o
 
-.PHONY : Letter/Letter.o
+.PHONY : LString/LString.o
 
 # target to build an object file
-Letter/Letter.cpp.o:
-	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.o
-.PHONY : Letter/Letter.cpp.o
+LString/LString.cpp.o:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o
+.PHONY : LString/LString.cpp.o
 
-Letter/Letter.i: Letter/Letter.cpp.i
+LString/LString.i: LString/LString.cpp.i
 
-.PHONY : Letter/Letter.i
+.PHONY : LString/LString.i
 
 # target to preprocess a source file
-Letter/Letter.cpp.i:
-	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.i
-.PHONY : Letter/Letter.cpp.i
+LString/LString.cpp.i:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/LString/LString.cpp.i
+.PHONY : LString/LString.cpp.i
 
-Letter/Letter.s: Letter/Letter.cpp.s
+LString/LString.s: LString/LString.cpp.s
 
-.PHONY : Letter/Letter.s
+.PHONY : LString/LString.s
 
 # target to generate assembly for a file
-Letter/Letter.cpp.s:
-	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.s
-.PHONY : Letter/Letter.cpp.s
+LString/LString.cpp.s:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/LString/LString.cpp.s
+.PHONY : LString/LString.cpp.s
 
 main.o: main.cpp.o
 
@@ -246,9 +246,9 @@ help:
 	@echo "... HandManager/HandManager.o"
 	@echo "... HandManager/HandManager.i"
 	@echo "... HandManager/HandManager.s"
-	@echo "... Letter/Letter.o"
-	@echo "... Letter/Letter.i"
-	@echo "... Letter/Letter.s"
+	@echo "... LString/LString.o"
+	@echo "... LString/LString.i"
+	@echo "... LString/LString.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

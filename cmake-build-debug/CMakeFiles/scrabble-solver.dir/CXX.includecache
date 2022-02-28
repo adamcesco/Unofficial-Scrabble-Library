@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.cpp
+BoardReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
+sstream
+-
+
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
 ../HandManager/HandManager.h
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/HandManager/HandManager.h
@@ -21,8 +27,24 @@ unordered_map
 -
 algorithm
 -
+../LString/LString.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
+math.h
+-
 
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/main.cpp
-BoardReader/BoardReader.h
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
+iostream
+-
+vector
+-
+fstream
+-
+unordered_map
+-
+algorithm
+-
+stdexcept
+-
+math.h
+-
 

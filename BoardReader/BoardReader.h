@@ -20,8 +20,8 @@ private:
     int curX, curY;
     string bestWord;
     string hand;
-    Letter board[15][15];
     bool horizontal;
+    vector<LString> board;
 };
 
 

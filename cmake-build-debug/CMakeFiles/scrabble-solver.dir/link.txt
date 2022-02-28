@@ -1,1 +1,1 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/scrabble-solver.dir/main.cpp.o CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.o CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.o  -o scrabble-solver 
+/usr/bin/c++  -g  -rdynamic CMakeFiles/scrabble-solver.dir/main.cpp.o CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.o CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o  -o scrabble-solver 

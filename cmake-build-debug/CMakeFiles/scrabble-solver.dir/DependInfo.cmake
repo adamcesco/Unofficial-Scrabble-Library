@@ -6,7 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.cpp" "/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o"
   "/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HandManager/HandManager.cpp" "/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.o"
-  "/mnt/c/Users/misc1/CLionProjects/scrabble-solver/Letter/Letter.cpp" "/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles/scrabble-solver.dir/Letter/Letter.cpp.o"
+  "/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.cpp" "/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o"
   "/mnt/c/Users/misc1/CLionProjects/scrabble-solver/main.cpp" "/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles/scrabble-solver.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

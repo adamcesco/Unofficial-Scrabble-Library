@@ -2,6 +2,15 @@
 
 int main(){
     string hand = "reaking";
+
+//    HandManager handManager(hand);
+//    handManager.SortManager();
+//    handManager.PowerSet();
+//    handManager.StartPermute();
+//    handManager.CleanPossibleAnswers();
+//    handManager.toString();
+//
+//    return 0;
 //    srand(time(NULL));
 //    for(int i = 0; i < 7; i++){
 //        hand[i] = (rand() % 26) + 'a';

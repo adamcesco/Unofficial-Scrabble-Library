@@ -11,7 +11,8 @@
 #include <fstream>
 #include <unordered_map>
 #include <algorithm>
-#include "../Letter/Letter.h"
+#include "../LString/LString.h"
+#include <math.h>
 using namespace std;
 
 /*
@@ -66,6 +67,7 @@ public:
     string GetBestWord(int, char, int);
     static int gradeWord(string);
     string GetBestWord(int, string, int);   //get the best word that contains a string that has left padding of size int1, and right padding of size int2
+    string GetBestWord(LString);             //pass a string a letters, fill the string with every possible answer one by one, only overwritting spaces; then clean possible answers and return first word in possible answers
 
 private:
     string hand;
