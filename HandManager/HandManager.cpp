@@ -382,5 +382,6 @@ string HandManager::GetBestWord(LString passed) {
 
     CleanPossibleAnswers();
     //TODO: sort cleanAnswers
+    //TODO: remove blank rows and columns
     return cleanAnswers[0];
 }

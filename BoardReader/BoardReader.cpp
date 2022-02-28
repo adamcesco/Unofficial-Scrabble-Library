@@ -66,7 +66,7 @@ void BoardReader::SearchBoardHorizontal() {
         handManager.CleanPossibleAnswers();
         string curBestWord = handManager.GetBestWord(row);
 
-//        cout << curBestWord << endl << endl;
+        cout << curBestWord << endl;
         if(HandManager::gradeWord(curBestWord) >= HandManager::gradeWord(bestWord)){
             if(curBestWord.length() < bestWord.length() || bestWord.empty()){
                 bestWord = curBestWord;
