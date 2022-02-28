@@ -379,9 +379,14 @@ string HandManager::GetBestWord(LString passed) {
             }
         }
     }
-
     CleanPossibleAnswers();
-    //TODO: sort cleanAnswers
-    //TODO: remove blank rows and columns
-    return cleanAnswers[0];
+    for(auto& word : possibleAnswers){
+        LString Lword = word;
+        for (auto curSub: subLStrings) {
+            if(Lword.contains(curSub)) {
+                return word;
+            }
+        }
+    }
+    return "";
 }

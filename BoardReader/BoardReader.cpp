@@ -32,7 +32,7 @@ void BoardReader::buildBoard() {
         int cellCount = 0;
         LString rowVect;
         while (getline(strStr, cell, ',')){
-            if(cell.size() > 0) {
+            if(cell.size() > 0 && isalpha(cell[0])) {
                 rowVect.push_back(Letter(cell[0], cellCount, rowCount));
             }
             else {
@@ -66,8 +66,14 @@ void BoardReader::SearchBoardHorizontal() {
         handManager.CleanPossibleAnswers();
         string curBestWord = handManager.GetBestWord(row);
 
-        cout << curBestWord << endl;
-        if(HandManager::gradeWord(curBestWord) >= HandManager::gradeWord(bestWord)){
+        cout << curBestWord << " - " << HandManager::gradeWord(curBestWord) << endl;
+        if(HandManager::gradeWord(curBestWord) > HandManager::gradeWord(bestWord)){
+            bestWord = curBestWord;
+            bestX = -1;
+            bestY = rowCount;
+            horizontal = true;
+        }
+        else if(HandManager::gradeWord(curBestWord) == HandManager::gradeWord(bestWord)){
             if(curBestWord.length() < bestWord.length() || bestWord.empty()){
                 bestWord = curBestWord;
                 bestX = -1;
