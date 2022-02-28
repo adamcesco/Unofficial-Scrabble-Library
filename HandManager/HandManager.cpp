@@ -107,7 +107,7 @@ void HandManager::PowerSet()
                 currentSet += hand[j];
         }
 
-        if(currentSet.length() > 1) {
+        if(currentSet.length() > 0) {
             int sum = 0;
             for(int i = 0; i < currentSet.length(); i++){
                 sum += legend[(currentSet.at(i) & 31) - 1];
@@ -369,21 +369,15 @@ string HandManager::GetBestWord(LString passed) {
             }
         }
         for (auto curSWord : seperatedWords) {
-            possibleAnswers.push_back(curSWord);
-//            LString LcurSWord = curSWord;
-//            for (auto curSub: subLStrings) {
-//                if(LcurSWord.contains(curSub) && !(LcurSWord == curSub)) {
-//                    possibleAnswers.push_back(curSWord);
-//                }
-//            }
+            LString LcurSWord = curSWord;
+            if(LcurSWord.containsIgnorePadding(passed)) {
+                possibleAnswers.push_back(curSWord);
+            }
         }
     }
 
 
     CleanPossibleAnswers();
-    if(subLStrings[0].to_string() == "ME"){
-        toString();
-    }
 
     if(cleanAnswers.size() > 0)
         return cleanAnswers[0];

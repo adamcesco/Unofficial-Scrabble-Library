@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <math.h>
+#include <cstring>
 using namespace std;
 
 struct Letter {
@@ -92,6 +93,7 @@ public:
     LString(const string&);
     LString& operator=(const LString&);
     LString& operator=(const string&);
+    LString& operator=(const char*&);
 
     Letter& operator[](int);
     Letter read_at(int) const;
@@ -116,10 +118,12 @@ public:
     bool contains(char) const;
     bool contains(string) const;
     bool contains(LString) const;
+    bool containsIgnorePadding(LString) const;
     bool operator==(const LString&) const;
     LString& operator+=(const Letter&);
     LString& operator+=(char);
     string to_string();
+    LString& overwritePadding(const LString&);
     
     ~LString(){delete[] data;}
 

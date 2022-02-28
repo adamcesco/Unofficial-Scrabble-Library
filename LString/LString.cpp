@@ -152,7 +152,6 @@ LString& LString::pop_front(){
         maxCap /= 2;
 
     Letter* dataCpy = new Letter[maxCap];
-    int* flagCpy = new int[maxCap];
 
     for (int i = 1; i < eleCount; ++i) {
         dataCpy[i - 1] = data[i];
@@ -217,7 +216,7 @@ bool LString::operator==(const LString& dsv1) const{
         return false;
 
     for (int i = 0; i < eleCount; i++) {
-        if(!(dsv1.data[i].LData == data[i].LData))
+        if(dsv1.data[i].LData != data[i].LData)
             return false;
     }
 
@@ -339,21 +338,114 @@ LString::LString(const string &toCpy) {
 }
 
 bool LString::contains(LString passed) const {
-    int pssedlength = passed.size();
-    int thisLen = this->eleCount;
-    if (pssedlength > thisLen)  //checks to see if passed length is greater than this->data, if so then it returns false
+    if (passed.eleCount > eleCount)  //checks to see if passed length is greater than this->data, if so then it returns false
         return false;
-    else if (pssedlength == 0 && thisLen == 0)  //if both this->data and passed have no content, then returns true
+    else if (passed.eleCount == 0 && eleCount == 0)  //if both this->data and passed have no content, then returns true
         return true;
 
     LString slidingWindow;
-    for (int i = 0; i < passed.eleCount; i++) {    //this grows "slidingWindow" to the same length to "passed", then continuously slides the content through "slidingWindow" until "passed" is found
+    for (int i = 0; i < eleCount; i++) {    //this grows "slidingWindow" to the same length to "passed", then continuously slides the content through "slidingWindow" until "passed" is found
         slidingWindow += data[i];
-        if (slidingWindow.eleCount > pssedlength)
+        if (slidingWindow.eleCount > passed.eleCount)
             slidingWindow = slidingWindow.pop_front();
 
         if (slidingWindow == passed)    //if "passed" is found, then returns true
             return true;
+    }
+
+    return false;
+}
+
+LString &LString::operator=(const char * &toAssign) {
+    eleCount = strlen(toAssign);
+    maxCap = eleCount * 2;
+    delete[] data;
+    data = new Letter[maxCap];
+
+    for (int i = 0; i < eleCount; ++i) {
+        data[i] = toAssign[i];
+    }
+
+    return *this;
+}
+
+bool LString::containsIgnorePadding(LString passed) const {
+    //remove whitespace characters from end
+    while(passed[0] == ' ' || passed.back() == ' '){
+        if(passed[0] == ' '){
+            passed.pop_front();
+        }
+
+        if(passed.back() == ' '){
+            passed.pop_back();
+        }
+    }
+    if (passed.eleCount > eleCount)
+        return false;
+    else if (passed.eleCount == 0 && eleCount == 0)  //if both this->data and passed have no content, then returns true
+        return true;
+
+    vector<LString> subLStrs;
+    LString curLs;
+    for (auto i : passed) {
+        if(i.LData != ' ') {
+            curLs += i;
+        }
+        else if (!curLs.is_empty()){
+            subLStrs.push_back(curLs);
+            curLs.clear();
+        }
+    }
+    if (!curLs.is_empty())
+        subLStrs.push_back(curLs);
+
+    LString slidingWindow;
+    const LString pssdCpy = passed;
+    for (int i = 0; i < eleCount + pssdCpy.size(); i++) {    //this grows "slidingWindow" to the same length to "passed", then continuously slides the content through "slidingWindow" until "passed" is found
+        slidingWindow += data[i];
+        if (slidingWindow.eleCount > passed.eleCount)
+            slidingWindow = slidingWindow.pop_front();
+
+        for (int j = passed.eleCount - 1; j >= passed.eleCount - slidingWindow.eleCount; --j) {
+            if (passed[j] == ' ')
+                passed[j] = slidingWindow[(slidingWindow.eleCount - 1) - ((passed.eleCount - 1) - j)];
+        }
+        if (passed == pssdCpy && subLStrs.size() > 1)
+            continue;
+
+        vector<LString> brokenWindow;
+        LString curLsWindow;
+        for (auto it: passed) {
+            if (it.LData != ' ') {
+                curLsWindow += it;
+            } else if (!curLsWindow.is_empty()) {
+                brokenWindow.push_back(curLsWindow);
+                curLsWindow.clear();
+            }
+        }
+        if (!curLsWindow.is_empty())
+            brokenWindow.push_back(curLsWindow);
+
+        if (brokenWindow.size() > 1) {
+            for (auto word: brokenWindow) {
+                bool skip = false;
+                for (auto subWord: subLStrs) {
+                    if (word == subWord)
+                        skip = true;
+                }
+                if (skip)
+                    continue;
+                if (contains(word))
+                    return true;
+            }
+        }
+        else{
+            if(passed == slidingWindow)
+                return true;
+        }
+
+
+        passed = pssdCpy;
     }
 
     return false;

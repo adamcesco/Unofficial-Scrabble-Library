@@ -2,24 +2,18 @@
 
 int main(){
     string hand = "reaking";
-
-//    HandManager handManager(hand);
-//    handManager.SortManager();
-//    handManager.PowerSet();
-//    handManager.StartPermute();
-//    handManager.CleanPossibleAnswers();
-//    handManager.toString();
-//
-//    return 0;
-//    srand(time(NULL));
-//    for(int i = 0; i < 7; i++){
-//        hand[i] = (rand() % 26) + 'a';
-//    }
     BoardReader reader(hand);
     reader.buildBoard();
     reader.printBoard();
     reader.SearchBoardHorizontal();
     cout << reader.to_string() << endl;
+
+//    LString testLS;
+//    testLS = "REKIAG";
+//    LString testDummy;
+//    testDummy = " A  E  ";
+//    cout << testLS.containsIgnorePadding(testDummy) << endl;
+
 
     return 0;
 }
