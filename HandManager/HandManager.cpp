@@ -334,8 +334,9 @@ string HandManager::GetBestWord(LString passed) {
     }
     if (skip){return "";}
 
+    vector<string> PAcopy = possibleAnswers;
     possibleAnswers.clear();
-    for(auto& word : cleanAnswers) {
+    for(auto& word : PAcopy) {        //check if the current word it unchanged at the end of every loop, if it is not then delete it
         for (int i = 0; i < passed.size(); ++i){
             string row = passed.to_string();
             int skipCount = 0;
@@ -346,7 +347,7 @@ string HandManager::GetBestWord(LString passed) {
                     row[i + j + skipCount] = word[j];
                 else {
                     j--;
-                    skipCount += 2;
+                    skipCount += 1;
                 }
             }
             possibleAnswers.push_back(row);
@@ -360,7 +361,7 @@ string HandManager::GetBestWord(LString passed) {
             if(i == ' '){
                 if(foundAlpha){
                     for (auto curSub: subLStrings) {
-                        if(cleanWord.contains(curSub))
+                        if(cleanWord.contains(curSub))  //contains method may be broken in some ways
                             break;
                     }
                     cleanWord.clear();
@@ -380,7 +381,8 @@ string HandManager::GetBestWord(LString passed) {
         }
     }
     CleanPossibleAnswers();
-    for(auto& word : possibleAnswers){
+
+    for (auto word : cleanAnswers) {
         LString Lword = word;
         for (auto curSub: subLStrings) {
             if(Lword.contains(curSub)) {
@@ -388,5 +390,6 @@ string HandManager::GetBestWord(LString passed) {
             }
         }
     }
+
     return "";
 }
