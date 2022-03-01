@@ -33,10 +33,10 @@ void BoardReader::buildBoard() {
         LString rowVect;
         while (getline(strStr, cell, ',')){
             if(cell.size() > 0 && isalpha(cell[0])) {
-                rowVect.push_back(Letter(cell[0], cellCount, rowCount));
+                rowVect.push_back(Letter(cell[0], cellCount, rowCount, 1));
             }
             else {
-                rowVect.push_back(Letter(' ', cellCount, rowCount));
+                rowVect.push_back(Letter(' ', cellCount, rowCount, 1));
             }
             cellCount++;
         }
@@ -113,7 +113,7 @@ void BoardReader::SearchBoardHorizontal() {
     string curWord;
     while(!englishWords.eof()){
         englishWords >> curWord;
-        answers.emplace_back(LString(curWord));
+        answers.emplace_back(LString(curWord).initializeXVals());
     }
     englishWords.close();
 
@@ -121,8 +121,8 @@ void BoardReader::SearchBoardHorizontal() {
 
     int rowCount = 1;
     for (auto& row : board) {
-        for (auto& word: answers) {
-            if(word.containsIgnorePadding(row) && word.isDescendentOf(hand + row)) {
+        for (auto& word: answers) { //containsIgnorePadding has infinite loop
+            if(word.isDescendentOf(hand + row) && word.containsIgnorePadding(row)) {
                 if(word.get_points() > bestWord.get_points()){
                     bestWord = word.to_string();
                     bestX = word[0].x;

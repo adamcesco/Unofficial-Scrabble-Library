@@ -370,25 +370,25 @@ LString &LString::operator=(const char * &toAssign) {
     return *this;
 }
 
-bool LString::containsIgnorePadding(LString passed) const {
+bool LString::containsIgnorePadding(LString passed) const {     //only works for rows with spaces in them
     //remove whitespace characters from end
-    while(passed[0] == ' ' || passed.back() == ' '){
-        try{
-            if (passed[0] == ' ') {
-                passed.pop_front();
-            }
-
-            if (passed.back() == ' ') {
-                passed.pop_back();
-            }
-        }catch(const invalid_argument& e){  //executes if passed is all whitespace characters
-            return false;
-        }
-    }
-    if (passed.eleCount > eleCount)
-        return false;
-    else if (passed.eleCount == 0 && eleCount == 0)  //if both this->data and passed have no content, then returns true
-        return true;
+//    while(passed[0] == ' ' || passed.back() == ' '){
+//        try{
+//            if (passed[0] == ' ') {
+//                passed.pop_front();
+//            }
+//
+//            if (passed.back() == ' ') {
+//                passed.pop_back();
+//            }
+//        }catch(const invalid_argument& e){  //executes if passed is all whitespace characters
+//            return false;
+//        }
+//    }
+//    if (passed.eleCount > eleCount) //delete this later
+//        return false;
+//    else if (passed.eleCount == 0 && eleCount == 0)  //if both this->data and passed have no content, then returns true
+//        return true;
 
     vector<LString> subLStrs;
     LString curLs;
@@ -406,10 +406,15 @@ bool LString::containsIgnorePadding(LString passed) const {
 
     LString slidingWindow;
     const LString pssdCpy = passed;
-    for (int i = 0; i < eleCount + pssdCpy.length(); i++) {    //this grows "slidingWindow" to the same length to "passed", then continuously slides the content through "slidingWindow" until "passed" is found
-        slidingWindow += data[i];
-        if (slidingWindow.eleCount > passed.eleCount)
+    LString thisCpy = *this;
+    thisCpy.add_to_x_vals(passed.back().x + 1);
+    for (int i = 0; i < eleCount + passed.eleCount; i++) {    //this grows "slidingWindow" to the same length to "passed", then continuously slides the content through "slidingWindow" until "passed" is found
+        slidingWindow += thisCpy.data[i];
+
+        if (slidingWindow.eleCount > passed.eleCount) {
             slidingWindow.pop_front();
+        }
+        thisCpy.add_to_x_vals(-1);
 
         for (int j = passed.eleCount - 1; j >= passed.eleCount - slidingWindow.eleCount; --j) {
             if (passed[j] == ' ')
@@ -424,17 +429,19 @@ bool LString::containsIgnorePadding(LString passed) const {
             if (it.LData != ' ') {
                 curLsWindow += it;
             } else if (!curLsWindow.is_empty()) {
-                brokenWindow.push_back(curLsWindow);
+                if(curLsWindow.contains_flag(1))
+                    brokenWindow.push_back(curLsWindow);
                 curLsWindow.clear();
             }
         }
-        if (!curLsWindow.is_empty())
-            brokenWindow.push_back(curLsWindow);
+        if (!curLsWindow.is_empty()) {
+            if (curLsWindow.contains_flag(1))
+                brokenWindow.push_back(curLsWindow);
+        }
 
-        if (brokenWindow.size() > 1) {
-            for (auto word: brokenWindow) {
+        for (auto word: brokenWindow) {
                 bool skip = false;
-                for (auto subWord: subLStrs) {
+                for (auto subWord: subLStrs) {      //1074
                     if (word == subWord) {
                         skip = true;
                         break;
@@ -442,16 +449,47 @@ bool LString::containsIgnorePadding(LString passed) const {
                 }
                 if (skip)
                     continue;
-                if (contains(word)) {
-                    cout << this->to_string() << " | " << word.to_string() << " | " << passed.to_string() << endl;
-                    return true;
-                }
+            if (*this == word) {
+                cout << this->to_string() << " | " << word.to_string() << " | " << passed.to_string() << endl;
+                return true;
             }
         }
-        else{
-            if(passed == slidingWindow)
-                return true;
-        }
+
+
+//        vector<LString> brokenWindow;
+//        LString curLsWindow;
+//        for (auto it: passed) {
+//            if (it.LData != ' ') {
+//                curLsWindow += it;
+//            } else if (!curLsWindow.is_empty()) {
+//                brokenWindow.push_back(curLsWindow);
+//                curLsWindow.clear();
+//            }
+//        }
+//        if (!curLsWindow.is_empty())
+//            brokenWindow.push_back(curLsWindow);
+
+//        if (brokenWindow.size() > 1) {
+//            for (auto word: brokenWindow) {
+//                bool skip = false;
+//                for (auto subWord: subLStrs) {
+//                    if (word == subWord) {
+//                        skip = true;
+//                        break;
+//                    }
+//                }
+//                if (skip)
+//                    continue;
+//                if (contains(word)) {
+//                    cout << this->to_string() << " | " << word.to_string() << " | " << passed.to_string() << endl;
+//                    return true;
+//                }
+//            }
+//        }
+//        else{
+//            if(passed == slidingWindow)
+//                return true;
+//        }
 
 
         passed = pssdCpy;
@@ -512,6 +550,82 @@ int LString::get_points() const{
     for (int i = 0; i < eleCount; ++i)
         sum += data[i].val;
     return sum;
+}
+
+LString& LString::initializeXVals() {
+    for (int i = 0; i < eleCount; ++i)
+        data[i].x = i;
+
+    return *this;
+}
+
+bool LString::containsWithRespectToX(LString passed) const{
+    //if the characters match, then the X vals better match
+    // If the characters do not match and the X val matches, then false
+    // If one of the character to compare is a space, then continue
+    //start comparing at highest x val of the first character
+
+
+//    cout << this->to_string() << " | " << word.to_string() << " | " << passed.to_string() << endl;
+
+    if (passed.eleCount == 0 && eleCount == 0)  //if both this->data and passed have no content, then returns true
+        return true;
+
+
+    LString slidingWindow;
+    LString temp = *this;
+
+    if(temp.back().x < passed[0].x){
+        return false;
+    }
+
+    while((temp[0].x < passed[0].x)){
+        temp.pop_front();
+    }
+
+    int i = 0;
+    int size = (temp.eleCount > passed.eleCount) ? passed.eleCount : temp.eleCount;
+    while (i < size) {    //this grows "slidingWindow" to the same length to "passed", then continuously slides the content through "slidingWindow" until "passed" is found
+        if(passed[i] == ' ') {
+            i++;
+            continue;
+        }
+
+        if(!(temp[i] == passed[i] && temp[i].x == passed[i].x)){
+            return false;
+        }
+
+        if(temp[i] != passed[i] && temp[i].x == passed[i].x){
+            return false;
+        }
+
+        i++;
+    }
+
+    return true;
+}
+
+LString &LString::add_to_x_vals(int passed) {
+    for (int i = 0; i < eleCount; ++i)
+        data[i].x += passed;
+
+    return *this;
+}
+
+LString &LString::set_x_vals_equal_to(const LString & passed) {
+    int size = (eleCount > passed.eleCount) ? passed.eleCount : eleCount;
+    for (int i = 0; i < size; ++i)
+        data[i].x = passed.read_at(i).x;
+
+    return *this;
+}
+
+bool LString::contains_flag(int passed) {
+    for (int i = 0; i < eleCount; ++i) {
+        if(data[i].flag == passed)
+            return true;
+    }
+    return false;
 }
 
 #endif

@@ -26,18 +26,20 @@ struct Letter {
     int x, y;
     int val;
     char LData;
+    int flag;
     const int legend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8,  5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 
     Letter(){
-        x = y = -1;
+        x = y = flag = -1;
         val = 0;
         LData = ' ';
     }
 
-    Letter(char passed, int xp, int yp){
-        LData = passed;
+    Letter(char passed, int xp, int yp, int fl){
+        LData = abs(passed);
         x = xp;
         y = yp;
+        flag = fl;
         val = legend[(passed & 31) - 1];
     }
 
@@ -54,20 +56,28 @@ struct Letter {
         return (invoked == this->LData);
     }
 
+    bool operator!=(const Letter& invoked) const{
+        return (invoked.LData != this->LData);
+    }
+
+    bool operator!=(char invoked) const{
+        return (invoked != this->LData);
+    }
+
     Letter& operator=(const Letter& invoked){
         if(this == &invoked)
             return *this;
         LData = invoked.LData;
         y = invoked.y;
         x = invoked.x;
+        flag = invoked.flag;
         val = legend[(LData & 31) - 1];
         return *this;
     }
 
     Letter& operator=(char invoked){
         LData = invoked;
-        y = -1;
-        x = -1;
+        y = x = flag = -1;
         val = legend[(LData & 31) - 1];
         return *this;
     }
@@ -138,6 +148,11 @@ public:
     bool isDescendentOf(const LString&);
     int get_points() const;
     static int gradeWord(string);
+    LString& initializeXVals();
+    bool containsWithRespectToX(LString) const;
+    LString& add_to_x_vals(int);
+    LString& set_x_vals_equal_to(const LString&);
+    bool contains_flag(int);
     
     ~LString(){delete[] data;}
 

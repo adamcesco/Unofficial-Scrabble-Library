@@ -1,7 +1,7 @@
 #include "BoardReader/BoardReader.h"
 
 int main(){
-    string hand = "klfulai";
+    string hand = "kingful";
     BoardReader reader(hand);
     reader.buildBoard();
     reader.printBoard();
