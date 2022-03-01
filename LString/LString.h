@@ -153,7 +153,8 @@ public:
     static int gradeWord(string);
     LString& xVals_to_subscript();
     LString& add_to_x_vals(int);
-    LString& set_x_vals_equal_to(const LString&);
+    LString& set_x_vals_equal_to(int);
+    LString& set_y_vals_equal_to(int);
     bool contains_flag(int);
     bool place_into_row(const LString&);
     vector<LString> break_into_frags() const;

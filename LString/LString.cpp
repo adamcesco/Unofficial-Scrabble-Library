@@ -525,10 +525,9 @@ LString &LString::add_to_x_vals(int passed) {
     return *this;
 }
 
-LString &LString::set_x_vals_equal_to(const LString & passed) {
-    int size = (eleCount > passed.eleCount) ? passed.eleCount : eleCount;
-    for (int i = 0; i < size; ++i)
-        data[i].x = passed.read_at(i).x;
+LString &LString::set_x_vals_equal_to(int passed) {
+    for (int i = 0; i < eleCount; ++i)
+        data[i].x = passed;
 
     return *this;
 }
@@ -645,6 +644,13 @@ LString LString::operator+(char toAppend) const {
     LString temp(*this);
     temp.push_back(toAppend);
     return temp;
+}
+
+LString &LString::set_y_vals_equal_to(int passed) {
+    for (int i = 0; i < eleCount; ++i)
+        data[i].y = passed;
+
+    return *this;
 }
 
 #endif

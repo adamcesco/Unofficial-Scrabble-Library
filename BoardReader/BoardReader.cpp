@@ -7,13 +7,35 @@
 
 BoardReader::BoardReader() {
     bestX = bestY = 8;
-    curX =  curY = 8;
+
+    ifstream englishWords;
+    englishWords.open("../data/englishWords.txt");
+    if(!englishWords.is_open())
+        throw invalid_argument("could not open ../data/englishWords.txt");
+
+    string curWord;
+    while(!englishWords.eof()){
+        englishWords >> curWord;
+        answerSet.emplace(curWord);
+    }
+    englishWords.close();
 }
 
 BoardReader::BoardReader(LString passed) {
     hand = passed;
     bestX = bestY = 8;
-    curX =  curY = 8;
+
+    ifstream englishWords;
+    englishWords.open("../data/englishWords.txt");
+    if(!englishWords.is_open())
+        throw invalid_argument("could not open ../data/englishWords.txt");
+
+    string curWord;
+    while(!englishWords.eof()){
+        englishWords >> curWord;
+        answerSet.emplace(curWord);
+    }
+    englishWords.close();
 }
 
 void BoardReader::buildBoard() {
@@ -120,12 +142,11 @@ void BoardReader::SearchBoardHorizontal() {
     int rowSubscript = 0;
     for (const auto& row : board) {
         wordsOfRow[rowSubscript].clear();
-        LString rowCpy = row;
         for (auto& word: answers) {
-            if(word.isDescendentOf(hand, row) && word.place_into_row(rowCpy)) {
+            if(word.isDescendentOf(hand, row) && word.place_into_row(row)) {
+                word.set_y_vals_equal_to(rowSubscript);
                 wordsOfRow[rowSubscript].push_back(word);
             }
-            rowCpy = row;
         }
         rowSubscript++;
     }
@@ -146,8 +167,9 @@ string BoardReader::to_string() const {
 
 LString BoardReader::update_best_word(){
     int rowSubscript = 0;
-    for (int i = 0; i < 15; ++i) {
-        for (const auto& word: wordsOfRow[i]) {
+    bestWord.clear();
+    for (auto & wordSet : wordsOfRow) {
+        for (const auto& word: wordSet) {
             if (word.get_points() > bestWord.get_points()) {
                 bestWord = word;
                 bestX = bestWord[0].x + 1;
@@ -173,6 +195,50 @@ LString BoardReader::get_words_of_row(int subscript) {
     for (const auto& word: wordsOfRow[subscript]) {
         buffer += word + '\n';
     }
+    buffer.pop_back();
 
     return buffer;
+}
+
+LString BoardReader::row_to_string(int subscript) {
+    LString buffer;
+    for (const auto& word: wordsOfRow[subscript]) {
+        buffer += word;
+        buffer += " - " + ::to_string(word.get_points()) + '\n';
+    }
+    buffer.pop_back();
+
+    return buffer;
+}
+
+void BoardReader::check_vertical_compatibility() {
+    for (auto & wordSet : wordsOfRow) {
+        for (auto& word: wordSet) {
+            vector<LString> boardCpy = return_board_with(word);
+
+            for (int i = 0; i < 15; i++) {  //i = x
+                LString column;
+                for (int j = 0; j < 15; j++) {  //j = y
+                    column += boardCpy[j][i];
+                }
+
+                vector<LString> colShards = column.break_into_frags();
+                for (const auto& shard : colShards) {
+                    //up until this points, everything works
+                    if(shard.length() > 1 && answerSet.find(shard.to_string()) == answerSet.end()){
+//                        cout << word.to_string() << " | " << word.read_at(0).x + 1 << " | " << word.read_at(0).y + 1 << endl;
+                        word.clear();
+                    }
+                }
+            }
+        }
+    }
+}
+
+vector<LString> BoardReader::return_board_with(const LString& toPrint) const{
+    vector<LString> boardCpy = board;
+    for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
+            boardCpy[toPrint.read_at(0).y][i] = toPrint.read_at(i - toPrint.read_at(0).x);
+    }
+    return boardCpy;
 }
