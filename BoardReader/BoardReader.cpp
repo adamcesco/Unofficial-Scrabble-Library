@@ -123,8 +123,6 @@ void BoardReader::SearchBoardHorizontal() {
     for (auto& row : board) {
         for (auto& word: answers) {
             if(word.isDescendentOf(hand, row) && word.containsIgnorePadding(row)) {
-                //check if the word is made up of characters strickly from the row
-                //check if any letters from hand are present
                 if(word.get_points() > bestWord.get_points()){
                     bestWord = word.to_string();
                     bestX = word[0].x;

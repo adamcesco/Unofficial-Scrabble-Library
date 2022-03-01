@@ -149,7 +149,6 @@ public:
     int get_points() const;
     static int gradeWord(string);
     LString& initializeXVals();
-    bool containsWithRespectToX(LString) const;
     LString& add_to_x_vals(int);
     LString& set_x_vals_equal_to(const LString&);
     bool contains_flag(int);

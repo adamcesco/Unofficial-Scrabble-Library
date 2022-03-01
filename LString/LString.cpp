@@ -518,52 +518,6 @@ LString& LString::initializeXVals() {
     return *this;
 }
 
-bool LString::containsWithRespectToX(LString passed) const{
-    //if the characters match, then the X vals better match
-    // If the characters do not match and the X val matches, then false
-    // If one of the character to compare is a space, then continue
-    //start comparing at highest x val of the first character
-
-
-//    cout << this->to_string() << " | " << word.to_string() << " | " << passed.to_string() << endl;
-
-    if (passed.eleCount == 0 && eleCount == 0)  //if both this->data and passed have no content, then returns true
-        return true;
-
-
-    LString slidingWindow;
-    LString temp = *this;
-
-    if(temp.back().x < passed[0].x){
-        return false;
-    }
-
-    while((temp[0].x < passed[0].x)){
-        temp.pop_front();
-    }
-
-    int i = 0;
-    int size = (temp.eleCount > passed.eleCount) ? passed.eleCount : temp.eleCount;
-    while (i < size) {    //this grows "slidingWindow" to the same length to "passed", then continuously slides the content through "slidingWindow" until "passed" is found
-        if(passed[i] == ' ') {
-            i++;
-            continue;
-        }
-
-        if(!(temp[i] == passed[i] && temp[i].x == passed[i].x)){
-            return false;
-        }
-
-        if(temp[i] != passed[i] && temp[i].x == passed[i].x){
-            return false;
-        }
-
-        i++;
-    }
-
-    return true;
-}
-
 LString &LString::add_to_x_vals(int passed) {
     for (int i = 0; i < eleCount; ++i)
         data[i].x += passed;
