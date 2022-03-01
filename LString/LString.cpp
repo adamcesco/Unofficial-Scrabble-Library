@@ -457,20 +457,20 @@ bool LString::isDescendentOf(const LString& hand, const LString& row) {
     if(madeOfRow)
         return false;
 
-    int handMap[123];
-    LString passed = hand + row;
+    int sumMap[123];
+    LString sumSet = hand + row;
     int letterCount[123];
     for (int i = 0; i < 123; ++i)
-        handMap[i] = letterCount[i] = 0;
+        sumMap[i] = letterCount[i] = 0;
 
-    for (int i = 0; i < passed.eleCount; ++i)
-        handMap[abs(toupper(passed.read_at(i).LData))]++;
+    for (int i = 0; i < sumSet.eleCount; ++i)
+        sumMap[abs(toupper(sumSet.read_at(i).LData))]++;
 
     for (int i = 0; i < eleCount; ++i)
         letterCount[abs(toupper(data[i].LData))]++;
 
     for (int i = 0; i < 123; ++i) {
-        if(handMap[i] < letterCount[i]){
+        if(sumMap[i] < letterCount[i]){
             return false;
         }
     }
