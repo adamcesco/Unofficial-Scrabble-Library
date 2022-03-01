@@ -541,16 +541,16 @@ bool LString::contains_flag(int passed) {
     return false;
 }
 
-bool LString::place_into_row(LString &row) {
+bool LString::place_into_row(const LString &row) {
     vector<LString> rowFragments = row.break_into_frags();
 
     LString slidingWindow;
-    row.xVals_to_subscript();
-    const LString rowCpy = row;
+    LString rowCpy = row;
+    rowCpy.xVals_to_subscript();
     this->xVals_to_subscript();
-    this->add_to_x_vals(row.back().x + 1);
+    this->add_to_x_vals(row.read_back().x + 1);
     for (int i = 0; i < eleCount + row.eleCount; i++) {
-        slidingWindow += this->data[i];
+        slidingWindow += this->data[i].LData;
 
         if (slidingWindow.eleCount > row.eleCount) {
             slidingWindow.pop_front();
@@ -558,15 +558,15 @@ bool LString::place_into_row(LString &row) {
         this->add_to_x_vals(-1);
 
         for (int j = row.eleCount - 1; j >= row.eleCount - slidingWindow.eleCount; --j) {
-            if (row[j] == ' ')
-                row[j] = slidingWindow[(slidingWindow.eleCount - 1) - ((row.eleCount - 1) - j)];
+            if (row.read_at(j) == ' ')
+                rowCpy[j] = slidingWindow[(slidingWindow.eleCount - 1) - ((row.eleCount - 1) - j)];
         }
         if (row == rowCpy && rowFragments.size() > 1)
             continue;
 
         vector<LString> newBrokenRow;
         LString curRowShard;
-        for (auto it: row) {
+        for (auto it: rowCpy) {
             if (it.LData != ' ') {
                 curRowShard += it;
             } else if (!curRowShard.is_empty()) {
@@ -595,18 +595,18 @@ bool LString::place_into_row(LString &row) {
             }
         }
 
-        row = rowCpy;
+        rowCpy = row;
     }
 
     return false;
 }
 
-vector<LString> LString::break_into_frags() {
+vector<LString> LString::break_into_frags() const{
     vector<LString> fragments;
     LString curFragment;
-    for (const auto& i : *this) {
-        if(i.LData != ' ') {
-            curFragment += i;
+    for (int i = 0; i < eleCount; ++i) {
+        if(data[i].LData != ' ') {
+            curFragment += data[i];
         }
         else if (!curFragment.is_empty()){
             fragments.push_back(curFragment);

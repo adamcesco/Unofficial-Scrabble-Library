@@ -125,6 +125,7 @@ void BoardReader::SearchBoardHorizontal() {
             if(word.isDescendentOf(hand, row) && word.place_into_row(rowCpy)) {
                 wordsOfRow[rowSubscript].push_back(word);
             }
+            rowCpy = row;
         }
         rowSubscript++;
     }

@@ -6,14 +6,8 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.cpp
-BoardReader.h
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
-sstream
--
-
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
-../LString/LString.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.cpp
+LString.h
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
 
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
