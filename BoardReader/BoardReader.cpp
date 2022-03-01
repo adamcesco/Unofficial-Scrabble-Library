@@ -56,72 +56,46 @@ void BoardReader::printBoard() const{
 }
 
 void BoardReader::SearchBoardHorizontal() {
-    int rowCount = 1;
-    int prev = 0;
-    for (auto& row : board) {
-        HandManager handManager(hand);
-        handManager.SortManager();
-        handManager.PowerSet();
-        handManager.StartPermute();
-        string curBestWord = handManager.GetBestWord(row);
+    ifstream englishWords;
+    englishWords.open("../data/englishWords.txt");
+    if(!englishWords.is_open())
+        throw invalid_argument("could not open ../data/englishWords.txt");
 
-        cout << curBestWord << " - " << HandManager::gradeWord(curBestWord) << endl;
-        if(HandManager::gradeWord(curBestWord) > HandManager::gradeWord(bestWord)){
-            bestWord = curBestWord;
-            bestX = -1;
-            bestY = rowCount;
-            horizontal = true;
-        }
-        else if(HandManager::gradeWord(curBestWord) == HandManager::gradeWord(bestWord)){
-            if(curBestWord.length() < bestWord.length() || bestWord.empty()){
-                bestWord = curBestWord;
-                bestX = -1;
-                bestY = rowCount;
-                horizontal = true;
+    vector<LString> answers;
+    string curWord;
+    while(!englishWords.eof()){
+        englishWords >> curWord;
+        answers.emplace_back(LString(curWord));
+    }
+    englishWords.close();
+
+
+    int rowCount = 1;
+    for (auto& row : board) {
+        for (auto& word: answers) {
+            if(word.containsIgnorePadding(row) && word.isDescendentOf(hand + row)) {
+                if(HandManager::gradeWord(word.to_string()) > HandManager::gradeWord(bestWord)){
+                    bestWord = word.to_string();
+                    bestX = -1;
+                    bestY = rowCount;
+                    horizontal = true;
+                }
+                else if(HandManager::gradeWord(word.to_string()) == HandManager::gradeWord(bestWord)){
+                    if(word.size() < bestWord.length() || bestWord.empty()){
+                        bestWord = word.to_string();
+                        bestX = -1;
+                        bestY = rowCount;
+                        horizontal = true;
+                    }
+                }
             }
         }
         rowCount++;
     }
 }
 
-//void BoardReader::SearchBoardHorizontal() {
-//    int rowCount = 1;
-//    int prev = 0;
-//    for (const auto& row : board) {
-//        int k = 0;
-//        int subScrOfLastSubstr = 0;
-//        while (k < 15) {
-//            string subStr = "";
-//            while(isalpha(row[k].data) && k < 15){
-//                subStr += row[k].data;
-//                k++;
-//                subScrOfLastSubstr = k;
-//            }
-//            if(!subStr.empty()){
-//                HandManager handManager(hand);
-//                handManager.SortManager();
-//                handManager.PowerSet();
-//                handManager.StartPermute();
-//                handManager.CleanPossibleAnswers();
-//                string curBestWord = handManager.GetBestWord((k - prev) - subStr.length(), subStr,15 - k);
-//                if(HandManager::gradeWord(curBestWord) >= HandManager::gradeWord(bestWord)){
-//                    if(curBestWord.length() < bestWord.length() || bestWord.empty()){
-//                        bestWord = curBestWord;
-//                        bestX = k;
-//                        bestY = rowCount;
-//                        horizontal = true;
-//                    }
-//                }
-//            }
-//            k++;
-//            prev = subScrOfLastSubstr;
-//        }
-//        rowCount++;
-//    }
-//}
-
 string BoardReader::to_string() const {
-    string buffer = "Hand: " + hand + "\n";
+    string buffer = "Hand: " + hand.to_string() + "\n";
     buffer += "Best Word: " + bestWord + " - " + ::to_string(HandManager::gradeWord(bestWord));
     buffer += "\nPostion X: " + ::to_string(bestX);
     buffer += "\nPostion Y: " + ::to_string(bestY);

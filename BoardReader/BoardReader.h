@@ -19,7 +19,7 @@ private:
     int bestX, bestY;
     int curX, curY;
     string bestWord;
-    string hand;
+    LString hand;
     bool horizontal;
     vector<LString> board;
 };

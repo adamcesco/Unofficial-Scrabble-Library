@@ -332,6 +332,8 @@ string HandManager::GetBestWord(LString passed) {
             curLs.clear();
         }
     }
+    if (!curLs.is_empty())
+        subLStrings.push_back(curLs);
     if (skip){return "";}
 
     vector<string> PAcopy = possibleAnswers;
@@ -362,12 +364,14 @@ string HandManager::GetBestWord(LString passed) {
         for (auto i: word) {
             if (i != ' ') {
                 curStr += i;
-                skip = false;
             } else if (!curStr.empty()) {
                 seperatedWords.push_back(curStr);
                 curStr.clear();
             }
         }
+        if (!curStr.empty())
+            seperatedWords.push_back(curStr);
+
         for (auto curSWord : seperatedWords) {
             LString LcurSWord = curSWord;
             if(LcurSWord.containsIgnorePadding(passed)) {
@@ -378,6 +382,8 @@ string HandManager::GetBestWord(LString passed) {
 
 
     CleanPossibleAnswers();
+    if(subLStrings.back() == LString("ME"))
+        toString();
 
     if(cleanAnswers.size() > 0)
         return cleanAnswers[0];

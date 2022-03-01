@@ -34,9 +34,8 @@ LString::LString(const LString& toCpy){
     maxCap = toCpy.maxCap;
     data = new Letter[maxCap];
 
-    for (int i = 0; i < eleCount; ++i) {
+    for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy.data[i];
-    }
 }
 
 LString& LString::operator=(const LString& toAssign){
@@ -48,9 +47,8 @@ LString& LString::operator=(const LString& toAssign){
     delete[] data;
     data = new Letter[maxCap];
 
-    for (int i = 0; i < eleCount; ++i) {
+    for (int i = 0; i < eleCount; ++i)
         data[i] = toAssign.data[i];
-    }
 
     return *this;
 }
@@ -76,10 +74,14 @@ int LString::read_maxCap() const{
 }
 
 Letter LString::read_back() const{
+    if(eleCount < 1)
+        throw invalid_argument("invalid call for LString::back() | eleCount parameter is less than 1");
     return data[eleCount - 1];
 }
 
 Letter& LString::back(){
+    if(eleCount < 1)
+        throw invalid_argument("invalid call for LString::back() | eleCount parameter is less than 1");
     return data[eleCount - 1];
 }
 
@@ -127,7 +129,7 @@ LString& LString::pop_back(){
         throw invalid_argument("invalid subscript for LString::pop_front(int) | LString::size is 0");
 
     if((eleCount - 1) == (maxCap / 2)) {
-        maxCap /= 2;
+        maxCap = (maxCap / 2 > 10) ? maxCap / 2 : 10;
 
         Letter *dataCpy = new Letter[maxCap];
         int* flagCpy = new int[maxCap];
@@ -149,7 +151,7 @@ LString& LString::pop_front(){
         throw invalid_argument("invalid subscript for LString::pop_front(int) | LString::size is 0");
 
     if((eleCount - 1) == (maxCap / 2))
-        maxCap /= 2;
+        maxCap = (maxCap / 2 > 10) ? maxCap / 2 : 10;
 
     Letter* dataCpy = new Letter[maxCap];
 
@@ -177,7 +179,7 @@ LString& LString::erase_at(int subscript){
         throw invalid_argument("invalid subscript for LString::erase_at()");
 
     if((eleCount - 1) == (maxCap / 2))
-        maxCap /= 2;
+        maxCap = (maxCap / 2 > 10) ? maxCap / 2 : 10;
 
     Letter* dataCpy = new Letter[maxCap];
     int* flagCpy = new int[maxCap];
@@ -297,11 +299,10 @@ LString &LString::push_front(char pssd) {
     return *this;
 }
 
-string LString::to_string() {
+string LString::to_string() const{
     string temp;
-    for(const auto& it : *this){
-        temp += it.LData;
-    }
+    for(int i = 0; i < eleCount; i++)
+        temp += data[i].LData;
     return temp;
 }
 
@@ -372,12 +373,16 @@ LString &LString::operator=(const char * &toAssign) {
 bool LString::containsIgnorePadding(LString passed) const {
     //remove whitespace characters from end
     while(passed[0] == ' ' || passed.back() == ' '){
-        if(passed[0] == ' '){
-            passed.pop_front();
-        }
+        try{
+            if (passed[0] == ' ') {
+                passed.pop_front();
+            }
 
-        if(passed.back() == ' '){
-            passed.pop_back();
+            if (passed.back() == ' ') {
+                passed.pop_back();
+            }
+        }catch(const invalid_argument& e){  //executes if passed is all whitespace characters
+            return false;
         }
     }
     if (passed.eleCount > eleCount)
@@ -449,6 +454,67 @@ bool LString::containsIgnorePadding(LString passed) const {
     }
 
     return false;
+}
+
+bool LString::isDescendentOf(const LString& passed) {
+    int handMap[123];
+    int letterCount[123];
+    for (int i = 0; i < 123; ++i)
+        handMap[i] = letterCount[i] = 0;
+
+    for (int i = 0; i < passed.eleCount; ++i)
+        handMap[abs(toupper(passed.read_at(i).LData))]++;
+
+    for (int i = 0; i < eleCount; ++i)
+        letterCount[abs(toupper(data[i].LData))]++;
+
+    for (int i = 0; i < 123; ++i) {
+        if(handMap[i] < letterCount[i]){
+            return false;
+        }
+    }
+
+    return true;
+}
+
+LString LString::operator+(const LString &pssd) const{
+    LString temp(*this);
+    for (int i = 0; i < pssd.eleCount; ++i)
+        temp.push_back(pssd.read_at(i));
+
+    return temp;
+}
+
+LString::LString(const char*& toCpy) {
+    eleCount = strlen(toCpy);
+    maxCap = eleCount * 2;
+    data = new Letter[maxCap];
+
+    for (int i = 0; i < eleCount; ++i) {
+        data[i] = toCpy[i];
+    }
+}
+
+int LString::gradeWord(string passed) {
+    const int valLegend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8,  5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+    int sum = 0;
+    for(char it : passed)
+        sum += valLegend[(it & 31) - 1];
+    return sum;
+}
+
+int LString::gradeWord(LString passed) {
+    int sum = 0;
+    for(const auto& it : passed)
+        sum += it.val;
+    return sum;
+}
+
+int LString::get_points() {
+    int sum = 0;
+    for (int i = 0; i < eleCount; ++i)
+        sum += data[i].val;
+    return sum;
 }
 
 #endif

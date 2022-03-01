@@ -8,6 +8,7 @@
 #include <vector>
 #include <fstream>
 #include <unordered_map>
+#include <unordered_set>
 #include <algorithm>
 #include <stdexcept>
 #include <math.h>
@@ -91,6 +92,7 @@ public:
     LString();
     LString(const LString&);
     LString(const string&);
+    LString(const char *&);
     LString& operator=(const LString&);
     LString& operator=(const string&);
     LString& operator=(const char*&);
@@ -122,8 +124,12 @@ public:
     bool operator==(const LString&) const;
     LString& operator+=(const Letter&);
     LString& operator+=(char);
-    string to_string();
-    LString& overwritePadding(const LString&);
+    LString operator+(const LString&) const;
+    string to_string() const;
+    bool isDescendentOf(const LString&);
+    int get_points();
+    static int gradeWord(string);
+    static int gradeWord(LString);
     
     ~LString(){delete[] data;}
 
