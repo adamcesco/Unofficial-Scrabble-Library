@@ -370,26 +370,7 @@ LString &LString::operator=(const char * &toAssign) {
     return *this;
 }
 
-bool LString::containsIgnorePadding(LString passed) const {     //only works for rows with spaces in them
-    //remove whitespace characters from end
-//    while(passed[0] == ' ' || passed.back() == ' '){
-//        try{
-//            if (passed[0] == ' ') {
-//                passed.pop_front();
-//            }
-//
-//            if (passed.back() == ' ') {
-//                passed.pop_back();
-//            }
-//        }catch(const invalid_argument& e){  //executes if passed is all whitespace characters
-//            return false;
-//        }
-//    }
-//    if (passed.eleCount > eleCount) //delete this later
-//        return false;
-//    else if (passed.eleCount == 0 && eleCount == 0)  //if both this->data and passed have no content, then returns true
-//        return true;
-
+bool LString::containsIgnorePadding(LString passed) const {
     vector<LString> subLStrs;
     LString curLs;
     for (auto i : passed) {
@@ -408,7 +389,7 @@ bool LString::containsIgnorePadding(LString passed) const {     //only works for
     const LString pssdCpy = passed;
     LString thisCpy = *this;
     thisCpy.add_to_x_vals(passed.back().x + 1);
-    for (int i = 0; i < eleCount + passed.eleCount; i++) {    //this grows "slidingWindow" to the same length to "passed", then continuously slides the content through "slidingWindow" until "passed" is found
+    for (int i = 0; i < eleCount + passed.eleCount; i++) {
         slidingWindow += thisCpy.data[i];
 
         if (slidingWindow.eleCount > passed.eleCount) {
@@ -441,7 +422,7 @@ bool LString::containsIgnorePadding(LString passed) const {     //only works for
 
         for (auto word: brokenWindow) {
                 bool skip = false;
-                for (auto subWord: subLStrs) {      //1074
+                for (auto subWord: subLStrs) {
                     if (word == subWord) {
                         skip = true;
                         break;
@@ -450,47 +431,9 @@ bool LString::containsIgnorePadding(LString passed) const {     //only works for
                 if (skip)
                     continue;
             if (*this == word) {
-                cout << this->to_string() << " | " << word.to_string() << " | " << passed.to_string() << endl;
                 return true;
             }
         }
-
-
-//        vector<LString> brokenWindow;
-//        LString curLsWindow;
-//        for (auto it: passed) {
-//            if (it.LData != ' ') {
-//                curLsWindow += it;
-//            } else if (!curLsWindow.is_empty()) {
-//                brokenWindow.push_back(curLsWindow);
-//                curLsWindow.clear();
-//            }
-//        }
-//        if (!curLsWindow.is_empty())
-//            brokenWindow.push_back(curLsWindow);
-
-//        if (brokenWindow.size() > 1) {
-//            for (auto word: brokenWindow) {
-//                bool skip = false;
-//                for (auto subWord: subLStrs) {
-//                    if (word == subWord) {
-//                        skip = true;
-//                        break;
-//                    }
-//                }
-//                if (skip)
-//                    continue;
-//                if (contains(word)) {
-//                    cout << this->to_string() << " | " << word.to_string() << " | " << passed.to_string() << endl;
-//                    return true;
-//                }
-//            }
-//        }
-//        else{
-//            if(passed == slidingWindow)
-//                return true;
-//        }
-
 
         passed = pssdCpy;
     }
@@ -498,8 +441,24 @@ bool LString::containsIgnorePadding(LString passed) const {     //only works for
     return false;
 }
 
-bool LString::isDescendentOf(const LString& passed) {
+bool LString::isDescendentOf(const LString& hand, const LString& row) {
+    bool handSet[123];
+    for (int i = 0; i < 123; ++i)
+        handSet[i] = false;
+
+    for (int i = 0; i < hand.eleCount; ++i)
+        handSet[abs(toupper(hand.read_at(i).LData))] = true;
+
+    bool madeOfRow = true;
+    for (auto & i : *this) {
+        if(handSet[abs(toupper(i.LData))])
+            madeOfRow = false;
+    }
+    if(madeOfRow)
+        return false;
+
     int handMap[123];
+    LString passed = hand + row;
     int letterCount[123];
     for (int i = 0; i < 123; ++i)
         handMap[i] = letterCount[i] = 0;

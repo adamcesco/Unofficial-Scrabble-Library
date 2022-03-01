@@ -145,7 +145,7 @@ public:
     LString& operator+=(char);
     LString operator+(const LString&) const;
     string to_string() const;
-    bool isDescendentOf(const LString&);
+    bool isDescendentOf(const LString&, const LString&);
     int get_points() const;
     static int gradeWord(string);
     LString& initializeXVals();
