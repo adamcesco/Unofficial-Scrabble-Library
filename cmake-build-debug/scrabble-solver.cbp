@@ -88,12 +88,6 @@
 		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h">
 			<Option target="scrabble-solver"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HandManager/HandManager.cpp">
-			<Option target="scrabble-solver"/>
-		</Unit>
-		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HandManager/HandManager.h">
-			<Option target="scrabble-solver"/>
-		</Unit>
 		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.cpp">
 			<Option target="scrabble-solver"/>
 		</Unit>

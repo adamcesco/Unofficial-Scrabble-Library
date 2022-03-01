@@ -3,18 +3,12 @@
 
 CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o: ../BoardReader/BoardReader.cpp
 CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o: ../BoardReader/BoardReader.h
-CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o: ../HandManager/HandManager.h
 CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o: ../LString/LString.h
-
-CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.o: ../HandManager/HandManager.cpp
-CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.o: ../HandManager/HandManager.h
-CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.o: ../LString/LString.h
 
 CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o: ../LString/LString.cpp
 CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o: ../LString/LString.h
 
 CMakeFiles/scrabble-solver.dir/main.cpp.o: ../BoardReader/BoardReader.h
-CMakeFiles/scrabble-solver.dir/main.cpp.o: ../HandManager/HandManager.h
 CMakeFiles/scrabble-solver.dir/main.cpp.o: ../LString/LString.h
 CMakeFiles/scrabble-solver.dir/main.cpp.o: ../main.cpp
 

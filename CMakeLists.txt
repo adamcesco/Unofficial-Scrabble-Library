@@ -3,7 +3,7 @@ project(scrabble-solver)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(scrabble-solver main.cpp HandManager/HandManager.cpp HandManager/HandManager.h BoardReader/BoardReader.cpp BoardReader/BoardReader.h LString/LString.cpp LString/LString.h)
+add_executable(scrabble-solver main.cpp BoardReader/BoardReader.cpp BoardReader/BoardReader.h LString/LString.cpp LString/LString.h)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/data/englishWords.txt
         ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)

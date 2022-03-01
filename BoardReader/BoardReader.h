@@ -4,12 +4,12 @@
 
 #ifndef SCRABBLEBOT_BOARDREADER_H
 #define SCRABBLEBOT_BOARDREADER_H
-#include "../HandManager/HandManager.h"
+#include "../LString/LString.h"
 
 class BoardReader {
 public:
     BoardReader();
-    BoardReader(string);
+    BoardReader(LString);
     void buildBoard();
     void printBoard() const;
     void SearchBoardHorizontal();
@@ -18,8 +18,8 @@ public:
 private:
     int bestX, bestY;
     int curX, curY;
-    string bestWord;
-    string hand;
+    LString bestWord;
+    LString hand;
     bool horizontal;
     vector<LString> board;
 };

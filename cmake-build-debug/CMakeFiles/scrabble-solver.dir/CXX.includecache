@@ -6,25 +6,19 @@
 
 #IncludeRegexTransform: 
 
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.cpp
+BoardReader.h
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
-../HandManager/HandManager.h
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HandManager/HandManager.h
+sstream
+-
 
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HandManager/HandManager.h
-iostream
--
-vector
--
-fstream
--
-unordered_map
--
-algorithm
--
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
 ../LString/LString.h
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
-math.h
--
+
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.cpp
+LString.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
 
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
 iostream
@@ -34,6 +28,8 @@ vector
 fstream
 -
 unordered_map
+-
+unordered_set
 -
 algorithm
 -
@@ -42,6 +38,8 @@ stdexcept
 math.h
 -
 cstring
+-
+math.h
 -
 
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/main.cpp

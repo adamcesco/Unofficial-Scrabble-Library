@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o"
-  "CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.o"
   "CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o"
   "CMakeFiles/scrabble-solver.dir/main.cpp.o"
   "scrabble-solver"

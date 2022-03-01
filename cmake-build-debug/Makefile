@@ -150,33 +150,6 @@ BoardReader/BoardReader.cpp.s:
 	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.s
 .PHONY : BoardReader/BoardReader.cpp.s
 
-HandManager/HandManager.o: HandManager/HandManager.cpp.o
-
-.PHONY : HandManager/HandManager.o
-
-# target to build an object file
-HandManager/HandManager.cpp.o:
-	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.o
-.PHONY : HandManager/HandManager.cpp.o
-
-HandManager/HandManager.i: HandManager/HandManager.cpp.i
-
-.PHONY : HandManager/HandManager.i
-
-# target to preprocess a source file
-HandManager/HandManager.cpp.i:
-	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.i
-.PHONY : HandManager/HandManager.cpp.i
-
-HandManager/HandManager.s: HandManager/HandManager.cpp.s
-
-.PHONY : HandManager/HandManager.s
-
-# target to generate assembly for a file
-HandManager/HandManager.cpp.s:
-	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/HandManager/HandManager.cpp.s
-.PHONY : HandManager/HandManager.cpp.s
-
 LString/LString.o: LString/LString.cpp.o
 
 .PHONY : LString/LString.o
@@ -243,9 +216,6 @@ help:
 	@echo "... BoardReader/BoardReader.o"
 	@echo "... BoardReader/BoardReader.i"
 	@echo "... BoardReader/BoardReader.s"
-	@echo "... HandManager/HandManager.o"
-	@echo "... HandManager/HandManager.i"
-	@echo "... HandManager/HandManager.s"
 	@echo "... LString/LString.o"
 	@echo "... LString/LString.i"
 	@echo "... LString/LString.s"
