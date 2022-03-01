@@ -65,7 +65,7 @@ Letter LString::read_at(int subscript) const{
     return data[subscript];
 }
 
-int LString::size() const{
+int LString::length() const{
     return eleCount;
 }
 
@@ -126,7 +126,7 @@ LString& LString::push_front(Letter pssd){
 
 LString& LString::pop_back(){
     if(eleCount == 0)
-        throw invalid_argument("invalid subscript for LString::pop_front(int) | LString::size is 0");
+        throw invalid_argument("invalid subscript for LString::pop_front(int) | LString::length is 0");
 
     if((eleCount - 1) == (maxCap / 2)) {
         maxCap = (maxCap / 2 > 10) ? maxCap / 2 : 10;
@@ -148,7 +148,7 @@ LString& LString::pop_back(){
 
 LString& LString::pop_front(){
     if(eleCount == 0)
-        throw invalid_argument("invalid subscript for LString::pop_front(int) | LString::size is 0");
+        throw invalid_argument("invalid subscript for LString::pop_front(int) | LString::length is 0");
 
     if((eleCount - 1) == (maxCap / 2))
         maxCap = (maxCap / 2 > 10) ? maxCap / 2 : 10;
@@ -308,7 +308,7 @@ string LString::to_string() const{
 
 bool LString::contains(string pssd) const {
     LString passed = pssd;
-    int pssedlength = passed.size();
+    int pssedlength = passed.length();
     int thisLen = this->eleCount;
     if (pssedlength > thisLen)  //checks to see if passed length is greater than this->data, if so then it returns false
         return false;
@@ -406,10 +406,10 @@ bool LString::containsIgnorePadding(LString passed) const {
 
     LString slidingWindow;
     const LString pssdCpy = passed;
-    for (int i = 0; i < eleCount + pssdCpy.size(); i++) {    //this grows "slidingWindow" to the same length to "passed", then continuously slides the content through "slidingWindow" until "passed" is found
+    for (int i = 0; i < eleCount + pssdCpy.length(); i++) {    //this grows "slidingWindow" to the same length to "passed", then continuously slides the content through "slidingWindow" until "passed" is found
         slidingWindow += data[i];
         if (slidingWindow.eleCount > passed.eleCount)
-            slidingWindow = slidingWindow.pop_front();
+            slidingWindow.pop_front();
 
         for (int j = passed.eleCount - 1; j >= passed.eleCount - slidingWindow.eleCount; --j) {
             if (passed[j] == ' ')
@@ -435,13 +435,17 @@ bool LString::containsIgnorePadding(LString passed) const {
             for (auto word: brokenWindow) {
                 bool skip = false;
                 for (auto subWord: subLStrs) {
-                    if (word == subWord)
+                    if (word == subWord) {
                         skip = true;
+                        break;
+                    }
                 }
                 if (skip)
                     continue;
-                if (contains(word))
+                if (contains(word)) {
+                    cout << this->to_string() << " | " << word.to_string() << " | " << passed.to_string() << endl;
                     return true;
+                }
             }
         }
         else{
@@ -503,14 +507,7 @@ int LString::gradeWord(string passed) {
     return sum;
 }
 
-int LString::gradeWord(LString passed) {
-    int sum = 0;
-    for(const auto& it : passed)
-        sum += it.val;
-    return sum;
-}
-
-int LString::get_points() {
+int LString::get_points() const{
     int sum = 0;
     for (int i = 0; i < eleCount; ++i)
         sum += data[i].val;

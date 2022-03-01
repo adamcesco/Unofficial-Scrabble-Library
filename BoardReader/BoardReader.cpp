@@ -11,7 +11,7 @@ BoardReader::BoardReader() {
     bestWord = "";
 }
 
-BoardReader::BoardReader(string passed) {
+BoardReader::BoardReader(LString passed) {
     hand = passed;
     bestX = bestY = 8;
     curX =  curY = 8;
@@ -48,11 +48,59 @@ void BoardReader::buildBoard() {
 
 void BoardReader::printBoard() const{
     for (const auto& row : board) {
-        for (int i = 0; i < row.size(); ++i) {
+        for (int i = 0; i < row.length(); ++i) {
             cout << row.read_at(i).LData;
         }
         cout << endl;
     }
+}
+
+bool myComp(LString str1, LString str2){
+    int sum1 = 0;
+    int sum2 = 0;
+    for (int i = 0; i < str1.length(); ++i) {
+        sum1 += legend[(str1.read_at(i).LData & 31) - 1];
+    }
+
+    for (int i = 0; i < str2.length(); ++i) {
+        sum2 += legend[(str2.read_at(i).LData & 31) - 1];
+    }
+
+    if(sum1 > sum2) {
+        return true;
+    }
+    else if (sum1 < sum2) {
+        return false;
+    }
+    else if(str1.length() > str2.length()){
+        return false;
+    }
+    else if(str1.length() < str2.length()){
+        return true;
+    }
+    else{
+        int str1HighValCount = 0;
+        int str2HighValCount = 0;
+        for (int i = 0; i < str1.length(); ++i) {
+            int str1CurVal = legend[(str1.read_at(i).LData & 31) - 1];
+            int str2CurVal = legend[(str2.read_at(i).LData & 31) - 1];
+            if(str1CurVal > str2CurVal){
+                str1HighValCount++;
+            }
+            else if (str1CurVal < str2CurVal){
+                str2HighValCount++;
+            }
+        }
+
+        if(str1HighValCount > str2HighValCount){
+            return false;
+        }
+        else if(str1HighValCount < str2HighValCount){
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void BoardReader::SearchBoardHorizontal() {
@@ -69,21 +117,22 @@ void BoardReader::SearchBoardHorizontal() {
     }
     englishWords.close();
 
+    sort(answers.begin(), answers.end(), myComp);
 
     int rowCount = 1;
     for (auto& row : board) {
         for (auto& word: answers) {
             if(word.containsIgnorePadding(row) && word.isDescendentOf(hand + row)) {
-                if(HandManager::gradeWord(word.to_string()) > HandManager::gradeWord(bestWord)){
+                if(word.get_points() > bestWord.get_points()){
                     bestWord = word.to_string();
-                    bestX = -1;
+                    bestX = word[0].x;
                     bestY = rowCount;
                     horizontal = true;
                 }
-                else if(HandManager::gradeWord(word.to_string()) == HandManager::gradeWord(bestWord)){
-                    if(word.size() < bestWord.length() || bestWord.empty()){
+                else if(word.get_points() == bestWord.get_points()){
+                    if(word.length() < bestWord.length() || bestWord.is_empty()){
                         bestWord = word.to_string();
-                        bestX = -1;
+                        bestX = word[0].x;
                         bestY = rowCount;
                         horizontal = true;
                     }
@@ -96,7 +145,7 @@ void BoardReader::SearchBoardHorizontal() {
 
 string BoardReader::to_string() const {
     string buffer = "Hand: " + hand.to_string() + "\n";
-    buffer += "Best Word: " + bestWord + " - " + ::to_string(HandManager::gradeWord(bestWord));
+    buffer += "Best Word: " + bestWord.to_string() + " - " + ::to_string(bestWord.get_points());
     buffer += "\nPostion X: " + ::to_string(bestX);
     buffer += "\nPostion Y: " + ::to_string(bestY);
     if(horizontal)
