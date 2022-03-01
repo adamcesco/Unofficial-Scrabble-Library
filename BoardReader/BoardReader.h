@@ -14,6 +14,8 @@ public:
     void printBoard() const;
     void SearchBoardHorizontal();
     string to_string() const;
+    LString update_best_word();
+    LString get_words_of_row(int);
 
 private:
     int bestX, bestY;
@@ -22,6 +24,7 @@ private:
     LString hand;
     bool horizontal;
     vector<LString> board;
+    vector<LString> wordsOfRow[15];
 };
 
 

@@ -8,14 +8,12 @@
 BoardReader::BoardReader() {
     bestX = bestY = 8;
     curX =  curY = 8;
-    bestWord = "";
 }
 
 BoardReader::BoardReader(LString passed) {
     hand = passed;
     bestX = bestY = 8;
     curX =  curY = 8;
-    bestWord = "";
 }
 
 void BoardReader::buildBoard() {
@@ -113,33 +111,22 @@ void BoardReader::SearchBoardHorizontal() {
     string curWord;
     while(!englishWords.eof()){
         englishWords >> curWord;
-        answers.emplace_back(LString(curWord).initializeXVals());
+        answers.emplace_back(LString(curWord).xVals_to_subscript());
     }
     englishWords.close();
 
     sort(answers.begin(), answers.end(), myComp);
 
-    int rowCount = 1;
-    for (auto& row : board) {
+    int rowSubscript = 0;
+    for (const auto& row : board) {
+        wordsOfRow[rowSubscript].clear();
+        LString rowCpy = row;
         for (auto& word: answers) {
-            if(word.isDescendentOf(hand, row) && word.containsIgnorePadding(row)) {
-                if(word.get_points() > bestWord.get_points()){
-                    bestWord = word.to_string();
-                    bestX = word[0].x;
-                    bestY = rowCount;
-                    horizontal = true;
-                }
-                else if(word.get_points() == bestWord.get_points()){
-                    if(word.length() < bestWord.length() || bestWord.is_empty()){
-                        bestWord = word.to_string();
-                        bestX = word[0].x;
-                        bestY = rowCount;
-                        horizontal = true;
-                    }
-                }
+            if(word.isDescendentOf(hand, row) && word.place_into_row(rowCpy)) {
+                wordsOfRow[rowSubscript].push_back(word);
             }
         }
-        rowCount++;
+        rowSubscript++;
     }
 }
 
@@ -152,6 +139,39 @@ string BoardReader::to_string() const {
         buffer += "\nHorizontal";
     else
         buffer += "\nVertical";
+
+    return buffer;
+}
+
+LString BoardReader::update_best_word(){
+    int rowSubscript = 0;
+    for (int i = 0; i < 15; ++i) {
+        for (const auto& word: wordsOfRow[i]) {
+            if (word.get_points() > bestWord.get_points()) {
+                bestWord = word;
+                bestX = bestWord[0].x + 1;
+                bestY = rowSubscript + 1;
+                horizontal = true;
+            } else if (word.get_points() == bestWord.get_points()) {
+                if (word.length() < bestWord.length() || bestWord.is_empty()) {
+                    bestWord = word;
+                    bestX = bestWord[0].x + 1;
+                    bestY = rowSubscript + 1;
+                    horizontal = true;
+                }
+            }
+        }
+        rowSubscript++;
+    }
+
+    return bestWord;
+}
+
+LString BoardReader::get_words_of_row(int subscript) {
+    LString buffer;
+    for (const auto& word: wordsOfRow[subscript]) {
+        buffer += word + '\n';
+    }
 
     return buffer;
 }

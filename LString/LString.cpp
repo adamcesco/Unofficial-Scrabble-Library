@@ -357,9 +357,9 @@ bool LString::contains(LString passed) const {
     return false;
 }
 
-LString &LString::operator=(const char * &toAssign) {
+LString &LString::operator=(char* toAssign) {
     eleCount = strlen(toAssign);
-    maxCap = eleCount * 2;
+    maxCap = (eleCount > 5) ? eleCount * 2: 10;
     delete[] data;
     data = new Letter[maxCap];
 
@@ -486,7 +486,7 @@ LString LString::operator+(const LString &pssd) const{
     return temp;
 }
 
-LString::LString(const char*& toCpy) {
+LString::LString(char* toCpy) {
     eleCount = strlen(toCpy);
     maxCap = eleCount * 2;
     data = new Letter[maxCap];
@@ -511,7 +511,7 @@ int LString::get_points() const{
     return sum;
 }
 
-LString& LString::initializeXVals() {
+LString& LString::xVals_to_subscript() {
     for (int i = 0; i < eleCount; ++i)
         data[i].x = i;
 
@@ -539,6 +539,112 @@ bool LString::contains_flag(int passed) {
             return true;
     }
     return false;
+}
+
+bool LString::place_into_row(LString &row) {
+    vector<LString> rowFragments = row.break_into_frags();
+
+    LString slidingWindow;
+    row.xVals_to_subscript();
+    const LString rowCpy = row;
+    this->xVals_to_subscript();
+    this->add_to_x_vals(row.back().x + 1);
+    for (int i = 0; i < eleCount + row.eleCount; i++) {
+        slidingWindow += this->data[i];
+
+        if (slidingWindow.eleCount > row.eleCount) {
+            slidingWindow.pop_front();
+        }
+        this->add_to_x_vals(-1);
+
+        for (int j = row.eleCount - 1; j >= row.eleCount - slidingWindow.eleCount; --j) {
+            if (row[j] == ' ')
+                row[j] = slidingWindow[(slidingWindow.eleCount - 1) - ((row.eleCount - 1) - j)];
+        }
+        if (row == rowCpy && rowFragments.size() > 1)
+            continue;
+
+        vector<LString> newBrokenRow;
+        LString curRowShard;
+        for (auto it: row) {
+            if (it.LData != ' ') {
+                curRowShard += it;
+            } else if (!curRowShard.is_empty()) {
+                if(curRowShard.contains_flag(1))
+                    newBrokenRow.push_back(curRowShard);
+                curRowShard.clear();
+            }
+        }
+        if (!curRowShard.is_empty()) {
+            if (curRowShard.contains_flag(1))
+                newBrokenRow.push_back(curRowShard);
+        }
+
+        for (const auto& shard: newBrokenRow) {
+            bool skip = false;
+            for (const auto& frag: rowFragments) {
+                if (shard == frag) {
+                    skip = true;
+                    break;
+                }
+            }
+            if (skip)
+                continue;
+            if (*this == shard) {
+                return true;
+            }
+        }
+
+        row = rowCpy;
+    }
+
+    return false;
+}
+
+vector<LString> LString::break_into_frags() {
+    vector<LString> fragments;
+    LString curFragment;
+    for (const auto& i : *this) {
+        if(i.LData != ' ') {
+            curFragment += i;
+        }
+        else if (!curFragment.is_empty()){
+            fragments.push_back(curFragment);
+            curFragment.clear();
+        }
+    }
+    if (!curFragment.is_empty())
+        fragments.push_back(curFragment);
+
+    return fragments;
+}
+
+LString& LString::operator+=(const LString& toAppend) {
+    maxCap = (toAppend.eleCount + eleCount) * 2;
+    Letter* temp = new Letter[maxCap];
+    for (int i = 0; i < eleCount; ++i)
+        temp[i] = data[i];
+
+    for (int i = 0; i < toAppend.eleCount; ++i)
+        temp[i + eleCount] = toAppend.data[i];
+
+    delete[] data;
+    data = temp;
+    eleCount = toAppend.eleCount + eleCount;
+
+    return *this;
+}
+
+LString LString::operator+(const Letter& toAppend) const {
+    LString temp(*this);
+    temp.push_back(toAppend);
+    return temp;
+}
+
+LString LString::operator+(char toAppend) const {
+    LString temp(*this);
+    temp.push_back(toAppend);
+    return temp;
 }
 
 #endif

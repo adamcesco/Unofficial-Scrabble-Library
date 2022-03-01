@@ -16,10 +16,6 @@ sstream
 ../LString/LString.h
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
 
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.cpp
-LString.h
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
-
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
 iostream
 -
@@ -41,8 +37,4 @@ cstring
 -
 math.h
 -
-
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/main.cpp
-BoardReader/BoardReader.h
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
 

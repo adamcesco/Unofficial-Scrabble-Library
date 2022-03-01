@@ -1,11 +1,13 @@
 #include "BoardReader/BoardReader.h"
 
 int main(){
-    string hand = "em";
+    string hand = "regahmel";
     BoardReader reader(hand);
     reader.buildBoard();
     reader.printBoard();
     reader.SearchBoardHorizontal();
+    reader.update_best_word();
+    cout << reader.get_words_of_row(5).to_string();
     cout << reader.to_string() << endl;
 
     return 0;

@@ -111,10 +111,10 @@ public:
     LString();
     LString(const LString&);
     LString(const string&);
-    LString(const char *&);
+    LString(char *);
     LString& operator=(const LString&);
     LString& operator=(const string&);
-    LString& operator=(const char*&);
+    LString& operator=(char*);
 
     Letter& operator[](int);
     Letter read_at(int) const;
@@ -141,17 +141,22 @@ public:
     bool contains(LString) const;
     bool containsIgnorePadding(LString) const;
     bool operator==(const LString&) const;
+    LString& operator+=(const LString&);
     LString& operator+=(const Letter&);
     LString& operator+=(char);
     LString operator+(const LString&) const;
+    LString operator+(const Letter&) const;
+    LString operator+(char) const;
     string to_string() const;
     bool isDescendentOf(const LString&, const LString&);
     int get_points() const;
     static int gradeWord(string);
-    LString& initializeXVals();
+    LString& xVals_to_subscript();
     LString& add_to_x_vals(int);
     LString& set_x_vals_equal_to(const LString&);
     bool contains_flag(int);
+    bool place_into_row(LString&);
+    vector<LString> break_into_frags();
     
     ~LString(){delete[] data;}
 
