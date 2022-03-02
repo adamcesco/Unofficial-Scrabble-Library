@@ -8,8 +8,15 @@ int main(){
     reader.SearchBoardHorizontal();
     reader.check_vertical_compatibility();
     reader.update_best_word();
-    cout << reader.row_to_string(10).to_string() << endl;
-    cout << reader.to_string() << endl;
+    cout << reader.to_string() << endl << endl;
+
+    BoardReader verticalReader(hand);
+    verticalReader.buildBoard();
+    verticalReader.rotate_board();
+    verticalReader.SearchBoardHorizontal();
+    verticalReader.check_vertical_compatibility();
+    verticalReader.update_best_word();
+    cout << verticalReader.to_string() << endl;
 
     return 0;
 }

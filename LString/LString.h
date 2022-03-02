@@ -76,7 +76,7 @@ struct Letter {
     }
 
     Letter& operator=(char invoked){
-        LData = invoked;
+        LData = abs(invoked);
         y = x = flag = -1;
         val = legend[(LData & 31) - 1];
         return *this;

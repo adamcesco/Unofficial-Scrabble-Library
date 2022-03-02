@@ -64,6 +64,7 @@ void BoardReader::buildBoard() {
         rowCount++;
     }
     boardFile.close();
+    horizontal = true;
 }
 
 void BoardReader::printBoard() const{
@@ -175,15 +176,27 @@ LString BoardReader::update_best_word(){
 
             if (wordPoints > bestWordPoints) {
                 bestWord = word;
-                bestX = bestWord[0].x + 1;
-                bestY = rowSubscript + 1;
-                horizontal = true;
+                if(horizontal) {
+                    bestX = bestWord[0].x + 1;
+                    bestY = rowSubscript + 1;
+                }
+                else{
+                    //x = y, y = 14 - x
+                    bestX = (14 - rowSubscript) + 1;
+                    bestY = (bestWord[0].x) + 1;
+                }
             } else if (wordPoints == bestWordPoints) {
                 if (word.length() < bestWord.length() || bestWord.is_empty()) {
                     bestWord = word;
-                    bestX = bestWord[0].x + 1;
-                    bestY = rowSubscript + 1;
-                    horizontal = true;
+                    if(horizontal) {
+                        bestX = bestWord[0].x + 1;
+                        bestY = rowSubscript + 1;
+                    }
+                    else{
+                        //x = y, y = 14 - x
+                        bestX = (14 - rowSubscript) + 1;
+                        bestY = (bestWord[0].x) + 1;
+                    }
                 }
             }
         }
@@ -227,8 +240,15 @@ void BoardReader::check_vertical_compatibility() {
 
             for (int i = 0; i < 15; i++) {  //i = x
                 LString column;
-                for (int j = 0; j < 15; j++) {  //j = y
-                    column += boardCpy[j][i];
+                if(horizontal) {
+                    for (int j = 0; j < 15; j++) {  //j = y
+                        column += boardCpy[j][i];
+                    }
+                }
+                else{
+                    for (int j = 14; j >= 0; j--) {  //j = y
+                        column += boardCpy[j][i];
+                    }
                 }
 
                 vector<LString> colShards = column.break_into_frags();
@@ -249,6 +269,7 @@ vector<LString> BoardReader::return_board_with(const LString& toPrint) const{
         if(boardCpy[toPrint.read_at(0).y][i] == ' ')
             boardCpy[toPrint.read_at(0).y][i] = toPrint.read_at(i - toPrint.read_at(0).x);
     }
+
     return boardCpy;
 }
 
@@ -272,4 +293,17 @@ int BoardReader::return_vertical_points(const LString &word) const {
     }
 
     return sum;
+}
+
+void BoardReader::rotate_board() {
+    vector<LString> boardCpy;
+    for (int i = 14; i >= 0; i--) {  //i = x
+        LString column;
+        for (int j = 0; j < 15; j++) {  //j = y
+            column += Letter(board[j][i].LData, j, 14 - i, 1);
+        }
+        boardCpy.push_back(column);
+    }
+    board = boardCpy;
+    horizontal = false;
 }
