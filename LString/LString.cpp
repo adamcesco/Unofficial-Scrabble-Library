@@ -496,7 +496,7 @@ LString::LString(char* toCpy) {
     }
 }
 
-int LString::gradeWord(string passed) {
+int LString::get_horizontal_points(string passed) {
     const int valLegend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8,  5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
     int sum = 0;
     for(char it : passed)
@@ -504,7 +504,7 @@ int LString::gradeWord(string passed) {
     return sum;
 }
 
-int LString::get_points() const{
+int LString::get_horizontal_points() const{
     int sum = 0;
     for (int i = 0; i < eleCount; ++i)
         sum += data[i].val;
@@ -532,7 +532,7 @@ LString &LString::set_x_vals_equal_to(int passed) {
     return *this;
 }
 
-bool LString::contains_flag(int passed) {
+bool LString::contains_flag(int passed) const{
     for (int i = 0; i < eleCount; ++i) {
         if(data[i].flag == passed)
             return true;

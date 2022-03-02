@@ -21,7 +21,7 @@ BoardReader::BoardReader() {
     englishWords.close();
 }
 
-BoardReader::BoardReader(LString passed) {
+BoardReader::BoardReader(const LString& passed) {
     hand = passed;
     bestX = bestY = 8;
 
@@ -154,7 +154,7 @@ void BoardReader::SearchBoardHorizontal() {
 
 string BoardReader::to_string() const {
     string buffer = "Hand: " + hand.to_string() + "\n";
-    buffer += "Best Word: " + bestWord.to_string() + " - " + ::to_string(bestWord.get_points());
+    buffer += "Best Word: " + bestWord.to_string() + " - " + ::to_string(bestWord.get_horizontal_points() + return_vertical_points(bestWord));
     buffer += "\nPostion X: " + ::to_string(bestX);
     buffer += "\nPostion Y: " + ::to_string(bestY);
     if(horizontal)
@@ -170,12 +170,15 @@ LString BoardReader::update_best_word(){
     bestWord.clear();
     for (auto & wordSet : wordsOfRow) {
         for (const auto& word: wordSet) {
-            if (word.get_points() > bestWord.get_points()) {
+            int wordPoints = word.get_horizontal_points() + return_vertical_points(word);
+            int bestWordPoints = bestWord.get_horizontal_points() + return_vertical_points(bestWord);
+
+            if (wordPoints > bestWordPoints) {
                 bestWord = word;
                 bestX = bestWord[0].x + 1;
                 bestY = rowSubscript + 1;
                 horizontal = true;
-            } else if (word.get_points() == bestWord.get_points()) {
+            } else if (wordPoints == bestWordPoints) {
                 if (word.length() < bestWord.length() || bestWord.is_empty()) {
                     bestWord = word;
                     bestX = bestWord[0].x + 1;
@@ -210,7 +213,7 @@ LString BoardReader::row_to_string(int subscript) {
             continue;
         }
         buffer += word;
-        buffer += " - " + ::to_string(word.get_points()) + '\n';
+        buffer += " - " + ::to_string(word.get_horizontal_points()) + '\n';
     }
     buffer.pop_back();
 
@@ -231,7 +234,6 @@ void BoardReader::check_vertical_compatibility() {
                 vector<LString> colShards = column.break_into_frags();
 
                 for (const auto& shard : colShards) {
-                    //up until this points, everything works
                     if(shard.length() > 1 && answerSet.find(shard.to_string()) == answerSet.end()){
                         word.clear();
                     }
@@ -244,7 +246,30 @@ void BoardReader::check_vertical_compatibility() {
 vector<LString> BoardReader::return_board_with(const LString& toPrint) const{
     vector<LString> boardCpy = board;
     for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
+        if(boardCpy[toPrint.read_at(0).y][i] == ' ')
             boardCpy[toPrint.read_at(0).y][i] = toPrint.read_at(i - toPrint.read_at(0).x);
     }
     return boardCpy;
+}
+
+int BoardReader::return_vertical_points(const LString &word) const {
+    vector<LString> boardCpy = return_board_with(word);
+
+    int sum = 0;
+    for (int i = 0; i < 15; i++) {  //i = x
+        LString column;
+        for (int j = 0; j < 15; j++) {  //j = y
+            column += boardCpy[j][i];
+        }
+
+        vector<LString> colShards = column.break_into_frags();
+
+        for (const auto& shard : colShards) {
+            if(shard.contains_flag(-1) && shard.length() > 1){
+                sum += shard.get_horizontal_points();
+            }
+        }
+    }
+
+    return sum;
 }

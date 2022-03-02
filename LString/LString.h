@@ -149,13 +149,13 @@ public:
     LString operator+(char) const;
     string to_string() const;
     bool isDescendentOf(const LString&, const LString&);
-    int get_points() const;
-    static int gradeWord(string);
+    int get_horizontal_points() const;
+    static int get_horizontal_points(string);
     LString& xVals_to_subscript();
     LString& add_to_x_vals(int);
     LString& set_x_vals_equal_to(int);
     LString& set_y_vals_equal_to(int);
-    bool contains_flag(int);
+    bool contains_flag(int) const;
     bool place_into_row(const LString&);
     vector<LString> break_into_frags() const;
     

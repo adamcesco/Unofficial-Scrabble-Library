@@ -9,7 +9,7 @@
 class BoardReader {
 public:
     BoardReader();
-    BoardReader(LString);
+    BoardReader(const LString&);
     void buildBoard();
     void printBoard() const;
     void SearchBoardHorizontal();   //find all horizontal words that fit into the board
@@ -17,8 +17,9 @@ public:
     LString update_best_word();     //updates the best word for the board so that it is up to date with what was found for the current board
     LString get_words_of_row(int);  //returns a LString that contains all found words that fit into the requested row
     LString row_to_string(int);     //returns a LString that contains all found words that fit into the requested row and each words points
-    void check_vertical_compatibility();
-    vector<LString> return_board_with(const LString&) const;
+    void check_vertical_compatibility();                        //checks each horizontal word for each row to see if it is compatible with adjacent rows
+    vector<LString> return_board_with(const LString&) const;    //this returns a copy of the board that contains the passed LString
+    int return_vertical_points(const LString&) const;
 
 private:
     int bestX, bestY;               //holds the coordinate of the first character of the best word for the current board
