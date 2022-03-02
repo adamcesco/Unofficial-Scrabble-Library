@@ -7,6 +7,7 @@
 
 BoardReader::BoardReader() {
     bestX = bestY = 8;
+    readerType = UNDEFINED;
 
     ifstream englishWords;
     englishWords.open("../data/englishWords.txt");
@@ -24,6 +25,7 @@ BoardReader::BoardReader() {
 BoardReader::BoardReader(const LString& passed) {
     hand = passed;
     bestX = bestY = 8;
+    readerType = UNDEFINED;
 
     ifstream englishWords;
     englishWords.open("../data/englishWords.txt");
@@ -38,7 +40,7 @@ BoardReader::BoardReader(const LString& passed) {
     englishWords.close();
 }
 
-void BoardReader::buildBoard() {
+void BoardReader::build_board() {
     ifstream boardFile;
     boardFile.open("../data/Board.csv");
     if(!boardFile.is_open())
@@ -64,10 +66,9 @@ void BoardReader::buildBoard() {
         rowCount++;
     }
     boardFile.close();
-    horizontal = true;
 }
 
-void BoardReader::printBoard() const{
+void BoardReader::print_board() const{
     for (const auto& row : board) {
         for (int i = 0; i < row.length(); ++i) {
             cout << row.read_at(i).LData;
@@ -124,7 +125,7 @@ bool myComp(LString str1, LString str2){
     return false;
 }
 
-void BoardReader::SearchBoardHorizontal() {
+void BoardReader::search_board_for_words() {
     ifstream englishWords;
     englishWords.open("../data/englishWords.txt");
     if(!englishWords.is_open())
@@ -155,12 +156,13 @@ void BoardReader::SearchBoardHorizontal() {
 
 string BoardReader::to_string() const {
     string buffer = "Hand: " + hand.to_string() + "\n";
-    buffer += "Best Word: " + bestWord.to_string() + " - " + ::to_string(bestWord.get_horizontal_points() + return_vertical_points(bestWord));
+    buffer += "Best Word: " + bestWord.to_string() + " - " + ::to_string(bestWord.get_horizontal_points() +
+                                                                                 perpendicular_points(bestWord));
     buffer += "\nPostion X: " + ::to_string(bestX);
     buffer += "\nPostion Y: " + ::to_string(bestY);
-    if(horizontal)
+    if(readerType == HORIZONTAL)
         buffer += "\nHorizontal";
-    else
+    else if (readerType == VERTICAL)
         buffer += "\nVertical";
 
     return buffer;
@@ -171,16 +173,16 @@ LString BoardReader::update_best_word(){
     bestWord.clear();
     for (auto & wordSet : wordsOfRow) {
         for (const auto& word: wordSet) {
-            int wordPoints = word.get_horizontal_points() + return_vertical_points(word);
-            int bestWordPoints = bestWord.get_horizontal_points() + return_vertical_points(bestWord);
+            int wordPoints = word.get_horizontal_points() + perpendicular_points(word);
+            int bestWordPoints = bestWord.get_horizontal_points() + perpendicular_points(bestWord);
 
             if (wordPoints > bestWordPoints) {
                 bestWord = word;
-                if(horizontal) {
+                if(readerType == HORIZONTAL) {
                     bestX = bestWord[0].x + 1;
                     bestY = rowSubscript + 1;
                 }
-                else{
+                else if(readerType == VERTICAL){
                     //x = y, y = 14 - x
                     bestX = (14 - rowSubscript) + 1;
                     bestY = (bestWord[0].x) + 1;
@@ -188,11 +190,11 @@ LString BoardReader::update_best_word(){
             } else if (wordPoints == bestWordPoints) {
                 if (word.length() < bestWord.length() || bestWord.is_empty()) {
                     bestWord = word;
-                    if(horizontal) {
+                    if(readerType == HORIZONTAL) {
                         bestX = bestWord[0].x + 1;
                         bestY = rowSubscript + 1;
                     }
-                    else{
+                    else if (readerType == VERTICAL){
                         //x = y, y = 14 - x
                         bestX = (14 - rowSubscript) + 1;
                         bestY = (bestWord[0].x) + 1;
@@ -226,26 +228,26 @@ LString BoardReader::row_to_string(int subscript) {
             continue;
         }
         buffer += word;
-        buffer += " - " + ::to_string(word.get_horizontal_points() + return_vertical_points(word)) + '\n';
+        buffer += " - " + ::to_string(word.get_horizontal_points() + perpendicular_points(word)) + '\n';
     }
     buffer.pop_back();
 
     return buffer;
 }
 
-void BoardReader::check_vertical_compatibility() {
+void BoardReader::check_adjacent_compatibility() {
     for (auto & wordSet : wordsOfRow) {
         for (auto& word: wordSet) {
             vector<LString> boardCpy = return_board_with(word);
 
             for (int i = 0; i < 15; i++) {  //i = x
                 LString column;
-                if(horizontal) {
+                if(readerType == HORIZONTAL) {
                     for (int j = 0; j < 15; j++) {  //j = y
                         column += boardCpy[j][i];
                     }
                 }
-                else{
+                else if (readerType == VERTICAL){
                     for (int j = 14; j >= 0; j--) {  //j = y
                         column += boardCpy[j][i];
                     }
@@ -273,7 +275,7 @@ vector<LString> BoardReader::return_board_with(const LString& toPrint) const{
     return boardCpy;
 }
 
-int BoardReader::return_vertical_points(const LString &word) const {
+int BoardReader::perpendicular_points(const LString &word) const {
     vector<LString> boardCpy = return_board_with(word);
 
     int sum = 0;
@@ -295,8 +297,10 @@ int BoardReader::return_vertical_points(const LString &word) const {
     return sum;
 }
 
-void BoardReader::rotate_board() {
+void BoardReader::to_vertical_reader() {
     vector<LString> boardCpy;
+    if(readerType == HORIZONTAL)
+        return;
     for (int i = 14; i >= 0; i--) {  //i = x
         LString column;
         for (int j = 0; j < 15; j++) {  //j = y
@@ -305,5 +309,9 @@ void BoardReader::rotate_board() {
         boardCpy.push_back(column);
     }
     board = boardCpy;
-    horizontal = false;
+    readerType = VERTICAL;
+}
+
+void BoardReader::to_horizontal_reader() {
+    readerType = HORIZONTAL;
 }

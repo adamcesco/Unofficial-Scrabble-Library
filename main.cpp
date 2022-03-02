@@ -3,19 +3,22 @@
 int main(){
     string hand = "regahmel";
     BoardReader reader(hand);
-    reader.buildBoard();
-    reader.printBoard();
-    reader.SearchBoardHorizontal();
-    reader.check_vertical_compatibility();
+    reader.build_board();
+    reader.to_horizontal_reader();
+    reader.search_board_for_words();
+    reader.check_adjacent_compatibility();
     reader.update_best_word();
+
+    reader.print_board();
     cout << reader.to_string() << endl << endl;
 
     BoardReader verticalReader(hand);
-    verticalReader.buildBoard();
-    verticalReader.rotate_board();
-    verticalReader.SearchBoardHorizontal();
-    verticalReader.check_vertical_compatibility();
+    verticalReader.build_board();
+    verticalReader.to_vertical_reader();
+    verticalReader.search_board_for_words();
+    verticalReader.check_adjacent_compatibility();
     verticalReader.update_best_word();
+
     cout << verticalReader.to_string() << endl;
 
     return 0;
