@@ -6,10 +6,9 @@ int main(){
     reader.buildBoard();
     reader.printBoard();
     reader.SearchBoardHorizontal();
-    reader.update_best_word();
-    cout << reader.to_string() << endl;
     reader.check_vertical_compatibility();
     reader.update_best_word();
+    cout << reader.row_to_string(6).to_string() << endl;
     cout << reader.to_string() << endl;
 
     return 0;

@@ -193,6 +193,9 @@ LString BoardReader::update_best_word(){
 LString BoardReader::get_words_of_row(int subscript) {
     LString buffer;
     for (const auto& word: wordsOfRow[subscript]) {
+        if(word.is_empty()){
+            continue;
+        }
         buffer += word + '\n';
     }
     buffer.pop_back();
@@ -203,6 +206,9 @@ LString BoardReader::get_words_of_row(int subscript) {
 LString BoardReader::row_to_string(int subscript) {
     LString buffer;
     for (const auto& word: wordsOfRow[subscript]) {
+        if(word.is_empty()){
+            continue;
+        }
         buffer += word;
         buffer += " - " + ::to_string(word.get_points()) + '\n';
     }
@@ -223,10 +229,10 @@ void BoardReader::check_vertical_compatibility() {
                 }
 
                 vector<LString> colShards = column.break_into_frags();
+
                 for (const auto& shard : colShards) {
                     //up until this points, everything works
                     if(shard.length() > 1 && answerSet.find(shard.to_string()) == answerSet.end()){
-//                        cout << word.to_string() << " | " << word.read_at(0).x + 1 << " | " << word.read_at(0).y + 1 << endl;
                         word.clear();
                     }
                 }
