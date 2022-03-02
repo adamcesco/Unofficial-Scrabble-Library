@@ -213,7 +213,7 @@ LString BoardReader::row_to_string(int subscript) {
             continue;
         }
         buffer += word;
-        buffer += " - " + ::to_string(word.get_horizontal_points()) + '\n';
+        buffer += " - " + ::to_string(word.get_horizontal_points() + return_vertical_points(word)) + '\n';
     }
     buffer.pop_back();
 

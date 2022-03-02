@@ -8,7 +8,7 @@ int main(){
     reader.SearchBoardHorizontal();
     reader.check_vertical_compatibility();
     reader.update_best_word();
-//    cout << reader.row_to_string(6).to_string() << endl;
+    cout << reader.row_to_string(10).to_string() << endl;
     cout << reader.to_string() << endl;
 
     return 0;
