@@ -235,7 +235,7 @@ LString BoardReader::row_to_string(int subscript) {
     return buffer;
 }
 
-void BoardReader::check_adjacent_compatibility() {
+void BoardReader::check_perpendicular_compatibility() {
     for (auto & wordSet : wordsOfRow) {
         for (auto& word: wordSet) {
             vector<LString> boardCpy = return_board_with(word);
@@ -314,4 +314,29 @@ void BoardReader::to_vertical_reader() {
 
 void BoardReader::to_horizontal_reader() {
     readerType = HORIZONTAL;
+}
+
+void BoardReader::reset_reader() {
+    bestX = bestY = 8;
+    bestWord.clear();
+    hand.clear();
+    readerType = UNDEFINED;
+    board.clear();
+
+    for (auto & words : wordsOfRow) {
+        words.clear();
+    }
+
+    answerSet.clear();
+    ifstream englishWords;
+    englishWords.open("../data/englishWords.txt");
+    if(!englishWords.is_open())
+        throw invalid_argument("could not open ../data/englishWords.txt");
+
+    string curWord;
+    while(!englishWords.eof()){
+        englishWords >> curWord;
+        answerSet.emplace(curWord);
+    }
+    englishWords.close();
 }

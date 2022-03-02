@@ -2,24 +2,42 @@
 
 int main(){
     string hand = "regahmel";
-    BoardReader reader(hand);
-    reader.build_board();
-    reader.to_horizontal_reader();
-    reader.search_board_for_words();
-    reader.check_adjacent_compatibility();
-    reader.update_best_word();
 
-    reader.print_board();
-    cout << reader.to_string() << endl << endl;
+    BoardReader horizontalReader(hand);
+    horizontalReader.build_board();
+    horizontalReader.to_horizontal_reader();
+    horizontalReader.search_board_for_words();
+    horizontalReader.check_perpendicular_compatibility();
+    horizontalReader.update_best_word();
+
+    horizontalReader.print_board();
+
+    int hPoints = horizontalReader.get_points_of_best_word();
+    cout << horizontalReader.to_string() << endl << endl;
 
     BoardReader verticalReader(hand);
     verticalReader.build_board();
     verticalReader.to_vertical_reader();
     verticalReader.search_board_for_words();
-    verticalReader.check_adjacent_compatibility();
+    verticalReader.check_perpendicular_compatibility();
     verticalReader.update_best_word();
 
+    int vPoints = verticalReader.get_points_of_best_word();
     cout << verticalReader.to_string() << endl;
+
+    cout << "Best word for the board: ";
+    if(hPoints > vPoints){
+        cout << horizontalReader.get_best_word().to_string() << endl;
+        cout << "\tPoints: " << hPoints << endl;
+        cout << "\tX: " << horizontalReader.get_best_x() << endl;
+        cout << "\tY: " << horizontalReader.get_best_y() << endl;
+    }
+    else{
+        cout << verticalReader.get_best_word().to_string() << endl;
+        cout << "\tPoints: " << vPoints << endl;
+        cout << "\tX: " << verticalReader.get_best_x() << endl;
+        cout << "\tY: " << verticalReader.get_best_y() << endl;
+    }
 
     return 0;
 }
