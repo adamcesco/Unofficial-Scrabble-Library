@@ -495,7 +495,7 @@ int LString::get_horizontal_points(string passed) {
     return sum;
 }
 
-int LString::get_horizontal_points() const{
+int LString::get_letter_points() const{
     int sum = 0;
     for (int i = 0; i < eleCount; ++i)
         sum += data[i].val;

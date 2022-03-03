@@ -67,6 +67,8 @@ void BoardReader::build_board() {
     }
     boardFile.close();
     readerType = HORIZONTAL;
+
+    //build rotated board
 }
 
 void BoardReader::print_board() const{
@@ -169,14 +171,14 @@ void BoardReader::search_board_for_words() {
 
 string BoardReader::to_string() const {
     string buffer = "Hand: " + hand.to_string() + "\n";
-    buffer += "Best Vertical Word: " + bestVWord.to_string() + " - " + ::to_string(bestVWord.get_horizontal_points() +
-                                                                          perpendicular_points(bestVWord));
+    buffer += "Best Vertical Word: " + bestVWord.to_string() + " - " + ::to_string(bestVWord.get_letter_points() +
+                                                                                   perpendicular_points(bestVWord, VERTICAL));
     buffer += "\n\tPostion X: " + ::to_string(bestHX);
     buffer += "\n\tPostion Y: " + ::to_string(bestHY);
     buffer += "\n\tVertical";
 
-    buffer += "\nBest Horizontal Word: " + bestHWord.to_string() + " - " + ::to_string(bestHWord.get_horizontal_points() +
-                                                                                       perpendicular_points(bestHWord));
+    buffer += "\nBest Horizontal Word: " + bestHWord.to_string() + " - " + ::to_string(bestHWord.get_letter_points() +
+                                                                                       perpendicular_points(bestHWord, HORIZONTAL));
     buffer += "\n\tPostion X: " + ::to_string(bestVX);
     buffer += "\n\tPostion Y: " + ::to_string(bestVY);
     buffer += "\n\tHorizontal";
@@ -189,8 +191,8 @@ LString BoardReader::update_best_vir_word(){
     bestVWord.clear();
     for (auto & wordSet : wordsOfCol) {
         for (const auto& word: wordSet) {
-            int wordPoints = word.get_horizontal_points() + perpendicular_points(word);
-            int bestWordPoints = bestVWord.get_horizontal_points() + perpendicular_points(bestVWord);
+            int wordPoints = word.get_letter_points() + perpendicular_points(word, VERTICAL);
+            int bestWordPoints = bestVWord.get_letter_points() + perpendicular_points(bestVWord, VERTICAL);
 
             if (wordPoints > bestWordPoints) {
                 bestVWord = word;
@@ -215,7 +217,7 @@ LString BoardReader::update_best_vir_word(){
 void BoardReader::check_hor_words_perpendicular() {
     for (auto & wordSet : wordsOfRow) {
         for (auto& word: wordSet) {
-            vector<LString> boardCpy = return_board_with(word);
+            vector<LString> boardCpy = return_board_with(word, HORIZONTAL);
 
             for (int i = 0; i < 15; i++) {  //i = x
                 LString column;
@@ -245,7 +247,7 @@ void BoardReader::check_hor_words_perpendicular() {
 void BoardReader::check_vir_words_perpendicular() {
     for (auto & wordSet : wordsOfCol) {
         for (auto& word: wordSet) {
-            vector<LString> boardCpy = return_board_with(word);
+            vector<LString> boardCpy = return_board_with(word, VERTICAL);
 
             for (int i = 0; i < 15; i++) {  //i = x
                 LString column;
@@ -272,20 +274,49 @@ void BoardReader::check_vir_words_perpendicular() {
     }
 }
 
-vector<LString> BoardReader::return_board_with(const LString& toPrint) const{
+vector<LString> BoardReader::return_board_with(const LString& toPrint, Type wordType) const{    //only works if readerType == wordType
+//    vector<LString> boardCpy = board;
+//    int toPrintX = toPrint.read_at(0).x;
+//    int toPrintY = toPrint.read_at(0).y;
+//    for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
+//        if(boardCpy[toPrintY][i] == ' ')
+//            boardCpy[toPrintY][i] = toPrint.read_at(i - toPrintX);
+//    }
+//
+//    return boardCpy;
+//
+
     vector<LString> boardCpy = board;
-    int toPrintX = toPrint.read_at(0).x;
-    int toPrintY = toPrint.read_at(0).y;
-    for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
-        if(boardCpy[toPrintY][i] == ' ')
-            boardCpy[toPrintY][i] = toPrint.read_at(i - toPrintX);
+    if(wordType == readerType) {
+        for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
+            if (boardCpy[toPrint.read_at(0).y][i] == ' ')
+                boardCpy[toPrint.read_at(0).y][i] = Letter(toPrint.read_at(i - toPrint.read_at(0).x).LData,
+                                                        i,
+                                                        toPrint.read_at(0).y, toPrint.read_at(i - toPrint.read_at(0).x).flag);
+        }
+    }
+    else if (readerType == HORIZONTAL){     //needs to be fixed
+        for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
+            if (boardCpy[i][14 - toPrint.read_at(0).y] == ' ')
+                boardCpy[i][14 - toPrint.read_at(0).y] = Letter(toPrint.read_at(i - toPrint.read_at(0).x).LData,
+                                                         14 - toPrint.read_at(0).y,
+                                                         i, toPrint.read_at(i - toPrint.read_at(0).x).flag);
+        }
+    }
+    else if (readerType == VERTICAL){
+        for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
+            if (boardCpy[14 - i][toPrint.read_at(0).y] == ' ')
+                boardCpy[14 - i][toPrint.read_at(0).y] = Letter(toPrint.read_at(i - toPrint.read_at(0).x).LData,
+                                                         14 - i,
+                                                         toPrint.read_at(0).y, toPrint.read_at(i - toPrint.read_at(0).x).flag);
+        }
     }
 
     return boardCpy;
 }
 
-int BoardReader::perpendicular_points(const LString &word) const {
-    vector<LString> boardCpy = return_board_with(word);
+int BoardReader::perpendicular_points(const LString &word, Type wordType) const {
+    vector<LString> boardCpy = return_board_with(word, wordType);
 
     int sum = 0;
     for (int i = 0; i < 15; i++) {  //i = x
@@ -298,7 +329,7 @@ int BoardReader::perpendicular_points(const LString &word) const {
 
         for (const auto& shard : colShards) {
             if(shard.contains_flag(-1) && shard.length() > 1){
-                sum += shard.get_horizontal_points();
+                sum += shard.get_letter_points();
             }
         }
     }
@@ -370,8 +401,8 @@ void BoardReader::reset_all_data() {
 void BoardReader::place_best_word_into_board() {
     LString bestWord;
     Type wordType;
-    int HWordPoints = bestHWord.get_horizontal_points() + perpendicular_points(bestHWord);
-    int VWordPoints = bestVWord.get_horizontal_points() + perpendicular_points(bestVWord);
+    int HWordPoints = bestHWord.get_letter_points() + perpendicular_points(bestHWord, HORIZONTAL);
+    int VWordPoints = bestVWord.get_letter_points() + perpendicular_points(bestVWord, VERTICAL);
 
     if (HWordPoints > VWordPoints) {
         bestWord = bestHWord;
@@ -452,8 +483,8 @@ LString BoardReader::update_best_hor_word() {
     bestHWord.clear();
     for (auto & wordSet : wordsOfRow) {
         for (const auto& word: wordSet) {
-            int wordPoints = word.get_horizontal_points() + perpendicular_points(word);
-            int bestWordPoints = bestHWord.get_horizontal_points() + perpendicular_points(bestHWord);
+            int wordPoints = word.get_letter_points() + perpendicular_points(word, HORIZONTAL);
+            int bestWordPoints = bestHWord.get_letter_points() + perpendicular_points(bestHWord, HORIZONTAL);
 
             if (wordPoints > bestWordPoints) {
                 bestHWord = word;

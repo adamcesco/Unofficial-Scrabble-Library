@@ -30,8 +30,8 @@ public:
     int get_best_vir_x() const{return bestVX;}
     int get_best_vir_y() const{return bestVY;}
     Type get_reader_type() const{return readerType;}
-    int points_of_best_hor_word(){return perpendicular_points(bestHWord) + bestHWord.get_horizontal_points();}
-    int points_of_best_vir_word(){return perpendicular_points(bestVWord) + bestVWord.get_horizontal_points();}
+    int points_of_best_hor_word(){return perpendicular_points(bestHWord, HORIZONTAL) + bestHWord.get_letter_points();}
+    int points_of_best_vir_word(){return perpendicular_points(bestVWord, VERTICAL) + bestVWord.get_letter_points();}
     void reset_all_data();
     void prime_for_different_mode();
     void set_hand(const LString& passed){hand = passed;}
@@ -40,11 +40,12 @@ public:
     void filter_scrabble_words_by_hand();
     vector<LString> return_words_of_row(int);     //needs testing
     vector<LString> return_words_of_col(int);     //needs testing
+    vector<LString> get_board(){return board;}
 
 protected:
-    vector<LString> return_board_with(const LString&) const;    //this returns a copy of the board that contains the passed LString
+    vector<LString> return_board_with(const LString&, Type) const;    //update to have the same definiton of place_into_board
     LString return_row_with(const LString&, int) const;
-    int perpendicular_points(const LString&) const;           //counts all points for all vertical words created by a given horizontal word
+    int perpendicular_points(const LString&, Type) const;           //counts all points for all vertical words created by a given horizontal word
     bool contains_letter_of_hand(const LString&) const;
     bool contains_letter_of_hand(const string& passed) const;
 
@@ -56,6 +57,7 @@ private:
     LString hand;                   //holds the hand of the solver
     Type readerType;                //states whether the best word for this BoardReader is a horizontal or a vertical reader
     vector<LString> board;          //holds the game board
+    vector<LString> rotatedBoard;          //holds the game board
     unordered_set<LString, MyHashFunction> answerSet;
     vector<LString> wordsOfRow[15];     //needs testing
     vector<LString> wordsOfCol[15];     //needs testing

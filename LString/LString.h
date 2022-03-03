@@ -149,7 +149,7 @@ public:
     LString operator+(char) const;
     string to_string() const;
     bool isDescendentOf(const LString&, const LString&);
-    int get_horizontal_points() const;
+    int get_letter_points() const;
     static int get_horizontal_points(string);
     LString& xVals_to_subscript();
     LString& add_to_x_vals(int);
