@@ -442,21 +442,7 @@ bool LString::containsIgnorePadding(LString passed) const {
 }
 
 bool LString::isDescendentOf(const LString& hand, const LString& row) {
-    bool handSet[123];
-    for (bool & i : handSet)
-        i = false;
-
-    for (int i = 0; i < hand.eleCount; ++i)
-        handSet[abs(toupper(hand.read_at(i).LData))] = true;
-
-    bool madeOfRow = true;
-    for (auto & i : *this) {
-        if(handSet[abs(toupper(i.LData))]) {
-            madeOfRow = false;
-            break;
-        }
-    }
-    if(madeOfRow)
+    if(eleCount == 0)
         return false;
 
     int sumMap[123];
@@ -545,7 +531,7 @@ bool LString::contains_flag(int passed) const{
     return false;
 }
 
-bool LString::place_into_row(const LString &row) {
+LString LString::place_into_row(const LString &row) {
     vector<LString> rowFragments = row.break_into_frags();
 
     LString slidingWindow;
@@ -595,14 +581,14 @@ bool LString::place_into_row(const LString &row) {
             if (skip)
                 continue;
             if (*this == shard) {
-                return true;
+                return rowCpy;
             }
         }
 
         rowCpy = row;
     }
 
-    return false;
+    return LString();
 }
 
 vector<LString> LString::break_into_frags() const{

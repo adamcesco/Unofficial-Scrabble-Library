@@ -156,7 +156,7 @@ public:
     LString& set_x_vals_equal_to(int);
     LString& set_y_vals_equal_to(int);
     bool contains_flag(int) const;
-    bool place_into_row(const LString&);
+    LString place_into_row(const LString&);
     vector<LString> break_into_frags() const;
     
     ~LString(){delete[] data;}

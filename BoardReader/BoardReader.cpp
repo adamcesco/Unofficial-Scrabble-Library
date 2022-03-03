@@ -146,21 +146,18 @@ void BoardReader::search_board_for_words() {
     string curWord;
     while(!englishWords.eof()){
         englishWords >> curWord;
-        answers.emplace_back(LString(curWord).xVals_to_subscript());
+        if(contains_letter_of_hand(curWord))
+            answers.emplace_back(LString(curWord).xVals_to_subscript());
     }
     englishWords.close();
-
-    sort(answers.begin(), answers.end(), myComp);
 
     int rowSubscript = 0;
     for (const auto& row : board) {
         wordsOfRow[rowSubscript].clear();
         for (auto& word: answers) {
-            if(contains_letter_of_hand(word) && word.place_into_row(row)) {
+            if(word.place_into_row(row).isDescendentOf(hand, row)) {
                 word.set_y_vals_equal_to(rowSubscript);
-                if (return_row_with(word, rowSubscript).isDescendentOf(hand, row)) {
-                    wordsOfRow[rowSubscript].push_back(word);
-                }
+                wordsOfRow[rowSubscript].push_back(word);
             }
         }
         rowSubscript++;
@@ -479,4 +476,17 @@ bool BoardReader::contains_letter_of_hand(const LString &passed) const {
     if(madeOfRow)
         return false;
     return true;
+}
+
+bool BoardReader::contains_letter_of_hand(const string& passed) const {
+    unordered_set<char> handSet;
+    for (int i = 0; i < hand.length(); ++i)
+        handSet.emplace(toupper(hand.read_at(i).LData));
+
+    for (char i : passed) {
+        if(handSet.find(toupper(i)) != handSet.end()) {
+            return true;
+        }
+    }
+    return false;
 }

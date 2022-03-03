@@ -1,5 +1,8 @@
 #include "BoardReader/BoardReader.h"
 
+//TODO: shorten your list of official scrabble-english words
+//TODO: do not read english words everytime
+
 int main(){
     string hand = "KLEIDAO";
 
@@ -11,7 +14,9 @@ int main(){
 
         reader.to_vertical_reader();
         reader.search_board_for_words();
+        cout << "RF1" << endl;
         reader.check_perpendicular_compatibility();
+        cout << "RF2" << endl;
         reader.update_best_vir_word();
         int vPoints = reader.points_of_best_vir_word();
         LString bestVWord = reader.get_best_vir_word();
