@@ -19,11 +19,6 @@ public:
     LString update_best_vir_word();
     LString update_best_hor_word();
 
-    //does not support vertical words
-    LString get_words_of_row(int);  //returns a LString that contains all found words that fit into the requested row
-    LString row_to_string(int);     //returns a LString that contains all found words that fit into the requested row and each words points
-
-
     void check_perpendicular_compatibility();               //checks each horizontal word for each row to see if it is compatible with adjacent rows
     void to_vertical_reader();
     void to_horizontal_reader();

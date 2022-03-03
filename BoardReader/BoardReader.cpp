@@ -215,33 +215,6 @@ LString BoardReader::update_best_vir_word(){
     return bestVWord;
 }
 
-LString BoardReader::get_words_of_row(int subscript) {
-    LString buffer;
-    for (const auto& word: wordsOfRow[subscript]) {
-        if(word.is_empty()){
-            continue;
-        }
-        buffer += word + '\n';
-    }
-    buffer.pop_back();
-
-    return buffer;
-}
-
-LString BoardReader::row_to_string(int subscript) {
-    LString buffer;
-    for (const auto& word: wordsOfRow[subscript]) {
-        if(word.is_empty()){
-            continue;
-        }
-        buffer += word;
-        buffer += " - " + ::to_string(word.get_horizontal_points() + perpendicular_points(word)) + '\n';
-    }
-    buffer.pop_back();
-
-    return buffer;
-}
-
 void BoardReader::check_perpendicular_compatibility() {
     for (auto & wordSet : wordsOfRow) {
         for (auto& word: wordSet) {
@@ -432,8 +405,8 @@ void BoardReader::place_into_board(const LString &toPrint, Type wordType) {
                                                         toPrint.read_at(0).y, 1);
         }
     }
-    else if (readerType == HORIZONTAL){
-        for (int i = toPrint.read_at(0).x; i > toPrint.read_at(0).x - toPrint.length(); i--) {
+    else if (readerType == HORIZONTAL){     //needs to be fixed
+        for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
             board[i][14 - toPrint.read_at(0).y] = Letter(toPrint.read_at(i - toPrint.read_at(0).x).LData,
                                                          14 - toPrint.read_at(0).y,
                                                          i, 1);
