@@ -166,6 +166,19 @@ protected:
     void increaseMaxCapacity();
 };
 
+class MyHashFunction {
+public:
+    size_t operator()(const LString& lstr) const{
+        unsigned long hash = 5381;
+
+        for (int i = 0; i < lstr.length(); ++i) {
+            hash = ((hash << 5) + hash) + abs(lstr.read_at(i).LData); /* hash * 33 + c */
+        }
+
+        return hash;
+    }
+};
+
 
 
 

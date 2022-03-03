@@ -17,7 +17,7 @@ BoardReader::BoardReader() {
     string curWord;
     while(!englishWords.eof()){
         englishWords >> curWord;
-        answerSet.emplace(curWord);
+        answerSet.emplace(LString(curWord));
     }
     englishWords.close();
 }
@@ -35,7 +35,7 @@ BoardReader::BoardReader(const LString& passed) {
     string curWord;
     while(!englishWords.eof()){
         englishWords >> curWord;
-        answerSet.emplace(curWord);
+        answerSet.emplace(LString(curWord));
     }
     englishWords.close();
 }
@@ -137,30 +137,33 @@ bool myComp(LString str1, LString str2){
 }
 
 void BoardReader::search_board_for_words() {
-    ifstream englishWords;
-    englishWords.open("../data/englishWords.txt");
-    if(!englishWords.is_open())
-        throw invalid_argument("could not open ../data/englishWords.txt");
+    if(answerSet.empty())
+        throw invalid_argument("Error in BoardReader::search_board_for_words() | The set of all scrabble words is empty.");
 
-    vector<LString> answers;
-    string curWord;
-    while(!englishWords.eof()){
-        englishWords >> curWord;
-        if(contains_letter_of_hand(curWord))
-            answers.emplace_back(LString(curWord).xVals_to_subscript());
-    }
-    englishWords.close();
-
-    int rowSubscript = 0;
-    for (const auto& row : board) {
-        wordsOfRow[rowSubscript].clear();
-        for (auto& word: answers) {
-            if(word.place_into_row(row).isDescendentOf(hand, row)) {
-                word.set_y_vals_equal_to(rowSubscript);
-                wordsOfRow[rowSubscript].push_back(word);
+    if(readerType == HORIZONTAL) {
+        int rowSubscript = 0;
+        for (const auto &row: board) {
+            wordsOfRow[rowSubscript].clear();
+            for (auto word: answerSet) {
+                if (word.place_into_row(row).isDescendentOf(hand, row)) {
+                    word.set_y_vals_equal_to(rowSubscript);
+                    wordsOfRow[rowSubscript].push_back(word);
+                }
             }
+            rowSubscript++;
         }
-        rowSubscript++;
+    }else if(readerType == VERTICAL){
+        int rowSubscript = 0;
+        for (const auto &row: board) {
+            wordsOfCol[rowSubscript].clear();
+            for (auto word: answerSet) {
+                if (word.place_into_row(row).isDescendentOf(hand, row)) {
+                    word.set_y_vals_equal_to(rowSubscript);
+                    wordsOfCol[rowSubscript].push_back(word);
+                }
+            }
+            rowSubscript++;
+        }
     }
 }
 
@@ -182,12 +185,9 @@ string BoardReader::to_string() const {
 }
 
 LString BoardReader::update_best_vir_word(){
-    if(readerType == HORIZONTAL)
-        throw invalid_argument("Called BoardReader::update_best_vir_word() when reader is currently in HORIZONTAL reading mode");
-    
     int rowSubscript = 0;
     bestVWord.clear();
-    for (auto & wordSet : wordsOfRow) {
+    for (auto & wordSet : wordsOfCol) {
         for (const auto& word: wordSet) {
             int wordPoints = word.get_horizontal_points() + perpendicular_points(word);
             int bestWordPoints = bestVWord.get_horizontal_points() + perpendicular_points(bestVWord);
@@ -212,7 +212,7 @@ LString BoardReader::update_best_vir_word(){
     return bestVWord;
 }
 
-void BoardReader::check_perpendicular_compatibility() {
+void BoardReader::check_hor_words_perpendicular() {
     for (auto & wordSet : wordsOfRow) {
         for (auto& word: wordSet) {
             vector<LString> boardCpy = return_board_with(word);
@@ -233,7 +233,37 @@ void BoardReader::check_perpendicular_compatibility() {
                 vector<LString> colShards = column.break_into_frags();
 
                 for (const auto& shard : colShards) {
-                    if(shard.length() > 1 && answerSet.find(shard.to_string()) == answerSet.end()){
+                    if(shard.length() > 1 && answerSet.find(shard) == answerSet.end()){
+                        word.clear();
+                    }
+                }
+            }
+        }
+    }
+}
+
+void BoardReader::check_vir_words_perpendicular() {
+    for (auto & wordSet : wordsOfCol) {
+        for (auto& word: wordSet) {
+            vector<LString> boardCpy = return_board_with(word);
+
+            for (int i = 0; i < 15; i++) {  //i = x
+                LString column;
+                if(readerType == HORIZONTAL) {
+                    for (int j = 0; j < 15; j++) {  //j = y
+                        column += boardCpy[j][i];
+                    }
+                }
+                else if (readerType == VERTICAL){
+                    for (int j = 14; j >= 0; j--) {  //j = y
+                        column += boardCpy[j][i];
+                    }
+                }
+
+                vector<LString> colShards = column.break_into_frags();
+
+                for (const auto& shard : colShards) {
+                    if(shard.length() > 1 && answerSet.find(shard) == answerSet.end()){
                         word.clear();
                     }
                 }
@@ -319,6 +349,9 @@ void BoardReader::reset_all_data() {
     for (auto & words : wordsOfRow) {
         words.clear();
     }
+    for (auto & words : wordsOfCol) {
+        words.clear();
+    }
 
     answerSet.clear();
     ifstream englishWords;
@@ -329,7 +362,7 @@ void BoardReader::reset_all_data() {
     string curWord;
     while(!englishWords.eof()){
         englishWords >> curWord;
-        answerSet.emplace(curWord);
+        answerSet.emplace(LString(curWord));
     }
     englishWords.close();
 }
@@ -375,10 +408,6 @@ void BoardReader::prime_for_different_mode() {
     }
     readerType = HORIZONTAL;
 
-    for (auto & words : wordsOfRow) {
-        words.clear();
-    }
-
     answerSet.clear();
     ifstream englishWords;
     englishWords.open("../data/englishWords.txt");
@@ -388,7 +417,7 @@ void BoardReader::prime_for_different_mode() {
     string curWord;
     while(!englishWords.eof()){
         englishWords >> curWord;
-        answerSet.emplace(curWord);
+        answerSet.emplace(LString(curWord));
     }
     englishWords.close();
 }
@@ -419,9 +448,6 @@ void BoardReader::place_into_board(const LString &toPrint, Type wordType) {
 }
 
 LString BoardReader::update_best_hor_word() {
-    if(readerType == VERTICAL)
-        throw invalid_argument("Called BoardReader::update_best_hor_word() when reader is currently in VERTICAL reading mode");
-    
     int rowSubscript = 0;
     bestHWord.clear();
     for (auto & wordSet : wordsOfRow) {
@@ -459,23 +485,16 @@ LString BoardReader::return_row_with(const LString &toPrint, int rowSub) const {
 }
 
 bool BoardReader::contains_letter_of_hand(const LString &passed) const {
-    bool handSet[123];
-    for (bool & i : handSet)
-        i = false;
-
+    unordered_set<char> handSet;
     for (int i = 0; i < hand.length(); ++i)
-        handSet[abs(toupper(hand.read_at(i).LData))] = true;
+        handSet.emplace(toupper(hand.read_at(i).LData));
 
-    bool madeOfRow = true;
     for (int i = 0; i < passed.length(); ++i) {
-        if(handSet[abs(toupper(passed.read_at(i).LData))]) {
-            madeOfRow = false;
-            break;
+        if (handSet.find(toupper(passed.read_at(i).LData)) != handSet.end()) {
+            return true;
         }
     }
-    if(madeOfRow)
-        return false;
-    return true;
+    return false;
 }
 
 bool BoardReader::contains_letter_of_hand(const string& passed) const {
@@ -489,4 +508,14 @@ bool BoardReader::contains_letter_of_hand(const string& passed) const {
         }
     }
     return false;
+}
+
+void BoardReader::filter_scrabble_words_by_hand() {
+    auto i = answerSet.begin();
+    while(i != answerSet.end()){
+        auto current = i++;
+        if(!contains_letter_of_hand(*current)){
+            answerSet.erase(current);
+        }
+    }
 }

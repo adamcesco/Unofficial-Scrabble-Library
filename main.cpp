@@ -9,22 +9,21 @@ int main(){
     BoardReader reader(hand);
     reader.build_board();
     reader.print_board();
+    reader.filter_scrabble_words_by_hand();
 
     for (int i = 0; i < 3; ++i) {
 
         reader.to_vertical_reader();
         reader.search_board_for_words();
-        cout << "RF1" << endl;
-        reader.check_perpendicular_compatibility();
-        cout << "RF2" << endl;
+        reader.check_vir_words_perpendicular();
         reader.update_best_vir_word();
         int vPoints = reader.points_of_best_vir_word();
         LString bestVWord = reader.get_best_vir_word();
 
-        reader.prime_for_different_mode();
+//        reader.prime_for_different_mode();
         reader.to_horizontal_reader();
         reader.search_board_for_words();
-        reader.check_perpendicular_compatibility();
+        reader.check_hor_words_perpendicular();
         reader.update_best_hor_word();
         int hPoints = reader.points_of_best_hor_word();
         LString bestHWord = reader.get_best_hor_word();
