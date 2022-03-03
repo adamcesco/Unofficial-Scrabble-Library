@@ -44,7 +44,9 @@ public:
 
 protected:
     vector<LString> return_board_with(const LString&) const;    //this returns a copy of the board that contains the passed LString
+    LString return_row_with(const LString&, int) const;
     int perpendicular_points(const LString&) const;           //counts all points for all vertical words created by a given horizontal word
+    bool contains_letter_of_hand(const LString&) const;
 
 private:
     int bestHX, bestHY;

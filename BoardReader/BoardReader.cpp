@@ -156,9 +156,11 @@ void BoardReader::search_board_for_words() {
     for (const auto& row : board) {
         wordsOfRow[rowSubscript].clear();
         for (auto& word: answers) {
-            if(word.isDescendentOf(hand, row) && word.place_into_row(row)) {
+            if(contains_letter_of_hand(word) && word.place_into_row(row)) {
                 word.set_y_vals_equal_to(rowSubscript);
-                wordsOfRow[rowSubscript].push_back(word);
+                if (return_row_with(word, rowSubscript).isDescendentOf(hand, row)) {
+                    wordsOfRow[rowSubscript].push_back(word);
+                }
             }
         }
         rowSubscript++;
@@ -272,9 +274,11 @@ void BoardReader::check_perpendicular_compatibility() {
 
 vector<LString> BoardReader::return_board_with(const LString& toPrint) const{
     vector<LString> boardCpy = board;
-    for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
-        if(boardCpy[toPrint.read_at(0).y][i] == ' ')
-            boardCpy[toPrint.read_at(0).y][i] = toPrint.read_at(i - toPrint.read_at(0).x);
+    int toPrintX = toPrint.read_at(0).x;
+    int toPrintY = toPrint.read_at(0).y;
+    for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
+        if(boardCpy[toPrintY][i] == ' ')
+            boardCpy[toPrintY][i] = toPrint.read_at(i - toPrintX);
     }
 
     return boardCpy;
@@ -471,4 +475,35 @@ LString BoardReader::update_best_hor_word() {
     }
 
     return bestHWord;
+}
+
+LString BoardReader::return_row_with(const LString &toPrint, int rowSub) const {
+    int toPrintX = toPrint.read_at(0).x;
+    LString temp = board[rowSub];
+    for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
+        if(temp[i] == ' ')
+            temp[i] = toPrint.read_at(i - toPrintX);
+    }
+
+    return temp;
+}
+
+bool BoardReader::contains_letter_of_hand(const LString &passed) const {
+    bool handSet[123];
+    for (bool & i : handSet)
+        i = false;
+
+    for (int i = 0; i < hand.length(); ++i)
+        handSet[abs(toupper(hand.read_at(i).LData))] = true;
+
+    bool madeOfRow = true;
+    for (int i = 0; i < passed.length(); ++i) {
+        if(handSet[abs(toupper(passed.read_at(i).LData))]) {
+            madeOfRow = false;
+            break;
+        }
+    }
+    if(madeOfRow)
+        return false;
+    return true;
 }

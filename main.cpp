@@ -24,6 +24,12 @@ int main(){
         LString bestVWord = reader.get_best_vir_word();
 
         //printed the information of the best word for the board to the console
+
+        cout << "Best Horizontal Word: " << bestHWord.to_string() << endl;
+        cout << "\tPoints: " << hPoints << endl;
+        cout << "Best Vertical Word: " << bestVWord.to_string() << endl;
+        cout << "\tPoints: " << vPoints << endl;
+
         cout << "Best word for the board: ";
         if (hPoints > vPoints) {
             reader.place_into_board(bestHWord, HORIZONTAL);
