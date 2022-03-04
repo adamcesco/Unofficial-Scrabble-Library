@@ -4,8 +4,8 @@
 
 #ifndef SCRABBLEBOT_BOARDREADER_H
 #define SCRABBLEBOT_BOARDREADER_H
+
 #include "../ScrabbleReader/ScrabbleReader.h"
-//#include "../LString/LString.h"
 
 class HorizontalBoardReader : public ScrabbleReader{
 public:
@@ -19,15 +19,8 @@ public:
     void validate_words_perpendicular();
     Type get_reader_type() const{return HORIZONTAL;}
     vector<LString> return_word_set_of(int subscript){return wordSets[subscript];}
-    vector<LString> board_to_string() const{return board;};
-
-private:
-//    int bestX, bestY;
-//    LString bestWord;
-//    LString hand;
-//    vector<LString> board;
-//    unordered_set<LString, MyHashFunction> answerSet;
-//    vector<LString> wordSets[15];
+    vector<LString> board_to_string() const{return board;}
+    void set_board(vector<LString> passed){board = passed;}
 };
 
 

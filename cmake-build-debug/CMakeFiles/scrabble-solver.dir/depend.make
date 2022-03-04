@@ -14,6 +14,7 @@ CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o: ../ScrabbleR
 CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o: ../ScrabbleReader/ScrabbleReader.h
 
 CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o: ../LString/LString.h
+CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o: ../ScrabbleReader/ScrabbleReader.h
 CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o: ../VerticalBoardReader/VerticalBoardReader.cpp
 CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o: ../VerticalBoardReader/VerticalBoardReader.h
 

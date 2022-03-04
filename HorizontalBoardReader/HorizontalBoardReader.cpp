@@ -52,7 +52,7 @@ void HorizontalBoardReader::build_board() {
         int cellCount = 0;
         LString rowVect;
         while (getline(strStr, cell, ',')){
-            if(cell.size() > 0 && isalpha(cell[0])) {
+            if(!cell.empty() && isalpha(cell[0])) {
                 rowVect.push_back(Letter(cell[0], cellCount, rowCount, 1));
             }
             else {
@@ -75,7 +75,6 @@ void HorizontalBoardReader::print_board() const{
         }
         cout << endl;
     }
-    return;
 }
 
 string HorizontalBoardReader::to_string() const {

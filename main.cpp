@@ -1,9 +1,6 @@
 #include "HorizontalBoardReader/HorizontalBoardReader.h"
 #include "VerticalBoardReader/VerticalBoardReader.h"
 
-//TODO: shorten your list of official scrabble-english words
-//TODO: do not read english words everytime
-
 int main(){
     string hand = "KLEIDAO";
 
@@ -18,15 +15,13 @@ int main(){
     vReader.filter_scrabble_words_by_hand();
 
     for (int i = 0; i < 1; ++i) {
-        //TODO: fix error in return with board, because it has an error everytime it is called when the method type is not synced with the hReader type
         vReader.search_board_for_words();
-        vReader.validate_words_perpendicular();
-        vReader.update_best_word();
-
         hReader.search_board_for_words();
+        vReader.validate_words_perpendicular();
         hReader.validate_words_perpendicular();
-        hReader.update_best_word();
 
+        vReader.update_best_word();
+        hReader.update_best_word();
         int vPoints = vReader.points_of_best_word();
         LString bestVWord = vReader.get_best_word();
         int hPoints = hReader.points_of_best_word();
