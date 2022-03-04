@@ -123,32 +123,32 @@ scrabble-solver/fast:
 	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/build
 .PHONY : scrabble-solver/fast
 
-BoardReader/BoardReader.o: BoardReader/BoardReader.cpp.o
+HorizontalBoardReader/HorizontalBoardReader.o: HorizontalBoardReader/HorizontalBoardReader.cpp.o
 
-.PHONY : BoardReader/BoardReader.o
+.PHONY : HorizontalBoardReader/HorizontalBoardReader.o
 
 # target to build an object file
-BoardReader/BoardReader.cpp.o:
-	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o
-.PHONY : BoardReader/BoardReader.cpp.o
+HorizontalBoardReader/HorizontalBoardReader.cpp.o:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.o
+.PHONY : HorizontalBoardReader/HorizontalBoardReader.cpp.o
 
-BoardReader/BoardReader.i: BoardReader/BoardReader.cpp.i
+HorizontalBoardReader/HorizontalBoardReader.i: HorizontalBoardReader/HorizontalBoardReader.cpp.i
 
-.PHONY : BoardReader/BoardReader.i
+.PHONY : HorizontalBoardReader/HorizontalBoardReader.i
 
 # target to preprocess a source file
-BoardReader/BoardReader.cpp.i:
-	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.i
-.PHONY : BoardReader/BoardReader.cpp.i
+HorizontalBoardReader/HorizontalBoardReader.cpp.i:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.i
+.PHONY : HorizontalBoardReader/HorizontalBoardReader.cpp.i
 
-BoardReader/BoardReader.s: BoardReader/BoardReader.cpp.s
+HorizontalBoardReader/HorizontalBoardReader.s: HorizontalBoardReader/HorizontalBoardReader.cpp.s
 
-.PHONY : BoardReader/BoardReader.s
+.PHONY : HorizontalBoardReader/HorizontalBoardReader.s
 
 # target to generate assembly for a file
-BoardReader/BoardReader.cpp.s:
-	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.s
-.PHONY : BoardReader/BoardReader.cpp.s
+HorizontalBoardReader/HorizontalBoardReader.cpp.s:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.s
+.PHONY : HorizontalBoardReader/HorizontalBoardReader.cpp.s
 
 LString/LString.o: LString/LString.cpp.o
 
@@ -176,6 +176,60 @@ LString/LString.s: LString/LString.cpp.s
 LString/LString.cpp.s:
 	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/LString/LString.cpp.s
 .PHONY : LString/LString.cpp.s
+
+ScrabbleReader/ScrabbleReader.o: ScrabbleReader/ScrabbleReader.cpp.o
+
+.PHONY : ScrabbleReader/ScrabbleReader.o
+
+# target to build an object file
+ScrabbleReader/ScrabbleReader.cpp.o:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o
+.PHONY : ScrabbleReader/ScrabbleReader.cpp.o
+
+ScrabbleReader/ScrabbleReader.i: ScrabbleReader/ScrabbleReader.cpp.i
+
+.PHONY : ScrabbleReader/ScrabbleReader.i
+
+# target to preprocess a source file
+ScrabbleReader/ScrabbleReader.cpp.i:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.i
+.PHONY : ScrabbleReader/ScrabbleReader.cpp.i
+
+ScrabbleReader/ScrabbleReader.s: ScrabbleReader/ScrabbleReader.cpp.s
+
+.PHONY : ScrabbleReader/ScrabbleReader.s
+
+# target to generate assembly for a file
+ScrabbleReader/ScrabbleReader.cpp.s:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.s
+.PHONY : ScrabbleReader/ScrabbleReader.cpp.s
+
+VerticalBoardReader/VerticalBoardReader.o: VerticalBoardReader/VerticalBoardReader.cpp.o
+
+.PHONY : VerticalBoardReader/VerticalBoardReader.o
+
+# target to build an object file
+VerticalBoardReader/VerticalBoardReader.cpp.o:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o
+.PHONY : VerticalBoardReader/VerticalBoardReader.cpp.o
+
+VerticalBoardReader/VerticalBoardReader.i: VerticalBoardReader/VerticalBoardReader.cpp.i
+
+.PHONY : VerticalBoardReader/VerticalBoardReader.i
+
+# target to preprocess a source file
+VerticalBoardReader/VerticalBoardReader.cpp.i:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.i
+.PHONY : VerticalBoardReader/VerticalBoardReader.cpp.i
+
+VerticalBoardReader/VerticalBoardReader.s: VerticalBoardReader/VerticalBoardReader.cpp.s
+
+.PHONY : VerticalBoardReader/VerticalBoardReader.s
+
+# target to generate assembly for a file
+VerticalBoardReader/VerticalBoardReader.cpp.s:
+	$(MAKE) -f CMakeFiles/scrabble-solver.dir/build.make CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.s
+.PHONY : VerticalBoardReader/VerticalBoardReader.cpp.s
 
 main.o: main.cpp.o
 
@@ -213,12 +267,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... scrabble-solver"
-	@echo "... BoardReader/BoardReader.o"
-	@echo "... BoardReader/BoardReader.i"
-	@echo "... BoardReader/BoardReader.s"
+	@echo "... HorizontalBoardReader/HorizontalBoardReader.o"
+	@echo "... HorizontalBoardReader/HorizontalBoardReader.i"
+	@echo "... HorizontalBoardReader/HorizontalBoardReader.s"
 	@echo "... LString/LString.o"
 	@echo "... LString/LString.i"
 	@echo "... LString/LString.s"
+	@echo "... ScrabbleReader/ScrabbleReader.o"
+	@echo "... ScrabbleReader/ScrabbleReader.i"
+	@echo "... ScrabbleReader/ScrabbleReader.s"
+	@echo "... VerticalBoardReader/VerticalBoardReader.o"
+	@echo "... VerticalBoardReader/VerticalBoardReader.i"
+	@echo "... VerticalBoardReader/VerticalBoardReader.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

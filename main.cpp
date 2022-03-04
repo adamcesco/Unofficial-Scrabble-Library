@@ -1,4 +1,5 @@
-#include "BoardReader/BoardReader.h"
+#include "HorizontalBoardReader/HorizontalBoardReader.h"
+#include "VerticalBoardReader/VerticalBoardReader.h"
 
 //TODO: shorten your list of official scrabble-english words
 //TODO: do not read english words everytime
@@ -6,27 +7,30 @@
 int main(){
     string hand = "KLEIDAO";
 
-    BoardReader reader(hand);
-    reader.build_board();
-    reader.print_board();
-    reader.filter_scrabble_words_by_hand();
+    HorizontalBoardReader hReader(hand);
+    hReader.build_board();
+    hReader.print_board();
+    hReader.filter_scrabble_words_by_hand();
+
+    VerticalBoardReader vReader(hand);
+    vReader.build_board();
+    vReader.print_board();
+    vReader.filter_scrabble_words_by_hand();
 
     for (int i = 0; i < 3; ++i) {
-        //TODO: fix error in return with board, because it has an error everytime it is called when the method type is not synced with the reader type
-        reader.to_vertical_reader();
-        reader.search_board_for_words();
-        reader.check_vir_words_perpendicular();
-        reader.update_best_vir_word();
+        //TODO: fix error in return with board, because it has an error everytime it is called when the method type is not synced with the hReader type
+        vReader.search_board_for_words();
+        vReader.check_vir_words_perpendicular();
+        vReader.update_best_vir_word();
 
-        reader.to_horizontal_reader();
-        reader.search_board_for_words();
-        reader.check_hor_words_perpendicular();
-        reader.update_best_hor_word();
+        hReader.search_board_for_words();
+        hReader.check_hor_words_perpendicular();
+        hReader.update_best_hor_word();
 
-        int vPoints = reader.points_of_best_vir_word();
-        LString bestVWord = reader.get_best_vir_word();
-        int hPoints = reader.points_of_best_hor_word();
-        LString bestHWord = reader.get_best_hor_word();
+        int vPoints = vReader.points_of_best_vir_word();
+        LString bestVWord = vReader.get_best_vir_word();
+        int hPoints = hReader.points_of_best_hor_word();
+        LString bestHWord = hReader.get_best_hor_word();
 
         //printed the information of the best word for the board to the console
 
@@ -37,18 +41,18 @@ int main(){
 
         cout << "Best word for the board: ";
         if (hPoints > vPoints) {
-            reader.place_into_board(bestHWord, HORIZONTAL);
+            hReader.place_into_board(bestHWord);
             cout << bestHWord.to_string() << endl;
             cout << "\tPoints: " << hPoints << endl;
             cout << "\thorizontal" << endl;
         } else {
-            reader.place_into_board(bestVWord, VERTICAL);
+            vReader.place_into_board(bestVWord);
             cout << bestVWord.to_string() << endl;
             cout << "\tPoints: " << vPoints << endl;
             cout << "\tvertical" << endl;
         }
-        reader.print_board();
-        reader.prime_for_different_mode();
+        hReader.print_board();
+        vReader.print_board();
     }
 
     return 0;

@@ -82,16 +82,28 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.cpp">
+		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.cpp">
 			<Option target="scrabble-solver"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h">
+		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.h">
 			<Option target="scrabble-solver"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.cpp">
 			<Option target="scrabble-solver"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h">
+			<Option target="scrabble-solver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/ScrabbleReader/ScrabbleReader.cpp">
+			<Option target="scrabble-solver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/ScrabbleReader/ScrabbleReader.h">
+			<Option target="scrabble-solver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/VerticalBoardReader/VerticalBoardReader.cpp">
+			<Option target="scrabble-solver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/VerticalBoardReader/VerticalBoardReader.h">
 			<Option target="scrabble-solver"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/misc1/CLionProjects/scrabble-solver/main.cpp">

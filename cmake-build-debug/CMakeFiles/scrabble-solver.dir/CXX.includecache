@@ -6,13 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.cpp
-BoardReader.h
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
-sstream
--
-
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.h
 ../LString/LString.h
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
 
@@ -38,7 +32,13 @@ cstring
 math.h
 -
 
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/VerticalBoardReader/VerticalBoardReader.h
+../LString/LString.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
+
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/main.cpp
-BoardReader/BoardReader.h
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
+HorizontalBoardReader/HorizontalBoardReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.h
+VerticalBoardReader/VerticalBoardReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/VerticalBoardReader/VerticalBoardReader.h
 
