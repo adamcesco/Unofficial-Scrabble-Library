@@ -3,6 +3,7 @@
 
 //TODO: update word bank file
 //TODO: incorporate point perk measurements
+//TODO: eventually add full game play support
 
 
 int main(){
