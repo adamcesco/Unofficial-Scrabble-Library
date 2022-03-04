@@ -1,6 +1,10 @@
 #include "HorizontalBoardReader/HorizontalBoardReader.h"
 #include "VerticalBoardReader/VerticalBoardReader.h"
 
+//TODO: update word bank file
+//TODO: incorporate point perk measurements
+
+
 int main(){
     string hand = "KLEIDAO";
 
@@ -27,8 +31,7 @@ int main(){
         int hPoints = hReader.points_of_best_word();
         LString bestHWord = hReader.get_best_word();
 
-        //printed the information of the best word for the board to the console
-
+        //printing the information of the best word for the board to the console
         cout << "Best Horizontal Word: " << bestHWord.to_string() << endl;
         cout << "\tPoints: " << hPoints << endl;
         cout << "Best Vertical Word: " << bestVWord.to_string() << endl;
