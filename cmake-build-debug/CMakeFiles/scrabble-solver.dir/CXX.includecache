@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.cpp
-HorizontalBoardReader.h
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.h
-sstream
--
-
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.h
 ../LString/LString.h
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h

@@ -27,8 +27,8 @@ int main(){
         hReader.check_hor_words_perpendicular();
         hReader.update_best_hor_word();
 
-        int vPoints = vReader.points_of_best_vir_word();
-        LString bestVWord = vReader.get_best_vir_word();
+        int vPoints = vReader.points_of_best_word();
+        LString bestVWord = vReader.get_best_word();
         int hPoints = hReader.points_of_best_hor_word();
         LString bestHWord = hReader.get_best_hor_word();
 

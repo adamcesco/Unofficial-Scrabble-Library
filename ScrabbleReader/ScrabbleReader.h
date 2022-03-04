@@ -24,7 +24,7 @@ public:
     int get_best_x() const{return bestX;}
     int get_best_y() const {return bestY;}
     void search_board_for_words();
-    int points_of_best_hor_word(){return perpendicular_points(bestWord) + bestWord.get_letter_points();}
+    int points_of_best_word(){return perpendicular_points(bestWord) + bestWord.get_letter_points();}
     void reset_all_data();
     void set_hand(const LString& passed){hand = passed;}
     LString get_hand(){return hand;}

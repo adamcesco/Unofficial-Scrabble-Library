@@ -17,9 +17,7 @@ public:
     vector<LString> board_to_string() const override;
 
     void validate_words_perpendicular() override;
-    LString get_best_vir_word() const{return bestWord;}
     Type get_reader_type() const override{return VERTICAL;}
-    int points_of_best_vir_word(){return perpendicular_points(bestWord) + bestWord.get_letter_points();}
     vector<LString> return_word_set_of(int subscript) override{return wordSets[14 - subscript];}
     vector<LString> get_true_board(){return board;}
 };
