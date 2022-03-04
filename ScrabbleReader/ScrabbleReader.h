@@ -28,23 +28,23 @@ public:
     void reset_all_data();
     void set_hand(const LString& passed){hand = passed;}
     LString get_hand(){return hand;}
-    void place_into_board(const LString&);    //place a word (vertical or horizontal) onto the board, only the first Letter of the word needs to have its coordinates defined
+    void place_into_board(const LString&);
     void filter_scrabble_words_by_hand();
     vector<LString> get_board(){return board;}
 
 protected:
-    vector<LString> return_board_with(const LString&) const;    //update to have the same definiton of place_into_board
+    vector<LString> return_board_with(const LString&) const;
     LString return_row_with(const LString&, int) const;
-    int perpendicular_points(const LString&) const;           //counts all points for all vertical words created by a given horizontal word
+    int perpendicular_points(const LString&) const;
     bool contains_letter_of_hand(const LString&) const;
     bool contains_letter_of_hand(const string& passed) const;
 
     int bestX, bestY;
-    LString bestWord;               //holds the best horizontal word for the current board
-    LString hand;                   //holds the hand of the solver
-    vector<LString> board;          //holds the game board
+    LString bestWord;
+    LString hand;
+    vector<LString> board;
     unordered_set<LString, MyHashFunction> answerSet;
-    vector<LString> wordSets[15];     //needs testing
+    vector<LString> wordSets[15];
 };
 
 

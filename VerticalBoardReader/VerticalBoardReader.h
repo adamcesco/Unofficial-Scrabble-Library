@@ -14,13 +14,13 @@ public:
     void print_board() const override;
     string to_string() const override;       //print the info of the best word for the current board
     LString update_best_word() override;
-    virtual vector<LString> board_to_string() const;
+    vector<LString> board_to_string() const override;
 
-    void validate_words_perpendicular();
+    void validate_words_perpendicular() override;
     LString get_best_vir_word() const{return bestWord;}
-    virtual Type get_reader_type() const{return VERTICAL;}
+    Type get_reader_type() const override{return VERTICAL;}
     int points_of_best_vir_word(){return perpendicular_points(bestWord) + bestWord.get_letter_points();}
-    virtual vector<LString> return_word_set_of(int subscript){return wordSets[14 - subscript];}
+    vector<LString> return_word_set_of(int subscript) override{return wordSets[14 - subscript];}
     vector<LString> get_true_board(){return board;}
 };
 
