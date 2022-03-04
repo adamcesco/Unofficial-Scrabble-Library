@@ -4,6 +4,7 @@
 //TODO: update word bank file
 //TODO: incorporate point perk measurements
 //TODO: eventually add full game play support
+//TODO: remove cmake-build-debug from github repo
 
 
 int main(){
