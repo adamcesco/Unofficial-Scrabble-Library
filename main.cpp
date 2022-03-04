@@ -20,8 +20,8 @@ int main(){
     for (int i = 0; i < 3; ++i) {
         //TODO: fix error in return with board, because it has an error everytime it is called when the method type is not synced with the hReader type
         vReader.search_board_for_words();
-        vReader.check_vir_words_perpendicular();
-        vReader.update_best_vir_word();
+        vReader.validate_words_perpendicular();
+        vReader.update_best_word();
 
         hReader.search_board_for_words();
         hReader.check_hor_words_perpendicular();

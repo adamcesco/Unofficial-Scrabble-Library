@@ -8,12 +8,18 @@ CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.o
 CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o: ../LString/LString.cpp
 CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o: ../LString/LString.h
 
+CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o: ../LString/LString.h
+CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o: ../ScrabbleReader/ScrabbleReader.cpp
+CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o: ../ScrabbleReader/ScrabbleReader.h
+
 CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o: ../LString/LString.h
+CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o: ../ScrabbleReader/ScrabbleReader.h
 CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o: ../VerticalBoardReader/VerticalBoardReader.cpp
 CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o: ../VerticalBoardReader/VerticalBoardReader.h
 
 CMakeFiles/scrabble-solver.dir/main.cpp.o: ../HorizontalBoardReader/HorizontalBoardReader.h
 CMakeFiles/scrabble-solver.dir/main.cpp.o: ../LString/LString.h
+CMakeFiles/scrabble-solver.dir/main.cpp.o: ../ScrabbleReader/ScrabbleReader.h
 CMakeFiles/scrabble-solver.dir/main.cpp.o: ../VerticalBoardReader/VerticalBoardReader.h
 CMakeFiles/scrabble-solver.dir/main.cpp.o: ../main.cpp
 
