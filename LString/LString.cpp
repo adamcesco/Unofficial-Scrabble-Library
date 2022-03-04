@@ -446,13 +446,14 @@ bool LString::isDescendentOf(const LString& hand, const LString& row) {
         return false;
 
     int sumMap[123];
-    LString sumSet = hand + row;
     int letterCount[123];
     for (int i = 0; i < 123; ++i)
         sumMap[i] = letterCount[i] = 0;
 
-    for (int i = 0; i < sumSet.eleCount; ++i)
-        sumMap[abs(toupper(sumSet.read_at(i).LData))]++;
+    for (int i = 0; i < hand.eleCount; ++i)
+        sumMap[abs(toupper(hand.read_at(i).LData))]++;
+    for (int i = 0; i < row.eleCount; ++i)
+        sumMap[abs(toupper(row.read_at(i).LData))]++;
 
     for (int i = 0; i < eleCount; ++i)
         letterCount[abs(toupper(data[i].LData))]++;
@@ -598,12 +599,12 @@ vector<LString> LString::break_into_frags() const{
         if(data[i].LData != ' ') {
             curFragment += data[i];
         }
-        else if (!curFragment.is_empty()){
+        else if (curFragment.eleCount != 0){
             fragments.push_back(curFragment);
             curFragment.clear();
         }
     }
-    if (!curFragment.is_empty())
+    if (curFragment.eleCount != 0)
         fragments.push_back(curFragment);
 
     return fragments;

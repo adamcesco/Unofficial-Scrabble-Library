@@ -36,7 +36,7 @@ ScrabbleReader::ScrabbleReader(const LString &passed) {
     englishWords.close();
 }
 
-void ScrabbleReader::search_board_for_words() {
+void ScrabbleReader::search_board_for_words() { //calls too many functions
     if(answerSet.empty())
         throw invalid_argument("Error in ScrabbleReader::search_board_for_words() | The set of all scrabble words is empty.");
 
