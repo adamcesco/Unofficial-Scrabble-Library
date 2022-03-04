@@ -8,9 +8,6 @@
 
 class ScrabbleReader {
 public:
-    ScrabbleReader();
-    explicit ScrabbleReader(const LString&);
-
     virtual void build_board() = 0;
     virtual void print_board() const = 0;
     virtual string to_string() const = 0;
@@ -30,7 +27,7 @@ public:
     LString get_hand(){return hand;}
     void place_into_board(const LString&);
     void filter_scrabble_words_by_hand();
-    vector<LString> get_board(){return board;}
+    vector<LString>& get_true_board(){return board;}
 
 protected:
     vector<LString> return_board_with(const LString&) const;

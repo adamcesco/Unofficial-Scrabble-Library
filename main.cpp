@@ -19,40 +19,40 @@ int main(){
 
     for (int i = 0; i < 1; ++i) {
         //TODO: fix error in return with board, because it has an error everytime it is called when the method type is not synced with the hReader type
-//        vReader.search_board_for_words();
-//        vReader.validate_words_perpendicular();
-//        vReader.update_best_word();
+        vReader.search_board_for_words();
+        vReader.validate_words_perpendicular();
+        vReader.update_best_word();
 
         hReader.search_board_for_words();
-        hReader.check_hor_words_perpendicular();
-        hReader.update_best_hor_word();
+        hReader.validate_words_perpendicular();
+        hReader.update_best_word();
 
-//        int vPoints = vReader.points_of_best_word();
-//        LString bestVWord = vReader.get_best_word();
-        int hPoints = hReader.points_of_best_hor_word();
-        LString bestHWord = hReader.get_best_hor_word();
+        int vPoints = vReader.points_of_best_word();
+        LString bestVWord = vReader.get_best_word();
+        int hPoints = hReader.points_of_best_word();
+        LString bestHWord = hReader.get_best_word();
 
         //printed the information of the best word for the board to the console
 
         cout << "Best Horizontal Word: " << bestHWord.to_string() << endl;
         cout << "\tPoints: " << hPoints << endl;
-//        cout << "Best Vertical Word: " << bestVWord.to_string() << endl;
-//        cout << "\tPoints: " << vPoints << endl;
+        cout << "Best Vertical Word: " << bestVWord.to_string() << endl;
+        cout << "\tPoints: " << vPoints << endl;
 
         cout << "Best word for the board: ";
-        if (hPoints > -1) {
+        if (hPoints > vPoints) {
             hReader.place_into_board(bestHWord);
             cout << bestHWord.to_string() << endl;
             cout << "\tPoints: " << hPoints << endl;
             cout << "\thorizontal" << endl;
         } else {
-//            vReader.place_into_board(bestVWord);
-//            cout << bestVWord.to_string() << endl;
-//            cout << "\tPoints: " << vPoints << endl;
+            vReader.place_into_board(bestVWord);
+            cout << bestVWord.to_string() << endl;
+            cout << "\tPoints: " << vPoints << endl;
             cout << "\tvertical" << endl;
         }
         hReader.print_board();
-//        vReader.print_board();
+        vReader.print_board();
     }
 
     return 0;

@@ -4,38 +4,6 @@
 
 #include "ScrabbleReader.h"
 
-ScrabbleReader::ScrabbleReader() {
-    bestX = bestY = -1;
-    ifstream englishWords;
-    englishWords.open("../data/englishWords.txt");
-    if(!englishWords.is_open())
-        throw invalid_argument("could not open ../data/englishWords.txt");
-
-    string curWord;
-    while(!englishWords.eof()){
-        englishWords >> curWord;
-        answerSet.emplace(LString(curWord));
-    }
-    englishWords.close();
-}
-
-ScrabbleReader::ScrabbleReader(const LString &passed) {
-    hand = passed;
-    bestX = bestY = -1;
-
-    ifstream englishWords;
-    englishWords.open("../data/englishWords.txt");
-    if(!englishWords.is_open())
-        throw invalid_argument("could not open ../data/englishWords.txt");
-
-    string curWord;
-    while(!englishWords.eof()){
-        englishWords >> curWord;
-        answerSet.emplace(LString(curWord));
-    }
-    englishWords.close();
-}
-
 void ScrabbleReader::search_board_for_words() { //calls too many functions
     if(answerSet.empty())
         throw invalid_argument("Error in ScrabbleReader::search_board_for_words() | The set of all scrabble words is empty.");
