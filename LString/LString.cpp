@@ -442,31 +442,18 @@ bool LString::containsIgnorePadding(LString passed) const {
 }
 
 bool LString::isDescendentOf(const LString& hand, const LString& row) {
-    bool handSet[123];
-    for (bool & i : handSet)
-        i = false;
-
-    for (int i = 0; i < hand.eleCount; ++i)
-        handSet[abs(toupper(hand.read_at(i).LData))] = true;
-
-    bool madeOfRow = true;
-    for (auto & i : *this) {
-        if(handSet[abs(toupper(i.LData))]) {
-            madeOfRow = false;
-            break;
-        }
-    }
-    if(madeOfRow)
+    if(eleCount == 0)
         return false;
 
     int sumMap[123];
-    LString sumSet = hand + row;
     int letterCount[123];
     for (int i = 0; i < 123; ++i)
         sumMap[i] = letterCount[i] = 0;
 
-    for (int i = 0; i < sumSet.eleCount; ++i)
-        sumMap[abs(toupper(sumSet.read_at(i).LData))]++;
+    for (int i = 0; i < hand.eleCount; ++i)
+        sumMap[abs(toupper(hand.read_at(i).LData))]++;
+    for (int i = 0; i < row.eleCount; ++i)
+        sumMap[abs(toupper(row.read_at(i).LData))]++;
 
     for (int i = 0; i < eleCount; ++i)
         letterCount[abs(toupper(data[i].LData))]++;
@@ -509,7 +496,7 @@ int LString::get_horizontal_points(string passed) {
     return sum;
 }
 
-int LString::get_horizontal_points() const{
+int LString::get_letter_points() const{
     int sum = 0;
     for (int i = 0; i < eleCount; ++i)
         sum += data[i].val;
@@ -545,7 +532,7 @@ bool LString::contains_flag(int passed) const{
     return false;
 }
 
-bool LString::place_into_row(const LString &row) {
+LString LString::place_into_row(const LString &row) {
     vector<LString> rowFragments = row.break_into_frags();
 
     LString slidingWindow;
@@ -595,14 +582,14 @@ bool LString::place_into_row(const LString &row) {
             if (skip)
                 continue;
             if (*this == shard) {
-                return true;
+                return rowCpy;
             }
         }
 
         rowCpy = row;
     }
 
-    return false;
+    return LString();
 }
 
 vector<LString> LString::break_into_frags() const{
@@ -612,12 +599,12 @@ vector<LString> LString::break_into_frags() const{
         if(data[i].LData != ' ') {
             curFragment += data[i];
         }
-        else if (!curFragment.is_empty()){
+        else if (curFragment.eleCount != 0){
             fragments.push_back(curFragment);
             curFragment.clear();
         }
     }
-    if (!curFragment.is_empty())
+    if (curFragment.eleCount != 0)
         fragments.push_back(curFragment);
 
     return fragments;

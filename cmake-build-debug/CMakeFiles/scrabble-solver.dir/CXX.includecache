@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.cpp
-BoardReader.h
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.cpp
+HorizontalBoardReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.h
 sstream
 -
 
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.h
-../LString/LString.h
-/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.h
+../ScrabbleReader/ScrabbleReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/ScrabbleReader/ScrabbleReader.h
 
 /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
 iostream
@@ -37,4 +37,28 @@ cstring
 -
 math.h
 -
+
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/ScrabbleReader/ScrabbleReader.cpp
+ScrabbleReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/ScrabbleReader/ScrabbleReader.h
+
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/ScrabbleReader/ScrabbleReader.h
+../LString/LString.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.h
+
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/VerticalBoardReader/VerticalBoardReader.cpp
+VerticalBoardReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/VerticalBoardReader/VerticalBoardReader.h
+sstream
+-
+
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/VerticalBoardReader/VerticalBoardReader.h
+../ScrabbleReader/ScrabbleReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/ScrabbleReader/ScrabbleReader.h
+
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/main.cpp
+HorizontalBoardReader/HorizontalBoardReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.h
+VerticalBoardReader/VerticalBoardReader.h
+/mnt/c/Users/misc1/CLionProjects/scrabble-solver/VerticalBoardReader/VerticalBoardReader.h
 

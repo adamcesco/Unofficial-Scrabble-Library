@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o"
+  "CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.o"
   "CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o"
+  "CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o"
+  "CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o"
   "CMakeFiles/scrabble-solver.dir/main.cpp.o"
   "scrabble-solver"
   "scrabble-solver.pdb"

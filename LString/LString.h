@@ -22,6 +22,8 @@ using namespace std;
 //                       a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p,  q, r, s, t, u, v, w, x, y,  z
 const int legend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 
+enum Type{HORIZONTAL, VERTICAL, UNDEFINED};
+
 struct Letter {
     int x, y;
     int val;
@@ -149,14 +151,14 @@ public:
     LString operator+(char) const;
     string to_string() const;
     bool isDescendentOf(const LString&, const LString&);
-    int get_horizontal_points() const;
+    int get_letter_points() const;
     static int get_horizontal_points(string);
     LString& xVals_to_subscript();
     LString& add_to_x_vals(int);
     LString& set_x_vals_equal_to(int);
     LString& set_y_vals_equal_to(int);
     bool contains_flag(int) const;
-    bool place_into_row(const LString&);
+    LString place_into_row(const LString&);
     vector<LString> break_into_frags() const;
     
     ~LString(){delete[] data;}
@@ -166,7 +168,17 @@ protected:
     void increaseMaxCapacity();
 };
 
+class MyHashFunction {
+public:
+    size_t operator()(const LString& lstr) const{
+        unsigned long hash = 5381;
 
+        for (int i = 0; i < lstr.length(); ++i) {
+            hash = ((hash << 5) + hash) + abs(lstr.read_at(i).LData); /* hash * 33 + c */
+        }
 
+        return hash;
+    }
+};
 
 #endif

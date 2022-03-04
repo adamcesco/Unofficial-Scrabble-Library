@@ -70,18 +70,18 @@ CMakeFiles/scrabble-solver.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/scrabble-solver.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/misc1/CLionProjects/scrabble-solver/main.cpp -o CMakeFiles/scrabble-solver.dir/main.cpp.s
 
-CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o: CMakeFiles/scrabble-solver.dir/flags.make
-CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o: ../BoardReader/BoardReader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o -c /mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.cpp
+CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.o: CMakeFiles/scrabble-solver.dir/flags.make
+CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.o: ../HorizontalBoardReader/HorizontalBoardReader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.o -c /mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.cpp
 
-CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.cpp > CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.i
+CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.cpp > CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.i
 
-CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/misc1/CLionProjects/scrabble-solver/BoardReader/BoardReader.cpp -o CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.s
+CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/misc1/CLionProjects/scrabble-solver/HorizontalBoardReader/HorizontalBoardReader.cpp -o CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.s
 
 CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o: CMakeFiles/scrabble-solver.dir/flags.make
 CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o: ../LString/LString.cpp
@@ -96,21 +96,51 @@ CMakeFiles/scrabble-solver.dir/LString/LString.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/scrabble-solver.dir/LString/LString.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/misc1/CLionProjects/scrabble-solver/LString/LString.cpp -o CMakeFiles/scrabble-solver.dir/LString/LString.cpp.s
 
+CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o: CMakeFiles/scrabble-solver.dir/flags.make
+CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o: ../VerticalBoardReader/VerticalBoardReader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o -c /mnt/c/Users/misc1/CLionProjects/scrabble-solver/VerticalBoardReader/VerticalBoardReader.cpp
+
+CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/misc1/CLionProjects/scrabble-solver/VerticalBoardReader/VerticalBoardReader.cpp > CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.i
+
+CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/misc1/CLionProjects/scrabble-solver/VerticalBoardReader/VerticalBoardReader.cpp -o CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.s
+
+CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o: CMakeFiles/scrabble-solver.dir/flags.make
+CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o: ../ScrabbleReader/ScrabbleReader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o -c /mnt/c/Users/misc1/CLionProjects/scrabble-solver/ScrabbleReader/ScrabbleReader.cpp
+
+CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/misc1/CLionProjects/scrabble-solver/ScrabbleReader/ScrabbleReader.cpp > CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.i
+
+CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/misc1/CLionProjects/scrabble-solver/ScrabbleReader/ScrabbleReader.cpp -o CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.s
+
 # Object files for target scrabble-solver
 scrabble__solver_OBJECTS = \
 "CMakeFiles/scrabble-solver.dir/main.cpp.o" \
-"CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o" \
-"CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o"
+"CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.o" \
+"CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o" \
+"CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o" \
+"CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o"
 
 # External object files for target scrabble-solver
 scrabble__solver_EXTERNAL_OBJECTS =
 
 scrabble-solver: CMakeFiles/scrabble-solver.dir/main.cpp.o
-scrabble-solver: CMakeFiles/scrabble-solver.dir/BoardReader/BoardReader.cpp.o
+scrabble-solver: CMakeFiles/scrabble-solver.dir/HorizontalBoardReader/HorizontalBoardReader.cpp.o
 scrabble-solver: CMakeFiles/scrabble-solver.dir/LString/LString.cpp.o
+scrabble-solver: CMakeFiles/scrabble-solver.dir/VerticalBoardReader/VerticalBoardReader.cpp.o
+scrabble-solver: CMakeFiles/scrabble-solver.dir/ScrabbleReader/ScrabbleReader.cpp.o
 scrabble-solver: CMakeFiles/scrabble-solver.dir/build.make
 scrabble-solver: CMakeFiles/scrabble-solver.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable scrabble-solver"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/misc1/CLionProjects/scrabble-solver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable scrabble-solver"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/scrabble-solver.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
