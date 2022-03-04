@@ -2,3 +2,5 @@
 build/
 cmake-build-debug/
 .idea/
+/cmake-build-debug/CMakeFiles/
+/cmake-build-debug/Testing/
