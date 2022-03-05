@@ -39,7 +39,7 @@ void ScrabbleReader::reset_all_data() {
 
     string curWord;
     while(englishWords.good()){
-        getline(englishWords,curWord);
+        getline(englishWords, curWord);
         answerSet.emplace(LString(curWord));
     }
     englishWords.close();

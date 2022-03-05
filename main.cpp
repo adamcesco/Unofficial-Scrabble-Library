@@ -1,10 +1,7 @@
 #include "HorizontalBoardReader/HorizontalBoardReader.h"
 #include "VerticalBoardReader/VerticalBoardReader.h"
 
-//TODO: update word bank file
 //TODO: incorporate point perk measurements
-//TODO: eventually add full game play support
-//TODO: remove cmake-build-debug from github repo
 
 void printAnswerSet(VerticalBoardReader vr, HorizontalBoardReader hr){
     cout << "All vertical words:" << endl;
@@ -32,10 +29,12 @@ int main(){
 
     HorizontalBoardReader hReader(hand);
     hReader.build_board();
+    hReader.validate_board();
     hReader.print_board();
 
     VerticalBoardReader vReader(hand);
     vReader.build_board();
+    vReader.validate_board();
     vReader.print_board();
 
     vReader.search_board_for_words();

@@ -21,6 +21,7 @@ public:
     vector<LString> return_word_set_of(int subscript){return wordSets[subscript];}
     vector<LString> board_to_string() const{return board;}
     void set_board(vector<LString> passed);
+    void validate_board() const;
 
 };
 

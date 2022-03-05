@@ -17,8 +17,8 @@ public:
     virtual vector<LString> return_word_set_of(int) = 0;
     virtual vector<LString> board_to_string() const = 0;
     virtual void set_board(vector<LString>) = 0;
+    virtual void validate_board() const = 0;
 
-    //TODO: write void validate_board();
     LString get_best_word() const{return bestWord;}
     int get_best_x() const{return bestX;}
     int get_best_y() const {return bestY;}

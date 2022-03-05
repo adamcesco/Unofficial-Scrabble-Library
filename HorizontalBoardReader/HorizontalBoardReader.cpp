@@ -137,3 +137,34 @@ LString HorizontalBoardReader::update_best_word() {
 
     return bestWord;
 }
+
+void HorizontalBoardReader::validate_board() const{
+    if(answerSet.empty())
+        throw invalid_argument("Error in ScrabbleReader::validate_board() | unordered_map<LString> answerSet is empty.");
+
+    for (int i = 0; i < 15; ++i) {
+        LString row;
+        for (int j = 0; j < 15; ++j) {
+            row += board[i].read_at(j);
+        }
+
+        LString column;
+        for (int j = 0; j < 15; ++j) {
+            column += board[j].read_at(i);
+        }
+
+        vector<LString> colShards = column.break_into_frags();
+
+        for (const auto& shard : colShards) {
+            if(shard.length() > 1 && answerSet.find(shard) == answerSet.end())
+                throw invalid_argument("Invalid vertical Word in Data/Board.csv | " + shard.to_string());
+        }
+
+        vector<LString> rowShards = row.break_into_frags();
+
+        for (const auto& shard : rowShards) {
+            if(shard.length() > 1 && answerSet.find(shard) == answerSet.end())
+                throw invalid_argument("Invalid horizontal Word in Data/Board.csv | " + shard.to_string());
+        }
+    }
+}
