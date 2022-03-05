@@ -6,6 +6,26 @@
 //TODO: eventually add full game play support
 //TODO: remove cmake-build-debug from github repo
 
+void printAnswerSet(VerticalBoardReader vr, HorizontalBoardReader hr){
+    cout << "All vertical words:" << endl;
+    for (int j = 0; j < 15; ++j) {
+        vector<LString> tempV = vr.return_word_set_of(j);
+        for (auto & k : tempV) {
+            if(!k.is_empty())
+                cout << '\t' << k.to_string() << endl;
+        }
+    }
+
+    cout << "All horizontal words:" << endl;
+    for (int j = 0; j < 15; ++j) {
+        vector<LString> tempH = hr.return_word_set_of(j);
+        for (auto & k : tempH) {
+            if(!k.is_empty())
+                cout << '\t' << k.to_string() << endl;
+        }
+    }
+}
+
 
 int main(){
     string hand = "KADUGYE";
@@ -13,76 +33,48 @@ int main(){
     HorizontalBoardReader hReader(hand);
     hReader.build_board();
     hReader.print_board();
-    hReader.filter_scrabble_words_by_hand();
 
     VerticalBoardReader vReader(hand);
     vReader.build_board();
     vReader.print_board();
-    vReader.filter_scrabble_words_by_hand();
 
-    for (int i = 0; i < 1; ++i) {
-        vReader.search_board_for_words1();
-//        vReader.search_board_for_words2();
-//        vReader.search_board_for_words3();
-//        vReader.search_board_for_words4();
+    vReader.search_board_for_words();
+    hReader.search_board_for_words();
 
-        hReader.search_board_for_words1();
-//        hReader.search_board_for_words2();
-//        hReader.search_board_for_words3();
-//        hReader.search_board_for_words4();
+    vReader.validate_words_perpendicular();
+    hReader.validate_words_perpendicular();
 
+    printAnswerSet(vReader, hReader);
 
-        vReader.validate_words_perpendicular();
-        hReader.validate_words_perpendicular();
+    vReader.update_best_word();
+    hReader.update_best_word();
+    int vPoints = vReader.points_of_best_word();
+    LString bestVWord = vReader.get_best_word();
+    int hPoints = hReader.points_of_best_word();
+    LString bestHWord = hReader.get_best_word();
 
-        vReader.update_best_word();
-        hReader.update_best_word();
-        int vPoints = vReader.points_of_best_word();
-        LString bestVWord = vReader.get_best_word();
-        int hPoints = hReader.points_of_best_word();
-        LString bestHWord = hReader.get_best_word();
+    //printing the information of the best word for the board to the console
+    cout << "Best Horizontal Word: " << bestHWord.to_string() << endl;
+    cout << "\tPoints: " << hPoints << endl;
+    cout << "Best Vertical Word: " << bestVWord.to_string() << endl;
+    cout << "\tPoints: " << vPoints << endl;
 
-        cout << "All vertical words:" << endl;
-        for (int j = 0; j < 15; ++j) {
-            vector<LString> tempV = vReader.return_word_set_of(j);
-            for (auto & k : tempV) {
-                if(!k.is_empty())
-                    cout << '\t' << k.to_string() << endl;
-            }
-        }
-
-        cout << "All horizontal words:" << endl;
-        for (int j = 0; j < 15; ++j) {
-            vector<LString> tempH = hReader.return_word_set_of(j);
-            for (auto & k : tempH) {
-                if(!k.is_empty())
-                    cout << '\t' << k.to_string() << endl;
-            }
-        }
-
-        //printing the information of the best word for the board to the console
-        cout << "Best Horizontal Word: " << bestHWord.to_string() << endl;
+    cout << "Best word for the board: ";
+    if (hPoints > vPoints) {
+        cout << bestHWord.to_string() << endl;
         cout << "\tPoints: " << hPoints << endl;
-        cout << "Best Vertical Word: " << bestVWord.to_string() << endl;
+        cout << "\thorizontal" << endl;
+    } else {
+        cout << bestVWord.to_string() << endl;
         cout << "\tPoints: " << vPoints << endl;
-
-        cout << "Best word for the board: ";
-        if (hPoints > vPoints) {
-            cout << bestHWord.to_string() << endl;
-            cout << "\tPoints: " << hPoints << endl;
-            cout << "\thorizontal" << endl;
-        } else {
-            cout << bestVWord.to_string() << endl;
-            cout << "\tPoints: " << vPoints << endl;
-            cout << "\tvertical" << endl;
-        }
-
-        //printing to board
-        vReader.place_into_board(bestVWord);
-        hReader.place_into_board(bestHWord);
-        hReader.print_board();
-        vReader.print_board();
+        cout << "\tvertical" << endl;
     }
+
+    //printing to board
+    vReader.place_into_board(bestVWord);
+    hReader.place_into_board(bestHWord);
+    hReader.print_board();
+    vReader.print_board();
 
     return 0;
 }

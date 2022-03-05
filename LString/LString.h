@@ -29,7 +29,7 @@ struct Letter {
     int val;
     char LData;
     int flag;
-    const int legend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8,  5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+//    const int legend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8,  5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 
     Letter(){
         x = y = flag = -1;
@@ -42,7 +42,14 @@ struct Letter {
         x = xp;
         y = yp;
         flag = fl;
-        val = legend[(passed & 31) - 1];
+        if((LData & 31) - 1 > 25 && LData != 32) {
+            cout << '|' << char(toupper(LData)) << '|' << endl;
+            throw invalid_argument("Error in Letter(char, int, int, int) | LData has an invalid value");
+        }
+        if(LData != ' ')
+            val = legend[(LData & 31) - 1];
+        else
+            val = 0;
     }
 
     void setCoord(int xp, int yp){
@@ -55,7 +62,7 @@ struct Letter {
     }
 
     bool operator==(char invoked) const{
-        return (invoked == this->LData);
+        return (abs(invoked) == this->LData);
     }
 
     bool operator!=(const Letter& invoked) const{
@@ -63,7 +70,7 @@ struct Letter {
     }
 
     bool operator!=(char invoked) const{
-        return (invoked != this->LData);
+        return (abs(invoked) != this->LData);
     }
 
     Letter& operator=(const Letter& invoked){
@@ -73,14 +80,28 @@ struct Letter {
         y = invoked.y;
         x = invoked.x;
         flag = invoked.flag;
-        val = legend[(LData & 31) - 1];
+        if((LData & 31) - 1 > 25 && LData != 32) {
+            cout << '|' << char(toupper(LData)) << '|' << endl;
+            throw invalid_argument("Error in Letter(char, int, int, int) | LData has an invalid value");
+        }
+        if(LData != ' ')
+            val = legend[(LData & 31) - 1];
+        else
+            val = 0;
         return *this;
     }
 
     Letter& operator=(char invoked){
         LData = abs(invoked);
         y = x = flag = -1;
-        val = legend[(LData & 31) - 1];
+        if((LData & 31) - 1 > 25 && LData != 32) {
+            cout << '|' << char(toupper(LData)) << '|' << endl;
+            throw invalid_argument("Error in Letter(char, int, int, int) | LData has an invalid value");
+        }
+        if(LData != ' ')
+            val = legend[(LData & 31) - 1];
+        else
+            val = 0;
         return *this;
     }
 };
@@ -158,7 +179,7 @@ public:
     LString& set_x_vals_equal_to(int);
     LString& set_y_vals_equal_to(int);
     bool contains_flag(int) const;
-    LString place_into_row(const LString&);
+    LString place_into_row(const LString&);     //return a vector of all correctly placed words
     vector<LString> break_into_frags() const;
     
     ~LString(){delete[] data;}

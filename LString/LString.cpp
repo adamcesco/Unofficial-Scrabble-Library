@@ -535,19 +535,12 @@ bool LString::contains_flag(int passed) const{
 LString LString::place_into_row(const LString &row) {
     vector<LString> rowFragments = row.break_into_frags();
 
-    LString slidingWindow;
+    LString slidingWindow = *this;
     LString rowCpy = row;
     rowCpy.xVals_to_subscript();
     this->xVals_to_subscript();
-    this->add_to_x_vals(row.read_back().x + 1);
-    for (int i = 0; i < eleCount + row.eleCount; i++) {
-        slidingWindow += this->data[i].LData;
-
-        if (slidingWindow.eleCount > row.eleCount) {
-            slidingWindow.pop_front();
-        }
-        this->add_to_x_vals(-1);
-
+    this->add_to_x_vals(15 - eleCount);
+    for (int i = 0; i < row.eleCount - eleCount; i++) {
         for (int j = row.eleCount - 1; j >= row.eleCount - slidingWindow.eleCount; --j) {
             if (row.read_at(j) == ' ')
                 rowCpy[j] = slidingWindow[(slidingWindow.eleCount - 1) - ((row.eleCount - 1) - j)];
@@ -587,6 +580,8 @@ LString LString::place_into_row(const LString &row) {
         }
 
         rowCpy = row;
+        slidingWindow += ' ';
+        this->add_to_x_vals(-1);
     }
 
     return LString();
