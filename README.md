@@ -1,7 +1,5 @@
 # Scrabble Board Solver
 
----
-
 ##### Project Name: Scrabble Solver
 ##### Author: Adam C. Escobedo
 ##### Start Date: Feb 1st, 2022
