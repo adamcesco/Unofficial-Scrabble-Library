@@ -87,7 +87,7 @@ struct Letter {
 
 class LString{
 private:
-    Letter* data;
+    Letter* data = nullptr;
     int eleCount;
     int maxCap;
     

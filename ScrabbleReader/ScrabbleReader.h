@@ -18,10 +18,14 @@ public:
     virtual vector<LString> board_to_string() const = 0;
     virtual void set_board(vector<LString>) = 0;
 
+    //TODO: write void validate_board();
     LString get_best_word() const{return bestWord;}
     int get_best_x() const{return bestX;}
     int get_best_y() const {return bestY;}
-    void search_board_for_words();
+    void search_board_for_words1();
+    void search_board_for_words2();
+    void search_board_for_words3();
+    void search_board_for_words4();
     int points_of_best_word(){return perpendicular_points(bestWord) + bestWord.get_letter_points();}
     void reset_all_data();
     void set_hand(const LString& passed){hand = passed;}
@@ -43,6 +47,9 @@ protected:
     vector<LString> board;
     unordered_set<LString, MyHashFunction> answerSet;
     vector<LString> wordSets[15];
+
+private:
+    unordered_set<LString>::iterator it;
 };
 
 

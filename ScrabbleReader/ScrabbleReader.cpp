@@ -4,18 +4,84 @@
 
 #include "ScrabbleReader.h"
 
-void ScrabbleReader::search_board_for_words() { //calls too many functions
+void ScrabbleReader::search_board_for_words1() {
     if(answerSet.empty())
-        throw invalid_argument("Error in ScrabbleReader::search_board_for_words() | The set of all scrabble words is empty.");
+        throw invalid_argument("Error in ScrabbleReader::search_board_for_words1() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;
     for (const auto &row: board) {
         wordSets[rowSubscript].clear();
-        for (auto word: answerSet) {
+        it = answerSet.begin();
+        for (int j = 0; j < answerSet.size() / 4; ++j){
+            LString word = *it;
             if (word.place_into_row(row).isDescendentOf(hand, row)) {
                 word.set_y_vals_equal_to(rowSubscript);
                 wordSets[rowSubscript].push_back(word);
             }
+            it++;
+        }
+        rowSubscript++;
+    }
+}
+
+void ScrabbleReader::search_board_for_words2() {
+    if(answerSet.empty())
+        throw invalid_argument("Error in ScrabbleReader::search_board_for_words1() | The set of all scrabble words is empty.");
+
+    int rowSubscript = 0;
+    const unordered_set<LString>::iterator quarterIt = it;
+    for (const auto &row: board) {
+        wordSets[rowSubscript].clear();
+        it = quarterIt;
+        for (int j = 0; j < answerSet.size() / 4; ++j){
+            LString word = *it;
+            if (word.place_into_row(row).isDescendentOf(hand, row)) {
+                word.set_y_vals_equal_to(rowSubscript);
+                wordSets[rowSubscript].push_back(word);
+            }
+            it++;
+        }
+        rowSubscript++;
+    }
+}
+
+void ScrabbleReader::search_board_for_words3() { //calls too many functions
+    if(answerSet.empty())
+        throw invalid_argument("Error in ScrabbleReader::search_board_for_words1() | The set of all scrabble words is empty.");
+
+    int rowSubscript = 0;
+    const unordered_set<LString>::iterator quarterIt = it;
+    for (const auto &row: board) {
+        wordSets[rowSubscript].clear();
+        it = quarterIt;
+        for (int j = 0; j < answerSet.size() / 4; ++j){
+            LString word = *it;
+            if (word.place_into_row(row).isDescendentOf(hand, row)) {
+                word.set_y_vals_equal_to(rowSubscript);
+                wordSets[rowSubscript].push_back(word);
+            }
+            it++;
+        }
+        rowSubscript++;
+    }
+}
+
+void ScrabbleReader::search_board_for_words4() {
+    if(answerSet.empty())
+        throw invalid_argument("Error in ScrabbleReader::search_board_for_words1() | The set of all scrabble words is empty.");
+
+    int rowSubscript = 0;
+    const unordered_set<LString>::iterator quarterIt = it;
+    for (const auto &row: board) {
+        wordSets[rowSubscript].clear();
+        it = quarterIt;
+        while (it != answerSet.end()){
+            LString word = *it;
+            if (word.place_into_row(row).isDescendentOf(hand, row)) {
+                word.set_y_vals_equal_to(rowSubscript);
+                wordSets[rowSubscript].push_back(word);
+            }
+            it++;
         }
         rowSubscript++;
     }
@@ -55,6 +121,9 @@ void ScrabbleReader::place_into_board(const LString &toPrint) {
 }
 
 void ScrabbleReader::filter_scrabble_words_by_hand() {
+    if(answerSet.empty())
+        throw invalid_argument("Error in ScrabbleReader::filter_scrabble_words_by_hand() | answerSet is empty");
+
     auto i = answerSet.begin();
     while(i != answerSet.end()){
         auto current = i++;
