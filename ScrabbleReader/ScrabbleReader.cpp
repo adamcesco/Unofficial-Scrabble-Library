@@ -33,13 +33,13 @@ void ScrabbleReader::reset_all_data() {
 
     answerSet.clear();
     ifstream englishWords;
-    englishWords.open("../Data/englishWords.txt.txt");
+    englishWords.open("../Data/scrabble_word_list.txt");
     if(!englishWords.is_open())
-        throw invalid_argument("could not open ../Data/englishWords.txt");
+        throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
 
     string curWord;
-    while(!englishWords.eof()){
-        englishWords >> curWord;
+    while(englishWords.good()){
+        getline(englishWords,curWord);
         answerSet.emplace(LString(curWord));
     }
     englishWords.close();

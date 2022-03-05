@@ -7,13 +7,13 @@
 
 VerticalBoardReader::VerticalBoardReader() {
     ifstream englishWords;
-    englishWords.open("../Data/englishWords.txt");
+    englishWords.open("../Data/scrabble_word_list.txt");
     if(!englishWords.is_open())
-        throw invalid_argument("could not open ../Data/englishWords.txt");
+        throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
 
     string curWord;
-    while(!englishWords.eof()){
-        englishWords >> curWord;
+    while(englishWords.good()){
+        getline(englishWords,curWord);
         answerSet.emplace(LString(curWord));
     }
     englishWords.close();
@@ -23,13 +23,13 @@ VerticalBoardReader::VerticalBoardReader(const LString& passed) {
     hand = passed;
 
     ifstream englishWords;
-    englishWords.open("../Data/englishWords.txt");
+    englishWords.open("../Data/scrabble_word_list.txt");
     if(!englishWords.is_open())
-        throw invalid_argument("could not open ../Data/englishWords.txt");
+        throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
 
     string curWord;
-    while(!englishWords.eof()){
-        englishWords >> curWord;
+    while(englishWords.good()){
+        getline(englishWords,curWord);
         answerSet.emplace(LString(curWord));
     }
     englishWords.close();
@@ -43,7 +43,8 @@ void VerticalBoardReader::build_board() {
 
     string row;
     int rowCount = 0;
-    while (getline(boardFile, row)){
+    while (boardFile.good()){
+        getline(boardFile, row);
         string cell;
         stringstream strStr(row);
         int cellCount = 0;

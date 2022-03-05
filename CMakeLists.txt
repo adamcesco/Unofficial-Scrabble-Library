@@ -3,15 +3,14 @@ project(scrabble-solver)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set (input01 "Data/englishWords.txt")
-set (input02 "Data/Board.csv")
-set (input03 "Data/scrabble_word_list.txt")
+set (input01 "Data/Board.csv")
+set (input02 "Data/scrabble_word_list.txt")
 
 #
 ##########################################
 
 # Copy data files to build dir
-foreach(file IN LISTS input01 input02 input03)
+foreach(file IN LISTS input01 input02)
     configure_file(${file} ${file} COPYONLY)
 endforeach()
 
