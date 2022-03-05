@@ -2,7 +2,7 @@
 
 ##### Project Name: Scrabble Solver
 ##### Author: Adam C. Escobedo
-##### Start Date: Feb 1st, 2022
+##### Start Date: Feb 10th, 2022
 
 ## Notes About Applicability
 
