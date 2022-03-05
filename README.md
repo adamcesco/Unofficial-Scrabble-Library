@@ -16,12 +16,12 @@ I use a test-driven solution that is primarily object oriented. In it's current 
 
 ## Road Map / To-Do List
 
-1. The computation of words that are purely tangible to present words.
+1. Supper the computation of words that are purely tangible to present words.
 2. Implementation of word grading that accounts for word/letter multipliers.
 3. Optimize solution
 4. Increase usability of classes for future users/editors of the project
 5. Provide an in-depth tutorial for users/editors of the class
-6. Console-based full game play support.
-7. U.I-based full game play support.
-8. Inhanced U.X features that support user's U.I intuition.
-9. Dynamic game play structures that inhance competitive and casual play for players of this Scrabble application.
+6. Implement a console-based solution with full game-play support.
+7. Implement a U.I-based solution with full game-play support.
+8. Inhance U.X features to support user's U.I intuition.
+9. Implement dynamic game play structures that inhance competitive and casual play for players of this Scrabble application.
