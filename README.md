@@ -14,11 +14,12 @@ Note that this solution in it's current state does not account for word/letter m
 
 I use a test-driven solution that is primarily object oriented. In it's current state, there are seprate classes for a horizontal-word-filter and vertical-word-filter, they are both derived classes from an abstract Scrabble-Reader class. Throughout implementation I continue to enhance the usability of all classes within this soltuion, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application.
 
-## To Implement
+## Road Map / To-Do List
 
-- Implementation of word grading that accounts for word/letter multipliers.
-- The computation of words that are purely tangible to present words.
-- Console-based full game play support.
-- U.I-based full game play support.
-- Inhanced U.X features that support user's U.I intuition.
-- Dynamic game play structures that inhance competitive and casual play for players of this Scrabble application.
+1. Increase usability of classes for future users/editors of the project
+2. The computation of words that are purely tangible to present words.
+3. 1. Implementation of word grading that accounts for word/letter multipliers.
+4. Console-based full game play support.
+5. U.I-based full game play support.
+6. Inhanced U.X features that support user's U.I intuition.
+7. Dynamic game play structures that inhance competitive and casual play for players of this Scrabble application.
