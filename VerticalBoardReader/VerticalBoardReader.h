@@ -20,7 +20,7 @@ public:
     Type get_reader_type() const{return VERTICAL;}
     vector<LString> return_word_set_of(int subscript){return wordSets[subscript];}
     vector<LString> board_to_string() const{return board;}
-    void set_board(vector<LString> passed);
+    void set_board(vector<LString>);
     void validate_board() const;
 
 };
