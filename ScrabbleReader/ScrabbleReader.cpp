@@ -6,19 +6,16 @@
 
 void ScrabbleReader::search_board_for_words() {
     if(answerSet.empty())
-        throw invalid_argument("Error in ScrabbleReader::search_board_for_words1() | The set of all scrabble words is empty.");
+        throw invalid_argument("Error in ScrabbleReader::search_board_for_words() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;
     for (const auto &row: board) {
         wordSets[rowSubscript].clear();
-        it = answerSet.begin();
-        for (int j = 0; j < answerSet.size(); ++j){
-            LString word = *it;
+        for (auto word : answerSet) {
             if (contains_letter_of_hand(word) && word.place_into_row(row).isDescendentOf(hand, row)) {
                 word.set_y_vals_equal_to(rowSubscript);
                 wordSets[rowSubscript].push_back(word);
             }
-            it++;
         }
         rowSubscript++;
     }
@@ -36,9 +33,9 @@ void ScrabbleReader::reset_all_data() {
 
     answerSet.clear();
     ifstream englishWords;
-    englishWords.open("../data/englishWords.txt");
+    englishWords.open("../Data/englishWords.txt.txt");
     if(!englishWords.is_open())
-        throw invalid_argument("could not open ../data/englishWords.txt");
+        throw invalid_argument("could not open ../Data/englishWords.txt");
 
     string curWord;
     while(!englishWords.eof()){
@@ -55,17 +52,6 @@ void ScrabbleReader::place_into_board(const LString &toPrint) {
                                                     i,
                                                     toPrint.read_at(0).y, 1);
     }
-}
-
-LString ScrabbleReader::return_row_with(const LString &toPrint, int rowSub) const {
-    int toPrintX = toPrint.read_at(0).x;
-    LString temp = board[rowSub];
-    for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
-        if(temp[i] == ' ')
-            temp[i] = toPrint.read_at(i - toPrintX);
-    }
-
-    return temp;
 }
 
 bool ScrabbleReader::contains_letter_of_hand(const LString &passed) const {

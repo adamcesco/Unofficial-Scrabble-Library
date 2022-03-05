@@ -7,9 +7,9 @@
 
 VerticalBoardReader::VerticalBoardReader() {
     ifstream englishWords;
-    englishWords.open("../data/englishWords.txt");
+    englishWords.open("../Data/englishWords.txt");
     if(!englishWords.is_open())
-        throw invalid_argument("could not open ../data/englishWords.txt");
+        throw invalid_argument("could not open ../Data/englishWords.txt");
 
     string curWord;
     while(!englishWords.eof()){
@@ -23,9 +23,9 @@ VerticalBoardReader::VerticalBoardReader(const LString& passed) {
     hand = passed;
 
     ifstream englishWords;
-    englishWords.open("../data/englishWords.txt");
+    englishWords.open("../Data/englishWords.txt");
     if(!englishWords.is_open())
-        throw invalid_argument("could not open ../data/englishWords.txt");
+        throw invalid_argument("could not open ../Data/englishWords.txt");
 
     string curWord;
     while(!englishWords.eof()){
@@ -37,9 +37,9 @@ VerticalBoardReader::VerticalBoardReader(const LString& passed) {
 
 void VerticalBoardReader::build_board() {
     ifstream boardFile;
-    boardFile.open("../data/Board.csv");
+    boardFile.open("../Data/Board.csv");
     if(!boardFile.is_open())
-        throw invalid_argument("could not open ../data/englishWords.txt");
+        throw invalid_argument("could not open ../Data/Board.csv");
 
     string row;
     int rowCount = 0;

@@ -32,7 +32,6 @@ public:
 
 protected:
     vector<LString> return_board_with(const LString&) const;
-    LString return_row_with(const LString&, int) const;
     int perpendicular_points(const LString&) const;
     bool contains_letter_of_hand(const LString&) const;
     bool contains_letter_of_hand(const string& passed) const;
@@ -43,9 +42,6 @@ protected:
     vector<LString> board;
     unordered_set<LString, MyHashFunction> answerSet;
     vector<LString> wordSets[15];
-
-private:
-    unordered_set<LString>::iterator it;
 };
 
 
