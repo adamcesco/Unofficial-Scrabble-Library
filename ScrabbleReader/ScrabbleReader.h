@@ -22,8 +22,9 @@ public:
     LString get_best_word() const{return bestWord;}
     int get_best_x() const{return bestX;}
     int get_best_y() const {return bestY;}
-    void search_for_crossectional_words();
+    void search_for_intersecting_words();
     void search_for_tangential_words();
+    void search_for_all_applicable_words();
     void clear_wordSets();
     int points_of_best_word(){return perpendicular_points(bestWord) + bestWord.get_letter_points();}
     void reset_all_data();
@@ -38,6 +39,7 @@ protected:
     bool contains_letter_of_hand(const LString&) const;
     bool contains_letter_of_hand(const string& passed) const;
     vector<LString> place_into_blank_row(LString&, int);
+    vector<LString> place_word_into_row(LString&, int);
 
     int bestX, bestY;
     LString bestWord;
