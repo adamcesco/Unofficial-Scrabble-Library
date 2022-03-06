@@ -65,8 +65,6 @@ void HorizontalBoardReader::build_board() {
         rowCount++;
     }
     boardFile.close();
-
-    //build rotated board
 }
 
 void HorizontalBoardReader::print_board() const{

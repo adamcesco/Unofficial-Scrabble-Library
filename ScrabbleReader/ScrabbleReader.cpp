@@ -207,17 +207,16 @@ void ScrabbleReader::search_for_all_applicable_words() {
 
     int rowSubscript = 0;
     for (const auto &row: board) {
-        if(row.is_blank_LStr()) {
-            rowSubscript++;
-            continue;
-        }
         for (auto word : answerSet) {
             if (contains_letter_of_hand(word)) {
-                vector<LString> toPush = place_word_into_row(word, rowSubscript);
+                word.set_y_vals_equal_to(rowSubscript);
+                unordered_map<LString, LString, MyHashFunction> toPush = place_word_into_row(word, rowSubscript);
                 for (auto& it: toPush) {
-                    if(it.is_descendent_of(hand, row)) {
-                        word.set_y_vals_equal_to(rowSubscript);
-                        wordSets[rowSubscript].push_back(word);
+                    LString first = it.first;
+                    LString second = it.second;
+
+                    if(first.is_descendent_of(hand, row)) {
+                        wordSets[rowSubscript].push_back(second);
                     }
                 }
             }
@@ -226,7 +225,7 @@ void ScrabbleReader::search_for_all_applicable_words() {
     }
 }
 
-vector<LString> ScrabbleReader::place_word_into_row(LString& word, int rowSubscript) {  //fix later
+unordered_map<LString, LString, MyHashFunction> ScrabbleReader::place_word_into_row(LString& word, int rowSubscript) {  //fix later
     int mode = 0;
     if(rowSubscript == 0)
         mode = 1;
@@ -234,7 +233,7 @@ vector<LString> ScrabbleReader::place_word_into_row(LString& word, int rowSubscr
         mode = -1;
 
     LString rowCpy = board[rowSubscript];
-    vector<LString> toReturn;
+    unordered_map<LString, LString, MyHashFunction> mapReturn;
     word.xVals_to_subscript();
     word.add_to_x_vals(15 - word.length());
     for (int i = 0; i < 15 - word.length(); ++i) {
@@ -244,17 +243,17 @@ vector<LString> ScrabbleReader::place_word_into_row(LString& word, int rowSubscr
         }
 
         bool skip = false;
-        bool allHand = false;
+        bool allHand = true;
         for (int j = 0; j < word.length(); ++j) {
             if(board[rowSubscript][j + word[0].x] != ' ' && board[rowSubscript][j + word[0].x] != word[j]) {
                 skip = true;
                 break;
             }
             else if(board[rowSubscript][j + word[0].x] != ' '){
-                allHand = true;
+                allHand = false;
             }
         }
-        if(skip) {
+        if(skip || rowCpy == board[rowSubscript]) {
             rowCpy = board[rowSubscript];
             word.add_to_x_vals(-1);
             continue;
@@ -268,11 +267,11 @@ vector<LString> ScrabbleReader::place_word_into_row(LString& word, int rowSubscr
 
         for (int j = 0; j < word.length(); ++j) {
             if(mode != 1 && board[rowSubscript - 1][j + word[0].x] != ' ') {
-                toReturn.push_back(rowCpy);
+                mapReturn.insert(pair<LString, LString>(rowCpy, word));
                 break;
             }
             if(mode != -1 && board[rowSubscript + 1][j + word[0].x] != ' ') {
-                toReturn.push_back(rowCpy);
+                mapReturn.insert(pair<LString, LString>(rowCpy, word));
                 break;
             }
         }
@@ -282,5 +281,5 @@ vector<LString> ScrabbleReader::place_word_into_row(LString& word, int rowSubscr
         word.add_to_x_vals(-1);
     }
 
-    return toReturn;
+    return mapReturn;
 }
