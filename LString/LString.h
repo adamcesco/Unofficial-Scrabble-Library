@@ -181,7 +181,6 @@ public:
     LString& set_x_vals_equal_to(int);
     LString& set_y_vals_equal_to(int);
     bool contains_flag(int) const;
-    LString place_into_row(const LString&);     //return a vector of all correctly placed words
     vector<LString> break_into_frags() const;
     bool is_blank_LStr() const;
     

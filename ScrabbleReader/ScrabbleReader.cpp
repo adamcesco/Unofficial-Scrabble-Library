@@ -4,16 +4,27 @@
 
 #include "ScrabbleReader.h"
 
-void ScrabbleReader::search_for_intersecting_words() {
-    if(answerSet.empty())
+void ScrabbleReader::search_for_intersecting_words() {if(answerSet.empty())
         throw invalid_argument("Error in ScrabbleReader::search_for_intersecting_words() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;
     for (const auto &row: board) {
+        if(row.is_blank_LStr()) {
+            rowSubscript++;
+            continue;
+        }
         for (auto word : answerSet) {
-            if (contains_letter_of_hand(word) && word.place_into_row(row).is_descendent_of(hand, row)) {
+            if (contains_letter_of_hand(word)) {
                 word.set_y_vals_equal_to(rowSubscript);
-                wordSets[rowSubscript].push_back(word);
+                unordered_map<LString, LString, MyHashFunction> toPush = place_into_filled_row(word, rowSubscript);
+                for (auto& it: toPush) {
+                    LString first = it.first;
+                    LString second = it.second;
+
+                    if(first.is_descendent_of(hand, row)) {
+                        wordSets[rowSubscript].push_back(second);
+                    }
+                }
             }
         }
         rowSubscript++;
@@ -119,7 +130,7 @@ void ScrabbleReader::search_for_tangential_words() {
 
     int rowSubscript = 0;
     for (const auto &row: board) {
-        if(!row.is_blank_LStr()) {  //delete later
+        if(!row.is_blank_LStr()) {
             rowSubscript++;
             continue;
         }
@@ -152,6 +163,30 @@ void ScrabbleReader::clear_wordSets() {
     wordSets[12].clear();
     wordSets[13].clear();
     wordSets[14].clear();
+}
+
+void ScrabbleReader::search_for_all_words() {
+    if(answerSet.empty())
+        throw invalid_argument("Error in ScrabbleReader::search_for_intersecting_words() | The set of all scrabble words is empty.");
+
+    int rowSubscript = 0;
+    for (const auto &row: board) {
+        for (auto word : answerSet) {
+            if (contains_letter_of_hand(word)) {
+                word.set_y_vals_equal_to(rowSubscript);
+                unordered_map<LString, LString, MyHashFunction> toPush = place_word_into_row(word, rowSubscript);
+                for (auto& it: toPush) {
+                    LString first = it.first;
+                    LString second = it.second;
+
+                    if(first.is_descendent_of(hand, row)) {
+                        wordSets[rowSubscript].push_back(second);
+                    }
+                }
+            }
+        }
+        rowSubscript++;
+    }
 }
 
 vector<LString> ScrabbleReader::place_into_blank_row(LString& word, int rowSubscript) {
@@ -201,30 +236,6 @@ vector<LString> ScrabbleReader::place_into_blank_row(LString& word, int rowSubsc
     return toReturn;
 }
 
-void ScrabbleReader::search_for_all_words() {
-    if(answerSet.empty())
-        throw invalid_argument("Error in ScrabbleReader::search_for_intersecting_words() | The set of all scrabble words is empty.");
-
-    int rowSubscript = 0;
-    for (const auto &row: board) {
-        for (auto word : answerSet) {
-            if (contains_letter_of_hand(word)) {
-                word.set_y_vals_equal_to(rowSubscript);
-                unordered_map<LString, LString, MyHashFunction> toPush = place_word_into_row(word, rowSubscript);
-                for (auto& it: toPush) {
-                    LString first = it.first;
-                    LString second = it.second;
-
-                    if(first.is_descendent_of(hand, row)) {
-                        wordSets[rowSubscript].push_back(second);
-                    }
-                }
-            }
-        }
-        rowSubscript++;
-    }
-}
-
 unordered_map<LString, LString, MyHashFunction> ScrabbleReader::place_word_into_row(LString& word, int rowSubscript) {  //fix later
     int mode = 0;
     if(rowSubscript == 0)
@@ -253,13 +264,61 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::place_word_into_
                 allHand = false;
             }
         }
-        if(skip || rowCpy == board[rowSubscript]) {
+        if(skip || rowCpy == board[rowSubscript] || (allHand && !rowCpy.is_descendent_of(hand))) {
             rowCpy = board[rowSubscript];
             word.add_to_x_vals(-1);
             continue;
         }
 
-        if(allHand && !rowCpy.is_descendent_of(hand)){
+        for (int j = 0; j < word.length(); ++j) {
+            if(mode != 1 && board[rowSubscript - 1][j + word[0].x] != ' ') {
+                mapReturn.insert(pair<LString, LString>(rowCpy, word));
+                break;
+            }
+            if(mode != -1 && board[rowSubscript + 1][j + word[0].x] != ' ') {
+                mapReturn.insert(pair<LString, LString>(rowCpy, word));
+                break;
+            }
+        }
+
+
+        rowCpy = board[rowSubscript];
+        word.add_to_x_vals(-1);
+    }
+
+    return mapReturn;
+}
+
+unordered_map<LString, LString, MyHashFunction> ScrabbleReader::place_into_filled_row(LString & word, int rowSubscript) {
+    //needs editing
+
+
+    int mode = 0;
+    if(rowSubscript == 0)
+        mode = 1;
+    else if(rowSubscript == 14)
+        mode = -1;
+
+    LString rowCpy = board[rowSubscript];
+    unordered_map<LString, LString, MyHashFunction> mapReturn;
+    word.xVals_to_subscript();
+    word.add_to_x_vals(15 - word.length());
+    for (int i = 0; i < 15 - word.length(); ++i) {
+        for (int j = 15 - 1; j >= 15 - word.length(); --j) {
+            rowCpy[j - i] = word[(word.length() - 1) - ((15 - 1) - j)];
+        }
+
+        bool skip = true;
+        for (int j = 0; j < word.length(); ++j) {
+            if(board[rowSubscript][j + word[0].x] != ' ' && board[rowSubscript][j + word[0].x] != word[j]) {
+                skip = true;
+                break;
+            }
+            else if(board[rowSubscript][j + word[0].x] != ' ') {
+                skip = false;
+            }
+        }
+        if(skip || rowCpy == board[rowSubscript]) {
             rowCpy = board[rowSubscript];
             word.add_to_x_vals(-1);
             continue;

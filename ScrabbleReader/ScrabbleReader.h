@@ -39,6 +39,7 @@ protected:
     bool contains_letter_of_hand(const LString&) const;
     bool contains_letter_of_hand(const string& passed) const;
     vector<LString> place_into_blank_row(LString&, int);
+    unordered_map<LString, LString, MyHashFunction> place_into_filled_row(LString &word, int rowSubscript);
     unordered_map<LString, LString, MyHashFunction> place_word_into_row(LString &word, int rowSubscript);
 
     int bestX, bestY;

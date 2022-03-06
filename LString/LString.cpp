@@ -532,61 +532,6 @@ bool LString::contains_flag(int passed) const{
     return false;
 }
 
-LString LString::place_into_row(const LString &row) {       //TODO: optimize so that it has a similar definition to ScrabbleReader::place_word_into_row(LString& word, int rowSubscript)
-    vector<LString> rowFragments = row.break_into_frags();
-
-    LString slidingWindow = *this;
-    LString rowCpy = row;
-    rowCpy.xVals_to_subscript();
-    this->xVals_to_subscript();
-    this->add_to_x_vals(15 - eleCount);
-    for (int i = 0; i < row.eleCount - eleCount; i++) {
-        for (int j = row.eleCount - 1; j >= row.eleCount - slidingWindow.eleCount; --j) {
-            if (row.read_at(j) == ' ')
-                rowCpy[j] = slidingWindow[(slidingWindow.eleCount - 1) - ((row.eleCount - 1) - j)];
-        }
-        if (row == rowCpy && rowFragments.size() > 1)
-            continue;
-
-        vector<LString> newBrokenRow;
-        LString curRowShard;
-        for (auto it: rowCpy) {
-            if (it.LData != ' ') {
-                curRowShard += it;
-            } else if (!curRowShard.is_empty()) {
-                if(curRowShard.contains_flag(1))
-                    newBrokenRow.push_back(curRowShard);
-                curRowShard.clear();
-            }
-        }
-        if (!curRowShard.is_empty()) {
-            if (curRowShard.contains_flag(1))
-                newBrokenRow.push_back(curRowShard);
-        }
-
-        for (const auto& shard: newBrokenRow) {
-            bool skip = false;
-            for (const auto& frag: rowFragments) {
-                if (shard == frag) {
-                    skip = true;
-                    break;
-                }
-            }
-            if (skip)
-                continue;
-            if (*this == shard) {
-                return rowCpy;
-            }
-        }
-
-        rowCpy = row;
-        slidingWindow += ' ';
-        this->add_to_x_vals(-1);
-    }
-
-    return LString();
-}
-
 vector<LString> LString::break_into_frags() const{
     vector<LString> fragments;
     LString curFragment;
