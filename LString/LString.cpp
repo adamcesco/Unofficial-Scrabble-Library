@@ -532,7 +532,7 @@ bool LString::contains_flag(int passed) const{
     return false;
 }
 
-LString LString::place_into_row(const LString &row) {
+LString LString::place_into_row(const LString &row) {       //TODO: optimize so that it has a similar definition to ScrabbleReader::place_word_into_row(LString& word, int rowSubscript)
     vector<LString> rowFragments = row.break_into_frags();
 
     LString slidingWindow = *this;
