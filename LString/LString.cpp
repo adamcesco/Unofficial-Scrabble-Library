@@ -441,7 +441,7 @@ bool LString::containsIgnorePadding(LString passed) const {
     return false;
 }
 
-bool LString::isDescendentOf(const LString& hand, const LString& row) {
+bool LString::is_descendent_of(const LString& hand, const LString& row) {
     if(eleCount == 0)
         return false;
 
@@ -638,6 +638,42 @@ LString &LString::set_y_vals_equal_to(int passed) {
         data[i].y = passed;
 
     return *this;
+}
+
+bool LString::is_blank_LStr() const {
+    for (int i = 0; i < eleCount; ++i) {
+        if(isalpha(data[i].LData)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool LString::is_descendent_of(const LString &hand) {
+    if(eleCount == 0)
+        return false;
+
+    int handMap[123];
+    int letterCount[123];
+    for (int i = 0; i < 123; ++i)
+        handMap[i] = letterCount[i] = 0;
+
+    for (int i = 0; i < hand.eleCount; ++i)
+        handMap[abs(toupper(hand.read_at(i).LData))]++;
+
+    for (int i = 0; i < eleCount; ++i)
+        letterCount[abs(toupper(data[i].LData))]++;
+
+    handMap[32] = 0;
+    letterCount[32] = 0;
+
+    for (int i = 0; i < 123; ++i) {
+        if(handMap[i] < letterCount[i]){
+            return false;
+        }
+    }
+
+    return true;
 }
 
 #endif

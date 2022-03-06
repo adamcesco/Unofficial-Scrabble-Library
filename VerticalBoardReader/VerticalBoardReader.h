@@ -16,7 +16,7 @@ public:
     void print_board() const;
     string to_string() const;
     LString update_best_word();
-    void validate_words_perpendicular();
+    void validate_words();
     Type get_reader_type() const{return VERTICAL;}
     vector<LString> return_word_set_of(int subscript){return wordSets[subscript];}
     vector<LString> board_to_string() const{return board;}

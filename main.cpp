@@ -25,23 +25,30 @@ void printAnswerSet(VerticalBoardReader vr, HorizontalBoardReader hr){
 
 
 int main(){
-    string hand = "KADUGYE";
+    string hand = "GDAYEUK";
 
     HorizontalBoardReader hReader(hand);
     hReader.build_board();
     hReader.validate_board();
     hReader.print_board();
+    hReader.clear_wordSets();
 
     VerticalBoardReader vReader(hand);
     vReader.build_board();
     vReader.validate_board();
     vReader.print_board();
+    vReader.clear_wordSets();
 
-    vReader.search_board_for_words();
-    hReader.search_board_for_words();
+//    vReader.search_for_intersecting_words();
+//    vReader.search_for_tangential_words();
+    vReader.search_for_all_words();
 
-    vReader.validate_words_perpendicular();
-    hReader.validate_words_perpendicular();
+//    hReader.search_for_intersecting_words();
+//    hReader.search_for_tangential_words();
+    hReader.search_for_all_words();
+
+    vReader.validate_words();
+    hReader.validate_words();
 
     printAnswerSet(vReader, hReader);
 

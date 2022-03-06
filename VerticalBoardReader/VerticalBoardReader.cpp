@@ -122,21 +122,31 @@ LString VerticalBoardReader::update_best_word(){
     return bestWord;
 }
 
-void VerticalBoardReader::validate_words_perpendicular() {
+void VerticalBoardReader::validate_words() {
     for (auto & wordSet : wordSets) {
         for (auto& word: wordSet) {
             vector<LString> boardCpy = return_board_with(word);
 
-            for (int i = 0; i < 15; i++) {  //i = x
+            for (int i = 0; i < 15; i++) {
+                LString row;
                 LString column;
-                for (int j = 14; j >= 0; j--) {  //j = y
-                    column += boardCpy[j][i];
+                for (int j = 0; j < 15; ++j) {
+                    row += boardCpy[i].read_at(j);
+                    column += boardCpy[14 - j].read_at(i);
                 }
 
                 vector<LString> colShards = column.break_into_frags();
 
                 for (const auto& shard : colShards) {
-                    if(shard.length() > 1 && answerSet.find(shard) == answerSet.end()){
+                    if(shard.length() > 1 && answerSet.find(shard) == answerSet.end()) {
+                        word.clear();
+                    }
+                }
+
+                vector<LString> rowShards = row.break_into_frags();
+
+                for (const auto& shard : rowShards) {
+                    if(shard.length() > 1 && answerSet.find(shard) == answerSet.end()) {
                         word.clear();
                     }
                 }

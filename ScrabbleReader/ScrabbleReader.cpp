@@ -4,15 +4,14 @@
 
 #include "ScrabbleReader.h"
 
-void ScrabbleReader::search_board_for_words() {
+void ScrabbleReader::search_for_intersecting_words() {
     if(answerSet.empty())
-        throw invalid_argument("Error in ScrabbleReader::search_board_for_words() | The set of all scrabble words is empty.");
+        throw invalid_argument("Error in ScrabbleReader::search_for_intersecting_words() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;
     for (const auto &row: board) {
-        wordSets[rowSubscript].clear();
         for (auto word : answerSet) {
-            if (contains_letter_of_hand(word) && word.place_into_row(row).isDescendentOf(hand, row)) {
+            if (contains_letter_of_hand(word) && word.place_into_row(row).is_descendent_of(hand, row)) {
                 word.set_y_vals_equal_to(rowSubscript);
                 wordSets[rowSubscript].push_back(word);
             }
@@ -112,4 +111,175 @@ int ScrabbleReader::perpendicular_points(const LString &word) const {
     }
 
     return sum;
+}
+
+void ScrabbleReader::search_for_tangential_words() {
+    if(answerSet.empty())
+        throw invalid_argument("Error in ScrabbleReader::search_for_intersecting_words() | The set of all scrabble words is empty.");
+
+    int rowSubscript = 0;
+    for (const auto &row: board) {
+        if(!row.is_blank_LStr()) {  //delete later
+            rowSubscript++;
+            continue;
+        }
+        for (auto word : answerSet) {
+            if (contains_letter_of_hand(word) && word.is_descendent_of(hand)) {
+                vector<LString> toPush = place_into_blank_row(word, rowSubscript);
+                for (auto& it: toPush) {
+                    it.set_y_vals_equal_to(rowSubscript);
+                    wordSets[rowSubscript].push_back(it);
+                }
+            }
+        }
+        rowSubscript++;
+    }
+}
+
+void ScrabbleReader::clear_wordSets() {
+    wordSets[0].clear();
+    wordSets[1].clear();
+    wordSets[2].clear();
+    wordSets[3].clear();
+    wordSets[4].clear();
+    wordSets[5].clear();
+    wordSets[6].clear();
+    wordSets[7].clear();
+    wordSets[8].clear();
+    wordSets[9].clear();
+    wordSets[10].clear();
+    wordSets[11].clear();
+    wordSets[12].clear();
+    wordSets[13].clear();
+    wordSets[14].clear();
+}
+
+vector<LString> ScrabbleReader::place_into_blank_row(LString& word, int rowSubscript) {
+    int mode = 0;
+    if(rowSubscript == 0)
+        mode = 1;
+    else if(rowSubscript == 14)
+        mode = -1;
+
+    LString rowCpy = board[rowSubscript];
+    vector<LString> toReturn;
+    word.xVals_to_subscript();
+    word.add_to_x_vals(15 - word.length());
+    for (int i = 0; i < 15 - word.length(); ++i) {
+        for (int j = 15 - 1; j >= 15 - word.length(); --j) {
+            rowCpy[j - i] = word[(word.length() - 1) - ((15 - 1) - j)];
+        }
+
+        bool skip = false;
+        for (int j = 0; j < word.length(); ++j) {
+            if(board[rowSubscript][j + word[0].x] != ' ') {
+                skip = true;
+            }
+        }
+        if(skip) {
+            rowCpy = board[rowSubscript];
+            word.add_to_x_vals(-1);
+            continue;
+        }
+
+        for (int j = 0; j < word.length(); ++j) {
+            if(mode != 1 && board[rowSubscript - 1][j + word[0].x] != ' ') {
+                toReturn.push_back(word);
+                break;
+            }
+            if(mode != -1 && board[rowSubscript + 1][j + word[0].x] != ' ') {
+                toReturn.push_back(word);
+                break;
+            }
+        }
+
+
+        rowCpy = board[rowSubscript];
+        word.add_to_x_vals(-1);
+    }
+
+    return toReturn;
+}
+
+void ScrabbleReader::search_for_all_words() {
+    if(answerSet.empty())
+        throw invalid_argument("Error in ScrabbleReader::search_for_intersecting_words() | The set of all scrabble words is empty.");
+
+    int rowSubscript = 0;
+    for (const auto &row: board) {
+        for (auto word : answerSet) {
+            if (contains_letter_of_hand(word)) {
+                word.set_y_vals_equal_to(rowSubscript);
+                unordered_map<LString, LString, MyHashFunction> toPush = place_word_into_row(word, rowSubscript);
+                for (auto& it: toPush) {
+                    LString first = it.first;
+                    LString second = it.second;
+
+                    if(first.is_descendent_of(hand, row)) {
+                        wordSets[rowSubscript].push_back(second);
+                    }
+                }
+            }
+        }
+        rowSubscript++;
+    }
+}
+
+unordered_map<LString, LString, MyHashFunction> ScrabbleReader::place_word_into_row(LString& word, int rowSubscript) {  //fix later
+    int mode = 0;
+    if(rowSubscript == 0)
+        mode = 1;
+    else if(rowSubscript == 14)
+        mode = -1;
+
+    LString rowCpy = board[rowSubscript];
+    unordered_map<LString, LString, MyHashFunction> mapReturn;
+    word.xVals_to_subscript();
+    word.add_to_x_vals(15 - word.length());
+    for (int i = 0; i < 15 - word.length(); ++i) {
+        for (int j = 15 - 1; j >= 15 - word.length(); --j) {
+            if(rowCpy[j - i] == ' ')
+                rowCpy[j - i] = word[(word.length() - 1) - ((15 - 1) - j)];
+        }
+
+        bool skip = false;
+        bool allHand = true;
+        for (int j = 0; j < word.length(); ++j) {
+            if(board[rowSubscript][j + word[0].x] != ' ' && board[rowSubscript][j + word[0].x] != word[j]) {
+                skip = true;
+                break;
+            }
+            else if(board[rowSubscript][j + word[0].x] != ' '){
+                allHand = false;
+            }
+        }
+        if(skip || rowCpy == board[rowSubscript]) {
+            rowCpy = board[rowSubscript];
+            word.add_to_x_vals(-1);
+            continue;
+        }
+
+        if(allHand && !rowCpy.is_descendent_of(hand)){
+            rowCpy = board[rowSubscript];
+            word.add_to_x_vals(-1);
+            continue;
+        }
+
+        for (int j = 0; j < word.length(); ++j) {
+            if(mode != 1 && board[rowSubscript - 1][j + word[0].x] != ' ') {
+                mapReturn.insert(pair<LString, LString>(rowCpy, word));
+                break;
+            }
+            if(mode != -1 && board[rowSubscript + 1][j + word[0].x] != ' ') {
+                mapReturn.insert(pair<LString, LString>(rowCpy, word));
+                break;
+            }
+        }
+
+
+        rowCpy = board[rowSubscript];
+        word.add_to_x_vals(-1);
+    }
+
+    return mapReturn;
 }

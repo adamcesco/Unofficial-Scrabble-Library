@@ -8,6 +8,7 @@
 #include <vector>
 #include <fstream>
 #include <unordered_map>
+#include <map>
 #include <unordered_set>
 #include <algorithm>
 #include <stdexcept>
@@ -58,19 +59,19 @@ struct Letter {
     }
 
     bool operator==(const Letter& invoked) const{
-        return (invoked.LData == this->LData);
+        return (abs(invoked.LData) == abs(this->LData));
     }
 
     bool operator==(char invoked) const{
-        return (abs(invoked) == this->LData);
+        return (abs(invoked) == abs(this->LData));
     }
 
     bool operator!=(const Letter& invoked) const{
-        return (invoked.LData != this->LData);
+        return (abs(invoked.LData) != abs(this->LData));
     }
 
     bool operator!=(char invoked) const{
-        return (abs(invoked) != this->LData);
+        return (abs(invoked) != abs(this->LData));
     }
 
     Letter& operator=(const Letter& invoked){
@@ -171,7 +172,8 @@ public:
     LString operator+(const Letter&) const;
     LString operator+(char) const;
     string to_string() const;
-    bool isDescendentOf(const LString&, const LString&);
+    bool is_descendent_of(const LString&, const LString&);
+    bool is_descendent_of(const LString&);
     int get_letter_points() const;
     static int get_horizontal_points(string);
     LString& xVals_to_subscript();
@@ -181,6 +183,7 @@ public:
     bool contains_flag(int) const;
     LString place_into_row(const LString&);     //return a vector of all correctly placed words
     vector<LString> break_into_frags() const;
+    bool is_blank_LStr() const;
     
     ~LString(){delete[] data;}
 
