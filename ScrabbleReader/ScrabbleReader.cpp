@@ -201,7 +201,7 @@ vector<LString> ScrabbleReader::place_into_blank_row(LString& word, int rowSubsc
     return toReturn;
 }
 
-void ScrabbleReader::search_for_all_applicable_words() {
+void ScrabbleReader::search_for_all_words() {
     if(answerSet.empty())
         throw invalid_argument("Error in ScrabbleReader::search_for_intersecting_words() | The set of all scrabble words is empty.");
 

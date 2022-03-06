@@ -24,7 +24,7 @@ public:
     int get_best_y() const {return bestY;}
     void search_for_intersecting_words();
     void search_for_tangential_words();
-    void search_for_all_applicable_words();
+    void search_for_all_words();
     void clear_wordSets();
     int points_of_best_word(){return perpendicular_points(bestWord) + bestWord.get_letter_points();}
     void reset_all_data();
