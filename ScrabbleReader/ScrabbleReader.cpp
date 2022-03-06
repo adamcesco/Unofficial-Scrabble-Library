@@ -16,7 +16,8 @@ void ScrabbleReader::search_for_intersecting_words() {if(answerSet.empty())
         for (auto word : answerSet) {
             if (contains_letter_of_hand(word)) {
                 word.set_y_vals_equal_to(rowSubscript);
-                unordered_map<LString, LString, MyHashFunction> toPush = place_into_filled_row(word, rowSubscript);
+                unordered_map<LString, LString, MyHashFunction> toPush = return_all_fitted_filled_rows(word,
+                                                                                                       rowSubscript);
                 for (auto& it: toPush) {
                     LString first = it.first;
                     LString second = it.second;
@@ -136,7 +137,7 @@ void ScrabbleReader::search_for_tangential_words() {
         }
         for (auto word : answerSet) {
             if (contains_letter_of_hand(word) && word.is_descendent_of(hand)) {
-                vector<LString> toPush = place_into_blank_row(word, rowSubscript);
+                vector<LString> toPush = return_all_fitted_blank_rows(word, rowSubscript);
                 for (auto& it: toPush) {
                     it.set_y_vals_equal_to(rowSubscript);
                     wordSets[rowSubscript].push_back(it);
@@ -174,7 +175,7 @@ void ScrabbleReader::search_for_all_words() {
         for (auto word : answerSet) {
             if (contains_letter_of_hand(word)) {
                 word.set_y_vals_equal_to(rowSubscript);
-                unordered_map<LString, LString, MyHashFunction> toPush = place_word_into_row(word, rowSubscript);
+                unordered_map<LString, LString, MyHashFunction> toPush = return_all_fitted_rows(word, rowSubscript);
                 for (auto& it: toPush) {
                     LString first = it.first;
                     LString second = it.second;
@@ -189,7 +190,7 @@ void ScrabbleReader::search_for_all_words() {
     }
 }
 
-vector<LString> ScrabbleReader::place_into_blank_row(LString& word, int rowSubscript) {
+vector<LString> ScrabbleReader::return_all_fitted_blank_rows(LString& word, int rowSubscript) {
     int mode = 0;
     if(rowSubscript == 0)
         mode = 1;
@@ -236,7 +237,7 @@ vector<LString> ScrabbleReader::place_into_blank_row(LString& word, int rowSubsc
     return toReturn;
 }
 
-unordered_map<LString, LString, MyHashFunction> ScrabbleReader::place_word_into_row(LString& word, int rowSubscript) {  //fix later
+unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitted_rows(LString& word, int rowSubscript) {  //fix later
     int mode = 0;
     if(rowSubscript == 0)
         mode = 1;
@@ -289,7 +290,7 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::place_word_into_
     return mapReturn;
 }
 
-unordered_map<LString, LString, MyHashFunction> ScrabbleReader::place_into_filled_row(LString & word, int rowSubscript) {
+unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitted_filled_rows(LString & word, int rowSubscript) {
     //needs editing
 
 
