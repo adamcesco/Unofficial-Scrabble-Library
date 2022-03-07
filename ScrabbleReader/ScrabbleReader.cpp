@@ -4,7 +4,8 @@
 
 #include "ScrabbleReader.h"
 
-void ScrabbleReader::search_for_intersecting_words() {if(answerSet.empty())
+void ScrabbleReader::search_for_intersecting_words() {
+    if(answerSet.empty())
         throw invalid_argument("Error in ScrabbleReader::search_for_intersecting_words() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;

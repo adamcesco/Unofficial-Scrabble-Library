@@ -447,11 +447,15 @@ bool LString::is_descendent_of(const LString& hand, const LString& row) {
 
     int sumMap[123];
     int letterCount[123];
+    int blankCount = 0;
     for (int i = 0; i < 123; ++i)
         sumMap[i] = letterCount[i] = 0;
 
-    for (int i = 0; i < hand.eleCount; ++i)
+    for (int i = 0; i < hand.eleCount; ++i) {
+        if(hand.read_at(i) == '?')
+            blankCount++;
         sumMap[abs(toupper(hand.read_at(i).LData))]++;
+    }
     for (int i = 0; i < row.eleCount; ++i)
         sumMap[abs(toupper(row.read_at(i).LData))]++;
 
@@ -462,8 +466,12 @@ bool LString::is_descendent_of(const LString& hand, const LString& row) {
     letterCount[32] = 0;
 
     for (int i = 0; i < 123; ++i) {
-        if(sumMap[i] < letterCount[i]){
+        if(sumMap[i] < letterCount[i] && blankCount == 0)
             return false;
+        else if(sumMap[i] < letterCount[i]) {
+            blankCount--;
+            letterCount[i]--;
+            i--;
         }
     }
 
@@ -600,11 +608,15 @@ bool LString::is_descendent_of(const LString &hand) {
 
     int handMap[123];
     int letterCount[123];
+    int blankCount = 0;
     for (int i = 0; i < 123; ++i)
         handMap[i] = letterCount[i] = 0;
 
-    for (int i = 0; i < hand.eleCount; ++i)
+    for (int i = 0; i < hand.eleCount; ++i) {
+        if(hand.read_at(i) == '?')
+            blankCount++;
         handMap[abs(toupper(hand.read_at(i).LData))]++;
+    }
 
     for (int i = 0; i < eleCount; ++i)
         letterCount[abs(toupper(data[i].LData))]++;
@@ -613,8 +625,12 @@ bool LString::is_descendent_of(const LString &hand) {
     letterCount[32] = 0;
 
     for (int i = 0; i < 123; ++i) {
-        if(handMap[i] < letterCount[i]){
+        if(handMap[i] < letterCount[i] && blankCount == 0)
             return false;
+        else if (handMap[i] < letterCount[i]) {
+            blankCount--;
+            letterCount[i]--;
+            i--;
         }
     }
 

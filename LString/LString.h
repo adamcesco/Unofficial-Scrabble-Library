@@ -43,10 +43,6 @@ struct Letter {
         x = xp;
         y = yp;
         flag = fl;
-        if((LData & 31) - 1 > 25 && LData != 32) {
-            cout << '|' << char(toupper(LData)) << '|' << endl;
-            throw invalid_argument("Error in Letter(char, int, int, int) | LData has an invalid value");
-        }
         if(isalpha(LData))
             val = legend[(LData & 31) - 1];
         else
@@ -81,10 +77,6 @@ struct Letter {
         y = invoked.y;
         x = invoked.x;
         flag = invoked.flag;
-        if((LData & 31) - 1 > 25 && LData != 32) {
-            cout << '|' << char(toupper(LData)) << '|' << endl;
-            throw invalid_argument("Error in Letter(char, int, int, int) | LData has an invalid value");
-        }
         if(isalpha(LData))
             val = legend[(LData & 31) - 1];
         else
@@ -95,10 +87,6 @@ struct Letter {
     Letter& operator=(char invoked){
         LData = abs(invoked);
         y = x = flag = -1;
-        if((LData & 31) - 1 > 25 && LData != 32) {
-            cout << '|' << char(toupper(LData)) << '|' << endl;
-            throw invalid_argument("Error in Letter(char, int, int, int) | LData has an invalid value");
-        }
         if(isalpha(LData))
             val = legend[(LData & 31) - 1];
         else
