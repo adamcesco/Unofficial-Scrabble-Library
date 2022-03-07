@@ -74,7 +74,7 @@ void VerticalBoardReader::build_board() {
     board = boardCpy;
 }
 
-void VerticalBoardReader::print_board() const{
+void VerticalBoardReader::print_foramtted_board() const{
     for (int i = 0; i < 15; ++i) {
         for (int j = 14; j >= 0; --j) {
             cout << board[j].read_at(i).LData;
@@ -125,7 +125,7 @@ LString VerticalBoardReader::update_best_word(){
 void VerticalBoardReader::validate_words() {
     for (auto & wordSet : wordSets) {
         for (auto& word: wordSet) {
-            vector<LString> boardCpy = return_board_with(word);
+            vector<LString> boardCpy = return_raw_board_with(word);
 
             for (int i = 0; i < 15; i++) {
                 LString row;

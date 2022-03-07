@@ -9,7 +9,7 @@
 class ScrabbleReader {
 public:
     virtual void build_board() = 0;
-    virtual void print_board() const = 0;
+    virtual void print_foramtted_board() const = 0;
     virtual Type get_reader_type() const = 0;
     virtual vector<LString> return_formatted_board() const = 0;
     virtual void set_board(vector<LString>) = 0;
@@ -26,11 +26,11 @@ public:
     void reset_all_data();
     void set_hand(const LString& passed){hand = passed;}
     LString get_hand(){return hand;}
-    void place_into_board(const LString&);
-    vector<LString>& get_true_board(){return board;}
+    void place_into_raw_board(const LString &toPrint);
+    vector<LString>& get_raw_board(){return board;}
+    vector<LString> return_raw_board_with(const LString &toPrint) const;
 
 protected:
-    vector<LString> return_board_with(const LString&) const;
     int perpendicular_points(const LString&) const;
     bool contains_letter_of_hand(const LString&) const;
     bool contains_letter_of_hand(const string& passed) const;

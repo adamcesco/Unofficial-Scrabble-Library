@@ -67,7 +67,7 @@ void HorizontalBoardReader::build_board() {
     boardFile.close();
 }
 
-void HorizontalBoardReader::print_board() const{
+void HorizontalBoardReader::print_foramtted_board() const{
     for (const auto &row: board) {
         for (int i = 0; i < row.length(); ++i) {
             cout << row.read_at(i).LData;
@@ -90,7 +90,7 @@ string HorizontalBoardReader::to_string() const {
 void HorizontalBoardReader::validate_words() {
     for (auto & wordSet : wordSets) {
         for (auto& word: wordSet) {
-            vector<LString> boardCpy = return_board_with(word);
+            vector<LString> boardCpy = return_raw_board_with(word);
 
             for (int i = 0; i < 15; i++) {
                 LString row;

@@ -56,7 +56,7 @@ void ScrabbleReader::reset_all_data() {
     englishWords.close();
 }
 
-void ScrabbleReader::place_into_board(const LString &toPrint) {
+void ScrabbleReader::place_into_raw_board(const LString &toPrint) {
     for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
         if (board[toPrint.read_at(0).y][i] == ' ')
             board[toPrint.read_at(0).y][i] = Letter(toPrint.read_at(i - toPrint.read_at(0).x).LData,
@@ -91,7 +91,7 @@ bool ScrabbleReader::contains_letter_of_hand(const string &passed) const {
     return false;
 }
 
-vector<LString> ScrabbleReader::return_board_with(const LString &toPrint) const {
+vector<LString> ScrabbleReader::return_raw_board_with(const LString &toPrint) const {
     vector<LString> boardCpy = board;
     int toPrintX = toPrint.read_at(0).x;
     int toPrintY = toPrint.read_at(0).y;
@@ -104,7 +104,7 @@ vector<LString> ScrabbleReader::return_board_with(const LString &toPrint) const 
 }
 
 int ScrabbleReader::perpendicular_points(const LString &word) const {
-    vector<LString> boardCpy = return_board_with(word);
+    vector<LString> boardCpy = return_raw_board_with(word);
 
     int sum = 0;
     for (int i = 0; i < 15; i++) {  //i = x
