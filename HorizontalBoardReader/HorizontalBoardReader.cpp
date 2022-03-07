@@ -66,31 +66,12 @@ void HorizontalBoardReader::build_board() {
     }
     boardFile.close();
 
-
-    ifstream perkFile;
-    perkFile.open("../Data/perk_board.csv");
-    if(!perkFile.is_open())
-        throw invalid_argument("could not open ../Data/perk_board.csv");
-
-    row.clear();
-    rowCount = 0;
-    while (perkFile.good()){
-        getline(perkFile, row);
-        string cell;
-        stringstream strStr(row);
-        int cellCount = 0;
-        while (getline(strStr, cell, ',')){
-            if(!cell.empty() && board[rowCount][cellCount] == ' ') {
-                perkBoard[rowCount][cellCount] = cell[0];
-            }
-            else {
-                perkBoard[rowCount][cellCount] = ' ';
-            }
-            cellCount++;
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            if(board[i][j] != ' ')
+                perkBoard[i][j] = ' ';
         }
-        rowCount++;
     }
-    perkFile.close();
 }
 
 void HorizontalBoardReader::print_formatted_board() const{
@@ -204,17 +185,20 @@ void HorizontalBoardReader::validate_board() const{
 }
 
 int HorizontalBoardReader::points_of_word(const LString &word) {
-    // If a letter is sharEd between words, then count it's premium value for all words
+    // If a letter is shared between words, then count it's premium value for all words
     // Any word multiplier only gets assigned to the original word, and not any subsequently formed words
     // If a word is placed on two or more multiplier tiles, the words value is multiplied by both tile values
     // If a word uses all the tiles in the hand then 50 is added to the final total
+
+    if(word.is_empty())
+        return 0;
 
     int crossWordSum = 0;
     vector<LString> boardCpy = return_raw_board_with(word);
     for (int i = 0; i < 15; ++i) {
         LString column;
         for (int j = 0; j < 15; ++j) {
-            column += board[j].read_at(i);
+            column += boardCpy[j].read_at(i);
         }
 
         vector<LString> colShards = column.break_into_frags();
@@ -243,8 +227,10 @@ int HorizontalBoardReader::points_of_word(const LString &word) {
         char curPerk = perkBoard[firstY][i];
         if(isalpha(curPerk))
             wordSum += word.read_at(i - firstX).val * (curPerk & 31);
-        else if(isdigit(curPerk))
+        else if(isdigit(curPerk)) {
             multiplier *= curPerk & 15;
+            wordSum += word.read_at(i - firstX).val;
+        }
         else
             wordSum += word.read_at(i - firstX).val;
 
@@ -255,6 +241,7 @@ int HorizontalBoardReader::points_of_word(const LString &word) {
     wordSum += crossWordSum;
     if(word.length() - letterCount == 7)
         wordSum += 50;
+
 
     return wordSum;
 }
