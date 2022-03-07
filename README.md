@@ -18,10 +18,11 @@ I use a test-driven solution that is primarily object-oriented. In its current s
 
 1. ~~Support the computation of words that are purely tangible to present words.~~
 2. Implementation of word grading that accounts for word/letter multipliers.
-3. Optimize solution
-4. Increase the usability of classes for future users/editors of the project
-5. Provide an in-depth tutorial for users/editors of the class
-6. Implement a console-based solution with full gameplay support.
-7. Implement a U.I-based solution with full gameplay support.
-8. Enhance U.X features to support the user's U.I intuition.
-9. Implement dynamic gameplay structures that enhance competitive and casual play for players of this Scrabble application.
+3. Support blank letters within word calculation
+4. Optimize solution
+5. Increase the usability of classes for future users/editors of the project
+6. Provide an in-depth tutorial for users/editors of the class
+7. Implement a console-based solution with full gameplay support.
+8. Implement a U.I-based solution with full gameplay support.
+9. Enhance U.X features to support the user's U.I intuition.
+10. Implement dynamic gameplay structures that enhance competitive and casual play for players of this Scrabble application.

@@ -13,7 +13,7 @@ public:
     explicit HorizontalBoardReader(const LString&);
 
     void build_board();
-    void print_foramtted_board() const;
+    void print_formatted_board() const;
     string to_string() const;
     LString update_best_word();
     void validate_words();
@@ -22,7 +22,8 @@ public:
     vector<LString> return_formatted_board() const{return board;}
     void set_board(vector<LString> passed){board = passed;}
     void validate_board() const;
-    int points_of_best_word(){return perpendicular_points(bestWord) + bestWord.get_letter_points();}
+    int points_of_best_word(){return points_of_word(bestWord);}
+    int points_of_word(const LString &);
 };
 
 

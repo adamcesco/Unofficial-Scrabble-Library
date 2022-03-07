@@ -65,9 +65,35 @@ void HorizontalBoardReader::build_board() {
         rowCount++;
     }
     boardFile.close();
+
+
+    ifstream perkFile;
+    perkFile.open("../Data/perk_board.csv");
+    if(!perkFile.is_open())
+        throw invalid_argument("could not open ../Data/perk_board.csv");
+
+    row.clear();
+    rowCount = 0;
+    while (perkFile.good()){
+        getline(perkFile, row);
+        string cell;
+        stringstream strStr(row);
+        int cellCount = 0;
+        while (getline(strStr, cell, ',')){
+            if(!cell.empty() && board[rowCount][cellCount] == ' ') {
+                perkBoard[rowCount][cellCount] = cell[0];
+            }
+            else {
+                perkBoard[rowCount][cellCount] = ' ';
+            }
+            cellCount++;
+        }
+        rowCount++;
+    }
+    perkFile.close();
 }
 
-void HorizontalBoardReader::print_foramtted_board() const{
+void HorizontalBoardReader::print_formatted_board() const{
     for (const auto &row: board) {
         for (int i = 0; i < row.length(); ++i) {
             cout << row.read_at(i).LData;
@@ -125,8 +151,8 @@ LString HorizontalBoardReader::update_best_word() {
     bestWord.clear();
     for (auto & wordSet : wordSets) {
         for (const auto& word: wordSet) {
-            int wordPoints = word.get_letter_points() + perpendicular_points(word);
-            int bestWordPoints = bestWord.get_letter_points() + perpendicular_points(bestWord);
+            int wordPoints = points_of_word(word);
+            int bestWordPoints = points_of_word(bestWord);
 
             if (wordPoints > bestWordPoints) {
                 bestWord = word;
@@ -175,4 +201,60 @@ void HorizontalBoardReader::validate_board() const{
                 throw invalid_argument("Invalid horizontal Word in Data/Board.csv | " + shard.to_string());
         }
     }
+}
+
+int HorizontalBoardReader::points_of_word(const LString &word) {
+    // If a letter is sharEd between words, then count it's premium value for all words
+    // Any word multiplier only gets assigned to the original word, and not any subsequently formed words
+    // If a word is placed on two or more multiplier tiles, the words value is multiplied by both tile values
+    // If a word uses all the tiles in the hand then 50 is added to the final total
+
+    int crossWordSum = 0;
+    vector<LString> boardCpy = return_raw_board_with(word);
+    for (int i = 0; i < 15; ++i) {
+        LString column;
+        for (int j = 0; j < 15; ++j) {
+            column += board[j].read_at(i);
+        }
+
+        vector<LString> colShards = column.break_into_frags();
+
+        for (const auto& shard : colShards) {
+            if(shard.contains_flag(-1) && shard.length() > 1){
+                int firstY = shard.read_at(0).y;
+                for (int j = firstY; j < firstY + shard.length(); ++j) {
+                    char curPerk = perkBoard[j][i];
+                    if(isalpha(curPerk) && j == word.read_at(0).y)
+                        crossWordSum += shard.read_at(j - firstY).val * (curPerk & 31);
+                    else{
+                        crossWordSum += shard.read_at(j - firstY).val;
+                    }
+                }
+            }
+        }
+    }
+
+    int wordSum = 0;
+    int multiplier = 1;
+    char letterCount = 0;
+    int firstX = word.read_at(0).x;
+    int firstY = word.read_at(0).y;
+    for (int i = firstX; i < firstX + word.length(); ++i) {
+        char curPerk = perkBoard[firstY][i];
+        if(isalpha(curPerk))
+            wordSum += word.read_at(i - firstX).val * (curPerk & 31);
+        else if(isdigit(curPerk))
+            multiplier *= curPerk & 15;
+        else
+            wordSum += word.read_at(i - firstX).val;
+
+        if(board[firstY][i] != ' ')
+            letterCount++;
+    }
+    wordSum *= multiplier;
+    wordSum += crossWordSum;
+    if(word.length() - letterCount == 7)
+        wordSum += 50;
+
+    return wordSum;
 }

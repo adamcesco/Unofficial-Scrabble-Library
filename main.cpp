@@ -30,13 +30,13 @@ int main(){
     HorizontalBoardReader hReader(hand);
     hReader.build_board();
     hReader.validate_board();
-    hReader.print_foramtted_board();
+    hReader.print_formatted_board();
     hReader.clear_wordSets();
 
     VerticalBoardReader vReader(hand);
     vReader.build_board();
     vReader.validate_board();
-    vReader.print_foramtted_board();
+    vReader.print_formatted_board();
     vReader.clear_wordSets();
 
 //    vReader.search_for_intersecting_words();
@@ -79,8 +79,8 @@ int main(){
     //printing to board
     vReader.place_into_board(bestVWord);
     hReader.place_into_board(bestHWord);
-    hReader.print_foramtted_board();
-    vReader.print_foramtted_board();
+    hReader.print_formatted_board();
+    vReader.print_formatted_board();
 
     return 0;
 }

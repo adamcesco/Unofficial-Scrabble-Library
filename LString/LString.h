@@ -47,7 +47,7 @@ struct Letter {
             cout << '|' << char(toupper(LData)) << '|' << endl;
             throw invalid_argument("Error in Letter(char, int, int, int) | LData has an invalid value");
         }
-        if(LData != ' ')
+        if(isalpha(LData))
             val = legend[(LData & 31) - 1];
         else
             val = 0;
@@ -85,7 +85,7 @@ struct Letter {
             cout << '|' << char(toupper(LData)) << '|' << endl;
             throw invalid_argument("Error in Letter(char, int, int, int) | LData has an invalid value");
         }
-        if(LData != ' ')
+        if(isalpha(LData))
             val = legend[(LData & 31) - 1];
         else
             val = 0;
@@ -99,7 +99,7 @@ struct Letter {
             cout << '|' << char(toupper(LData)) << '|' << endl;
             throw invalid_argument("Error in Letter(char, int, int, int) | LData has an invalid value");
         }
-        if(LData != ' ')
+        if(isalpha(LData))
             val = legend[(LData & 31) - 1];
         else
             val = 0;

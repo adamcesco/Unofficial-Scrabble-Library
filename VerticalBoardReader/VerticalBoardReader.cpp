@@ -74,7 +74,7 @@ void VerticalBoardReader::build_board() {
     board = boardCpy;
 }
 
-void VerticalBoardReader::print_foramtted_board() const{
+void VerticalBoardReader::print_formatted_board() const{
     for (int i = 0; i < 15; ++i) {
         for (int j = 14; j >= 0; --j) {
             cout << board[j].read_at(i).LData;

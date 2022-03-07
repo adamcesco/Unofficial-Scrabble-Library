@@ -13,7 +13,7 @@ public:
     explicit VerticalBoardReader(const LString&);
 
     void build_board();
-    void print_foramtted_board() const;
+    void print_formatted_board() const;
     string to_string() const;
     LString update_best_word();
     void validate_words();
