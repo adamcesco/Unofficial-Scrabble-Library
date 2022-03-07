@@ -424,3 +424,21 @@ void ScrabbleReader::place_best_word_into_board() {
         perkBoard[bestWord.read_at(0).y][i] = ' ';
     }
 }
+
+char**& ScrabbleReader::return_raw_perkBoard(char** passed) {
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            passed[i][j] = perkBoard[i][j];
+        }
+    }
+    return passed;
+}
+
+char** ScrabbleReader::return_raw_char_board(char** passed) {
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            passed[i][j] = board[i][j].LData;
+        }
+    }
+    return passed;
+}

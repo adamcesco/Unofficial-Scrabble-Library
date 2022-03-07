@@ -17,6 +17,7 @@ public:
     virtual void set_board(vector<LString>) = 0;
     virtual void validate_board() const = 0;
     virtual vector<LString>* return_formatted_wordSets() const = 0;
+    virtual char** return_formatted_perkBoard() const = 0;
 
     LString get_best_word() const{return bestWord;}
     int get_best_x() const{return bestX;}
@@ -34,7 +35,8 @@ public:
     int points_of_word(const LString &);
     int find_points_of_word(const string&);
     void place_best_word_into_board();
-    virtual char** return_raw_char_board();
+    char **return_raw_char_board(char **);
+    char**& return_raw_perkBoard(char **);
 
 protected:
     int perpendicular_points(const LString&) const;
