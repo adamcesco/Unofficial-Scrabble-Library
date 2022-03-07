@@ -23,7 +23,11 @@ public:
     void set_board(vector<LString> passed){board = passed;}
     void validate_board() const;
     int points_of_best_word(){return points_of_word(bestWord);}
-};
 
+    vector<LString> *return_formatted_wordSets(vector<LString> *) const;
+    char** return_formatted_perkBoard(char**) const;
+    vector<LString> return_formatted_board_with(const LString &) const;
+    char** return_formatted_char_board(char**) const;
+};
 
 #endif //SCRABBLEBOT_BOARDREADER_H

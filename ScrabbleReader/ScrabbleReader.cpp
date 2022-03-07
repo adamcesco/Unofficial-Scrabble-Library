@@ -99,7 +99,7 @@ vector<LString> ScrabbleReader::return_raw_board_with(const LString &toPrint) co
     for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
         if(boardCpy[toPrintY][i] == ' ') {
             boardCpy[toPrintY][i] = toPrint.read_at(i - toPrintX);
-            boardCpy[toPrintY][i].flag = -1;
+            boardCpy[toPrintY][i].flag = -2;
         }
         else
             boardCpy[toPrintY][i].flag = 1;
@@ -109,25 +109,35 @@ vector<LString> ScrabbleReader::return_raw_board_with(const LString &toPrint) co
 }
 
 int ScrabbleReader::perpendicular_points(const LString &word) const {
-    vector<LString> boardCpy = return_raw_board_with(word);
+    if(word.is_empty())
+        return 0;
 
-    int sum = 0;
-    for (int i = 0; i < 15; i++) {  //i = x
+    int crossWordSum = 0;
+    vector<LString> boardCpy = return_raw_board_with(word);
+    for (int i = 0; i < 15; ++i) {
         LString column;
-        for (int j = 0; j < 15; j++) {  //j = y
-            column += boardCpy[j][i];
+        for (int j = 0; j < 15; ++j) {
+            column += boardCpy[j].read_at(i);
         }
 
         vector<LString> colShards = column.break_into_frags();
 
         for (const auto& shard : colShards) {
-            if(shard.contains_flag(-1) && shard.length() > 1){
-                sum += shard.get_letter_points();
+            if(shard.contains_flag(-2) && shard.length() > 1){
+                int firstY = shard.read_at(0).y;
+                for (int j = firstY; j < firstY + shard.length(); ++j) {
+                    char curPerk = perkBoard[j][i];
+                    if(isalpha(curPerk) && j == word.read_at(0).y)
+                        crossWordSum += shard.read_at(j - firstY).val * (curPerk & 31);
+                    else{
+                        crossWordSum += shard.read_at(j - firstY).val;
+                    }
+                }
             }
         }
     }
 
-    return sum;
+    return crossWordSum;
 }
 
 void ScrabbleReader::search_for_tangential_words() {
@@ -362,7 +372,7 @@ int ScrabbleReader::points_of_word(const LString &word) {
         vector<LString> colShards = column.break_into_frags();
 
         for (const auto& shard : colShards) {
-            if(shard.contains_flag(-1) && shard.length() > 1){
+            if(shard.contains_flag(-2) && shard.length() > 1){
                 int firstY = shard.read_at(0).y;
                 for (int j = firstY; j < firstY + shard.length(); ++j) {
                     char curPerk = perkBoard[j][i];
@@ -425,10 +435,10 @@ void ScrabbleReader::place_best_word_into_board() {
     }
 }
 
-char**& ScrabbleReader::return_raw_perkBoard(char** passed) {
+char** ScrabbleReader::return_raw_perkBoard(char** passed) {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
-            passed[i][j] = perkBoard[i][j];
+            passed[i] = perkBoard[i];
         }
     }
     return passed;

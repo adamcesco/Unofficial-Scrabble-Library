@@ -183,3 +183,44 @@ void HorizontalBoardReader::validate_board() const{
         }
     }
 }
+
+char** HorizontalBoardReader::return_formatted_perkBoard(char** passed) const {
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            passed[i][j] = perkBoard[i][j];
+        }
+    }
+    return passed;
+}
+
+vector<LString> HorizontalBoardReader::return_formatted_board_with(const LString &toPrint) const {
+    vector<LString> boardCpy = board;
+    int toPrintX = toPrint.read_at(0).x;
+    int toPrintY = toPrint.read_at(0).y;
+    for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
+        if(boardCpy[toPrintY][i] == ' ') {
+            boardCpy[toPrintY][i] = toPrint.read_at(i - toPrintX);
+            boardCpy[toPrintY][i].flag = -2;
+        }
+        else
+            boardCpy[toPrintY][i].flag = 1;
+    }
+
+    return boardCpy;
+}
+
+char** HorizontalBoardReader::return_formatted_char_board(char** passed) const {
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            passed[i][j] = board[i].read_at(j).LData;
+        }
+    }
+    return passed;
+}
+
+vector<LString>* HorizontalBoardReader::return_formatted_wordSets(vector<LString>* passed) const {
+    for (int i = 0; i < 15; ++i) {
+        passed[i] = wordSets[i];
+    }
+    return passed;
+}

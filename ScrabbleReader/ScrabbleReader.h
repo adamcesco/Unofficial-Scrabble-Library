@@ -11,13 +11,13 @@ public:
     virtual void build_board() = 0;
     virtual void print_formatted_board() const = 0;
     virtual Type get_reader_type() const = 0;
-    virtual vector<LString> return_formatted_board() const = 0;
-    virtual vector<LString> return_formatted_board_with(const LString &toPrint) const = 0;
-    virtual char** return_formatted_char_board() const = 0;
+    virtual vector<LString> return_formatted_board() const = 0;     //needs testing
     virtual void set_board(vector<LString>) = 0;
     virtual void validate_board() const = 0;
-    virtual vector<LString>* return_formatted_wordSets() const = 0;
-    virtual char** return_formatted_perkBoard() const = 0;
+    virtual vector<LString> return_formatted_board_with(const LString &) const = 0;     //needs testing
+    virtual char** return_formatted_char_board(char**) const = 0;                       //needs testing
+    virtual vector<LString>* return_formatted_wordSets(vector<LString>* ) const = 0;    //needs testing
+    virtual char** return_formatted_perkBoard(char**) const = 0;                        //needs testing
 
     LString get_best_word() const{return bestWord;}
     int get_best_x() const{return bestX;}
@@ -31,12 +31,13 @@ public:
     LString get_hand(){return hand;}
     void place_into_board(const LString &toPrint);
     vector<LString>& get_raw_board(){return board;}
+    void set_raw_board(vector<LString> passed){board = passed;}
     vector<LString> return_raw_board_with(const LString &toPrint) const;
     int points_of_word(const LString &);
     int find_points_of_word(const string&);
     void place_best_word_into_board();
-    char **return_raw_char_board(char **);
-    char**& return_raw_perkBoard(char **);
+    char **return_raw_char_board(char **);  //needs testing
+    char** return_raw_perkBoard(char **);   //needs testing
 
 protected:
     int perpendicular_points(const LString&) const;

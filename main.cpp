@@ -1,7 +1,7 @@
 #include "HorizontalBoardReader/HorizontalBoardReader.h"
 #include "VerticalBoardReader/VerticalBoardReader.h"
 
-//TODO: incorporate point perk measurements
+//TODO: erase premium tile values when word is placed into the board
 
 void printAnswerSet(VerticalBoardReader vr, HorizontalBoardReader hr){
     cout << "All vertical words:" << endl;
