@@ -18,7 +18,8 @@ I use a test-driven solution that is primarily object-oriented. In its current s
 
 1. ~~Support the computation of words that are purely tangible to present words.~~
     - This feature is now supported
-3. Implementation of word grading that accounts for word/letter multipliers.
+2. Implementation of word grading that accounts for word/letter multipliers.
+3. Add support for blank tiles to be within the program's hand
 4. Increase the usability of classes for future users/editors of the project
 5. Test and Optimize solution to prime for finalization
 6. Provide an in-depth tutorial for users/editors of this library
