@@ -77,8 +77,8 @@ int main(){
     }
 
     //printing to board
-    vReader.place_into_raw_board(bestVWord);
-    hReader.place_into_raw_board(bestHWord);
+    vReader.place_into_board(bestVWord);
+    hReader.place_into_board(bestHWord);
     hReader.print_foramtted_board();
     vReader.print_foramtted_board();
 

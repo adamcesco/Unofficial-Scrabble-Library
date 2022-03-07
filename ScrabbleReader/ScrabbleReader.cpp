@@ -56,7 +56,7 @@ void ScrabbleReader::reset_all_data() {
     englishWords.close();
 }
 
-void ScrabbleReader::place_into_raw_board(const LString &toPrint) {
+void ScrabbleReader::place_into_board(const LString &toPrint) {
     for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
         if (board[toPrint.read_at(0).y][i] == ' ')
             board[toPrint.read_at(0).y][i] = Letter(toPrint.read_at(i - toPrint.read_at(0).x).LData,

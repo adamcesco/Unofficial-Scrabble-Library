@@ -26,7 +26,7 @@ public:
     void reset_all_data();
     void set_hand(const LString& passed){hand = passed;}
     LString get_hand(){return hand;}
-    void place_into_raw_board(const LString &toPrint);
+    void place_into_board(const LString &toPrint);
     vector<LString>& get_raw_board(){return board;}
     vector<LString> return_raw_board_with(const LString &toPrint) const;
 
