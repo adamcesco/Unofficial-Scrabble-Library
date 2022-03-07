@@ -23,7 +23,6 @@ public:
     void set_board(vector<LString> passed){board = passed;}
     void validate_board() const;
     int points_of_best_word(){return points_of_word(bestWord);}
-    int points_of_word(const LString &);
 };
 
 

@@ -72,6 +72,14 @@ void VerticalBoardReader::build_board() {
         boardCpy.push_back(column);
     }
     board = boardCpy;
+
+    char perkBoardCpy[15][15];
+    for (int i = 14; i >= 0; i--) {  //i = x
+        for (int j = 0; j < 15; j++) {  //j = y
+            perkBoardCpy[14 - i][j] = perkBoard[j][i];
+        }
+    }
+    board = boardCpy;
 }
 
 void VerticalBoardReader::print_formatted_board() const{
@@ -99,8 +107,8 @@ LString VerticalBoardReader::update_best_word(){
     bestWord.clear();
     for (auto & wordSet : wordSets) {
         for (const auto& word: wordSet) {
-            int wordPoints = word.get_letter_points() + perpendicular_points(word);
-            int bestWordPoints = bestWord.get_letter_points() + perpendicular_points(bestWord);
+            int wordPoints = points_of_word(word) + points_of_word(word);
+            int bestWordPoints = points_of_word(bestWord) + points_of_word(bestWord);
 
             if (wordPoints > bestWordPoints) {
                 bestWord = word;

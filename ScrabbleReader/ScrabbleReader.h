@@ -14,7 +14,6 @@ public:
     virtual vector<LString> return_formatted_board() const = 0;
     virtual void set_board(vector<LString>) = 0;
     virtual void validate_board() const = 0;
-    virtual int points_of_best_word() = 0;
 
     LString get_best_word() const{return bestWord;}
     int get_best_x() const{return bestX;}
@@ -29,6 +28,7 @@ public:
     void place_into_board(const LString &toPrint); // delete all premiums used if they are covered by a word
     vector<LString>& get_raw_board(){return board;}
     vector<LString> return_raw_board_with(const LString &toPrint) const;
+    int points_of_word(const LString &);
 
 protected:
     int perpendicular_points(const LString&) const;
@@ -42,7 +42,7 @@ protected:
     LString bestWord;
     LString hand;
     vector<LString> board;
-    int perkBoard[15][15] = {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
+    char perkBoard[15][15] = {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
                          {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
                          {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
                          {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},

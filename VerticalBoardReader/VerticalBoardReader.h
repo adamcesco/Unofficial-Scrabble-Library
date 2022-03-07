@@ -22,7 +22,7 @@ public:
     vector<LString> return_formatted_board() const{return board;}
     void set_board(vector<LString>);
     void validate_board() const;
-    int points_of_best_word(){return perpendicular_points(bestWord) + bestWord.get_letter_points();}
+    int points_of_best_word(){return points_of_word(bestWord);}
 };
 
 
