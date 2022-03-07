@@ -23,7 +23,7 @@ void ScrabbleReader::search_for_intersecting_words() {
                     LString first = it.first;
                     LString second = it.second;
 
-                    if(first.is_descendent_of(hand, row)) {
+                    if(first.is_descendent_of(hand, row, word)) {
                         wordSets[rowSubscript].push_back(second);
                     }
                 }
@@ -192,7 +192,7 @@ void ScrabbleReader::search_for_all_words() {
                     LString first = it.first;
                     LString second = it.second;
 
-                    if(first.is_descendent_of(hand, row)) {
+                    if(first.is_descendent_of(hand, row, word)) {
                         wordSets[rowSubscript].push_back(second);
                     }
                 }
@@ -277,7 +277,7 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
                 allHand = false;
             }
         }
-        if(skip || rowCpy == board[rowSubscript] || (allHand && !rowCpy.is_descendent_of(hand))) {
+        if(skip || rowCpy == board[rowSubscript] || (allHand && !word.is_descendent_of(hand))) {
             rowCpy = board[rowSubscript];
             word.add_to_x_vals(-1);
             continue;

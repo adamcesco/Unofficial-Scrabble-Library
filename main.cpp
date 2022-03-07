@@ -25,7 +25,7 @@ void printAnswerSet(VerticalBoardReader vr, HorizontalBoardReader hr){
 
 
 int main(){
-    string hand = "GRO?LEE";    //blank letter should be marked as a '?'
+    string hand = "GROPLEE";    //blank letter should be marked as a '?'
 
     HorizontalBoardReader hReader(hand);
     hReader.build_board();

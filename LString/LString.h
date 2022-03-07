@@ -160,7 +160,7 @@ public:
     LString operator+(const Letter&) const;
     LString operator+(char) const;
     string to_string() const;
-    bool is_descendent_of(const LString&, const LString&);
+    bool is_descendent_of(const LString&, const LString&, LString&);
     bool is_descendent_of(const LString&);
     int get_letter_points() const;
     static int get_horizontal_points(string);

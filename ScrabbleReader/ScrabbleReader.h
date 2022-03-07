@@ -15,9 +15,9 @@ public:
     virtual vector<LString> return_formatted_board() const = 0;     //needs testing
     virtual void set_board(vector<LString>) = 0;                    //needs testing
     virtual void validate_board() const = 0;
-    virtual vector<LString> return_formatted_board_with(const LString &) const = 0;     //needs testing
+    virtual vector<LString> return_formatted_board_with(const LString&) const = 0;     //needs testing
     virtual char** return_formatted_char_board(char**) const = 0;                       //needs testing
-    virtual vector<LString>* return_formatted_wordSets(vector<LString>* ) const = 0;    //needs testing
+    virtual vector<LString>* return_formatted_wordSets(vector<LString>*) const = 0;    //needs testing
     virtual char** return_formatted_perkBoard(char**) const = 0;                        //needs testing
 
     LString get_best_word() const{return bestWord;}
@@ -30,10 +30,10 @@ public:
     void reset_all_data();
     void set_hand(const LString& passed){hand = passed;}
     LString get_hand(){return hand;}
-    void place_into_board(const LString &toPrint);
+    void place_into_board(const LString&);
     vector<LString>& get_raw_board(){return board;}
     void set_raw_board(vector<LString> passed){board = passed;}
-    vector<LString> return_raw_board_with(const LString &toPrint) const;
+    vector<LString> return_raw_board_with(const LString&) const;
     int points_of_word(const LString &);
     int find_points_of_word(const string&);
     void place_best_word_into_board();
@@ -43,10 +43,10 @@ public:
 protected:
     int perpendicular_points(const LString&) const;
     bool contains_letter_of_hand(const LString&) const;
-    bool contains_letter_of_hand(const string& passed) const;
-    vector<LString> return_all_fitted_tangential_words(LString &word, int rowSubscript);
-    unordered_map<LString, LString, MyHashFunction> return_all_fitted_filled_rows(LString &word, int rowSubscript);
-    unordered_map<LString, LString, MyHashFunction> return_all_fitted_rows(LString &word, int rowSubscript);
+    bool contains_letter_of_hand(const string&) const;
+    vector<LString> return_all_fitted_tangential_words(LString &, int);
+    unordered_map<LString, LString, MyHashFunction> return_all_fitted_filled_rows(LString &, int);
+    unordered_map<LString, LString, MyHashFunction> return_all_fitted_rows(LString &, int);
 
     int bestX, bestY;
     LString bestWord;
