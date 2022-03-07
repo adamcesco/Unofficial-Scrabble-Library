@@ -25,7 +25,7 @@ void printAnswerSet(VerticalBoardReader vr, HorizontalBoardReader hr){
 
 
 int main(){
-    string hand = "DEYOLAH";
+    string hand = "GROPLEE";
 
     HorizontalBoardReader hReader(hand);
     hReader.build_board();

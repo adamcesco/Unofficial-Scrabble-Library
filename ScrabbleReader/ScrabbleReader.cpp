@@ -62,6 +62,7 @@ void ScrabbleReader::place_into_board(const LString &toPrint) {
             board[toPrint.read_at(0).y][i] = Letter(toPrint.read_at(i - toPrint.read_at(0).x).LData,
                                                     i,
                                                     toPrint.read_at(0).y, 1);
+        perkBoard[toPrint.read_at(0).y][i] = ' ';
     }
 }
 
@@ -401,4 +402,15 @@ int ScrabbleReader::points_of_word(const LString &word) {
 
 
     return wordSum;
+}
+
+int ScrabbleReader::find_points_of_word(const string& passed) {
+    for (auto & curWordSet : wordSets) {
+        for (const auto& word : curWordSet) {
+            if(word == passed){
+                return points_of_word(word);
+            }
+        }
+    }
+    return 0;
 }
