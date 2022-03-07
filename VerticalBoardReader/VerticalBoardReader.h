@@ -19,10 +19,10 @@ public:
     void validate_words();
     Type get_reader_type() const{return VERTICAL;}
     vector<LString> return_word_set_of(int subscript){return wordSets[subscript];}
-    vector<LString> board_to_string() const{return board;}
+    vector<LString> return_formatted_board() const{return board;}
     void set_board(vector<LString>);
     void validate_board() const;
-
+    int points_of_best_word(){return perpendicular_points(bestWord) + bestWord.get_letter_points();}
 };
 
 

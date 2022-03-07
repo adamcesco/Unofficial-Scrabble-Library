@@ -131,13 +131,9 @@ void ScrabbleReader::search_for_tangential_words() {
 
     int rowSubscript = 0;
     for (const auto &row: board) {
-        if(!row.is_blank_LStr()) {
-            rowSubscript++;
-            continue;
-        }
         for (auto word : answerSet) {
             if (contains_letter_of_hand(word) && word.is_descendent_of(hand)) {
-                vector<LString> toPush = return_all_fitted_blank_rows(word, rowSubscript);
+                vector<LString> toPush = return_all_fitted_tangential_words(word, rowSubscript);
                 for (auto& it: toPush) {
                     it.set_y_vals_equal_to(rowSubscript);
                     wordSets[rowSubscript].push_back(it);
@@ -190,7 +186,7 @@ void ScrabbleReader::search_for_all_words() {
     }
 }
 
-vector<LString> ScrabbleReader::return_all_fitted_blank_rows(LString& word, int rowSubscript) {
+vector<LString> ScrabbleReader::return_all_fitted_tangential_words(LString& word, int rowSubscript) {
     int mode = 0;
     if(rowSubscript == 0)
         mode = 1;
@@ -245,7 +241,7 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
         mode = -1;
 
     LString rowCpy = board[rowSubscript];
-    unordered_map<LString, LString, MyHashFunction> mapReturn;
+    unordered_map<LString, LString, MyHashFunction> toReturn;
     word.xVals_to_subscript();
     word.add_to_x_vals(15 - word.length());
     for (int i = 0; i < 15 - word.length(); ++i) {
@@ -273,11 +269,11 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
 
         for (int j = 0; j < word.length(); ++j) {
             if(mode != 1 && board[rowSubscript - 1][j + word[0].x] != ' ') {
-                mapReturn.insert(pair<LString, LString>(rowCpy, word));
+                toReturn.insert(pair<LString, LString>(rowCpy, word));
                 break;
             }
             if(mode != -1 && board[rowSubscript + 1][j + word[0].x] != ' ') {
-                mapReturn.insert(pair<LString, LString>(rowCpy, word));
+                toReturn.insert(pair<LString, LString>(rowCpy, word));
                 break;
             }
         }
@@ -287,13 +283,10 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
         word.add_to_x_vals(-1);
     }
 
-    return mapReturn;
+    return toReturn;
 }
 
 unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitted_filled_rows(LString & word, int rowSubscript) {
-    //needs editing
-
-
     int mode = 0;
     if(rowSubscript == 0)
         mode = 1;
@@ -301,7 +294,7 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
         mode = -1;
 
     LString rowCpy = board[rowSubscript];
-    unordered_map<LString, LString, MyHashFunction> mapReturn;
+    unordered_map<LString, LString, MyHashFunction> toReturn;
     word.xVals_to_subscript();
     word.add_to_x_vals(15 - word.length());
     for (int i = 0; i < 15 - word.length(); ++i) {
@@ -327,11 +320,11 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
 
         for (int j = 0; j < word.length(); ++j) {
             if(mode != 1 && board[rowSubscript - 1][j + word[0].x] != ' ') {
-                mapReturn.insert(pair<LString, LString>(rowCpy, word));
+                toReturn.insert(pair<LString, LString>(rowCpy, word));
                 break;
             }
             if(mode != -1 && board[rowSubscript + 1][j + word[0].x] != ' ') {
-                mapReturn.insert(pair<LString, LString>(rowCpy, word));
+                toReturn.insert(pair<LString, LString>(rowCpy, word));
                 break;
             }
         }
@@ -341,5 +334,5 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
         word.add_to_x_vals(-1);
     }
 
-    return mapReturn;
+    return toReturn;
 }
