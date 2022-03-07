@@ -30,6 +30,7 @@ public:
     vector<LString> return_raw_board_with(const LString &toPrint) const;
     int points_of_word(const LString &);
     int find_points_of_word(const string&);
+    void place_best_word_into_board();
 
 protected:
     int perpendicular_points(const LString&) const;

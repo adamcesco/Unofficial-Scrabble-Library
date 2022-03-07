@@ -414,3 +414,13 @@ int ScrabbleReader::find_points_of_word(const string& passed) {
     }
     return 0;
 }
+
+void ScrabbleReader::place_best_word_into_board() {
+    for (int i = bestWord.read_at(0).x; i < bestWord.length() + bestWord.read_at(0).x; i++) {
+        if (board[bestWord.read_at(0).y][i] == ' ')
+            board[bestWord.read_at(0).y][i] = Letter(bestWord.read_at(i - bestWord.read_at(0).x).LData,
+                                                    i,
+                                                    bestWord.read_at(0).y, 1);
+        perkBoard[bestWord.read_at(0).y][i] = ' ';
+    }
+}
