@@ -8,11 +8,12 @@
 
 class ScrabbleReader {
 public:
+    //TODO: remove some pure virtual methods that are too restricting for future users of the class
     virtual void build_board() = 0;
     virtual void print_formatted_board() const = 0;
     virtual Type get_reader_type() const = 0;
     virtual vector<LString> return_formatted_board() const = 0;     //needs testing
-    virtual void set_board(vector<LString>) = 0;
+    virtual void set_board(vector<LString>) = 0;                    //needs testing
     virtual void validate_board() const = 0;
     virtual vector<LString> return_formatted_board_with(const LString &) const = 0;     //needs testing
     virtual char** return_formatted_char_board(char**) const = 0;                       //needs testing
@@ -36,8 +37,8 @@ public:
     int points_of_word(const LString &);
     int find_points_of_word(const string&);
     void place_best_word_into_board();
-    char **return_raw_char_board(char **);  //needs testing
-    char** return_raw_perkBoard(char **);   //needs testing
+    char **return_raw_char_board(char **);          //needs testing
+    char** return_raw_perkBoard(char **);           //needs testing
 
 protected:
     int perpendicular_points(const LString&) const;
