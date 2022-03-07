@@ -26,16 +26,17 @@ const int legend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 
 enum Type{HORIZONTAL, VERTICAL, UNDEFINED};
 
 struct Letter {
+    char LData;     //think of the LData as the face value of the Letter object, with all other data members being the Letter objects description
     int x, y;
     int val;
-    char LData;
     int flag;
-//    const int legend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8,  5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+    bool isBlank = false;
 
     Letter(){
         x = y = flag = -1;
         val = 0;
         LData = ' ';
+        isBlank = false;
     }
 
     Letter(char passed, int xp, int yp, int fl){
@@ -43,15 +44,12 @@ struct Letter {
         x = xp;
         y = yp;
         flag = fl;
+        isBlank = false;
+
         if(isalpha(LData))
             val = legend[(LData & 31) - 1];
         else
             val = 0;
-    }
-
-    void setCoord(int xp, int yp){
-        x = xp;
-        y = yp;
     }
 
     bool operator==(const Letter& invoked) const{
@@ -77,16 +75,16 @@ struct Letter {
         y = invoked.y;
         x = invoked.x;
         flag = invoked.flag;
-        if(isalpha(LData))
-            val = legend[(LData & 31) - 1];
-        else
-            val = 0;
+        val = invoked.val;
+        isBlank = invoked.isBlank;
         return *this;
     }
 
     Letter& operator=(char invoked){
         LData = abs(invoked);
         y = x = flag = -1;
+        isBlank = false;
+
         if(isalpha(LData))
             val = legend[(LData & 31) - 1];
         else
@@ -160,7 +158,7 @@ public:
     LString operator+(const Letter&) const;
     LString operator+(char) const;
     string to_string() const;
-    bool is_descendent_of(const LString&, const LString&, LString&);
+    bool row_is_descendent_of(const LString &hand, const LString &row, LString &word);
     bool is_descendent_of(const LString&);
     int get_letter_points() const;
     static int get_horizontal_points(string);

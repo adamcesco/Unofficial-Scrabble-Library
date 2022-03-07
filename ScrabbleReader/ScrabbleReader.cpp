@@ -23,7 +23,7 @@ void ScrabbleReader::search_for_intersecting_words() {
                     LString first = it.first;
                     LString second = it.second;
 
-                    if(first.is_descendent_of(hand, row, word)) {
+                    if(first.row_is_descendent_of(hand, row, second)) {
                         wordSets[rowSubscript].push_back(second);
                     }
                 }
@@ -192,7 +192,7 @@ void ScrabbleReader::search_for_all_words() {
                     LString first = it.first;
                     LString second = it.second;
 
-                    if(first.is_descendent_of(hand, row, word)) {
+                    if(first.row_is_descendent_of(hand, row, second)) {
                         wordSets[rowSubscript].push_back(second);
                     }
                 }
