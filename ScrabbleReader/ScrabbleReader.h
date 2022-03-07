@@ -12,8 +12,11 @@ public:
     virtual void print_formatted_board() const = 0;
     virtual Type get_reader_type() const = 0;
     virtual vector<LString> return_formatted_board() const = 0;
+    virtual vector<LString> return_formatted_board_with(const LString &toPrint) const = 0;
+    virtual char** return_formatted_char_board() const = 0;
     virtual void set_board(vector<LString>) = 0;
     virtual void validate_board() const = 0;
+    virtual vector<LString>* return_formatted_wordSets() const = 0;
 
     LString get_best_word() const{return bestWord;}
     int get_best_x() const{return bestX;}
@@ -31,6 +34,7 @@ public:
     int points_of_word(const LString &);
     int find_points_of_word(const string&);
     void place_best_word_into_board();
+    virtual char** return_raw_char_board();
 
 protected:
     int perpendicular_points(const LString&) const;
