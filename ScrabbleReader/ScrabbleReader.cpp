@@ -305,17 +305,18 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
             rowCpy[j - i] = word[(word.length() - 1) - ((15 - 1) - j)];
         }
 
-        bool skip = true;
+        bool skip = false;
+        bool allHand = true;
         for (int j = 0; j < word.length(); ++j) {
             if(board[rowSubscript][j + word[0].x] != ' ' && board[rowSubscript][j + word[0].x] != word[j]) {
                 skip = true;
                 break;
             }
-            else if(board[rowSubscript][j + word[0].x] != ' ') {
-                skip = false;
+            else if(board[rowSubscript][j + word[0].x] != ' '){
+                allHand = false;
             }
         }
-        if(skip || rowCpy == board[rowSubscript]) {
+        if(skip || allHand || rowCpy == board[rowSubscript]) {
             rowCpy = board[rowSubscript];
             word.add_to_x_vals(-1);
             continue;

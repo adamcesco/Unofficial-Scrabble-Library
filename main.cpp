@@ -13,7 +13,7 @@ void printAnswerSet(VerticalBoardReader vr, HorizontalBoardReader hr){
         vector<LString> tempV = vr.return_word_set_of(j);
         for (auto & k : tempV) {
             if(!k.is_empty())
-                allWords.push_back(k.to_string());
+                cout << k.to_string() << endl;
         }
     }
 
@@ -22,13 +22,8 @@ void printAnswerSet(VerticalBoardReader vr, HorizontalBoardReader hr){
         vector<LString> tempH = hr.return_word_set_of(j);
         for (auto & k : tempH) {
             if(!k.is_empty())
-                allWords.push_back(k.to_string());
+                cout << k.to_string() << endl;
         }
-    }
-
-    sort(allWords.begin(), allWords.end());
-    for (auto& word : allWords) {
-        cout << word << endl;
     }
 }
 
