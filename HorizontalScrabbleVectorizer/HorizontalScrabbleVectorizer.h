@@ -5,28 +5,28 @@
 #ifndef SCRABBLEBOT_BOARDREADER_H
 #define SCRABBLEBOT_BOARDREADER_H
 
-#include "../ScrabbleReader/ScrabbleReader.h"
+#include "../ScrabbleVectorizer/ScrabbleVectorizer.h"
 
-class HorizontalBoardReader : public ScrabbleReader{
+class HorizontalScrabbleVectorizer : public ScrabbleVectorizer{
 public:
-    HorizontalBoardReader();
-    explicit HorizontalBoardReader(const LString&);
+    HorizontalScrabbleVectorizer();
+    explicit HorizontalScrabbleVectorizer(const LString&);
 
     void build_board(const string &);
     void print_formatted_board() const;
     string to_string() const;
     LString update_best_word();
     void validate_words();
-    Type get_reader_type() const{return HORIZONTAL;}
-    vector<LString> return_word_set_of(int subscript){return wordSets[subscript];}
+    Type get_vectorizer_type() const{return HORIZONTAL;}
+    vector<LString> return_word_set_of(int subscript){return answerSets[subscript];}
     vector<LString> return_formatted_board() const{return board;}
     void set_board(vector<LString>);
     void validate_board() const;
     int points_of_best_word(){return points_of_word(bestWord);}
 
-    vector<vector<LString>> return_formatted_wordSets() const;
+    vector<vector<LString>> return_formatted_answerSets() const;
     vector<string> return_formatted_perkBoard() const;
-    vector<LString> return_formatted_board_with(const LString &) const;
+    vector<LString> return_formatted_board_with(const LString &) const;     //assumes that the passed word is formatted with respect to a horizontal board
     vector<string> return_formatted_char_board() const;
 };
 

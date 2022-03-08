@@ -2,11 +2,11 @@
 // Created by misc1 on 3/3/2022.
 //
 
-#include "ScrabbleReader.h"
+#include "ScrabbleVectorizer.h"
 
-void ScrabbleReader::search_for_intersecting_words() {
-    if(answerSet.empty())
-        throw invalid_argument("Error in ScrabbleReader::search_for_intersecting_words() | The set of all scrabble words is empty.");
+void ScrabbleVectorizer::search_for_intersecting_words() {
+    if(scrabbleWordSet.empty())
+        throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;
     for (const auto &row: board) {
@@ -14,7 +14,7 @@ void ScrabbleReader::search_for_intersecting_words() {
             rowSubscript++;
             continue;
         }
-        for (auto word : answerSet) {
+        for (auto word : scrabbleWordSet) {
             if (contains_letter_of_hand(word)) {
                 word.set_y_vals_equal_to(rowSubscript);
                 unordered_map<LString, LString, MyHashFunction> toPush = return_all_fitted_filled_rows(word,
@@ -24,7 +24,7 @@ void ScrabbleReader::search_for_intersecting_words() {
                     LString second = it.second;
 
                     if(first.row_is_descendent_of(hand, row, second)) {
-                        wordSets[rowSubscript].push_back(second);
+                        answerSets[rowSubscript].push_back(second);
                     }
                 }
             }
@@ -33,17 +33,17 @@ void ScrabbleReader::search_for_intersecting_words() {
     }
 }
 
-void ScrabbleReader::reset_all_data() {
+void ScrabbleVectorizer::reset_all_data() {
     bestX = bestY = 8;
     bestWord.clear();
     hand.clear();
     board.clear();
 
-    for (auto & words : wordSets) {
+    for (auto & words : answerSets) {
         words.clear();
     }
 
-    answerSet.clear();
+    scrabbleWordSet.clear();
     ifstream englishWords;
     englishWords.open("../Data/scrabble_word_list.txt");
     if(!englishWords.is_open())
@@ -52,12 +52,12 @@ void ScrabbleReader::reset_all_data() {
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        answerSet.emplace(LString(curWord));
+        scrabbleWordSet.emplace(LString(curWord));
     }
     englishWords.close();
 }
 
-void ScrabbleReader::place_into_board(const LString &toPrint) {
+void ScrabbleVectorizer::place_into_board(const LString &toPrint) {
     for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
         if (board[toPrint.read_at(0).y][i] == ' ')
             board[toPrint.read_at(0).y][i] = Letter(toPrint.read_at(i - toPrint.read_at(0).x).LData,
@@ -67,7 +67,7 @@ void ScrabbleReader::place_into_board(const LString &toPrint) {
     }
 }
 
-bool ScrabbleReader::contains_letter_of_hand(const LString &passed) const {
+bool ScrabbleVectorizer::contains_letter_of_hand(const LString &passed) const {
     unordered_set<char> handSet;
     for (int i = 0; i < hand.length(); ++i)
         handSet.emplace(toupper(hand.read_at(i).LData));
@@ -80,7 +80,7 @@ bool ScrabbleReader::contains_letter_of_hand(const LString &passed) const {
     return false;
 }
 
-vector<LString> ScrabbleReader::return_raw_board_with(const LString &toPrint) const {
+vector<LString> ScrabbleVectorizer::return_raw_board_with(const LString &toPrint) const {
     vector<LString> boardCpy = board;
     int toPrintX = toPrint.read_at(0).x;
     int toPrintY = toPrint.read_at(0).y;
@@ -96,7 +96,7 @@ vector<LString> ScrabbleReader::return_raw_board_with(const LString &toPrint) co
     return boardCpy;
 }
 
-int ScrabbleReader::perpendicular_points(const LString &word) const {
+int ScrabbleVectorizer::perpendicular_points(const LString &word) const {
     if(word.is_empty())
         return 0;
 
@@ -128,18 +128,18 @@ int ScrabbleReader::perpendicular_points(const LString &word) const {
     return crossWordSum;
 }
 
-void ScrabbleReader::search_for_tangential_words() {
-    if(answerSet.empty())
-        throw invalid_argument("Error in ScrabbleReader::search_for_intersecting_words() | The set of all scrabble words is empty.");
+void ScrabbleVectorizer::search_for_tangential_words() {
+    if(scrabbleWordSet.empty())
+        throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;
     for (const auto &row: board) {
-        for (auto word : answerSet) {
+        for (auto word : scrabbleWordSet) {
             if (contains_letter_of_hand(word) && word.is_descendent_of(hand)) {
                 vector<LString> toPush = return_all_fitted_tangential_words(word, rowSubscript);
                 for (auto& it: toPush) {
                     it.set_y_vals_equal_to(rowSubscript);
-                    wordSets[rowSubscript].push_back(it);
+                    answerSets[rowSubscript].push_back(it);
                 }
             }
         }
@@ -147,31 +147,31 @@ void ScrabbleReader::search_for_tangential_words() {
     }
 }
 
-void ScrabbleReader::clear_wordSets() {
-    wordSets[0].clear();
-    wordSets[1].clear();
-    wordSets[2].clear();
-    wordSets[3].clear();
-    wordSets[4].clear();
-    wordSets[5].clear();
-    wordSets[6].clear();
-    wordSets[7].clear();
-    wordSets[8].clear();
-    wordSets[9].clear();
-    wordSets[10].clear();
-    wordSets[11].clear();
-    wordSets[12].clear();
-    wordSets[13].clear();
-    wordSets[14].clear();
+void ScrabbleVectorizer::clear_wordSets() {
+    answerSets[0].clear();
+    answerSets[1].clear();
+    answerSets[2].clear();
+    answerSets[3].clear();
+    answerSets[4].clear();
+    answerSets[5].clear();
+    answerSets[6].clear();
+    answerSets[7].clear();
+    answerSets[8].clear();
+    answerSets[9].clear();
+    answerSets[10].clear();
+    answerSets[11].clear();
+    answerSets[12].clear();
+    answerSets[13].clear();
+    answerSets[14].clear();
 }
 
-void ScrabbleReader::search_for_all_words() {
-    if(answerSet.empty())
-        throw invalid_argument("Error in ScrabbleReader::search_for_intersecting_words() | The set of all scrabble words is empty.");
+void ScrabbleVectorizer::search_for_all_words() {
+    if(scrabbleWordSet.empty())
+        throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;
     for (const auto &row: board) {
-        for (auto word : answerSet) {
+        for (auto word : scrabbleWordSet) {
             if (contains_letter_of_hand(word)) {
                 word.set_y_vals_equal_to(rowSubscript);
                 unordered_map<LString, LString, MyHashFunction> toPush = return_all_fitted_rows(word, rowSubscript);
@@ -180,7 +180,7 @@ void ScrabbleReader::search_for_all_words() {
                     LString second = it.second;
 
                     if(first.row_is_descendent_of(hand, row, second)) {
-                        wordSets[rowSubscript].push_back(second);
+                        answerSets[rowSubscript].push_back(second);
                     }
                 }
             }
@@ -189,7 +189,7 @@ void ScrabbleReader::search_for_all_words() {
     }
 }
 
-vector<LString> ScrabbleReader::return_all_fitted_tangential_words(LString& word, int rowSubscript) {
+vector<LString> ScrabbleVectorizer::return_all_fitted_tangential_words(LString& word, int rowSubscript) {
     int mode = 0;
     if(rowSubscript == 0)
         mode = 1;
@@ -238,7 +238,7 @@ vector<LString> ScrabbleReader::return_all_fitted_tangential_words(LString& word
     return toReturn;
 }
 
-unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitted_rows(LString& word, int rowSubscript) {  //fix later
+unordered_map<LString, LString, MyHashFunction> ScrabbleVectorizer::return_all_fitted_rows(LString& word, int rowSubscript) {  //fix later
     int mode = 0;
     if(rowSubscript == 0)
         mode = 1;
@@ -291,7 +291,7 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
     return toReturn;
 }
 
-unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitted_filled_rows(LString & word, int rowSubscript) {
+unordered_map<LString, LString, MyHashFunction> ScrabbleVectorizer::return_all_fitted_filled_rows(LString & word, int rowSubscript) {
     int mode = 0;
     if(rowSubscript == 0)
         mode = 1;
@@ -344,7 +344,7 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
     return toReturn;
 }
 
-int ScrabbleReader::points_of_word(const LString &word) {
+int ScrabbleVectorizer::points_of_word(const LString &word) {
     // If a letter is shared between words, then count it's premium value for all words
     // Any word multiplier only gets assigned to the original word, and not any subsequently formed words
     // If a word is placed on two or more multiplier tiles, the words value is multiplied by both tile values
@@ -406,18 +406,19 @@ int ScrabbleReader::points_of_word(const LString &word) {
     return wordSum;
 }
 
-int ScrabbleReader::find_points_of_word(const string& passed) {
-    for (auto & curWordSet : wordSets) {
+vector<int> ScrabbleVectorizer::find_points_of_word(const string& passed) {
+    vector<int> values;
+    for (auto & curWordSet : answerSets) {
         for (const auto& word : curWordSet) {
             if(word == passed){
-                return points_of_word(word);
+                values.push_back(points_of_word(word));
             }
         }
     }
-    return 0;
+    return values;
 }
 
-void ScrabbleReader::place_best_word_into_board() {
+void ScrabbleVectorizer::place_best_word_into_board() {
     for (int i = bestWord.read_at(0).x; i < bestWord.length() + bestWord.read_at(0).x; i++) {
         if (board[bestWord.read_at(0).y][i] == ' ')
             board[bestWord.read_at(0).y][i] = Letter(bestWord.read_at(i - bestWord.read_at(0).x).LData,
@@ -427,7 +428,7 @@ void ScrabbleReader::place_best_word_into_board() {
     }
 }
 
-vector<string> ScrabbleReader::return_raw_perkBoard() {
+vector<string> ScrabbleVectorizer::return_raw_perkBoard() {
     vector<string> toReturn;
     for (int i = 0; i < 15; ++i) {
         string row;
@@ -439,7 +440,7 @@ vector<string> ScrabbleReader::return_raw_perkBoard() {
     return toReturn;
 }
 
-vector<string> ScrabbleReader::return_raw_char_board() {
+vector<string> ScrabbleVectorizer::return_raw_char_board() {
     vector<string> toReturn;
     for (int i = 0; i < 15; ++i) {
         string row;
@@ -449,4 +450,16 @@ vector<string> ScrabbleReader::return_raw_char_board() {
         toReturn.push_back(row);
     }
     return toReturn;
+}
+
+vector<LString> ScrabbleVectorizer::return_all_of_raw_word(const string& passed) {
+    vector<LString> foundVersions;
+    for (auto & curWordSet : answerSets) {
+        for (const auto& word : curWordSet) {
+            if(word == passed){
+                foundVersions.push_back(word);
+            }
+        }
+    }
+    return foundVersions;
 }

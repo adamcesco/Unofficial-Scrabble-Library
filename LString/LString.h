@@ -169,6 +169,7 @@ public:
     bool contains_flag(int) const;
     vector<LString> break_into_frags() const;
     bool is_blank_LStr() const;
+    LString& convert_format_vertical_to_horizontal();       //needs testing
     
     ~LString(){delete[] data;}
 

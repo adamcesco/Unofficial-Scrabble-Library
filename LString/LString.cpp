@@ -645,4 +645,14 @@ bool LString::is_descendent_of(const LString &hand) {
     return true;
 }
 
+LString& LString::convert_format_vertical_to_horizontal() {
+    for (int i = 0; i < eleCount; ++i) {
+        int temp = data[i].x;
+        data[i].x = 14 - data[i].y;
+        data[i].y = temp;
+    }
+
+    return *this;
+}
+
 #endif

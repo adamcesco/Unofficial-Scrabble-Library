@@ -3,11 +3,11 @@
 //
 
 #include "catch.hpp"
-#include "../HorizontalBoardReader/HorizontalBoardReader.h"
-#include "../VerticalBoardReader/VerticalBoardReader.h"
+#include "../HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.h"
+#include "../VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
 #include <sstream>
 
-TEST_CASE("Testing user-oriented methods", "[ScrabbleReader]"){
+TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     string hand = "GRO?LEE";
     LString word = "ADAM";
     word[0].x = 10;
@@ -19,13 +19,13 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleReader]"){
     word[2].y = 3;
     word[3].y = 3;
 
-    HorizontalBoardReader defaultReader(hand);
+    HorizontalScrabbleVectorizer defaultReader(hand);
     defaultReader.build_board("../Test_Folder/Board.csv");
 
-    HorizontalBoardReader hReader(hand);
+    HorizontalScrabbleVectorizer hReader(hand);
     hReader.build_board("../Test_Folder/Board.csv");
 
-    VerticalBoardReader vReader(hand);
+    VerticalScrabbleVectorizer vReader(hand);
     vReader.build_board("../Test_Folder/Board.csv");
 
     ifstream boardFile;
@@ -79,13 +79,13 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleReader]"){
     }
 
 
-    SECTION("ScrabbleReader::return_formatted_board() and ScrabbleReader::get_raw_board()") {
+    SECTION("ScrabbleVectorizer::return_formatted_board() and ScrabbleVectorizer::get_raw_board()") {
         REQUIRE(hReader.return_formatted_board() == originalBoard);
         REQUIRE(hReader.get_raw_board() == originalBoard);
         REQUIRE(vReader.return_formatted_board() == originalBoard);
     }
 
-    SECTION("ScrabbleReader::set_board()") {
+    SECTION("ScrabbleVectorizer::set_board()") {
         hReader.set_board(originalBoard);
         vReader.set_board(originalBoard);
 
@@ -94,7 +94,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleReader]"){
         REQUIRE(vReader.return_formatted_board() == originalBoard);
     }
 
-    SECTION("ScrabbleReader::return_formatted_board_with()") {
+    SECTION("ScrabbleVectorizer::return_formatted_board_with()") {
         defaultReader.place_into_board(word);
         vector<LString> testBoard = defaultReader.return_formatted_board();
 
@@ -102,7 +102,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleReader]"){
         REQUIRE(vReader.return_formatted_board_with(word) == testBoard);
     }
 
-    SECTION("ScrabbleReader::return_formatted_char_board(char**)") {
+    SECTION("ScrabbleVectorizer::return_formatted_char_board(char**)") {
         vector<string> testVBoard = vReader.return_formatted_char_board();
         vector<string> testHBoard = hReader.return_formatted_char_board();
 
@@ -112,7 +112,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleReader]"){
         }
     }
 
-    SECTION("ScrabbleReader::return_formatted_perkBoard()") {
+    SECTION("ScrabbleVectorizer::return_formatted_perkBoard()") {
         vector<string> testVPerks = vReader.return_formatted_perkBoard();
         vector<string> testHPerks = hReader.return_formatted_perkBoard();
 
@@ -124,7 +124,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleReader]"){
         }
     }
 
-    SECTION("ScrabbleReader::return_raw_char_board()") {
+    SECTION("ScrabbleVectorizer::return_raw_char_board()") {
         vector<string> testVBoard = vReader.return_raw_char_board();
         vector<string> testHBoard = hReader.return_raw_char_board();
 
@@ -136,7 +136,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleReader]"){
         }
     }
 
-    SECTION("ScrabbleReader::return_raw_char_board()") {
+    SECTION("ScrabbleVectorizer::return_raw_char_board()") {
         vector<string> testVPerks = vReader.return_raw_perkBoard();
         vector<string> testHPerks = hReader.return_raw_perkBoard();
 
@@ -149,14 +149,14 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleReader]"){
     }
 }
 
-TEST_CASE("Testing the difference in resulting word sets formed from different filtering methods (separated word filtration and combined word filtration)", "[ScrabbleReader]"){
+TEST_CASE("Testing the difference in resulting word sets formed from different filtering methods (separated word filtration and combined word filtration)", "[ScrabbleVectorizer]"){
     string hand = "POIAUD?";
 
-    HorizontalBoardReader hReader(hand);
+    HorizontalScrabbleVectorizer hReader(hand);
     hReader.build_board("../Test_Folder/Board.csv");
     hReader.validate_board();
     hReader.clear_wordSets();
-    VerticalBoardReader vReader(hand);
+    VerticalScrabbleVectorizer vReader(hand);
     vReader.build_board("../Test_Folder/Board.csv");
     vReader.validate_board();
     vReader.clear_wordSets();
@@ -167,11 +167,11 @@ TEST_CASE("Testing the difference in resulting word sets formed from different f
     vReader.validate_words();
     hReader.validate_words();
 
-    HorizontalBoardReader hReader2(hand);
+    HorizontalScrabbleVectorizer hReader2(hand);
     hReader2.build_board("../Test_Folder/Board.csv");
     hReader2.validate_board();
     hReader2.clear_wordSets();
-    VerticalBoardReader vReader2(hand);
+    VerticalScrabbleVectorizer vReader2(hand);
     vReader2.build_board("../Test_Folder/Board.csv");
     vReader2.validate_board();
     vReader2.clear_wordSets();
@@ -180,12 +180,12 @@ TEST_CASE("Testing the difference in resulting word sets formed from different f
     vReader2.validate_words();
     hReader2.validate_words();
 
-    vector<vector<LString>> vr1WS = vReader.return_formatted_wordSets();
-    vector<vector<LString>> vr2WS = vReader2.return_formatted_wordSets();
-    vector<vector<LString>> hr1WS = hReader.return_formatted_wordSets();
-    vector<vector<LString>> hr2WS = hReader2.return_formatted_wordSets();
+    vector<vector<LString>> vr1WS = vReader.return_formatted_answerSets();
+    vector<vector<LString>> vr2WS = vReader2.return_formatted_answerSets();
+    vector<vector<LString>> hr1WS = hReader.return_formatted_answerSets();
+    vector<vector<LString>> hr2WS = hReader2.return_formatted_answerSets();
 
-    SECTION("Testing the word count of vertical wordSets formed from differently filtrated readers") {
+    SECTION("Testing the word count of vertical answerSets formed from differently filtrated readers") {
         REQUIRE(vr1WS.size() == vr2WS.size());
 
         for (int i = 0; i < vr1WS.size(); ++i) {
@@ -233,7 +233,7 @@ TEST_CASE("Testing the difference in resulting word sets formed from different f
         }
     }
 
-    SECTION("Testing the word count of vertical wordSets formed from differently filtrated readers") {
+    SECTION("Testing the word count of vertical answerSets formed from differently filtrated readers") {
         REQUIRE(hr1WS.size() == hr2WS.size());
 
         for (int i = 0; i < hr1WS.size(); ++i) {

@@ -2,10 +2,10 @@
 // Created by misc1 on 3/3/2022.
 //
 
-#include "VerticalBoardReader.h"
+#include "VerticalScrabbleVectorizer.h"
 #include <sstream>
 
-VerticalBoardReader::VerticalBoardReader() {
+VerticalScrabbleVectorizer::VerticalScrabbleVectorizer() {
     ifstream englishWords;
     englishWords.open("../Data/scrabble_word_list.txt");
     if(!englishWords.is_open())
@@ -14,12 +14,12 @@ VerticalBoardReader::VerticalBoardReader() {
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        answerSet.emplace(LString(curWord));
+        scrabbleWordSet.emplace(LString(curWord));
     }
     englishWords.close();
 }
 
-VerticalBoardReader::VerticalBoardReader(const LString& passed) {
+VerticalScrabbleVectorizer::VerticalScrabbleVectorizer(const LString& passed) {
     hand = passed;
 
     ifstream englishWords;
@@ -30,12 +30,12 @@ VerticalBoardReader::VerticalBoardReader(const LString& passed) {
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        answerSet.emplace(LString(curWord));
+        scrabbleWordSet.emplace(LString(curWord));
     }
     englishWords.close();
 }
 
-void VerticalBoardReader::build_board(const string& filePath) {
+void VerticalScrabbleVectorizer::build_board(const string& filePath) {
     ifstream boardFile;
     boardFile.open(filePath);
     if(!boardFile.is_open())
@@ -81,7 +81,7 @@ void VerticalBoardReader::build_board(const string& filePath) {
     }
 }
 
-void VerticalBoardReader::print_formatted_board() const{
+void VerticalScrabbleVectorizer::print_formatted_board() const{
     for (int i = 0; i < 15; ++i) {
         for (int j = 14; j >= 0; --j) {
             cout << board[j].read_at(i).LData;
@@ -90,7 +90,7 @@ void VerticalBoardReader::print_formatted_board() const{
     }
 }
 
-string VerticalBoardReader::to_string() const {
+string VerticalScrabbleVectorizer::to_string() const {
     string buffer = "Hand: " + hand.to_string() + "\n";
     buffer += "Best Vertical Word: " + bestWord.to_string() + " - " + ::to_string(bestWord.get_letter_points() +
                                                                                    perpendicular_points(bestWord));
@@ -101,10 +101,10 @@ string VerticalBoardReader::to_string() const {
     return buffer;
 }
 
-LString VerticalBoardReader::update_best_word(){
+LString VerticalScrabbleVectorizer::update_best_word(){
     int rowSubscript = 0;
     bestWord.clear();
-    for (auto & wordSet : wordSets) {
+    for (auto & wordSet : answerSets) {
         for (const auto& word: wordSet) {
             int wordPoints = points_of_word(word) + points_of_word(word);
             int bestWordPoints = points_of_word(bestWord) + points_of_word(bestWord);
@@ -129,8 +129,8 @@ LString VerticalBoardReader::update_best_word(){
     return bestWord;
 }
 
-void VerticalBoardReader::validate_words() {
-    for (auto & wordSet : wordSets) {
+void VerticalScrabbleVectorizer::validate_words() {
+    for (auto & wordSet : answerSets) {
         for (auto& word: wordSet) {
             vector<LString> boardCpy = return_raw_board_with(word);
 
@@ -145,7 +145,7 @@ void VerticalBoardReader::validate_words() {
                 vector<LString> colShards = column.break_into_frags();
 
                 for (const auto& shard : colShards) {
-                    if(shard.length() > 1 && answerSet.find(shard) == answerSet.end()) {
+                    if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
                         word.clear();
                     }
                 }
@@ -153,7 +153,7 @@ void VerticalBoardReader::validate_words() {
                 vector<LString> rowShards = row.break_into_frags();
 
                 for (const auto& shard : rowShards) {
-                    if(shard.length() > 1 && answerSet.find(shard) == answerSet.end()) {
+                    if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
                         word.clear();
                     }
                 }
@@ -162,7 +162,7 @@ void VerticalBoardReader::validate_words() {
     }
 }
 
-void VerticalBoardReader::set_board(vector<LString> passed) {   //assumes that passed is formatted as a proper board
+void VerticalScrabbleVectorizer::set_board(vector<LString> passed) {   //assumes that passed is formatted as a proper board
     vector<LString> boardCpy;
     for (int i = 14; i >= 0; i--) {  //i = x
         LString column;
@@ -181,9 +181,9 @@ void VerticalBoardReader::set_board(vector<LString> passed) {   //assumes that p
     }
 }
 
-void VerticalBoardReader::validate_board() const{
-    if(answerSet.empty())
-        throw invalid_argument("Error in ScrabbleReader::validate_board() | unordered_map<LString> answerSet is empty.");
+void VerticalScrabbleVectorizer::validate_board() const{
+    if(scrabbleWordSet.empty())
+        throw invalid_argument("Error in ScrabbleVectorizer::validate_board() | unordered_map<LString> scrabbleWordSet is empty.");
 
     for (int i = 0; i < 15; ++i) {
         LString column;
@@ -199,20 +199,20 @@ void VerticalBoardReader::validate_board() const{
         vector<LString> colShards = column.break_into_frags();
 
         for (const auto& shard : colShards) {
-            if(shard.length() > 1 && answerSet.find(shard) == answerSet.end())
+            if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
                 throw invalid_argument("Invalid vertical Word in Data/Board.csv | " + shard.to_string());
         }
 
         vector<LString> rowShards = row.break_into_frags();
 
         for (const auto& shard : rowShards) {
-            if(shard.length() > 1 && answerSet.find(shard) == answerSet.end())
+            if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
                 throw invalid_argument("Invalid horizontal Word in Data/Board.csv | " + shard.to_string());
         }
     }
 }
 
-vector<string> VerticalBoardReader::return_formatted_perkBoard() const {
+vector<string> VerticalScrabbleVectorizer::return_formatted_perkBoard() const {
     vector<string> toReturn;
     for (int i = 0; i < 15; ++i) {
         string column;
@@ -224,7 +224,7 @@ vector<string> VerticalBoardReader::return_formatted_perkBoard() const {
     return toReturn;
 }
 
-vector<LString> VerticalBoardReader::return_formatted_board_with(const LString &toPrint) const {
+vector<LString> VerticalScrabbleVectorizer::return_formatted_board_with(const LString &toPrint) const {
     vector<LString> boardCpy = board;
     int toPrintX = toPrint.read_at(0).y;
     int toPrintY = 14 - toPrint.read_at(0).x;
@@ -247,7 +247,7 @@ vector<LString> VerticalBoardReader::return_formatted_board_with(const LString &
     return boardCpy2;
 }
 
-vector<string> VerticalBoardReader::return_formatted_char_board() const {
+vector<string> VerticalScrabbleVectorizer::return_formatted_char_board() const {
     vector<string> boardCpy;
     for (int i = 0; i < 15; ++i) {
         string column;
@@ -259,15 +259,15 @@ vector<string> VerticalBoardReader::return_formatted_char_board() const {
     return boardCpy;
 }
 
-vector<vector<LString>> VerticalBoardReader::return_formatted_wordSets() const {
+vector<vector<LString>> VerticalScrabbleVectorizer::return_formatted_answerSets() const {
     vector<vector<LString>> toReturn;
     for (int i = 0; i < 15; ++i) {
-        toReturn.push_back(wordSets[14 - i]);
+        toReturn.push_back(answerSets[14 - i]);
     }
     return toReturn;
 }
 
-vector<LString> VerticalBoardReader::return_formatted_board() const {
+vector<LString> VerticalScrabbleVectorizer::return_formatted_board() const {
     vector<LString> boardCpy;
     for (int i = 0; i < 15; ++i) {
         LString column;

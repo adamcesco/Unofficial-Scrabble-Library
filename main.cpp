@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_RUNNER
-#include "HorizontalBoardReader/HorizontalBoardReader.h"
-#include "VerticalBoardReader/VerticalBoardReader.h"
+#include "HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.h"
+#include "VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
 #include "Test_Folder/catch.hpp"
 
 //TODO: erase premium tile values when word is placed into the board
@@ -13,25 +13,28 @@ int main(int argc, char* argv[]){
 
     string hand = "POIAUD?";    //blank letter should be marked as a '?'
 
-    HorizontalBoardReader hReader(hand);
+    HorizontalScrabbleVectorizer hReader(hand);
     hReader.build_board(argv[1]);
     hReader.validate_board();
     hReader.print_formatted_board();
     hReader.clear_wordSets();
 
-    VerticalBoardReader vReader(hand);
+    VerticalScrabbleVectorizer vReader(hand);
     vReader.build_board(argv[1]);
     vReader.validate_board();
     vReader.print_formatted_board();
     vReader.clear_wordSets();
 
     vReader.search_for_intersecting_words();
-    vReader.search_for_tangential_words();
+//    vReader.search_for_tangential_words();
 //    vReader.search_for_all_words();
 
     hReader.search_for_intersecting_words();
-    hReader.search_for_tangential_words();
+//    hReader.search_for_tangential_words();
 //    hReader.search_for_all_words();
+
+    vector<int> duoVals = hReader.find_points_of_word("DUO");
+    cout << "DUO - " << duoVals[0] << endl;
 
     vReader.validate_words();
     hReader.validate_words();

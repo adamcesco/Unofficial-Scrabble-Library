@@ -2,10 +2,10 @@
 // Created by misc1 on 2/26/2022.
 //
 
-#include "HorizontalBoardReader.h"
+#include "HorizontalScrabbleVectorizer.h"
 #include <sstream>
 
-HorizontalBoardReader::HorizontalBoardReader() {
+HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer() {
     bestX = bestY = 8;
 
     ifstream englishWords;
@@ -16,12 +16,12 @@ HorizontalBoardReader::HorizontalBoardReader() {
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        answerSet.emplace(LString(curWord));
+        scrabbleWordSet.emplace(LString(curWord));
     }
     englishWords.close();
 }
 
-HorizontalBoardReader::HorizontalBoardReader(const LString& passed) {
+HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer(const LString& passed) {
     hand = passed;
     bestX = bestY = 8;
 
@@ -33,12 +33,12 @@ HorizontalBoardReader::HorizontalBoardReader(const LString& passed) {
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        answerSet.emplace(LString(curWord));
+        scrabbleWordSet.emplace(LString(curWord));
     }
     englishWords.close();
 }
 
-void HorizontalBoardReader::build_board(const string& filePath) {
+void HorizontalScrabbleVectorizer::build_board(const string& filePath) {
     ifstream boardFile;
     boardFile.open(filePath);
     if(!boardFile.is_open())
@@ -74,7 +74,7 @@ void HorizontalBoardReader::build_board(const string& filePath) {
     }
 }
 
-void HorizontalBoardReader::print_formatted_board() const{
+void HorizontalScrabbleVectorizer::print_formatted_board() const{
     for (const auto &row: board) {
         for (int i = 0; i < row.length(); ++i) {
             cout << row.read_at(i).LData;
@@ -83,7 +83,7 @@ void HorizontalBoardReader::print_formatted_board() const{
     }
 }
 
-string HorizontalBoardReader::to_string() const {
+string HorizontalScrabbleVectorizer::to_string() const {
     string buffer = "Hand: " + hand.to_string() + "\n";
     buffer += "\nBest Horizontal Word: " + bestWord.to_string() + " - " + ::to_string(bestWord.get_letter_points() +
                                                                                       perpendicular_points(bestWord));
@@ -94,8 +94,8 @@ string HorizontalBoardReader::to_string() const {
     return buffer;
 }
 
-void HorizontalBoardReader::validate_words() {
-    for (auto & wordSet : wordSets) {
+void HorizontalScrabbleVectorizer::validate_words() {
+    for (auto & wordSet : answerSets) {
         for (auto& word: wordSet) {
             vector<LString> boardCpy = return_raw_board_with(word);
 
@@ -110,7 +110,7 @@ void HorizontalBoardReader::validate_words() {
                 vector<LString> colShards = column.break_into_frags();
 
                 for (const auto& shard : colShards) {
-                    if(shard.length() > 1 && answerSet.find(shard) == answerSet.end()) {
+                    if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
                         word.clear();
                     }
                 }
@@ -118,7 +118,7 @@ void HorizontalBoardReader::validate_words() {
                 vector<LString> rowShards = row.break_into_frags();
 
                 for (const auto& shard : rowShards) {
-                    if(shard.length() > 1 && answerSet.find(shard) == answerSet.end()) {
+                    if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
                         word.clear();
                     }
                 }
@@ -127,10 +127,10 @@ void HorizontalBoardReader::validate_words() {
     }
 }
 
-LString HorizontalBoardReader::update_best_word() {
+LString HorizontalScrabbleVectorizer::update_best_word() {
     int rowSubscript = 0;
     bestWord.clear();
-    for (auto & wordSet : wordSets) {
+    for (auto & wordSet : answerSets) {
         for (const auto& word: wordSet) {
             int wordPoints = points_of_word(word);
             int bestWordPoints = points_of_word(bestWord);
@@ -153,9 +153,9 @@ LString HorizontalBoardReader::update_best_word() {
     return bestWord;
 }
 
-void HorizontalBoardReader::validate_board() const{
-    if(answerSet.empty())
-        throw invalid_argument("Error in ScrabbleReader::validate_board() | unordered_map<LString> answerSet is empty.");
+void HorizontalScrabbleVectorizer::validate_board() const{
+    if(scrabbleWordSet.empty())
+        throw invalid_argument("Error in ScrabbleVectorizer::validate_board() | unordered_map<LString> scrabbleWordSet is empty.");
 
     for (int i = 0; i < 15; ++i) {
         LString row;
@@ -171,20 +171,20 @@ void HorizontalBoardReader::validate_board() const{
         vector<LString> colShards = column.break_into_frags();
 
         for (const auto& shard : colShards) {
-            if(shard.length() > 1 && answerSet.find(shard) == answerSet.end())
+            if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
                 throw invalid_argument("Invalid vertical Word in Data/Board.csv | " + shard.to_string());
         }
 
         vector<LString> rowShards = row.break_into_frags();
 
         for (const auto& shard : rowShards) {
-            if(shard.length() > 1 && answerSet.find(shard) == answerSet.end())
+            if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
                 throw invalid_argument("Invalid horizontal Word in Data/Board.csv | " + shard.to_string());
         }
     }
 }
 
-vector<string> HorizontalBoardReader::return_formatted_perkBoard() const {
+vector<string> HorizontalScrabbleVectorizer::return_formatted_perkBoard() const {
     vector<string> toReturn;
     for (int i = 0; i < 15; ++i) {
         string column;
@@ -196,7 +196,7 @@ vector<string> HorizontalBoardReader::return_formatted_perkBoard() const {
     return toReturn;
 }
 
-vector<LString> HorizontalBoardReader::return_formatted_board_with(const LString &toPrint) const {
+vector<LString> HorizontalScrabbleVectorizer::return_formatted_board_with(const LString &toPrint) const {
     vector<LString> boardCpy = board;
     int toPrintX = toPrint.read_at(0).x;
     int toPrintY = toPrint.read_at(0).y;
@@ -212,7 +212,7 @@ vector<LString> HorizontalBoardReader::return_formatted_board_with(const LString
     return boardCpy;
 }
 
-vector<string> HorizontalBoardReader::return_formatted_char_board() const {
+vector<string> HorizontalScrabbleVectorizer::return_formatted_char_board() const {
     vector<string> boardCpy;
     for (int i = 0; i < 15; ++i) {
         string column;
@@ -224,15 +224,15 @@ vector<string> HorizontalBoardReader::return_formatted_char_board() const {
     return boardCpy;
 }
 
-vector<vector<LString>> HorizontalBoardReader::return_formatted_wordSets() const {
+vector<vector<LString>> HorizontalScrabbleVectorizer::return_formatted_answerSets() const {
     vector<vector<LString>> toReturn;
-    for (const auto & wordSet : wordSets) {
+    for (const auto & wordSet : answerSets) {
         toReturn.push_back(wordSet);
     }
     return toReturn;
 }
 
-void HorizontalBoardReader::set_board(vector<LString> passed) {
+void HorizontalScrabbleVectorizer::set_board(vector<LString> passed) {
     board = passed;
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
