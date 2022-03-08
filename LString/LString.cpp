@@ -448,35 +448,35 @@ bool LString::row_is_descendent_of(const LString& hand, const LString& row, LStr
     int sumMap[123];
     int letterCount[123];
     int blankCount = 0;
-    for (int i = 0; i < 123; ++i)
-        sumMap[i] = letterCount[i] = 0;
+    for (int i = 0; i < 123; ++i) {
+        sumMap[i] = 0;
+        letterCount[i] = 0;
+    }
 
     for (int i = 0; i < hand.eleCount; ++i) {
         if(hand.read_at(i) == '?')
             blankCount++;
         sumMap[abs(toupper(hand.read_at(i).LData))]++;
     }
-    for (int i = 0; i < row.eleCount; ++i)
+    for (int i = word[0].x; i < word.length() + word[0].x; ++i)
         sumMap[abs(toupper(row.read_at(i).LData))]++;
 
-    for (int i = 0; i < eleCount; ++i)
+    for (int i = word[0].x; i < word.length() + word[0].x; ++i)
         letterCount[abs(toupper(data[i].LData))]++;
 
     sumMap[32] = 0;
     letterCount[32] = 0;
 
-    for (int i = 0; i < eleCount; ++i) {
-        char curChar = data[i].LData;
+    for (int i = word[0].x; i < word.length() + word[0].x; ++i){
+        char curChar = abs(toupper(data[i].LData));
         if(sumMap[curChar] < letterCount[curChar] && blankCount == 0)
             return false;
         else if (sumMap[curChar] < letterCount[curChar]) {
-            if(data[i].x >= word[0].x) {
-                word[i - word[0].x].val = 0;
-                word[i - word[0].x].isBlank = true;
-                blankCount--;
-                letterCount[curChar]--;
-                i--;
-            }
+            word[i - word[0].x].val = 0;
+            word[i - word[0].x].isBlank = true;
+            blankCount--;
+            letterCount[curChar]--;
+            i--;
         }
     }
 
