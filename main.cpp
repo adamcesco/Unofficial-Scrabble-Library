@@ -5,29 +5,6 @@
 
 //TODO: erase premium tile values when word is placed into the board
 
-void printAnswerSet(VerticalBoardReader vr, HorizontalBoardReader hr){
-    vector<string> allWords;
-
-    cout << "All vertical words:" << endl;
-    for (int j = 0; j < 15; ++j) {
-        vector<LString> tempV = vr.return_word_set_of(j);
-        for (auto & k : tempV) {
-            if(!k.is_empty())
-                cout << k.to_string() << endl;
-        }
-    }
-
-    cout << "All horizontal words:" << endl;
-    for (int j = 0; j < 15; ++j) {
-        vector<LString> tempH = hr.return_word_set_of(j);
-        for (auto & k : tempH) {
-            if(!k.is_empty())
-                cout << k.to_string() << endl;
-        }
-    }
-}
-
-
 int main(int argc, char* argv[]){
     if(argc == 1) {
         Catch::Session().run();
@@ -48,18 +25,16 @@ int main(int argc, char* argv[]){
     vReader.print_formatted_board();
     vReader.clear_wordSets();
 
-//    vReader.search_for_intersecting_words();
-//    vReader.search_for_tangential_words();
-    vReader.search_for_all_words();
+    vReader.search_for_intersecting_words();
+    vReader.search_for_tangential_words();
+//    vReader.search_for_all_words();
 
-//    hReader.search_for_intersecting_words();
-//    hReader.search_for_tangential_words();
-    hReader.search_for_all_words();
+    hReader.search_for_intersecting_words();
+    hReader.search_for_tangential_words();
+//    hReader.search_for_all_words();
 
     vReader.validate_words();
     hReader.validate_words();
-
-    printAnswerSet(vReader, hReader);
 
     vReader.update_best_word();
     hReader.update_best_word();

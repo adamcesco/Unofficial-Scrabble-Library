@@ -202,16 +202,18 @@ vector<LString> ScrabbleReader::return_all_fitted_tangential_words(LString& word
     word.add_to_x_vals(15 - word.length());
     for (int i = 0; i < 15 - word.length(); ++i) {
         for (int j = 15 - 1; j >= 15 - word.length(); --j) {
-            rowCpy[j - i] = word[(word.length() - 1) - ((15 - 1) - j)];
+            if(rowCpy[j - i] == ' ')
+                rowCpy[j - i] = word[(word.length() - 1) - ((15 - 1) - j)];
         }
 
         bool skip = false;
         for (int j = 0; j < word.length(); ++j) {
-            if(board[rowSubscript][j + word[0].x] != ' ') {
+            if(board[rowSubscript][j + word[0].x] != ' '){
                 skip = true;
+                break;
             }
         }
-        if(skip) {
+        if(skip || rowCpy == board[rowSubscript]) {
             rowCpy = board[rowSubscript];
             word.add_to_x_vals(-1);
             continue;
@@ -302,7 +304,8 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
     word.add_to_x_vals(15 - word.length());
     for (int i = 0; i < 15 - word.length(); ++i) {
         for (int j = 15 - 1; j >= 15 - word.length(); --j) {
-            rowCpy[j - i] = word[(word.length() - 1) - ((15 - 1) - j)];
+            if(rowCpy[j - i] == ' ')
+                rowCpy[j - i] = word[(word.length() - 1) - ((15 - 1) - j)];
         }
 
         bool skip = false;
