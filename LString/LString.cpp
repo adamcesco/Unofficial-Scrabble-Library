@@ -629,16 +629,6 @@ bool LString::is_descendent_of(const LString &hand) {
     handMap[32] = 0;
     letterCount[32] = 0;
 
-    for (int i = 0; i < 123; ++i) {
-        if(handMap[i] < letterCount[i] && blankCount == 0)
-            return false;
-        else if (handMap[i] < letterCount[i]) {
-            blankCount--;
-            letterCount[i]--;
-            i--;
-        }
-    }
-
     for (int i = 0; i < eleCount; ++i) {
         char curChar = data[i].LData;
         if(handMap[curChar] < letterCount[curChar] && blankCount == 0)
