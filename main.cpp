@@ -46,13 +46,13 @@ int main(int argc, char* argv[]){
     vReader.print_formatted_board();
     vReader.clear_wordSets();
 
-//    vReader.search_for_intersecting_words();
-//    vReader.search_for_tangential_words();
-    vReader.search_for_all_words();
+    vReader.search_for_intersecting_words();
+    vReader.search_for_tangential_words();
+//    vReader.search_for_all_words();
 
-//    hReader.search_for_intersecting_words();
-//    hReader.search_for_tangential_words();
-    hReader.search_for_all_words();
+    hReader.search_for_intersecting_words();
+    hReader.search_for_tangential_words();
+//    hReader.search_for_all_words();
 
     vReader.validate_words();
     hReader.validate_words();

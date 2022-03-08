@@ -472,11 +472,11 @@ bool LString::row_is_descendent_of(const LString& hand, const LString& row, LStr
         else if (sumMap[curChar] < letterCount[curChar]) {
             if(data[i].x >= word[0].x) {
                 word[i - word[0].x].val = 0;
-                data[i].isBlank = true;
+                word[i - word[0].x].isBlank = true;
+                blankCount--;
+                letterCount[curChar]--;
+                i--;
             }
-            blankCount--;
-            letterCount[curChar]--;
-            i--;
         }
     }
 

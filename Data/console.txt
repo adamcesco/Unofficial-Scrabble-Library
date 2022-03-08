@@ -29,96 +29,206 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
 
 
 
-        APE
+        FOP
+        PICA
+        PIAL
+        PEP
+        PEP
+        GAP
+        UPAS
+        APOD
+        PUMA
+        PHI
+        DOPE
+        PADS
+        PUS
+        YAUP
+        SUP
+        LIP
+        QUIP
+        JAUP
+        LAP
+        UNIPOD
+        PUT
+        WAUL
+        ULU
+        WAIL
+        SOUL
+        SLOP
+        SLID
+        WOULD
+        SLIP
+        TAIL
+        PLUS
+        PLUM
+        PLOY
+        PLOW
+        PLOP
+        PLODS
+        PLOD
+        PLIE
+        PLEAD
+        PLEA
+        PLAY
+        PLAID
+        OXLIP
+        OWL
+        ULNAD
+        SLAP
+        OLEA
+        OLDY
+        OLD
+        OILY
+        OILCUP
+        PLICA
+        PLED
+        NOIL
+        MOULD
+        SAUL
+        OLE
+        MAUL
+        MAIL
+        LUV
+        LUNA
+        LUM
+        LUG
+        LUDE
+        LOX
+        LOW
+        LOUR
+        LOUP
+        LOT
+        LOPE
+        LOIN
+        LODE
+        LOCI
+        LOCA
+        LOAN
+        LOAM
+        LOAF
+        LO
+        LITU
+        ELD
+        WOALD
+        OLDS
+        LIMA
+        DEAL
+        DAHL
+        LIEU
+        FLUID
+        MOIL
+        DOBLA
+        GLIA
+        OIL
+        ALS
+        PLOT
+        LORD
+        OLIO
+        CLOUD
+        CLAD
+        LIS
+        CLOD
+        ALDOL
+        CLAP
+        ILIAD
+        ULVA
+        LAV
+        LADY
+        FLU
+        ILEA
+        AULIC
+        LUMP
+        TOIL
+        AILED
+        BOIL
+        LION
+        LOP
+        ALA
+        ALOUD
+        PLY
+        ALOIN
+        ULPAN
+        LOUD
+        LOOP
+        DEIL
+        LIDO
+        LAM
+        YAULD
+        AAL
+        LID
+        ALOE
+        JAIL
+        AILS
+        ALP
+        ALUM
+        ALE
+        ALIT
+        LOO
+        LIDS
+        BAIL
+        ALMUD
+        ALOW
+        ALT
+        LIT
+        LOUT
+        PLAN
+        AL
+        ALIF
+        AWL
+        LAX
+        LIED
+        CLOP
+        PLAT
+        LEA
+        OLDIE
+        ALLOD
+        ALLOD
+        DAILY
+        OILS
+        SLOID
+        LEAD
+        LAD
+        ALTO
+        PLAIT
         LOG
         CLIP
-        AMIDO
-        PAS
         ALGID
         LISP
         LOTI
         BLIP
-        DIDO
-        JIAO
         LAIR
         PLUG
         OLLA
         OLLA
-        DO
-        DO
         LOPS
         ALCID
-        PILAU
         ILKA
         LOB
-        PINA
-        DITA
         LAIC
         DOILY
         DOLL
-        DOM
-        DON
-        DOS
-        DOUM
-        DOUMA
-        DOURA
-        PITA
-        PODS
-        ABO
         AULD
-        DUE
-        DULIA
-        DUN
-        DUPE
-        DUPS
-        DURA
         LAMP
-        NO
-        NO
-        CAPO
         GAOL
-        PODIA
         AIL
         LATI
-        OHIA
         LAR
-        DAH
         LAT
-        ODS
         FLAP
-        FA
-        AZO
-        FIDO
         ULAN
         SOIL
-        PAX
         FLIP
         FLOP
         LUAU
         ALB
         LEAP
         LINO
-        GOA
-        GOA
-        SOU
-        SOU
-        ION
-        AIDS
-        DUO
-        PICA
         LIMO
-        UPAS
-        AIS
         LAG
-        US
         GLAD
         GLOP
-        GO
-        GO
         GOAL
         PLAIN
-        PUMA
-        OBIA
         HAIL
         HAPLOID
         LARD
@@ -127,37 +237,21 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         ALL
         ALL
         SAIL
-        WO
-        WO
         LOTA
-        DUOS
         ALPS
         LEI
         LADS
-        DIVA
-        IDS
         ILIA
         ILK
-        DOPE
-        PADS
         ALSO
         LOAD
-        PUS
         ULNA
-        DAGO
-        IOTA
         LIE
-        IS
         LIP
         LAPS
-        JUDO
         LIB
-        KA
         LUX
         OILED
-        KOA
-        LA
-        LA
         LA
         LAB
         LAC
@@ -182,6 +276,243 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         PLIED
         LIPS
         LIRA
+        YOU
+        YA
+        YA
+        VIA
+        UTA
+        UPDOS
+        UPDO
+        UDOS
+        TAO
+        UDO
+        TO
+        TO
+        SPADO
+        SPA
+        SO
+        SO
+        VAU
+        SAU
+        SAU
+        RADIO
+        PURDA
+        PUPA
+        PUNA
+        PUN
+        PRAU
+        POX
+        PYA
+        PROA
+        POM
+        POIS
+        PODIUM
+        PISO
+        PIS
+        PION
+        PIKA
+        PIE
+        PIAS
+        PIANO
+        PIAN
+        PIA
+        PE
+        SODA
+        ZOA
+        PAM
+        PADIS
+        PA
+        OX
+        OW
+        PATIO
+        OUDS
+        UPON
+        OS
+        OPUS
+        OPIUM
+        OPE
+        OM
+        OIDIA
+        ODIUM
+        ODE
+        UNDO
+        TAU
+        NIPA
+        PULA
+        OKA
+        POILU
+        MIAOU
+        MA
+        MA
+        PUJA
+        LO
+        LO
+        DIPSO
+        PAN
+        PRO
+        ORA
+        UN
+        DAPS
+        DAIS
+        DADO
+        XU
+        RIA
+        PIOUS
+        DE
+        DE
+        NU
+        OVA
+        DURO
+        DOL
+        DUMA
+        AW
+        CODA
+        PIMA
+        FOU
+        DIE
+        MOA
+        PEA
+        PRAO
+        CIAO
+        DATO
+        QUA
+        HAO
+        DOE
+        AUTO
+        DIAZO
+        AUDIO
+        IDEA
+        UM
+        MU
+        BOA
+        AN
+        AS
+        DOUX
+        DAM
+        AIDE
+        AI
+        EAU
+        OCA
+        ADS
+        ADIOS
+        PUDS
+        KUDO
+        MO
+        MO
+        DANIO
+        YO
+        YO
+        BIO
+        PIU
+        BO
+        BO
+        AA
+        AA
+        LIDO
+        ADOS
+        ADO
+        AM
+        AGO
+        APODS
+        OE
+        DOPAS
+        UPO
+        UPS
+        AGIO
+        TA
+        TA
+        ADIEU
+        AMU
+        HO
+        HO
+        DIS
+        AL
+        AX
+        AZIDO
+        HA
+        HA
+        JO
+        JO
+        ODEA
+        AVO
+        NA
+        NA
+        DOPA
+        DIPS
+        BA
+        BA
+        OPS
+        FADO
+        ON
+        DONA
+        AE
+        APE
+        AMIDO
+        PAS
+        DIDO
+        JIAO
+        DO
+        DO
+        PILAU
+        PINA
+        DITA
+        DOM
+        DON
+        DOS
+        DOUM
+        DOUMA
+        DOURA
+        PITA
+        PODS
+        ABO
+        DUE
+        DULIA
+        DUN
+        DUPE
+        DUPS
+        DURA
+        NO
+        NO
+        CAPO
+        PODIA
+        OHIA
+        DAH
+        ODS
+        FA
+        AZO
+        FIDO
+        PAX
+        GOA
+        GOA
+        SOU
+        SOU
+        ION
+        AIDS
+        DUO
+        PICA
+        UPAS
+        AIS
+        US
+        GO
+        GO
+        PUMA
+        OBIA
+        WO
+        WO
+        DUOS
+        DIVA
+        IDS
+        DOPE
+        PADS
+        PUS
+        DAGO
+        IOTA
+        IS
+        JUDO
+        KA
+        KOA
+        LA
+        LA
         ANOA
         AW
         AWA
@@ -255,11 +586,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         AVA
         ANI
         ANA
-        YA
-        XI
-        VIA
-        UTA
-        UPDO
         TWO
         TUT
         TURD
@@ -289,7 +615,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         TIDY
         TIDE
         TI
-        TI
         THO
         THIO
         TOUT
@@ -299,8 +624,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         TAUT
         TAPE
         TAP
-        TAP
-        TAO
         TAO
         TAN
         TAM
@@ -308,20 +631,123 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         TAE
         TACO
         TABU
-        UDO
-        TO
         TO
         TUP
-        UNAI
-        SPADO
-        SPA
-        SO
         TAV
         TUPS
         TIE
         TAR
         TEPA
         TIED
+        TODS
+        TOPE
+        TAIL
+        TAUS
+        TAMP
+        PAR
+        PAISA
+        PAC
+        PA
+        TOPH
+        TIPS
+        THOU
+        TOIT
+        OATS
+        OAT
+        TAU
+        NIPA
+        TRIP
+        MA
+        DATA
+        TAD
+        PAPA
+        TUMP
+        TIN
+        TARP
+        TOLD
+        TAB
+        TAJ
+        TRAD
+        TIRO
+        PIMA
+        TORI
+        TROP
+        EAT
+        OATH
+        TOD
+        TOIL
+        AR
+        TIC
+        ATT
+        TIT
+        TAX
+        TAPA
+        TAPA
+        TOW
+        ATOP
+        TOPI
+        TAT
+        AT
+        AMA
+        ATOM
+        AHA
+        TA
+        TA
+        ATOPY
+        TOAD
+        ATE
+        TUIS
+        HA
+        AVO
+        NA
+        DOPA
+        TIP
+        DONA
+        TAOS
+        TAW
+        TAIN
+        TUB
+        TUNA
+        TOLA
+        ATAP
+        PINA
+        DITA
+        TODY
+        PITA
+        TWA
+        TAG
+        ETA
+        ATRIP
+        TYPO
+        TIPI
+        THUD
+        TUI
+        TRIO
+        TOM
+        TROD
+        TADS
+        TAS
+        TARO
+        ETUI
+        IOTA
+        KAPA
+        TUX
+        ANA
+        TAPS
+        YA
+        XI
+        VIA
+        UTA
+        UPDO
+        TI
+        TAP
+        TAO
+        UDO
+        TO
+        UNAI
+        SPADO
+        SPA
+        SO
         RADIO
         PURI
         PURDA
@@ -330,14 +756,10 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         PULI
         PSOAI
         PSI
-        TODS
-        TOPE
         PYA
-        TAIL
         PROA
         POM
         POI
-        TAUS
         PIT
         PISO
         PIN
@@ -347,42 +769,27 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         PIA
         PI
         PFUI
-        TAMP
         PE
         SODA
         ZOA
-        PAR
         PAM
-        PAISA
         PADRI
         PADI
-        PAC
         PA
-        PA
-        TOPH
         PATIO
         OPIUM
         OPE
         OM
-        TIPS
-        THOU
         OIDIA
         ODIUM
         ODE
-        TOIT
         UNDO
-        OATS
-        OAT
-        TAU
         NODI
         NIPA
-        NIPA
-        TRIP
         PULA
         NAOI
         OKA
         MODI
-        MA
         MA
         PUJA
         LO
@@ -391,39 +798,22 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         ORA
         WADI
         QUAI
-        DATA
         DADO
-        TAD
-        PAPA
-        TUMP
         DUOMI
         CADI
         RIA
-        TIN
         DE
-        TARP
         OVA
-        TOLD
         DUI
-        TAB
         DURO
         DUMA
         CODA
-        TAJ
-        TRAD
-        TIRO
         PIMA
-        PIMA
-        TORI
-        TROP
-        EAT
         DIE
         MOA
         PEA
         PRAO
         CIAO
-        OATH
-        TOD
         DATO
         QUA
         OKAPI
@@ -431,32 +821,21 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         DOE
         AUTO
         DIAZO
-        TOIL
         AUDIO
-        AR
-        TIC
         IDEA
         UM
-        ATT
-        TIT
         BOA
-        TAX
-        TAPA
-        TAPA
         AN
         DAM
-        TOW
         AIDE
         AMI
         AI
         OCA
-        ATOP
         KUDO
         MO
         DANIO
         YO
         BIO
-        TOPI
         TOPI
         BO
         AA
@@ -466,71 +845,43 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         AM
         AM
         AGO
-        TAT
-        AT
         OE
-        AMA
         OBI
         BI
         UPO
-        ATOM
-        AHA
         AGIO
         TA
-        TA
-        TA
-        ATOPY
-        TOAD
-        ATE
-        TUIS
         HO
         AZIDO
         DIM
         HA
-        HA
         JO
         ODEA
         AVO
-        AVO
         NA
-        NA
-        DOPA
         DOPA
         BA
         FADO
-        TIP
         DONA
-        DONA
-        TAOS
-        TAW
         AE
         APE
         SI
         AMIDO
         MI
-        TAIN
-        TUB
         DIDO
         NIP
         JIAO
-        TUNA
         DO
-        TOLA
-        ATAP
         PARDI
-        PINA
         PINA
         DIT
         DITA
-        DITA
-        TODY
         AH
         DOM
         DON
         DOUM
         DOUMA
         DOURA
-        PITA
         PITA
         ABO
         DUCI
@@ -540,56 +891,36 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         DURA
         NO
         CAPO
-        TWA
         KADI
-        TAG
         PODIA
         AIM
         OHIA
-        ETA
-        ATRIP
-        TYPO
         FA
         AZO
         FIDO
-        TIPI
         GOA
-        THUD
-        TUI
         TUI
         DUO
-        TRIO
         PICA
         SADI
         GO
         PUMA
         OBIA
-        TOM
         ANI
         WO
         HI
         PHI
-        TROD
         DIVA
         DOPE
-        TADS
         DAGO
-        TAS
-        TARO
-        ETUI
-        IOTA
         IOTA
         JUDO
         KA
-        KAPA
-        TUX
         GADI
         KOA
         KOI
         LA
         LI
-        ANA
-        TAPS
         SABLES
         SABLED
         LOSABLE
@@ -617,9 +948,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         LAPS
         LED
         ZIT
-        YOD
-        YID
-        YA
         WAIT
         VITA
         UTS
@@ -646,25 +974,15 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         SPOUT
         SPOT
         SPAIT
-        SPA
-        SO
         SIT
-        SAU
         SATI
-        SAP
-        SAID
         SPAT
-        ROUP
-        ROD
         TIE
         RUT
         RIOT
         RAPT
-        RAP
-        RAD
         QUOIT
         QUIT
-        SOUP
         PUTTI
         PUTTI
         PRAT
@@ -673,7 +991,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         POUT
         PORT
         PODITE
-        SOD
         PIVOT
         PIT
         PINTA
@@ -690,7 +1007,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         PATS
         PAT
         PAST
-        SODA
         PART
         PANT
         OUTS
@@ -698,16 +1014,10 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         PATIO
         OUT
         OUST
-        OS
         ORT
-        OR
         OUTDO
         OPIATE
         OOT
-        OIDIA
-        ODIUM
-        ODIC
-        ODE
         TOIT
         OBIT
         OATS
@@ -717,300 +1027,173 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         NOTA
         NOT
         POST
-        NODI
-        NIPA
-        NAP
-        NAOI
         PRUTA
         OPUNTIA
         MOT
         MOAT
         PUNDIT
         MAT
-        SOP
         LOT
-        DIOL
         WAT
         DIMOUT
         DIET
         DICTA
-        DIB
-        ORA
         PANDIT
         PUTT
         PUTT
         DAUTIE
         DAWT
-        DAUB
         DATA
-        DAPS
-        DAP
-        DAIS
-        DADO
         DACOIT
         RAT
         CUT
-        ID
         INPUT
         IKAT
         BOUT
-        IN
         COATI
         ADEPT
         KAT
-        RIA
         PLAUDIT
-        DE
-        NU
         DAVIT
-        DIP
         DUST
         DITTO
-        DUI
-        OD
         ABOUT
         DAKOIT
         PITH
         KAPUT
-        DURO
         DEPOT
-        DOL
         PLOT
-        DUMA
         PATE
-        DAY
         FAT
         PHAT
         RATIO
         EAT
         DAUTS
-        DIE
         QAT
         DIQUAT
         DUCT
-        OAR
         APORT
         OATH
-        SPUD
-        DATO
         IT
         DICOT
         ADROIT
-        SIP
         NIT
         COT
-        DOE
         DART
         DINT
         ADIT
-        ADIT
         DIVOT
         CAPUT
-        AIR
-        DIAL
-        AR
         DATE
-        ARID
         ANTI
         ANT
-        DAW
-        IDEA
-        DAD
         ATT
         ATT
         TIT
-        AID
-        IDOL
         JOT
         PUNT
-        AN
-        DAK
-        AS
         KIT
-        DOUX
         ABUT
-        DAM
-        ADZ
-        AIDE
-        AI
         ADMIT
-        ADS
-        ADIOS
         AUDITS
-        ADD
         ADAPT
         AUDIT
         DHOTI
         MUT
-        YO
         DIRT
-        NOD
         ADULT
         ART
-        DID
-        AA
         ADOPTS
-        ADOS
-        ADO
         MAUT
         SOT
         TAT
         AT
         ROT
         OPT
-        DAG
-        DAMP
         TA
-        ADOPT
         ADOPT
         WIT
         QUOTA
         AITS
         DAFT
-        ADIEU
-        RIP
         ALIT
-        AND
         AGOUTI
         DOTE
         BIT
         IDIOT
-        AIN
         ATE
         PHOT
         ALT
         LIT
         LOUT
         AIRT
-        HO
-        DIS
         PINOT
-        DIM
-        ODEA
         DRIPT
-        DORP
         AUNT
         PLAT
         BAIT
         COAT
         BAT
-        DOW
-        DIG
-        NA
         PITS
-        DAL
-        DAB
-        DOPA
-        DIPS
         OSTIA
-        ASP
-        SOAP
-        ON
         PUTTO
         AFT
         POT
         POTS
         PUTS
         POSIT
-        DONA
         GOT
         PAINT
         BIOTA
         PLAIT
         ADUST
-        AE
-        SI
-        DIN
         DAUNT
         LOTI
         BOT
         BOTA
-        SAD
         SPIT
-        DIDO
-        NIP
-        AROID
-        DO
         OMIT
         GOAT
         DHUTI
-        AD
-        DIPT
         DIPT
         GAT
         GUT
         DIT
-        DIT
-        DITA
         DITA
         DITE
         DITS
         PIETA
-        DOC
-        DOG
-        RID
         DOLT
-        DOM
-        DON
-        RAID
         DONUT
         ADITS
         DOPANT
-        DOPY
-        DOR
-        DOS
         DOST
-        DOT
         DOT
         DOTH
         DOTS
         DOUBT
-        DOUM
-        DOUR
         UPDATE
         PITA
-        ROAD
         APT
         DRAT
-        DRIP
         AIT
         DROIT
-        DROP
         DROPT
-        DUAD
-        DUAL
-        DUB
         DUCAT
-        DUCI
-        DUD
-        DUE
         DUET
-        DUG
-        DUIT
         DUIT
         DUITS
-        DUMP
-        DUN
         DUNT
-        DUP
-        DUPE
-        DUPS
-        DURA
         PATH
         DOAT
-        DOAT
-        NO
         TWA
         EDIT
         DOATS
         DOITS
         LATI
         OPTS
-        DAH
-        ORAD
         ETA
         LAT
-        ODS
         DOTY
         INAPT
         ROTA
@@ -1018,87 +1201,300 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         POULT
         SAT
         DAUT
-        DAUT
         FIT
         PICOT
-        SOU
         BOAT
         POINT
-        ION
-        AIDS
-        DUO
         ROTI
         TRIO
         GAIT
         PACT
-        ODD
-        AIS
-        SADI
         PITY
         GOUT
         JOTA
         CAT
         WOT
         ACT
-        ANI
         HAT
         HAUT
         GIT
-        WO
         LOTA
-        DUOS
         HIT
         JUT
         HOT
         HUT
-        DIVA
-        IDS
         BUT
         ODIST
-        DOPE
         DUTY
-        DAGO
         OFT
         COAPT
-        SUP
         IODATE
         IOTA
-        IS
         ROUT
         ITS
         POET
-        DOIT
         DOIT
         DATTO
         PUT
         YOD
         YID
+        YA
+        SPA
+        SO
+        SAU
+        SAP
+        SAID
+        ROUP
+        ROD
+        RAP
+        RAD
+        SOUP
+        SOD
+        SODA
+        OS
+        OR
+        OIDIA
+        ODIUM
+        ODIC
+        ODE
+        NODI
+        NIPA
+        NAP
+        NAOI
+        SOP
+        DIOL
+        DIB
+        ORA
+        DAUB
+        DAPS
+        DAP
+        DAIS
+        DADO
+        ID
+        IN
+        RIA
+        DE
+        NU
+        DIP
+        DUI
+        OD
+        DURO
+        DOL
+        DUMA
+        DAY
+        DIE
+        OAR
+        SPUD
+        DATO
+        SIP
+        DOE
+        ADIT
+        AIR
+        DIAL
+        AR
+        ARID
+        DAW
+        IDEA
+        DAD
+        AID
+        IDOL
+        AN
+        DAK
+        AS
+        DOUX
+        DAM
+        ADZ
+        AIDE
+        AI
+        ADS
+        ADIOS
+        ADD
+        YO
+        NOD
+        DID
+        AA
+        ADOS
+        ADO
+        DAG
+        DAMP
+        ADOPT
+        ADIEU
+        RIP
+        AND
+        AIN
+        HO
+        DIS
+        DIM
+        ODEA
+        DORP
+        DOW
+        DIG
+        NA
+        DAL
+        DAB
+        DOPA
+        DIPS
+        ASP
+        SOAP
+        ON
+        DONA
+        AE
+        SI
+        DIN
+        SAD
+        DIDO
+        NIP
+        AROID
+        DO
+        AD
+        DIPT
+        DIT
+        DITA
+        DOC
+        DOG
+        RID
+        DOM
+        DON
+        RAID
+        DOPY
+        DOR
+        DOS
+        DOT
+        DOUM
+        DOUR
+        ROAD
+        DRIP
+        DROP
+        DUAD
+        DUAL
+        DUB
+        DUCI
+        DUD
+        DUE
+        DUG
+        DUIT
+        DUMP
+        DUN
+        DUP
+        DUPE
+        DUPS
+        DURA
+        DOAT
+        NO
+        DAH
+        ORAD
+        ODS
+        DAUT
+        SOU
+        ION
+        AIDS
+        DUO
+        ODD
+        AIS
+        SADI
+        ANI
+        WO
+        DUOS
+        DIVA
+        IDS
+        DOPE
+        DAGO
+        SUP
+        IS
+        DOIT
         YEA
+        TED
+        TEA
+        WAE
+        SOAPED
+        TEPA
+        PYE
+        PLEA
+        PEW
+        PERIOD
+        PER
+        PEN
+        PED
+        PE
+        OPTED
+        OPIATED
+        OPIATE
+        OPERA
+        OPEN
+        OPED
+        OPE
+        ONE
+        OLEA
+        OKE
+        OHED
+        OBE
+        PLED
+        OLE
+        MEDIA
+        MED
+        PERI
+        MAE
+        PEDALO
+        PEH
+        EPOS
+        PEDAL
+        PEA
+        AERO
+        APED
+        DYE
+        ANE
+        ABED
+        AYE
+        IMPED
+        ALE
+        ATE
+        LEA
+        BED
+        DIAPER
+        AE
+        APE
+        KEPI
+        HEP
+        KEA
+        ED
+        EDIT
+        EPIC
+        EPIZOA
+        EPODE
+        PEPO
+        FED
+        IDLE
+        PEP
+        HAED
+        APER
+        ERA
+        NAE
+        TEPID
+        HAE
+        KEP
+        YEP
+        LED
+        YOD
+        YID
         XI
         VIA
         WOP
         UPDO
         TOP
         TI
-        TED
-        TEA
         TAO
         UDO
         TO
         UNAI
-        WAE
         VOID
-        SOAPED
         SO
         SAPID
         SAID
         ROD
-        TEPA
         YIP
         RADIO
         QUID
         PYOID
-        PYE
         PURI
         PULI
         PSI
@@ -1110,7 +1506,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         POI
         SOD
         PLOD
-        PLEA
         PLAID
         PISO
         PIP
@@ -1121,13 +1516,7 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         PIA
         PI
         PFUI
-        PEW
-        PERIOD
-        PER
-        PEN
         PED
-        PED
-        PE
         PE
         ZOA
         PAIN
@@ -1153,29 +1542,18 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         OR
         OR
         OPUS
-        OPTED
         OPIUM
-        OPIATED
-        OPIATE
-        OPERA
-        OPEN
         OPED
         OPED
-        OPED
-        OPE
         OPE
         OPE
         OPAL
         OPAH
-        ONE
         OM
         OM
-        OLEA
         OLD
-        OKE
         OIDIA
         OIDIA
-        OHED
         OF
         OF
         ODIUM
@@ -1183,20 +1561,16 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         ODE
         ODE
         UNDO
-        OBE
         OAT
         OAF
-        PLED
         NODI
         NAOI
         OKA
         MOP
         MODI
         MOD
-        OLE
         MID
         PAVID
-        MEDIA
         SOP
         PAID
         MA
@@ -1206,7 +1580,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         ORA
         WADI
         KOP
-        MED
         POH
         HIP
         QUAI
@@ -1214,15 +1587,10 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         ID
         ID
         MAID
-        PERI
-        MAE
         IN
         IN
         CADI
         QUOD
-        PEDALO
-        PEH
-        EPOS
         RIA
         DE
         COP
@@ -1237,10 +1605,8 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         AW
         BIPOD
         DIE
-        PEDAL
         MOA
         OAR
-        PEA
         PEA
         PRAO
         CIAO
@@ -1254,7 +1620,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         AUTO
         AUTO
         AB
-        AERO
         ADIT
         AUDIO
         AUDIO
@@ -1282,11 +1647,8 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         AN
         APED
         APED
-        APED
         AS
         LOP
-        DYE
-        ANE
         ADZ
         AIDE
         AIDE
@@ -1308,16 +1670,13 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         DANIO
         AUK
         YO
-        ABED
         NOD
         AUDIOS
         ACID
         ACID
-        AYE
         BIO
         BIO
         TOPI
-        IMPED
         PAGOD
         BO
         DID
@@ -1349,13 +1708,11 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         AMID
         ALP
         ADOPT
-        ALE
         ADIEU
         RIP
         AND
         AIN
         AIN
-        ATE
         AG
         AMU
         HO
@@ -1373,7 +1730,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         AVO
         AVO
         CAID
-        LEA
         DOW
         NA
         POD
@@ -1381,19 +1737,15 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         ASP
         FADO
         TIP
-        BED
         ON
         ON
         ON
         BID
-        DIAPER
-        AE
         AE
         AE
         OP
         OP
         OP
-        APE
         APE
         APE
         SI
@@ -1409,7 +1761,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         AROID
         DO
         AD
-        KEPI
         DIT
         AH
         RID
@@ -1418,7 +1769,6 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         DON
         RAID
         DOR
-        HEP
         APT
         DRIP
         ABO
@@ -1433,12 +1783,9 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         DUPE
         NO
         CAPO
-        KEA
-        ED
         ED
         ED
         KADI
-        EDIT
         PODIA
         AIL
         AIM
@@ -1446,16 +1793,11 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         OHIA
         OHIA
         RAPID
-        EPIC
-        EPIZOA
-        EPODE
         ORAD
         PIC
         KIP
         POOD
-        PEPO
         ODS
-        FED
         BOD
         AZO
         AZO
@@ -1463,14 +1805,12 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         AMP
         FOP
         GOA
-        IDLE
         ION
         ION
         TUI
         AIDS
         DUO
         GUID
-        PEP
         ODD
         AIS
         SADI
@@ -1480,40 +1820,31 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
         APOD
         OBIA
         OBIA
-        HAED
         QAID
         ANI
         ANI
         WO
-        APER
         HI
         HID
-        ERA
         PHI
         HOD
-        NAE
         OAK
         IDS
         IF
         IF
-        TEPID
         DOPE
-        HAE
         DAGO
         IOTA
         IS
         LIP
         QUIP
         JUDO
-        KEP
         KID
         GADI
         KOA
         KOI
         LAID
-        YEP
         LI
-        LED
         UNFEARED
         AFEARED
         YA
@@ -2959,7 +3290,6 @@ All horizontal words:
         ADAGIO
         DADA
         AW
-        AW
         DAY
         FOU
         OAR
@@ -2971,7 +3301,6 @@ All horizontal words:
         HUP
         AUTO
         AURA
-        AB
         AB
         ADIT
         AUDIO
@@ -2988,7 +3317,6 @@ All horizontal words:
         APIAN
         AQUA
         APHID
-        AN
         AN
         DAK
         APED
@@ -3024,7 +3352,6 @@ All horizontal words:
         ADOS
         ADO
         PAP
-        AM
         AM
         AGO
         APODS
@@ -3085,7 +3412,6 @@ All horizontal words:
         ATAP
         PARDI
         AH
-        AH
         RAID
         DOUM
         APT
@@ -3129,6 +3455,11 @@ All horizontal words:
         ANA
         ANA
         PUT
+        AW
+        AB
+        AN
+        AM
+        AH
         PAYMASTER
         LOADMASTER
         MASTERS
@@ -3192,7 +3523,6 @@ All horizontal words:
         DEAL
         DEAIR
         DADO
-        ID
         DEY
         EGAD
         EPOS
@@ -3324,6 +3654,7 @@ All horizontal words:
         LEU
         LEUD
         EPHOD
+        ID
         WAR
         WAIR
         VAR
@@ -3611,17 +3942,7 @@ All horizontal words:
         JAR
         DOIT
         LIAR
-        YOU
         ULU
-        TAO
-        UDO
-        TO
-        SO
-        VAU
-        SAU
-        PROA
-        ZOA
-        TAU
         LUV
         LUM
         LUG
@@ -3629,38 +3950,17 @@ All horizontal words:
         LOW
         LOT
         LO
-        LO
         ELD
-        PRO
-        XU
-        NU
         ALS
         LIS
-        FOU
-        MOA
         ULVA
         LAV
         ILEA
-        QUA
-        HAO
-        DOE
-        MU
-        BOA
         LOP
         ALA
-        EAU
-        MO
-        YO
-        BIO
-        PIU
-        BO
-        ADO
         LAM
-        AGO
-        OE
         LID
         ALOE
-        UPO
         ALP
         ALUM
         ALE
@@ -3669,36 +3969,22 @@ All horizontal words:
         ALOW
         ALT
         LIT
-        AMU
-        HO
         AL
         ALIF
         LAX
-        JO
-        AVO
         LEA
         LAD
         ALTO
         LOG
-        DO
         ILKA
         LOB
-        ABO
-        DUE
-        NO
         LAR
         LAT
-        AZO
         ULAN
         ALB
-        GOA
-        SOU
-        DUO
         LAG
-        GO
         ILL
         ALL
-        WO
         ALPS
         LEI
         ILIA
@@ -3709,7 +3995,6 @@ All horizontal words:
         LIP
         LIB
         LUX
-        KOA
         LA
         LAB
         LAC
@@ -3721,6 +4006,52 @@ All horizontal words:
         LED
         LEU
         LIN
+        YOU
+        TAO
+        UDO
+        TO
+        SO
+        VAU
+        SAU
+        PROA
+        ZOA
+        TAU
+        LO
+        PRO
+        XU
+        NU
+        FOU
+        MOA
+        QUA
+        HAO
+        DOE
+        MU
+        BOA
+        EAU
+        MO
+        YO
+        BIO
+        PIU
+        BO
+        ADO
+        AGO
+        OE
+        UPO
+        AMU
+        HO
+        JO
+        AVO
+        DO
+        ABO
+        DUE
+        NO
+        AZO
+        GOA
+        SOU
+        DUO
+        GO
+        WO
+        KOA
         TED
         PLATER
         PLATEN
