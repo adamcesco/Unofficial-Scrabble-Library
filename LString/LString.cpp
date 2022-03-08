@@ -645,11 +645,21 @@ bool LString::is_descendent_of(const LString &hand) {
     return true;
 }
 
-LString& LString::convert_format_vertical_to_horizontal() {
+LString& LString::convert_vertical_format_to_horizontal() {
     for (int i = 0; i < eleCount; ++i) {
         int temp = data[i].x;
         data[i].x = 14 - data[i].y;
         data[i].y = temp;
+    }
+
+    return *this;
+}
+
+LString &LString::convert_horizontal_format_to_vertical() {
+    for (int i = 0; i < eleCount; ++i) {
+        int temp = data[i].x;
+        data[i].x = data[i].y;
+        data[i].y = 14 - temp;
     }
 
     return *this;
