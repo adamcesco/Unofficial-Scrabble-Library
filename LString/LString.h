@@ -162,7 +162,7 @@ public:
     bool is_descendent_of(const LString&);
     int get_letter_points() const;
     static int get_horizontal_points(string);
-    LString& xVals_to_subscript();
+    LString& set_x_vals_to_subscripts();
     LString& add_to_x_vals(int);
     LString& set_x_vals_equal_to(int);
     LString& set_y_vals_equal_to(int);

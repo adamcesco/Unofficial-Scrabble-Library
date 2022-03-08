@@ -198,7 +198,7 @@ vector<LString> ScrabbleReader::return_all_fitted_tangential_words(LString& word
 
     LString rowCpy = board[rowSubscript];
     vector<LString> toReturn;
-    word.xVals_to_subscript();
+    word.set_x_vals_to_subscripts();
     word.add_to_x_vals(15 - word.length());
     for (int i = 0; i < 15 - word.length(); ++i) {
         for (int j = 15 - 1; j >= 15 - word.length(); --j) {
@@ -247,7 +247,7 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
 
     LString rowCpy = board[rowSubscript];
     unordered_map<LString, LString, MyHashFunction> toReturn;
-    word.xVals_to_subscript();
+    word.set_x_vals_to_subscripts();
     word.add_to_x_vals(15 - word.length());
     for (int i = 0; i < 15 - word.length(); ++i) {
         for (int j = 15 - 1; j >= 15 - word.length(); --j) {
@@ -300,7 +300,7 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleReader::return_all_fitte
 
     LString rowCpy = board[rowSubscript];
     unordered_map<LString, LString, MyHashFunction> toReturn;
-    word.xVals_to_subscript();
+    word.set_x_vals_to_subscripts();
     word.add_to_x_vals(15 - word.length());
     for (int i = 0; i < 15 - word.length(); ++i) {
         for (int j = 15 - 1; j >= 15 - word.length(); --j) {

@@ -57,20 +57,20 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleReader]"){
     boardFile.close();
 
     char originalPerkBoard[15][15] =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
-                                {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
-                                {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
-                                {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
-                                {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
-                                {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
-                                {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
-                                {'3', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
-                                {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
-                                {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
-                                {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
-                                {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
-                                {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
-                                {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
-                                {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'}};
+                                        {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
+                                        {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
+                                        {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
+                                        {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
+                                        {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
+                                        {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
+                                        {'3', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
+                                        {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
+                                        {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
+                                        {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
+                                        {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
+                                        {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
+                                        {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
+                                        {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'}};
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             if(originalBoard[i][j].LData != ' ')
@@ -149,7 +149,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleReader]"){
     }
 }
 
-TEST_CASE("Testing the difference in word filtering between separated word filtration and combined word calculation", "[ScrabbleReader]"){
+TEST_CASE("Testing the difference in resulting word sets formed from different filtering methods (separated word filtration and combined word filtration)", "[ScrabbleReader]"){
     string hand = "POIAUD?";
 
     HorizontalBoardReader hReader(hand);
@@ -179,37 +179,41 @@ TEST_CASE("Testing the difference in word filtering between separated word filtr
     hReader2.search_for_all_words();
     vReader2.validate_words();
     hReader2.validate_words();
-    
-    SECTION("Testing values withing vertical wordSets of differently filtrated readers"){
-        vector<vector<LString>> vr1WS = vReader.return_formatted_wordSets();
-        vector<vector<LString>> vr2WS = vReader2.return_formatted_wordSets();
 
+    vector<vector<LString>> vr1WS = vReader.return_formatted_wordSets();
+    vector<vector<LString>> vr2WS = vReader2.return_formatted_wordSets();
+    vector<vector<LString>> hr1WS = hReader.return_formatted_wordSets();
+    vector<vector<LString>> hr2WS = hReader2.return_formatted_wordSets();
+
+    SECTION("Testing the word count of vertical wordSets formed from differently filtrated readers") {
         REQUIRE(vr1WS.size() == vr2WS.size());
 
         for (int i = 0; i < vr1WS.size(); ++i) {
             REQUIRE(vr1WS[i].size() == vr2WS[i].size());
         }
-
-        for(const auto &vr1WRow: vr1WS){            //testing that every word in vr1WS is in vr2WS
+    }
+    SECTION("Testing if every vertical word in the separated filtration method is found within the combined filtration method") {
+        for (const auto &vr1WRow: vr1WS) {
             for (const auto &vr1Word: vr1WRow) {
                 bool vr1WordIsFound = false;
 
-                for(const auto &vr2WRow: vr2WS){
+                for (const auto &vr2WRow: vr2WS) {
                     for (const auto &vr2Word: vr2WRow) {
                         if (vr1Word == vr2Word) {
                             vr1WordIsFound = true;
                             break;
                         }
                     }
-                    if(vr1WordIsFound)
+                    if (vr1WordIsFound)
                         break;
                 }
 
                 REQUIRE(vr1WordIsFound);
             }
         }
-
-        for(const auto &vr2WRow: vr2WS){            //testing that every word in vr2WS is in vr1WS
+    }
+    SECTION("Testing if every vertical word in the combined filtration method is found within the separated filtration method"){
+        for(const auto &vr2WRow: vr2WS){
             for (const auto &vr2Word: vr2WRow) {
                 bool vr2WordIsFound = false;
 
@@ -229,36 +233,37 @@ TEST_CASE("Testing the difference in word filtering between separated word filtr
         }
     }
 
-    SECTION("Testing values withing horizontal wordSets of differently filtrated readers"){
-        vector<vector<LString>> hr1WS = hReader.return_formatted_wordSets();
-        vector<vector<LString>> hr2WS = hReader2.return_formatted_wordSets();
-
+    SECTION("Testing the word count of vertical wordSets formed from differently filtrated readers") {
         REQUIRE(hr1WS.size() == hr2WS.size());
 
         for (int i = 0; i < hr1WS.size(); ++i) {
             REQUIRE(hr1WS[i].size() == hr2WS[i].size());
         }
+    }
 
-        for(const auto &hr1WRow: hr1WS){            //testing that every word in hr1WS is in hr2WS
+    SECTION("Testing if every horizontal word in the separated filtration method is found within the combined filtration method") {
+        for (const auto &hr1WRow: hr1WS) {
             for (const auto &hr1Word: hr1WRow) {
                 bool hr1WordIsFound = false;
 
-                for(const auto &hr2WRow: hr2WS){
+                for (const auto &hr2WRow: hr2WS) {
                     for (const auto &hr2Word: hr2WRow) {
                         if (hr1Word == hr2Word) {
                             hr1WordIsFound = true;
                             break;
                         }
                     }
-                    if(hr1WordIsFound)
+                    if (hr1WordIsFound)
                         break;
                 }
 
                 REQUIRE(hr1WordIsFound);
             }
         }
+    }
 
-        for(const auto &hr2WRow: hr2WS){            //testing that every word in hr2WS is in hr1WS
+    SECTION("Testing if every horizontal word in the combined filtration method is found within the separated filtration method") {
+        for(const auto &hr2WRow: hr2WS){
             for (const auto &hr2Word: hr2WRow) {
                 bool hr2WordIsFound = false;
 
@@ -277,5 +282,94 @@ TEST_CASE("Testing the difference in word filtering between separated word filtr
             }
         }
 
+    }
+}
+
+TEST_CASE("Testing method LString::is_descendent_of", "[LString]"){
+    string givenHand = "DOEWJ?K";
+
+    SECTION("Testing different variations of the given word \"DOEWJ?K\" as input"){
+        LString toValidate = "JOOKED";
+        REQUIRE(toValidate.is_descendent_of(givenHand));
+
+        toValidate = "JOUKED";
+        REQUIRE(toValidate.is_descendent_of(givenHand));
+
+        toValidate = "JOWLED";
+        REQUIRE(toValidate.is_descendent_of(givenHand));
+
+        toValidate = "WORKED";
+        REQUIRE(toValidate.is_descendent_of(givenHand));
+
+        toValidate = "WORK";
+        REQUIRE(toValidate.is_descendent_of(givenHand));
+
+        toValidate = "JOKEY";
+        REQUIRE(toValidate.is_descendent_of(givenHand));
+
+        toValidate = "JOKERS";
+        REQUIRE(!toValidate.is_descendent_of(givenHand));
+
+        toValidate = "JOKING";
+        REQUIRE(!toValidate.is_descendent_of(givenHand));
+
+        toValidate = "";
+        REQUIRE(!toValidate.is_descendent_of(givenHand));
+    }
+}
+
+TEST_CASE("Testing method LString::row_is_descendent_of", "[LString]"){
+    LString givenHand = "LEO?UDQ";
+    LString givenRow = "     R B  D    ";
+    givenRow.set_x_vals_to_subscripts();
+
+    SECTION("Testing different variations of the given word \"LEO?UDQ\" with row \"     R B  D    \" as input"){
+        LString toValidate = "     R BUDDY   ";
+        LString givenWord = "BUDDY";
+        givenWord.set_x_vals_to_subscripts();
+        givenWord.add_to_x_vals(7);
+        REQUIRE(toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+
+        toValidate = "     ROB  D    ";
+        givenWord = "ROB";
+        givenWord.set_x_vals_to_subscripts();
+        givenWord.add_to_x_vals(5);
+        REQUIRE(toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+
+        toValidate = "     R BLED    ";
+        givenWord = "BLED";
+        givenWord.set_x_vals_to_subscripts();
+        givenWord.add_to_x_vals(7);
+        REQUIRE(toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+
+        toValidate = "     R B  DAD  ";
+        givenWord = "DAD";
+        givenWord.set_x_vals_to_subscripts();
+        givenWord.add_to_x_vals(10);
+        REQUIRE(toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+
+        toValidate = "     RUB  D    ";
+        givenWord = "RUB";
+        givenWord.set_x_vals_to_subscripts();
+        givenWord.add_to_x_vals(5);
+        REQUIRE(toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+
+        toValidate = "     R BADDY   ";
+        givenWord = "BADDY";
+        givenWord.set_x_vals_to_subscripts();
+        givenWord.add_to_x_vals(7);
+        REQUIRE(!toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+
+        toValidate = "     R B  DUCK ";
+        givenWord = "DUCK";
+        givenWord.set_x_vals_to_subscripts();
+        givenWord.add_to_x_vals(10);
+        REQUIRE(!toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+
+        toValidate = "";
+        givenWord = "ROB";
+        givenWord.set_x_vals_to_subscripts();
+        givenWord.add_to_x_vals(5);
+        REQUIRE(!toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
     }
 }

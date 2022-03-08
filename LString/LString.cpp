@@ -516,7 +516,7 @@ int LString::get_letter_points() const{
     return sum;
 }
 
-LString& LString::xVals_to_subscript() {
+LString& LString::set_x_vals_to_subscripts() {
     for (int i = 0; i < eleCount; ++i)
         data[i].x = i;
 
