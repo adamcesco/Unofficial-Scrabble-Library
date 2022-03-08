@@ -29,4394 +29,3843 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
 
 
 
-        FOP
-        PICA
-        PIAL
-        PEP
-        PEP
-        GAP
-        UPAS
-        APOD
-        PUMA
-        PHI
-        DOPE
-        PADS
-        PUS
-        YAUP
-        SUP
-        LIP
-        QUIP
-        JAUP
-        LAP
-        UNIPOD
-        PUT
-        WAUL
-        ULU
-        WAIL
-        SOUL
-        SLOP
-        SLID
-        WOULD
-        SLIP
-        TAIL
-        PLUS
-        PLUM
-        PLOY
-        PLOW
-        PLOP
-        PLODS
-        PLOD
-        PLIE
-        PLEAD
-        PLEA
-        PLAY
-        PLAID
-        OXLIP
-        OWL
-        ULNAD
-        SLAP
-        OLEA
-        OLDY
-        OLD
-        OILY
-        OILCUP
-        PLICA
-        PLED
-        NOIL
-        MOULD
-        SAUL
-        OLE
-        MAUL
-        MAIL
-        LUV
-        LUNA
-        LUM
-        LUG
-        LUDE
-        LOX
-        LOW
-        LOUR
-        LOUP
-        LOT
-        LOPE
-        LOIN
-        LODE
-        LOCI
-        LOCA
-        LOAN
-        LOAM
-        LOAF
-        LO
-        LITU
-        ELD
-        WOALD
-        OLDS
-        LIMA
-        DEAL
-        DAHL
-        LIEU
-        FLUID
-        MOIL
-        DOBLA
-        GLIA
-        OIL
-        ALS
-        PLOT
-        LORD
-        OLIO
-        CLOUD
-        CLAD
-        LIS
-        CLOD
-        ALDOL
-        CLAP
-        ILIAD
-        ULVA
-        LAV
-        LADY
-        FLU
-        ILEA
-        AULIC
-        LUMP
-        TOIL
-        AILED
-        BOIL
-        LION
-        LOP
-        ALA
-        ALOUD
-        PLY
-        ALOIN
-        ULPAN
-        LOUD
-        LOOP
-        DEIL
-        LIDO
-        LAM
-        YAULD
-        AAL
-        LID
-        ALOE
-        JAIL
-        AILS
-        ALP
-        ALUM
-        ALE
-        ALIT
-        LOO
-        LIDS
-        BAIL
-        ALMUD
-        ALOW
-        ALT
-        LIT
-        LOUT
-        PLAN
-        AL
-        ALIF
-        AWL
-        LAX
-        LIED
-        CLOP
-        PLAT
-        LEA
-        OLDIE
-        ALLOD
-        ALLOD
-        DAILY
-        OILS
-        SLOID
-        LEAD
-        LAD
-        ALTO
-        PLAIT
-        LOG
-        CLIP
-        ALGID
-        LISP
-        LOTI
-        BLIP
-        LAIR
-        PLUG
-        OLLA
-        OLLA
-        LOPS
-        ALCID
-        ILKA
-        LOB
-        LAIC
-        DOILY
-        DOLL
-        AULD
-        LAMP
-        GAOL
-        AIL
-        LATI
-        LAR
-        LAT
-        FLAP
-        ULAN
-        SOIL
-        FLIP
-        FLOP
-        LUAU
-        ALB
-        LEAP
-        LINO
-        LIMO
-        LAG
-        GLAD
-        GLOP
-        GOAL
-        PLAIN
-        HAIL
-        HAPLOID
-        LARD
-        HAUL
-        ILL
-        ALL
-        ALL
-        SAIL
-        LOTA
-        ALPS
-        LEI
-        LADS
-        ILIA
-        ILK
-        ALSO
-        LOAD
-        ULNA
-        LIE
-        LIP
-        LAPS
-        LIB
-        LUX
-        OILED
-        LA
-        LAB
-        LAC
-        LAW
-        LADE
-        LAID
-        LAIN
-        NAIL
-        LAND
-        LI
-        LAP
-        LARI
-        LAS
-        LAUD
-        LAY
-        LED
-        LEU
-        LEUD
-        LIAR
-        LIMP
-        LIN
-        PLIED
-        LIPS
-        LIRA
-        YOU
-        YA
-        YA
-        VIA
-        UTA
-        UPDOS
-        UPDO
-        UDOS
-        TAO
-        UDO
-        TO
-        TO
-        SPADO
-        SPA
-        SO
-        SO
-        VAU
-        SAU
-        SAU
-        RADIO
-        PURDA
-        PUPA
-        PUNA
-        PUN
-        PRAU
-        POX
-        PYA
-        PROA
-        POM
-        POIS
-        PODIUM
-        PISO
-        PIS
-        PION
-        PIKA
-        PIE
-        PIAS
-        PIANO
-        PIAN
-        PIA
-        PE
-        SODA
-        ZOA
-        PAM
-        PADIS
-        PA
-        OX
-        OW
-        PATIO
-        OUDS
-        UPON
-        OS
-        OPUS
-        OPIUM
-        OPE
-        OM
-        OIDIA
-        ODIUM
-        ODE
-        UNDO
-        TAU
-        NIPA
-        PULA
-        OKA
-        POILU
-        MIAOU
-        MA
-        MA
-        PUJA
-        LO
-        LO
-        DIPSO
-        PAN
-        PRO
-        ORA
-        UN
-        DAPS
-        DAIS
-        DADO
-        XU
-        RIA
-        PIOUS
-        DE
-        DE
-        NU
-        OVA
-        DURO
-        DOL
-        DUMA
-        AW
-        CODA
-        PIMA
-        FOU
-        DIE
-        MOA
-        PEA
-        PRAO
-        CIAO
-        DATO
-        QUA
-        HAO
-        DOE
-        AUTO
-        DIAZO
-        AUDIO
-        IDEA
-        UM
-        MU
-        BOA
-        AN
-        AS
-        DOUX
-        DAM
-        AIDE
-        AI
-        EAU
-        OCA
-        ADS
-        ADIOS
-        PUDS
-        KUDO
-        MO
-        MO
-        DANIO
-        YO
-        YO
-        BIO
-        PIU
-        BO
-        BO
-        AA
-        AA
-        LIDO
-        ADOS
-        ADO
-        AM
-        AGO
-        APODS
-        OE
-        DOPAS
-        UPO
-        UPS
-        AGIO
-        TA
-        TA
-        ADIEU
-        AMU
-        HO
-        HO
-        DIS
-        AL
-        AX
-        AZIDO
-        HA
-        HA
-        JO
-        JO
-        ODEA
-        AVO
-        NA
-        NA
-        DOPA
-        DIPS
-        BA
-        BA
-        OPS
-        FADO
-        ON
-        DONA
-        AE
-        APE
-        AMIDO
-        PAS
-        DIDO
-        JIAO
-        DO
-        DO
-        PILAU
-        PINA
-        DITA
-        DOM
-        DON
-        DOS
-        DOUM
-        DOUMA
-        DOURA
-        PITA
-        PODS
-        ABO
-        DUE
-        DULIA
-        DUN
-        DUPE
-        DUPS
-        DURA
-        NO
-        NO
-        CAPO
-        PODIA
-        OHIA
-        DAH
-        ODS
-        FA
-        AZO
-        FIDO
-        PAX
-        GOA
-        GOA
-        SOU
-        SOU
-        ION
-        AIDS
-        DUO
-        PICA
-        UPAS
-        AIS
-        US
-        GO
-        GO
-        PUMA
-        OBIA
-        WO
-        WO
-        DUOS
-        DIVA
-        IDS
-        DOPE
-        PADS
-        PUS
-        DAGO
-        IOTA
-        IS
-        JUDO
-        KA
-        KOA
-        LA
-        LA
-        ANOA
-        AW
-        AWA
-        AUTO
-        AURA
-        AB
-        ADIT
-        AIR
-        AR
-        AVID
-        ARID
-        AID
-        AQUA
-        AN
-        APED
-        AS
-        ALA
-        ADZ
-        AIDE
-        AMI
-        AI
-        ADS
-        ABA
-        ADD
-        ATOP
-        AUK
-        ACID
-        AA
-        ADOS
-        ADO
-        AM
-        AGO
-        AAS
-        AT
-        AAL
-        AMA
-        ARIA
-        AHA
-        AGIO
-        AMID
-        ALP
-        AND
-        AGA
-        AAH
-        AIN
-        AMIA
-        AG
-        AMU
-        AL
-        AX
-        AY
-        AVO
-        ASP
-        AE
-        APE
-        AD
-        ATAP
-        AH
-        APT
-        OUTHUMOR
-        ABO
-        AULD
-        AIT
-        AIL
-        AIM
-        AZO
-        AMP
-        AIDS
-        AIS
-        APOD
-        AVA
-        ANI
-        ANA
-        TWO
-        TUT
-        TURD
-        TUN
-        TUG
-        TUFA
-        TUBA
-        TRAP
-        TOY
-        TOUR
-        TOT
-        TORA
-        TOR
-        TOPS
-        TOP
-        TOO
-        TON
-        TOLU
-        TOGA
-        TOG
-        TOFU
-        TOED
-        TOEA
-        TOE
-        TIS
-        TIL
-        TIDY
-        TIDE
-        TI
-        THO
-        THIO
-        TOUT
-        TED
-        TEA
-        TAXI
-        TAUT
-        TAPE
-        TAP
-        TAO
-        TAN
-        TAM
-        TALI
-        TAE
-        TACO
-        TABU
-        TO
-        TUP
-        TAV
-        TUPS
-        TIE
-        TAR
-        TEPA
-        TIED
-        TODS
-        TOPE
-        TAIL
-        TAUS
-        TAMP
-        PAR
-        PAISA
-        PAC
-        PA
-        TOPH
-        TIPS
-        THOU
-        TOIT
-        OATS
-        OAT
-        TAU
-        NIPA
-        TRIP
-        MA
-        DATA
-        TAD
-        PAPA
-        TUMP
-        TIN
-        TARP
-        TOLD
-        TAB
-        TAJ
-        TRAD
-        TIRO
-        PIMA
-        TORI
-        TROP
-        EAT
-        OATH
-        TOD
-        TOIL
-        AR
-        TIC
-        ATT
-        TIT
-        TAX
-        TAPA
-        TAPA
-        TOW
-        ATOP
-        TOPI
-        TAT
-        AT
-        AMA
-        ATOM
-        AHA
-        TA
-        TA
-        ATOPY
-        TOAD
-        ATE
-        TUIS
-        HA
-        AVO
-        NA
-        DOPA
-        TIP
-        DONA
-        TAOS
-        TAW
-        TAIN
-        TUB
-        TUNA
-        TOLA
-        ATAP
-        PINA
-        DITA
-        TODY
-        PITA
-        TWA
-        TAG
-        ETA
-        ATRIP
-        TYPO
-        TIPI
-        THUD
-        TUI
-        TRIO
-        TOM
-        TROD
-        TADS
-        TAS
-        TARO
-        ETUI
-        IOTA
-        KAPA
-        TUX
-        ANA
-        TAPS
-        YA
-        XI
-        VIA
-        UTA
-        UPDO
-        TI
-        TAP
-        TAO
-        UDO
-        TO
-        UNAI
-        SPADO
-        SPA
-        SO
-        RADIO
-        PURI
-        PURDA
-        PUPA
-        PUNA
-        PULI
-        PSOAI
-        PSI
-        PYA
-        PROA
-        POM
-        POI
-        PIT
-        PISO
-        PIN
-        PIKA
-        PIE
-        PIANO
-        PIA
-        PI
-        PFUI
-        PE
-        SODA
-        ZOA
-        PAM
-        PADRI
-        PADI
-        PA
-        PATIO
-        OPIUM
-        OPE
-        OM
-        OIDIA
-        ODIUM
-        ODE
-        UNDO
-        NODI
-        NIPA
-        PULA
-        NAOI
-        OKA
-        MODI
-        MA
-        PUJA
-        LO
-        DIPSO
-        PRO
-        ORA
-        WADI
-        QUAI
-        DADO
-        DUOMI
-        CADI
-        RIA
-        DE
-        OVA
-        DUI
-        DURO
-        DUMA
-        CODA
-        PIMA
-        DIE
-        MOA
-        PEA
-        PRAO
-        CIAO
-        DATO
-        QUA
-        OKAPI
-        HAO
-        DOE
-        AUTO
-        DIAZO
-        AUDIO
-        IDEA
-        UM
-        BOA
-        AN
-        DAM
-        AIDE
-        AMI
-        AI
-        OCA
-        KUDO
-        MO
-        DANIO
-        YO
-        BIO
-        TOPI
-        BO
-        AA
-        LIDO
-        ADO
-        PAP
-        AM
-        AM
-        AGO
-        OE
-        OBI
-        BI
-        UPO
-        AGIO
-        TA
-        HO
-        AZIDO
-        DIM
-        HA
-        JO
-        ODEA
-        AVO
-        NA
-        DOPA
-        BA
-        FADO
-        DONA
-        AE
-        APE
-        SI
-        AMIDO
-        MI
-        DIDO
-        NIP
-        JIAO
-        DO
-        PARDI
-        PINA
-        DIT
-        DITA
-        AH
-        DOM
-        DON
-        DOUM
-        DOUMA
-        DOURA
-        PITA
-        ABO
-        DUCI
-        DUE
-        DULIA
-        DUPE
-        DURA
-        NO
-        CAPO
-        KADI
-        PODIA
-        AIM
-        OHIA
-        FA
-        AZO
-        FIDO
-        GOA
-        TUI
-        DUO
-        PICA
-        SADI
-        GO
-        PUMA
-        OBIA
-        ANI
-        WO
-        HI
-        PHI
-        DIVA
-        DOPE
-        DAGO
-        IOTA
-        JUDO
-        KA
-        GADI
-        KOA
-        KOI
-        LA
-        LI
-        SABLES
-        SABLED
-        LOSABLE
-        RAISABLE
-        DISABLES
-        DISABLED
-        CAUSABLE
-        USABLE
-        ABUSABLE
-        BLED
-        ADVISABLE
-        PARSABLE
-        AMUS
-        DIS
-        AMUSABLE
-        ABLES
-        DISABLE
-        DISPOSABLE
-        ED
-        LAPSABLE
-        US
-        PASS
-        PASSABLE
-        PARS
-        LAPS
-        LED
-        ZIT
-        WAIT
-        VITA
-        UTS
-        UTA
-        UT
-        VAT
-        UPLIT
-        UPDART
-        UNIT
-        UNAPT
-        TWO
-        TUT
-        TOT
-        TI
-        TRIAD
-        THO
-        THIO
-        TOUT
-        TEA
-        TAUT
-        TAO
-        TAE
-        SPUTA
-        SPOUT
-        SPOT
-        SPAIT
-        SIT
-        SATI
-        SPAT
-        TIE
-        RUT
-        RIOT
-        RAPT
-        QUOIT
-        QUIT
-        PUTTI
-        PUTTI
-        PRAT
-        POUTY
-        POUTS
-        POUT
-        PORT
-        PODITE
-        PIVOT
-        PIT
-        PINTA
-        PINT
-        SUIT
-        PILOT
-        PIGOUT
-        PHUT
-        PHT
-        PET
-        PEAT
-        PAYOUT
-        PATY
-        PATS
-        PAT
-        PAST
-        PART
-        PANT
-        OUTS
-        OUTLAID
-        PATIO
-        OUT
-        OUST
-        ORT
-        OUTDO
-        OPIATE
-        OOT
-        TOIT
-        OBIT
-        OATS
-        OAT
-        OAST
-        NUT
-        NOTA
-        NOT
-        POST
-        PRUTA
-        OPUNTIA
-        MOT
-        MOAT
-        PUNDIT
-        MAT
-        LOT
-        WAT
-        DIMOUT
-        DIET
-        DICTA
-        PANDIT
-        PUTT
-        PUTT
-        DAUTIE
-        DAWT
-        DATA
-        DACOIT
-        RAT
-        CUT
-        INPUT
-        IKAT
-        BOUT
-        COATI
-        ADEPT
-        KAT
-        PLAUDIT
-        DAVIT
-        DUST
-        DITTO
-        ABOUT
-        DAKOIT
-        PITH
-        KAPUT
-        DEPOT
-        PLOT
-        PATE
-        FAT
-        PHAT
-        RATIO
-        EAT
-        DAUTS
-        QAT
-        DIQUAT
-        DUCT
-        APORT
-        OATH
-        IT
-        DICOT
-        ADROIT
-        NIT
-        COT
-        DART
-        DINT
-        ADIT
-        DIVOT
-        CAPUT
-        DATE
-        ANTI
-        ANT
-        ATT
-        ATT
-        TIT
-        JOT
-        PUNT
-        KIT
-        ABUT
-        ADMIT
-        AUDITS
-        ADAPT
-        AUDIT
-        DHOTI
-        MUT
-        DIRT
-        ADULT
-        ART
-        ADOPTS
-        MAUT
-        SOT
-        TAT
-        AT
-        ROT
-        OPT
-        TA
-        ADOPT
-        WIT
-        QUOTA
-        AITS
-        DAFT
-        ALIT
-        AGOUTI
-        DOTE
-        BIT
-        IDIOT
-        ATE
-        PHOT
-        ALT
-        LIT
-        LOUT
-        AIRT
-        PINOT
-        DRIPT
-        AUNT
-        PLAT
-        BAIT
-        COAT
-        BAT
-        PITS
-        OSTIA
-        PUTTO
-        AFT
-        POT
-        POTS
-        PUTS
-        POSIT
-        GOT
-        PAINT
-        BIOTA
-        PLAIT
-        ADUST
-        DAUNT
-        LOTI
-        BOT
-        BOTA
-        SPIT
-        OMIT
-        GOAT
-        DHUTI
-        DIPT
-        GAT
-        GUT
-        DIT
-        DITA
-        DITE
-        DITS
-        PIETA
-        DOLT
-        DONUT
-        ADITS
-        DOPANT
-        DOST
-        DOT
-        DOTH
-        DOTS
-        DOUBT
-        UPDATE
-        PITA
-        APT
-        DRAT
-        AIT
-        DROIT
-        DROPT
-        DUCAT
-        DUET
-        DUIT
-        DUITS
-        DUNT
-        PATH
-        DOAT
-        TWA
-        EDIT
-        DOATS
-        DOITS
-        LATI
-        OPTS
-        ETA
-        LAT
-        DOTY
-        INAPT
-        ROTA
-        FIAT
-        POULT
-        SAT
-        DAUT
-        FIT
-        PICOT
-        BOAT
-        POINT
-        ROTI
-        TRIO
-        GAIT
-        PACT
-        PITY
-        GOUT
-        JOTA
-        CAT
-        WOT
-        ACT
-        HAT
-        HAUT
-        GIT
-        LOTA
-        HIT
-        JUT
-        HOT
-        HUT
-        BUT
-        ODIST
-        DUTY
-        OFT
-        COAPT
-        IODATE
-        IOTA
-        ROUT
-        ITS
-        POET
-        DOIT
-        DATTO
-        PUT
-        YOD
-        YID
-        YA
-        SPA
-        SO
-        SAU
-        SAP
-        SAID
-        ROUP
-        ROD
-        RAP
-        RAD
-        SOUP
-        SOD
-        SODA
-        OS
-        OR
-        OIDIA
-        ODIUM
-        ODIC
-        ODE
-        NODI
-        NIPA
-        NAP
-        NAOI
-        SOP
-        DIOL
-        DIB
-        ORA
-        DAUB
-        DAPS
-        DAP
-        DAIS
-        DADO
-        ID
-        IN
-        RIA
-        DE
-        NU
-        DIP
-        DUI
-        OD
-        DURO
-        DOL
-        DUMA
-        DAY
-        DIE
-        OAR
-        SPUD
-        DATO
-        SIP
-        DOE
-        ADIT
-        AIR
-        DIAL
-        AR
-        ARID
-        DAW
-        IDEA
-        DAD
-        AID
-        IDOL
-        AN
-        DAK
-        AS
-        DOUX
-        DAM
-        ADZ
-        AIDE
-        AI
-        ADS
-        ADIOS
-        ADD
-        YO
-        NOD
-        DID
-        AA
-        ADOS
-        ADO
-        DAG
-        DAMP
-        ADOPT
-        ADIEU
-        RIP
-        AND
-        AIN
-        HO
-        DIS
-        DIM
-        ODEA
-        DORP
-        DOW
-        DIG
-        NA
-        DAL
-        DAB
-        DOPA
-        DIPS
-        ASP
-        SOAP
-        ON
-        DONA
-        AE
-        SI
-        DIN
-        SAD
-        DIDO
-        NIP
-        AROID
-        DO
-        AD
-        DIPT
-        DIT
-        DITA
-        DOC
-        DOG
-        RID
-        DOM
-        DON
-        RAID
-        DOPY
-        DOR
-        DOS
-        DOT
-        DOUM
-        DOUR
-        ROAD
-        DRIP
-        DROP
-        DUAD
-        DUAL
-        DUB
-        DUCI
-        DUD
-        DUE
-        DUG
-        DUIT
-        DUMP
-        DUN
-        DUP
-        DUPE
-        DUPS
-        DURA
-        DOAT
-        NO
-        DAH
-        ORAD
-        ODS
-        DAUT
-        SOU
-        ION
-        AIDS
-        DUO
-        ODD
-        AIS
-        SADI
-        ANI
-        WO
-        DUOS
-        DIVA
-        IDS
-        DOPE
-        DAGO
-        SUP
-        IS
-        DOIT
-        YEA
-        TED
-        TEA
-        WAE
-        SOAPED
-        TEPA
-        PYE
-        PLEA
-        PEW
-        PERIOD
-        PER
-        PEN
-        PED
-        PE
-        OPTED
-        OPIATED
-        OPIATE
-        OPERA
-        OPEN
-        OPED
-        OPE
-        ONE
-        OLEA
-        OKE
-        OHED
-        OBE
-        PLED
-        OLE
-        MEDIA
-        MED
-        PERI
-        MAE
-        PEDALO
-        PEH
-        EPOS
-        PEDAL
-        PEA
-        AERO
-        APED
-        DYE
-        ANE
-        ABED
-        AYE
-        IMPED
-        ALE
-        ATE
-        LEA
-        BED
-        DIAPER
-        AE
-        APE
-        KEPI
-        HEP
-        KEA
-        ED
-        EDIT
-        EPIC
-        EPIZOA
-        EPODE
-        PEPO
-        FED
-        IDLE
-        PEP
-        HAED
-        APER
-        ERA
-        NAE
-        TEPID
-        HAE
-        KEP
-        YEP
-        LED
-        YOD
-        YID
-        XI
-        VIA
-        WOP
-        UPDO
-        TOP
-        TI
-        TAO
-        UDO
-        TO
-        UNAI
-        VOID
-        SO
-        SAPID
-        SAID
-        ROD
-        YIP
-        RADIO
-        QUID
-        PYOID
-        PURI
-        PULI
-        PSI
-        PROD
-        POW
-        POP
-        PROA
-        POM
-        POI
-        SOD
-        PLOD
-        PLAID
-        PISO
-        PIP
-        PION
-        PIN
-        PIED
-        PIE
-        PIA
-        PI
-        PFUI
-        PED
-        PE
-        ZOA
-        PAIN
-        PADI
-        OY
-        OY
-        OXID
-        OXID
-        OX
-        OW
-        OW
-        PAIR
-        PATIO
-        OUT
-        OUR
-        OUPH
-        OUDS
-        OUD
-        UPON
-        VAPID
-        OS
-        ZIP
-        OR
-        OR
-        OPUS
-        OPIUM
-        OPED
-        OPED
-        OPE
-        OPE
-        OPAL
-        OPAH
-        OM
-        OM
-        OLD
-        OIDIA
-        OIDIA
-        OF
-        OF
-        ODIUM
-        ODIC
-        ODE
-        ODE
-        UNDO
-        OAT
-        OAF
-        NODI
-        NAOI
-        OKA
-        MOP
-        MODI
-        MOD
-        MID
-        PAVID
-        SOP
-        PAID
-        MA
-        LO
-        DIB
-        PRO
-        ORA
-        WADI
-        KOP
-        POH
-        HIP
-        QUAI
-        DADO
-        ID
-        ID
-        MAID
-        IN
-        IN
-        CADI
-        QUOD
-        RIA
-        DE
-        COP
-        DIP
-        OVA
-        COD
-        DUI
-        OD
-        OD
-        OIL
-        DURO
-        AW
-        BIPOD
-        DIE
-        MOA
-        OAR
-        PEA
-        PRAO
-        CIAO
-        TOD
-        DATO
-        IT
-        OKAPI
-        SIP
-        HAO
-        DOE
-        AUTO
-        AUTO
-        AB
-        ADIT
-        AUDIO
-        AUDIO
-        AIR
-        AIR
-        AR
-        AVID
-        AVID
-        FID
-        CUPID
-        ARID
-        ARID
-        OH
-        OH
-        IDEA
-        IDEA
-        AID
-        AID
-        BOA
-        GIP
-        IDOL
-        APHID
-        APHID
-        AN
-        AN
-        APED
-        APED
-        AS
-        LOP
-        ADZ
-        AIDE
-        AIDE
-        AMI
-        AMI
-        AI
-        AI
-        EAU
-        OCA
-        ALOUD
-        ADS
-        ADIOS
-        ADD
-        AUDIT
-        ATOP
-        ATOP
-        KUDO
-        MO
-        DANIO
-        AUK
-        YO
-        NOD
-        AUDIOS
-        ACID
-        ACID
-        BIO
-        BIO
-        TOPI
-        PAGOD
-        BO
-        DID
-        AVOID
-        AVOID
-        AA
-        LIDO
-        ADOS
-        ADO
-        ADO
-        AM
-        AGO
-        AGO
-        APODS
-        AT
-        AT
-        OE
-        OE
-        OPT
-        OBI
-        OBI
-        LID
-        BI
-        UPO
-        AGIO
-        AGIO
-        AGIO
-        AMID
-        AMID
-        ALP
-        ADOPT
-        ADIEU
-        RIP
-        AND
-        AIN
-        AIN
-        AG
-        AMU
-        HO
-        AL
-        AL
-        AX
-        AY
-        AY
-        AZIDO
-        DIM
-        HA
-        JO
-        ODEA
-        ODEA
-        AVO
-        AVO
-        CAID
-        DOW
-        NA
-        POD
-        OPS
-        ASP
-        FADO
-        TIP
-        ON
-        ON
-        ON
-        BID
-        AE
-        AE
-        OP
-        OP
-        OP
-        APE
-        APE
-        SI
-        DIN
-        IMP
-        AMIDO
-        MI
-        BOP
-        DIDO
-        NIP
-        JIAO
-        AROID
-        AROID
-        DO
-        AD
-        DIT
-        AH
-        RID
-        DOM
-        GID
-        DON
-        RAID
-        DOR
-        APT
-        DRIP
-        ABO
-        ABO
-        AULD
-        AIT
-        DROP
-        DUCI
-        DUE
-        HOP
-        DULIA
-        DUPE
-        NO
-        CAPO
-        ED
-        ED
-        KADI
-        PODIA
-        AIL
-        AIM
-        AIM
-        OHIA
-        OHIA
-        RAPID
-        ORAD
-        PIC
-        KIP
-        POOD
-        ODS
-        BOD
-        AZO
-        AZO
-        FIDO
-        AMP
-        FOP
-        GOA
-        ION
-        ION
-        TUI
-        AIDS
-        DUO
-        GUID
-        ODD
-        AIS
-        SADI
-        GO
-        GOD
-        APOD
-        APOD
-        OBIA
-        OBIA
-        QAID
-        ANI
-        ANI
-        WO
-        HI
-        HID
-        PHI
-        HOD
-        OAK
-        IDS
-        IF
-        IF
-        DOPE
-        DAGO
-        IOTA
-        IS
-        LIP
-        QUIP
-        JUDO
-        KID
-        GADI
-        KOA
-        KOI
-        LAID
-        LI
-        UNFEARED
-        AFEARED
-        YA
-        XI
-        WOAD
-        VIA
-        UTA
-        TOP
-        TI
-        TO
-        SPA
-        SO
-        ROUP
-        ROD
-        RAD
-        SOUP
-        PUPA
-        PUNA
-        PYA
-        PROA
-        SOD
-        PIKA
-        PIED
-        PIE
-        PIAS
-        PIAN
-        PIA
-        PED
-        PE
-        PAT
-        SODA
-        SODA
-        PARD
-        ZOA
-        PAR
-        PAM
-        PADIS
-        PADI
-        PA
-        OY
-        OXID
-        OX
-        OW
-        OUT
-        OUR
-        OUPH
-        OUDS
-        OUD
-        OS
-        OR
-        OPUS
-        OPIUM
-        OPED
-        OPED
-        OPE
-        OPE
-        OPAL
-        OPAL
-        OPAH
-        OPAH
-        OM
-        OLD
-        OIDIA
-        OF
-        ODIUM
-        ODIC
-        ODE
-        ODE
-        OAT
-        OAT
-        OAF
-        OAF
-        NODI
-        NIPA
-        PULA
-        OKA
-        OKA
-        MOP
-        MODI
-        MOD
-        SOP
-        WAD
-        MA
-        MA
-        PUJA
-        LOUP
-        LO
-        PAN
-        ORA
-        ORA
-        WADI
-        GAD
-        TAD
-        CADI
-        RIA
-        DE
-        DE
-        DE
-        OVA
-        OVA
-        OD
-        OIL
-        DOL
-        DUMA
-        DAY
-        CODA
-        PIMA
-        FOU
-        DIE
-        MOA
-        MOA
-        OAR
-        OAR
-        PEA
-        TOD
-        QUA
-        OKAPI
-        DOE
-        DOE
-        DIAL
-        AR
-        PAL
-        OH
-        IDEA
-        DAD
-        BOA
-        AN
-        APED
-        AS
-        AS
-        LOP
-        DOUX
-        DAM
-        AIDE
-        AMI
-        EAU
-        OCA
-        OCA
-        ADS
-        ADD
-        LOUD
-        MO
-        NOD
-        TOPI
-        AA
-        AM
-        PAD
-        AT
-        OE
-        OE
-        OPT
-        DOPAS
-        DOPAS
-        CAD
-        OBI
-        TA
-        TA
-        FAD
-        AND
-        TOAD
-        TOAD
-        BAD
-        HO
-        DIS
-        AL
-        AX
-        AY
-        HA
-        HA
-        ODEA
-        ODEA
-        DORP
-        DOW
-        NA
-        NA
-        DAL
-        DOPA
-        DOPA
-        BA
-        OPS
-        SOAP
-        PAH
-        ON
-        DONA
-        DONA
-        LAD
-        AE
-        OP
-        APE
-        SI
-        MI
-        PAS
-        SAD
-        DO
-        AD
-        PINA
-        DITA
-        DOC
-        DOG
-        AH
-        DOM
-        DON
-        DOPY
-        DOR
-        DOS
-        DOT
-        DOUM
-        DOUMA
-        DOUR
-        DOURA
-        PITA
-        ROAD
-        ROAD
-        DUAD
-        DUAL
-        DUE
-        HOP
-        DUPE
-        DURA
-        DOAT
-        DOAT
-        NO
-        ED
-        ED
-        KADI
-        QUAD
-        OHIA
-        OHIA
-        DAH
-        ORAD
-        ORAD
-        ODS
-        FA
-        FA
-        PAX
-        FOP
-        GOA
-        SOU
-        PICA
-        PIAL
-        ODD
-        UPAS
-        SADI
-        GOAD
-        PUMA
-        OBIA
-        OBIA
-        HAD
-        MAD
-        ANI
-        HI
-        HOD
-        OAK
-        DIVA
-        DOPE
-        DOPE
-        PADS
-        LOAD
-        LOAD
-        IOTA
-        IS
-        DOIT
-        KA
-        GADI
-        KOA
-        LA
-        LA
-        LI
-All horizontal words:
-        YAUD
-        YAP
-        YA
-        WOAD
-        WAP
-        VIA
-        UTA
-        UNPAID
-        TAP
-        TAO
-        UNAI
-        SPADO
-        SPA
-        VAU
-        SAU
-        SAPID
-        SAP
-        SAID
-        RAP
-        RADIO
-        RAD
-        PURDA
-        PUPA
-        PUNA
-        PSOAI
-        PRAU
-        PYA
-        PROA
-        PLAID
-        PIKA
-        PIAS
-        PIANO
-        PIAN
-        PIA
-        PAY
-        PAT
-        SODA
-        PARD
-        ZOA
-        PAR
-        PAM
-        PAIN
-        PAIL
-        PADRI
-        PADOUK
-        PADIS
-        PADI
-        PAC
-        PA
-        PAIR
-        PATIO
-        PAIK
-        VAPID
-        OPAL
-        OPAH
-        OIDIA
-        PAW
-        OAT
-        OAF
-        TAU
-        NIPA
-        PULA
-        NAP
-        NAOI
-        OKA
-        UTOPIA
-        PAVID
-        MIAOU
-        UPLOAD
-        WAD
-        PAID
-        MA
-        PUJA
-        ZAP
-        PAN
-        ORA
-        WADI
-        GAD
-        QUAI
-        DAUB
-        DAPS
-        DAP
-        DAIS
-        DADO
-        TAD
-        MAID
-        CADI
-        RIA
-        OVA
-        DUMA
-        AW
-        DAY
-        CODA
-        PIMA
-        MOA
-        OAR
-        PEA
-        PRAO
-        CIAO
-        DATO
-        QUA
-        OKAPI
-        HAO
-        AUTO
-        AB
-        ADIT
-        DIAZO
-        AUDIO
-        CAP
-        AIR
-        DIAL
-        AR
-        PAL
-        AVID
-        ARID
-        DAW
-        IDEA
-        DAD
-        AID
-        BOA
-        APHID
-        AN
-        DAK
-        APED
-        AS
-        DAM
-        ADZ
-        AIDE
-        AMI
-        AI
-        EAU
-        OCA
-        ALOUD
-        ADS
-        ADIOS
-        MAP
-        ADD
-        AUDIT
-        ATOP
-        DANIO
-        AUK
-        ACID
-        MAUD
-        PAGOD
-        AVOID
-        AA
-        AA
-        ADOS
-        ADO
-        PAP
-        AM
-        AGO
-        APODS
-        PAD
-        AT
-        DOPAS
-        CAD
-        DAG
-        DAMP
-        AGIO
-        AMID
-        TA
-        ALP
-        ADOPT
-        GAUD
-        ADIEU
-        FAD
-        AND
-        AIN
-        TOAD
-        BAD
-        AG
-        AMU
-        AL
-        AX
-        AY
-        AZIDO
-        HA
-        ODEA
-        AVO
-        CAID
-        NA
-        DAL
-        BAUD
-        DAB
-        DOPA
-        BA
-        ASP
-        FADO
-        SOAP
-        PAH
-        DONA
-        BAP
-        LAD
-        AE
-        APE
-        AMIDO
-        PAS
-        SAD
-        JIAO
-        AROID
-        AD
-        PILAU
-        PARDI
-        PINA
-        DITA
-        AH
-        RAID
-        DOUMA
-        DOURA
-        PITA
-        ROAD
-        APT
-        ABO
-        AULD
-        AIT
-        DUAD
-        DUAL
-        DULIA
-        DURA
-        DOAT
-        CAPO
-        KADI
-        PODIA
-        QUAD
-        AIL
-        AIM
-        OHIA
-        RAPID
-        HAP
-        DAH
-        ORAD
-        FA
-        AZO
-        DAUT
-        PAX
-        AMP
-        GOA
-        AIDS
-        PICA
-        PIAL
-        GAP
-        UPAS
-        AIS
-        SADI
-        GOAD
-        APOD
-        PUMA
-        OBIA
-        HAD
-        MAD
-        QAID
-        ANI
-        OAK
-        DIVA
-        PADS
-        LOAD
-        YAUP
-        DAGO
-        IOTA
-        JAUP
-        KA
-        GADI
-        KOA
-        LA
-        LAID
-        LAP
-        LAUD
-        TUFA
-        TOFU
-        SOFA
-        POUFS
-        POUFF
-        POUFF
-        POUFED
-        POUF
-        PFUI
-        WAIF
-        OFF
-        OFF
-        OFAY
-        OF
-        OAF
-        PROF
-        NAIF
-        LOAF
-        DEFI
-        DEAF
-        FILO
-        FIORD
-        FAG
-        FLUID
-        FAT
-        FOU
-        FLU
-        FORA
-        FID
-        FIR
-        FAS
-        FUR
-        FOB
-        FOH
-        FAN
-        PILAF
-        FOLD
-        UPFOLD
-        FIG
-        FUN
-        FOCI
-        RIF
-        FOPS
-        FILA
-        DAFT
-        FAD
-        FAR
-        COIF
-        ALIF
-        FOE
-        FUJI
-        FINO
-        DAFF
-        DAFF
-        IFF
-        IFF
-        CUIF
-        FADO
-        AFT
-        FUB
-        FIND
-        POOF
-        FICO
-        FRAUD
-        FUD
-        OAFS
-        FADE
-        DOFF
-        DOFF
-        DUFF
-        DUFF
-        FEU
-        FIN
-        FUND
-        FORD
-        FON
-        FUGIO
-        FADOS
-        FAIL
-        FAIN
-        FAIR
-        FLAP
-        FARD
-        FARO
-        FAULD
-        FAX
-        FAY
-        FED
-        FEOD
-        FUG
-        FA
-        FIAT
-        FIDO
-        FIDOS
-        FIDS
-        FIE
-        FIL
-        FRO
-        FOUL
-        FIT
-        FIX
-        FIZ
-        FLIP
-        FLOP
-        FANO
-        FOAL
-        FOAM
-        FOG
-        FOIL
-        FOIN
-        FOLIA
-        FOND
-        FOOD
-        FOP
-        FOR
-        FOUND
-        FOUR
-        FOX
-        FOY
-        FIB
-        FRAP
-        FONDU
-        FUCI
-        FUDS
-        FUNDI
-        AIDFUL
-        FAUN
-        ARF
-        FIAR
-        PUFF
-        PUFF
-        FADS
-        FAUX
-        IF
-        IFS
-        INFO
-        FEUD
-        OFT
-        AFOUL
-        KAF
-        KAIF
-        KIF
-        AFF
-        AFF
-        ZOEA
-        ZED
-        YODH
-        YIPE
-        YEA
-        WOE
-        WIPED
-        WHOA
-        WHAUP
-        WHA
-        VIDE
-        URAEI
-        UPPED
-        UPHOLD
-        UPEND
-        UNHIP
-        UMPED
-        UKE
-        WED
-        UH
-        TOPED
-        TOED
-        TOEA
-        TOE
-        TIDE
-        THO
-        THIO
-        TED
-        TEA
-        TAPE
-        TAE
-        WHAP
-        SUE
-        VIDEO
-        SPUED
-        SPUE
-        SPED
-        SPAHI
-        WAE
-        SOPH
-        SHA
-        SEA
-        RUED
-        RIPED
-        RIDE
-        RHO
-        TIE
-        TEPA
-        REPAID
-        TIED
-        REI
-        REDO
-        REDIA
-        REAP
-        READ
-        RAPE
-        RAH
-        QOPH
-        PYE
-        PULED
-        PULE
-        PUKE
-        PUCE
-        PSEUD
-        RIPE
-        TOPE
-        POUCH
-        POSED
-        POSE
-        PONE
-        SHOP
-        SIDE
-        POISHA
-        PLIE
-        PLEIAD
-        PLEAD
-        PLEA
-        TAPED
-        PISH
-        PIPED
-        PIPE
-        PILED
-        PILE
-        PIES
-        PIED
-        PIE
-        PHUT
-        PHT
-        POACH
-        WADE
-        PHIS
-        PEW
-        PET
-        PES
-        PERIOD
-        PERDU
-        PER
-        PEON
-        PEND
-        PEN
-        PEIN
-        PEE
-        PEE
-        PEDS
-        PEDRO
-        PED
-        PEAT
-        PEAR
-        PEAN
-        PEAL
-        PEAK
-        PEAG
-        PE
-        PAYED
-        PAVED
-        PATED
-        PASE
-        PAREU
-        PARED
-        PALED
-        PAGED
-        PAGE
-        PACED
-        PACE
-        TOPH
-        OWE
-        PSEUDO
-        PRIED
-        OUPHE
-        OUPH
-        OSE
-        OREAD
-        ORE
-        OPTED
-        OPES
-        OPERA
-        OPEN
-        OPED
-        OPE
-        OPAHS
-        OPAH
-        OOH
-        ONE
-        OLEA
-        OKE
-        THOU
-        OHS
-        OHED
-        OHED
-        OES
-        ODES
-        ODE
-        UVEA
-        OBE
-        OARED
-        NUDE
-        PLED
-        NOPE
-        NOH
-        NODE
-        NEAP
-        PRAHU
-        PUJAH
-        NAPE
-        NAH
-        PASH
-        MOPED
-        MODE
-        OHIAS
-        OLE
-        MHO
-        MEOU
-        RODE
-        MEDIA
-        MEAD
-        PALE
-        MADE
-        VIED
-        LUDE
-        LOPED
-        LOPE
-        PAREO
-        LODE
-        PHIZ
-        DIME
-        DIKE
-        ACED
-        ELD
-        DIET
-        DIES
-        DHOBI
-        DHAK
-        DEX
-        DEW
-        DEFI
-        PHIAL
-        AIDER
-        MED
-        POH
-        HIPS
-        HIP
-        DEL
-        BEDU
-        EON
-        DEEP
-        DEEP
-        DECO
-        DEAF
-        DINE
-        DEAN
-        DEAL
-        DEAIR
-        DAZE
-        OHM
-        DASHI
-        DARE
-        IDEAS
-        WIPE
-        DAHS
-        DAHL
-        DACE
-        LIEU
-        WHIP
-        PERI
-        DEY
-        PEAS
-        MAE
-        PIKE
-        HOG
-        PEDALO
-        PAEON
-        JOE
-        GIED
-        ADEPT
-        EGAD
-        PEH
-        PEH
-        POXED
-        EPOS
-        PURE
-        DE
-        PITH
-        DEPOT
-        POLE
-        EIDOS
-        CHOP
-        PATE
-        CODEIA
-        JADE
-        ROPED
-        HALO
-        PHAT
-        HAIK
-        MOPE
-        DEB
-        PINE
-        VIE
-        PAWED
-        DEMO
-        IDEM
-        EAT
-        DIE
-        CHIAO
-        CHIA
-        CHI
-        DUCE
-        PEDAL
-        DICE
-        CHAO
-        PEA
-        CHAD
-        OATH
-        DEVA
-        HIC
-        GEOID
-        TOPHI
-        DHOW
-        COPE
-        ILEA
-        PEED
-        PEED
-        DOSE
-        AWE
-        HAO
-        DOE
-        HEAD
-        HEAD
-        HUP
-        AERO
-        SHIP
-        DATE
-        CUED
-        AILED
-        OH
-        IDEA
-        RAPED
-        PANED
-        APES
-        PEC
-        APHID
-        HOE
-        HOE
-        APED
-        DYE
-        POPE
-        PORE
-        DIVE
-        ANE
-        ADZE
-        AIDE
-        COPED
-        EAU
-        HOODIE
-        APEX
-        PIER
-        AIDED
-        ADIEUS
-        DHOTI
-        DAME
-        OWED
-        PINED
-        FOH
-        APHIS
-        ABED
-        UNDE
-        UREA
-        AYE
-        PIKED
-        HUH
-        HUH
-        DEIL
-        REP
-        IMPED
-        OUPHS
-        POLED
-        DONE
-        SPAE
-        CODE
-        HAS
-        DELI
-        ROPE
-        HOPED
-        BODE
-        DEAD
-        BEAD
-        SUED
-        CUE
-        AEON
-        PARE
-        OE
-        PANE
-        COED
-        ADIEUX
-        MOUE
-        AGUE
-        CAPE
-        APSE
-        DIED
-        ALOE
-        BIDE
-        POKE
-        REDIP
-        AHA
-        AGED
-        AIMED
-        AVE
-        AXE
-        CEDI
-        AMIE
-        AIRED
-        JAPE
-        OUTED
-        GAE
-        ALE
-        SADE
-        ADIEU
-        ICE
-        DOTE
-        APHIDS
-        AAH
-        PESO
-        ATE
-        PHOT
-        CAPH
-        CHAP
-        HARP
-        HO
-        AXED
-        AIDES
-        LIED
-        WHO
-        HA
-        ODEA
-        HAJI
-        IRE
-        SHAD
-        EURO
-        ROUE
-        SUPE
-        LEA
-        FOE
-        AGE
-        BADE
-        HASP
-        DASH
-        POKED
-        ASH
-        NIDE
-        PAH
-        BED
-        DUNE
-        SIPED
-        VOE
-        LEAD
-        HAH
-        HAH
-        SADHU
-        DUEL
-        BIPED
-        DOVE
-        HOPS
-        DIEL
-        AE
-        DOUGH
-        APE
-        HIS
-        ARE
-        SIPE
-        CHIP
-        DEN
-        DEE
-        DEE
-        OUCH
-        REPO
-        KHADI
-        DHUTI
-        POME
-        KEPI
-        CHID
-        CAPED
-        HABU
-        DISH
-        BEAU
-        CEP
-        JEU
-        DITE
-        PIETA
-        FADE
-        DOES
-        DHAL
-        AH
-        DOPED
-        DOPES
-        DOPEY
-        DORE
-        HEP
-        HEP
-        ODEUM
-        DOTH
-        DOZE
-        DUDE
-        DUE
-        DUES
-        DUET
-        DUKE
-        HOP
-        DUPE
-        DUPED
-        DUPER
-        DUPES
-        PATH
-        SEPIA
-        EAR
-        KEA
-        EAUX
-        POOH
-        FEU
-        ECU
-        ED
-        EDDO
-        EDH
-        EDH
-        EDIT
-        DEAR
-        EGO
-        EIDE
-        EIDE
-        DOGE
-        PICE
-        PASEO
-        PILEA
-        OHIA
-        PUSH
-        JIHAD
-        DOPER
-        EPHA
-        EPHA
-        EPIC
-        HAP
-        DAH
-        EPODE
-        EQUID
-        EQUIP
-        RUE
-        WIDE
-        ETA
-        HAND
-        PEPO
-        EXPO
-        WHID
-        PUGH
-        RED
-        UREDIA
-        ROE
-        FED
-        FEOD
-        HUIC
-        FIE
-        PORED
-        IDES
-        KHI
-        IRED
-        PHON
-        DOLE
-        EMU
-        LEAP
-        WHOP
-        DIRE
-        PEG
-        IDLE
-        THUD
-        UGH
-        HYPO
-        DAUPHIN
-        PEP
-        GAED
-        SAE
-        GAPE
-        GAPED
-        SPAED
-        HAG
-        HAY
-        DEV
-        GED
-        DURE
-        APISH
-        GHI
-        GIE
-        HIE
-        HIE
-        RUDE
-        HODS
-        AWED
-        OHO
-        HAW
-        GUDE
-        USE
-        HIDE
-        HIDE
-        HAD
-        HADE
-        HADE
-        HADJ
-        HAED
-        HAED
-        HAIL
-        HAIR
-        HAJ
-        HALID
-        HALIDE
-        HAM
-        CADE
-        HAPS
-        HARD
-        USED
-        DALE
-        HAT
-        HAUL
-        HAUT
-        HEAP
-        HEAP
-        AHOY
-        APER
-        DOER
-        HI
-        HID
-        HIED
-        HIED
-        ERA
-        HIM
-        HIN
-        HIND
-        PHI
-        HIT
-        HOAGIE
-        HOAR
-        HOAX
-        HOB
-        HOD
-        HOED
-        HOED
-        HOLD
-        NAE
-        HOLP
-        HON
-        HOOD
-        HOOP
-        HOPE
-        HOPE
-        HORA
-        LEI
-        HOT
-        HOUR
-        SPIED
-        HOW
-        HOWDIE
-        HOY
-        HOYA
-        HUB
-        HUE
-        HUE
-        HUED
-        HUED
-        HUG
-        HULA
-        HUM
-        HUMP
-        HUN
-        HUT
-        POSH
-        HYP
-        ICED
-        ICH
-        IDEAL
-        TEPID
-        AHOLD
-        SEI
-        DOPE
-        POEM
-        HAE
-        HAE
-        ACE
-        JAPED
-        FEUD
-        BAH
-        ETUI
-        LIE
-        PUKED
-        DOME
-        PAVE
-        YAH
-        POET
-        JUPE
-        KAPH
-        KEP
-        OILED
-        AUREI
-        KOPH
-        KUE
-        LADE
-        YEP
-        SHOD
-        KAE
-        LED
-        UREDO
-        END
-        LEU
-        LEUD
-        EPHOD
-        EPHOD
-        HILA
-        PLIED
-        YOU
-        YAUD
-        YAP
-        YA
-        WAP
-        UT
-        UP
-        UNAU
-        ULU
-        ULU
-        UH
-        TUP
-        UNAI
-        VAU
-        SAU
-        ROUP
-        YUP
-        RAP
-        RAIA
-        RADIO
-        RAD
-        QUIPU
-        SOUP
-        PUN
-        PUB
-        PRAU
-        POUT
-        POUF
-        PODIUM
-        PAY
-        PAT
-        PUL
-        PARD
-        PARA
-        PAR
-        PANDA
-        PAM
-        PAISA
-        PAIN
-        PAIL
-        PAGODA
-        PADRI
-        PADOUK
-        PADOUK
-        PADIS
-        PADI
-        PACA
-        PAC
-        PA
-        PAIR
-        PATIO
-        OUT
-        PAIK
-        OPIUM
-        ODIUM
-        PAW
-        OAT
-        OAF
-        TAU
-        NAP
-        NAOI
-        NAIAD
-        POILU
-        PUP
-        PAVID
-        MIAOU
-        WAD
-        PAID
-        MA
-        LOUP
-        ANOA
-        PAN
-        WADI
-        UN
-        DAUB
-        DAUB
-        DATA
-        DAPS
-        DAP
-        DAIS
-        DADO
-        MAID
-        CUP
-        PAPA
-        XU
-        NADA
-        COUP
-        NU
-        AMADOU
-        ADAGIO
-        DADA
-        AW
-        DAY
-        FOU
-        OAR
-        DATO
-        QUA
-        AWA
-        AWA
-        HAO
-        HUP
-        AUTO
-        AURA
-        AB
-        ADIT
-        AUDIO
-        AIR
-        AR
-        PAL
-        AVID
-        ARID
-        DAW
-        DAD
-        UM
-        MU
-        AID
-        APIAN
-        AQUA
-        APHID
-        AN
-        DAK
-        APED
-        AS
-        ALA
-        DAM
-        ADZ
-        AIDE
-        AMI
-        AI
-        EAU
-        ALOUD
-        ADS
-        ABA
-        ABA
-        ADIOS
-        MAP
-        ADD
-        ADAPT
-        ADAPT
-        AUDIT
-        ATOP
-        DANIO
-        AUK
-        AUK
-        ACID
-        MAUD
-        PIU
-        PAGOD
-        AVOID
-        AA
-        AA
-        ADOS
-        ADO
-        PAP
-        AM
-        AGO
-        APODS
-        AAS
-        AAS
-        PAD
-        AT
-        AAL
-        AAL
-        AMA
-        AMA
-        DAG
-        ARIA
-        AHA
-        AHA
-        DAMP
-        AGIO
-        AMID
-        ALP
-        ADOPT
-        ADIEU
-        ADIEU
-        FAD
-        AND
-        AGA
-        AAH
-        AAH
-        AIN
-        BAD
-        AMIA
-        AG
-        AMU
-        AMU
-        AL
-        AX
-        AY
-        AZIDO
-        HA
-        AVO
-        KUDU
-        NA
-        DAL
-        BAUD
-        DAB
-        BA
-        ASP
-        FADO
-        PAH
-        BAP
-        AE
-        APE
-        AMIDO
-        PAS
-        AROID
-        BAA
-        AD
-        PILAU
-        ATAP
-        PARDI
-        AH
-        RAID
-        DOUM
-        APT
-        ABO
-        AULD
-        AIT
-        DUB
-        DUN
-        DUP
-        AIL
-        AIM
-        RAPID
-        HAP
-        DAH
-        PADAUK
-        FA
-        AZO
-        DAUT
-        DAUT
-        PAX
-        LUAU
-        LUAU
-        AMP
-        SOU
-        AIDS
-        UPAS
-        AIS
-        APOD
-        AVA
-        AUDAD
-        HAD
-        MAD
-        ANI
-        OAK
-        PADS
-        YAUP
-        YAUP
-        DAGO
-        SUP
-        JAUP
-        ANA
-        ANA
-        PUT
-        AW
-        AB
-        AN
-        AM
-        AH
-        PAYMASTER
-        LOADMASTER
-        MASTERS
-        ASTERS
-        MASTERY
-        RED
-        MASTERED
-        UPDO
-        TOO
-        TED
-        TEA
-        TAO
-        UDO
-        TO
-        SPADO
-        SO
-        SEA
-        TEPA
-        REPAID
-        REI
-        REDO
-        REDIA
-        REAP
-        READ
-        RADIO
-        POLIO
-        SOD
-        PISO
-        PIANO
-        SODA
-        PAGODA
-        OXO
-        OUZO
-        PATIO
-        WOO
-        ORDO
-        OR
-        OUTDO
-        UNDO
-        NOO
-        NEAP
-        MEOU
-        MEDIA
-        MEAD
-        LO
-        DIPSO
-        ELD
-        DEX
-        DEW
-        DEFI
-        PRO
-        ORA
-        AIDER
-        MED
-        DEL
-        EON
-        DEEP
-        DECO
-        DEAF
-        DEAN
-        DEAL
-        DEAIR
-        DADO
-        DEY
-        EGAD
-        EPOS
-        DE
-        COD
-        DURO
-        DEPOT
-        EIDOS
-        CODA
-        OLIO
-        DEB
-        DEMO
-        EAT
-        COO
-        PRAO
-        CIAO
-        DEVA
-        DATO
-        HAO
-        HEAD
-        AUTO
-        DIAZO
-        AUDIO
-        DUOMO
-        AILED
-        AID
-        AIDE
-        AI
-        EAU
-        AIDED
-        KUDO
-        MO
-        DANIO
-        YO
-        DEIL
-        REP
-        BIO
-        PAGOD
-        BO
-        AA
-        LIDO
-        ADO
-        AAHED
-        DELI
-        DEAD
-        AGO
-        POCO
-        DOJO
-        MOO
-        UPO
-        REDIP
-        AIMED
-        AGIO
-        AIRED
-        LOO
-        HO
-        AIDES
-        AZIDO
-        JO
-        AVO
-        EURO
-        LEA
-        FADO
-        LEAD
-        DONA
-        AMIDO
-        GOO
-        DIDO
-        DEN
-        JIAO
-        DEE
-        DO
-        REPO
-        DODO
-        DON
-        HEP
-        ABO
-        NO
-        SEPIA
-        CAPO
-        EAR
-        EAUX
-        FEU
-        ECU
-        ED
-        EDDO
-        EDH
-        EDIT
-        DEAR
-        EGO
-        EIDE
-        EPHA
-        EPIC
-        EPODE
-        EQUID
-        EQUIP
-        ETA
-        EXPO
-        RED
-        FED
-        FEOD
-        AZO
-        FIDO
-        IDES
-        IRED
-        EMU
-        LEAP
-        DUO
-        ADOBO
-        DEV
-        BOO
-        GO
-        OHO
-        HEAP
-        WO
-        ERA
-        ZOO
-        LEI
-        TEPID
-        SEI
-        DAGO
-        FEUD
-        ETUI
-        IOTA
-        JUDO
-        POLO
-        LED
-        END
-        LEU
-        LEUD
-        EPHOD
-        ID
-        WAR
-        WAIR
-        VAR
-        URD
-        UDOS
-        TOUR
-        TOR
-        TAPIR
-        SUDOR
-        UDO
-        SPAR
-        SOUR
-        SAPOR
-        RUBY
-        RUBS
-        RUBIED
-        RUBE
-        ROBS
-        ROBE
-        RIBS
-        RIBALD
-        RIB
-        TAR
-        RUB
-        SIR
-        RAD
-        PUR
-        PROBE
-        POUR
-        PROBAND
-        RIBAND
-        PILAR
-        PER
-        PEAR
-        PARR
-        YAR
-        PAR
-        WAUR
-        PAIR
-        OUR
-        OR
-        OLD
-        ODOUR
-        ODOR
-        ODIUM
-        ODIC
-        ODE
-        ODDS
-        OBE
-        POLAR
-        NOIR
-        NADIR
-        MOR
-        MIR
-        PRIOR
-        PURR
-        MAIR
-        LOUR
-        DIPSO
-        DIOL
-        DINAR
-        DIB
-        AIDER
-        DEAIR
-        DAUB
-        DAPS
-        DAP
-        DAIS
-        DADS
-        DADO
-        ID
-        KOR
-        DUOMI
-        BRAD
-        DYAD
-        DE
-        DILDO
-        DIP
-        VAIR
-        DUI
-        OD
-        DURO
-        DOL
-        BUND
-        DUMA
-        DADA
-        DAY
-        SPUR
-        DRUBS
-        LIDAR
-        BURD
-        DIE
-        GUAR
-        SOAR
-        OAR
-        DATO
-        DOE
-        ADIT
-        DIAZO
-        AIR
-        DIAL
-        AR
-        DAW
-        IDEA
-        FIR
-        DAD
-        CUR
-        IDOL
-        BAL
-        DAK
-        VAPOR
-        DOUX
-        FUR
-        DAM
-        ADZ
-        BADDIE
-        PIER
-        ADS
-        ADIOS
-        ADD
-        DANIO
-        BIND
-        BO
-        DID
-        ADOS
-        ADO
-        AMOUR
-        DEAD
-        BEAD
-        DOPAS
-        DORR
-        DRAB
-        DIED
-        BADDY
-        BI
-        BAND
-        ADDS
-        ARDOR
-        DAG
-        DOOR
-        DAMP
-        ADOPT
-        ADIEU
-        AND
-        DIODE
-        FAR
-        DIDY
-        AMIR
-        BAWD
-        YOUR
-        COR
-        BOAR
-        DIS
-        DIM
-        BIN
-        ODEA
-        DRIBS
-        DORP
-        BALD
-        DOW
-        DIG
-        DAL
-        BAUD
-        DAB
-        DOPA
-        DIPS
-        BA
-        DONA
-        BAR
-        BAR
-        BIDDY
-        BARD
-        COIR
-        DIN
-        BOND
-        BRA
-        DIDO
-        LAIR
-        BUDDY
-        DO
-        BUN
-        BUR
-        BUR
-        AD
-        DRIB
-        DIPT
-        DADOS
-        DIT
-        DITA
-        OSAR
-        DOC
-        DODO
-        DOG
-        DOM
-        DON
-        DOPED
-        DOPY
-        DOR
-        DOR
-        DOS
-        DOT
-        ROAR
-        DOUM
-        DOUMA
-        DOUR
-        DOUR
-        DOURA
-        DRIP
-        DROP
-        DRUB
-        DRUID
-        DUAD
-        DUADS
-        DUAL
-        POOR
-        DUB
-        DUCI
-        DUD
-        DUDE
-        DUDS
-        DUE
-        DUG
-        DUIT
-        DULIA
-        DUMP
-        DUN
-        DUP
-        DUPE
-        DUPED
-        DUPER
-        DUPS
-        DURA
-        DURR
-        DOAT
-        PAYOR
-        EAR
-        OUREBI
-        ED
-        EDDO
-        DEAR
-        ORIBI
-        LAR
-        DOPER
-        BIRD
-        DAH
-        CRIB
-        ODS
-        KIR
-        FAIR
-        BAUDS
-        DAUT
-        ROBAND
-        BAN
-        FOR
-        FOUR
-        DUO
-        CAROB
-        GAR
-        ODD
-        GAUR
-        DIDOS
-        FIAR
-        GOR
-        NOR
-        IZAR
-        HAIR
-        MAR
-        CAR
-        GRUB
-        APER
-        DOER
-        DUOS
-        HOAR
-        HOUR
-        DIVA
-        IDS
-        CRAB
-        BOLD
-        DOPE
-        KRUBI
-        DAGO
-        ROB
-        DRABS
-        GRAB
-        JAR
-        DOIT
-        LIAR
-        ULU
-        LUV
-        LUM
-        LUG
-        LOX
-        LOW
-        LOT
-        LO
-        ELD
-        ALS
-        LIS
-        ULVA
-        LAV
-        ILEA
-        LOP
-        ALA
-        LAM
-        LID
-        ALOE
-        ALP
-        ALUM
-        ALE
-        ALIT
-        LOO
-        ALOW
-        ALT
-        LIT
-        AL
-        ALIF
-        LAX
-        LEA
-        LAD
-        ALTO
-        LOG
-        ILKA
-        LOB
-        LAR
-        LAT
-        ULAN
-        ALB
-        LAG
-        ILL
-        ALL
-        ALPS
-        LEI
-        ILIA
-        ILK
-        ALSO
-        ULNA
-        LIE
-        LIP
-        LIB
-        LUX
-        LA
-        LAB
-        LAC
-        LAW
-        LI
-        LAP
-        LAS
-        LAY
-        LED
-        LEU
-        LIN
-        YOU
-        TAO
-        UDO
-        TO
-        SO
-        VAU
-        SAU
-        PROA
-        ZOA
-        TAU
-        LO
-        PRO
-        XU
-        NU
-        FOU
-        MOA
-        QUA
-        HAO
-        DOE
-        MU
-        BOA
-        EAU
-        MO
-        YO
-        BIO
-        PIU
-        BO
-        ADO
-        AGO
-        OE
-        UPO
-        AMU
-        HO
-        JO
-        AVO
-        DO
-        ABO
-        DUE
-        NO
-        AZO
-        GOA
-        SOU
-        DUO
-        GO
-        WO
-        KOA
-        TED
-        PLATER
-        PLATEN
-        PLATED
-        PLATEAUX
-        PLATEAUS
-        PLATEAU
-        PLATEAUED
-        PLATES
-        ATES
-        EAU
-        EAUX
-        ED
-        LATED
-        LATEN
-        LATER
-        YOD
-        YID
-        YA
-        YA
-        XI
-        XI
-        VIA
-        VIA
-        UTA
-        TI
-        TI
-        TAO
-        TO
-        UNAI
-        SPADO
-        SPA
-        SPA
-        SO
-        SO
-        SAU
-        SAPID
-        SAP
-        SAID
-        SAID
-        ROD
-        RADIO
-        RAD
-        SOUP
-        PSI
-        PYA
-        POI
-        SOD
-        SOD
-        PLAID
-        PION
-        PIE
-        PIAS
-        PIANO
-        PIAN
-        PIA
-        PIA
-        PI
-        PE
-        SODA
-        SODA
-        ZOA
-        PAIN
-        PAIL
-        PA
-        OY
-        OXID
-        OX
-        OW
-        PAIR
-        OS
-        OS
-        OR
-        OPE
-        OM
-        ODIUM
-        ODIC
-        ODE
-        ODE
-        NODI
-        NAOI
-        OKA
-        MODI
-        MOD
-        MID
-        SOP
-        WAD
-        PAID
-        MA
-        MA
-        LO
-        DIPSO
-        DIOL
-        DIOL
-        DIB
-        ORA
-        ORA
-        WADI
-        GAD
-        QUAI
-        DAUB
-        DAPS
-        DAP
-        DAIS
-        DAIS
-        DADO
-        DADO
-        TAD
-        ID
-        ID
-        MAID
-        DUOMI
-        IN
-        RIA
-        RIA
-        DE
-        DE
-        DIP
-        OVA
-        DUI
-        DUI
-        OD
-        OD
-        DURO
-        DOL
-        DUMA
-        AW
-        DAY
-        DIE
-        DIE
-        MOA
-        PEA
-        PEA
-        PRAO
-        CIAO
-        SPUD
-        TOD
-        DATO
-        IT
-        QUA
-        SIP
-        HAO
-        DOE
-        DOE
-        AB
-        ADIT
-        DIAZO
-        AIR
-        DIAL
-        DIAL
-        AR
-        ARID
-        DAW
-        OH
-        IDEA
-        IDEA
-        DAD
-        DAD
-        AID
-        AID
-        BOA
-        IDOL
-        AN
-        DAK
-        AS
-        AS
-        DOUX
-        DAM
-        ADZ
-        AIDE
-        AMI
-        AMI
-        AI
-        AI
-        AI
-        AI
-        OCA
-        ADS
-        ADIOS
-        ADIOS
-        ADD
-        MO
-        DANIO
-        YO
-        NOD
-        BIO
-        BO
-        DID
-        DID
-        AA
-        AA
-        AA
-        AA
-        LIDO
-        ADOS
-        ADOS
-        ADO
-        ADO
-        AM
-        AGO
-        ADIPOUS
-        AT
-        OE
-        OE
-        DOPAS
-        OBI
-        OBI
-        LID
-        BI
-        BI
-        DAG
-        DAMP
-        AGIO
-        AMID
-        TA
-        TA
-        ADOPT
-        ADIEU
-        AIN
-        BAD
-        AG
-        HO
-        DIS
-        DIS
-        AL
-        AX
-        AY
-        DIM
-        HA
-        HA
-        ODEA
-        ODEA
-        DORP
-        CAID
-        DOW
-        DIG
-        NA
-        NA
-        DAL
-        DAB
-        DOPA
-        DIPS
-        BA
-        BA
-        ASP
-        SOAP
-        ON
-        DONA
-        LAD
-        BID
-        AE
-        AE
-        APE
-        SI
-        SI
-        SI
-        DIN
-        AMIDO
-        MI
-        MI
-        SAD
-        SAD
-        DIDO
-        DIDO
-        JIAO
-        DO
-        DO
-        AD
-        AD
-        DIPT
-        DIT
-        DITA
-        DOC
-        DOG
-        AH
-        RID
-        DOM
-        GID
-        DON
-        RAID
-        DOPY
-        DOR
-        DOS
-        DOS
-        DOT
-        DOUM
-        DOUMA
-        DOUR
-        DOURA
-        DRIP
-        ABO
-        AIT
-        DROP
-        DUAD
-        DUAL
-        DUB
-        DUCI
-        DUD
-        DUE
-        DUE
-        DUG
-        DUIT
-        DULIA
-        DUMP
-        DUN
-        DUP
-        DUPE
-        DUPS
-        DURA
-        DOAT
-        NO
-        AIL
-        AIM
-        OHIA
-        DAH
-        ORAD
-        ODS
-        BOD
-        FA
-        DAUT
-        GOA
-        SOU
-        ION
-        TUI
-        AIDS
-        DUO
-        PIAL
-        ODD
-        AIS
-        AIS
-        SADI
-        SADI
-        GO
-        GOD
-        OBIA
-        HAD
-        MAD
-        QAID
-        ANI
-        ANI
-        WO
-        HI
-        HI
-        HID
-        DUOS
-        PHI
-        HOD
-        DIVA
-        IDS
-        DOPE
-        DAGO
-        SUP
-        IOTA
-        IS
-        IS
-        DOIT
-        KA
-        GADI
-        KOA
-        KOI
-        LA
-        LA
-        LAID
-        LI
-        LI
+BIO
+BIO
+BIO
+BIO
+BIOTA
+BIPED
+BIPOD
+BIPOD
+BIRD
+BIT
+BLED
+BLIP
+BO
+BO
+BO
+BO
+BO
+BO
+BO
+BO
+BOA
+BOA
+BOA
+BOA
+BOA
+BOA
+BOA
+BOAR
+BOAT
+BOD
+BOD
+BODE
+BOIL
+BOLD
+BOND
+BOO
+BOP
+BOP
+BOT
+BOTA
+BOUT
+BRA
+BRAD
+BUDDY
+BUN
+BUND
+BUR
+BUR
+BURD
+BUT
+CAD
+CAD
+CADE
+CADI
+CADI
+CADI
+CADI
+CAID
+CAID
+CAID
+CAP
+CAP
+CAPE
+CAPED
+CAPH
+CAPO
+CAPO
+CAPO
+CAPO
+CAPO
+CAPO
+CAPUT
+CAR
+CAROB
+CAT
+CAUSABLE
+CEDI
+CEP
+CHAD
+CHAO
+CHAP
+CHI
+CHIA
+CHIAO
+CHID
+CHIP
+CHOP
+CIAO
+CIAO
+CIAO
+CIAO
+CIAO
+CIAO
+CLAD
+CLAP
+CLIP
+CLOD
+CLOP
+CLOUD
+COAPT
+COAT
+COATI
+COD
+COD
+CODA
+CODA
+CODA
+CODA
+CODA
+CODE
+CODEIA
+COED
+COIF
+COIR
+COO
+COP
+COP
+COPE
+COPED
+COR
+COT
+COUP
+COUP
+CRAB
+CRIB
+CUE
+CUED
+CUIF
+CUP
+CUP
+CUPID
+CUPID
+CUPPA
+CUPPA
+CUR
+CUT
+DAB
+DAB
+DAB
+DAB
+DAB
+DACE
+DACOIT
+DAD
+DAD
+DAD
+DAD
+DAD
+DAD
+DAD
+DADA
+DADA
+DADO
+DADO
+DADO
+DADO
+DADO
+DADO
+DADO
+DADO
+DADO
+DADO
+DADOS
+DADS
+DAFF
+DAFF
+DAFT
+DAFT
+DAG
+DAG
+DAG
+DAG
+DAG
+DAGO
+DAGO
+DAGO
+DAGO
+DAGO
+DAGO
+DAGO
+DAGO
+DAGO
+DAH
+DAH
+DAH
+DAH
+DAH
+DAH
+DAH
+DAH
+DAHL
+DAHL
+DAHS
+DAILY
+DAIS
+DAIS
+DAIS
+DAIS
+DAIS
+DAIS
+DAIS
+DAK
+DAK
+DAK
+DAK
+DAK
+DAKOIT
+DAL
+DAL
+DAL
+DAL
+DAL
+DAL
+DALE
+DAM
+DAM
+DAM
+DAM
+DAM
+DAM
+DAM
+DAM
+DAME
+DAMP
+DAMP
+DAMP
+DAMP
+DAMP
+DAMP
+DANIO
+DANIO
+DANIO
+DANIO
+DANIO
+DANIO
+DANIO
+DANIO
+DAP
+DAP
+DAP
+DAP
+DAP
+DAP
+DAPS
+DAPS
+DAPS
+DAPS
+DAPS
+DAPS
+DAPS
+DARE
+DART
+DASH
+DASHI
+DATA
+DATA
+DATA
+DATE
+DATE
+DATO
+DATO
+DATO
+DATO
+DATO
+DATO
+DATO
+DATO
+DATO
+DATTO
+DAUB
+DAUB
+DAUB
+DAUB
+DAUB
+DAUB
+DAUNT
+DAUPHIN
+DAUT
+DAUT
+DAUT
+DAUT
+DAUT
+DAUT
+DAUT
+DAUTIE
+DAUTS
+DAVIT
+DAW
+DAW
+DAW
+DAW
+DAW
+DAWT
+DAY
+DAY
+DAY
+DAY
+DAY
+DAY
+DAZE
+DE
+DE
+DE
+DE
+DE
+DE
+DE
+DE
+DE
+DE
+DE
+DE
+DE
+DEAD
+DEAD
+DEAD
+DEAF
+DEAF
+DEAF
+DEAIR
+DEAIR
+DEAIR
+DEAL
+DEAL
+DEAL
+DEAN
+DEAN
+DEAR
+DEAR
+DEAR
+DEB
+DEB
+DECO
+DECO
+DEE
+DEE
+DEE
+DEEP
+DEEP
+DEEP
+DEFI
+DEFI
+DEFI
+DEIL
+DEIL
+DEIL
+DEL
+DEL
+DELI
+DELI
+DEMO
+DEMO
+DEN
+DEN
+DEPOT
+DEPOT
+DEPOT
+DEV
+DEV
+DEVA
+DEVA
+DEW
+DEW
+DEX
+DEX
+DEY
+DEY
+DHAK
+DHAL
+DHOBI
+DHOTI
+DHOTI
+DHOW
+DHUTI
+DHUTI
+DIAL
+DIAL
+DIAL
+DIAL
+DIAL
+DIAL
+DIAPER
+DIAZO
+DIAZO
+DIAZO
+DIAZO
+DIAZO
+DIAZO
+DIB
+DIB
+DIB
+DIB
+DICE
+DICOT
+DICTA
+DID
+DID
+DID
+DID
+DID
+DIDO
+DIDO
+DIDO
+DIDO
+DIDO
+DIDO
+DIDO
+DIDO
+DIDOS
+DIDY
+DIE
+DIE
+DIE
+DIE
+DIE
+DIE
+DIE
+DIE
+DIE
+DIED
+DIED
+DIEL
+DIES
+DIET
+DIET
+DIG
+DIG
+DIG
+DIKE
+DILDO
+DIM
+DIM
+DIM
+DIM
+DIM
+DIME
+DIMOUT
+DIN
+DIN
+DIN
+DIN
+DINAR
+DINE
+DINT
+DIODE
+DIOL
+DIOL
+DIOL
+DIOL
+DIP
+DIP
+DIP
+DIP
+DIP
+DIPPY
+DIPPY
+DIPS
+DIPS
+DIPS
+DIPS
+DIPS
+DIPSO
+DIPSO
+DIPSO
+DIPSO
+DIPSO
+DIPSO
+DIPT
+DIPT
+DIPT
+DIPT
+DIPT
+DIQUAT
+DIRE
+DIRT
+DIS
+DIS
+DIS
+DIS
+DIS
+DIS
+DIS
+DISABLE
+DISABLED
+DISABLES
+DISH
+DISPOSABLE
+DIT
+DIT
+DIT
+DIT
+DIT
+DIT
+DITA
+DITA
+DITA
+DITA
+DITA
+DITA
+DITA
+DITA
+DITA
+DITE
+DITE
+DITS
+DITTO
+DIVA
+DIVA
+DIVA
+DIVA
+DIVA
+DIVA
+DIVA
+DIVE
+DIVOT
+DO
+DO
+DO
+DO
+DO
+DO
+DO
+DO
+DO
+DO
+DO
+DOAT
+DOAT
+DOAT
+DOAT
+DOAT
+DOAT
+DOAT
+DOATS
+DOBLA
+DOC
+DOC
+DOC
+DOC
+DODO
+DODO
+DOE
+DOE
+DOE
+DOE
+DOE
+DOE
+DOE
+DOE
+DOE
+DOE
+DOE
+DOER
+DOER
+DOES
+DOFF
+DOFF
+DOG
+DOG
+DOG
+DOG
+DOGE
+DOILY
+DOIT
+DOIT
+DOIT
+DOIT
+DOIT
+DOITS
+DOJO
+DOL
+DOL
+DOL
+DOL
+DOL
+DOLE
+DOLL
+DOLT
+DOM
+DOM
+DOM
+DOM
+DOM
+DOM
+DOM
+DOME
+DON
+DON
+DON
+DON
+DON
+DON
+DON
+DON
+DONA
+DONA
+DONA
+DONA
+DONA
+DONA
+DONA
+DONA
+DONA
+DONA
+DONE
+DONUT
+DOOR
+DOPA
+DOPA
+DOPA
+DOPA
+DOPA
+DOPA
+DOPA
+DOPA
+DOPA
+DOPA
+DOPANT
+DOPAS
+DOPAS
+DOPAS
+DOPAS
+DOPAS
+DOPAS
+DOPAS
+DOPE
+DOPE
+DOPE
+DOPE
+DOPE
+DOPE
+DOPE
+DOPE
+DOPE
+DOPE
+DOPED
+DOPED
+DOPER
+DOPER
+DOPES
+DOPEY
+DOPY
+DOPY
+DOPY
+DOPY
+DOPY
+DOR
+DOR
+DOR
+DOR
+DOR
+DOR
+DORE
+DORP
+DORP
+DORP
+DORP
+DORP
+DORR
+DOS
+DOS
+DOS
+DOS
+DOS
+DOS
+DOSE
+DOST
+DOT
+DOT
+DOT
+DOT
+DOT
+DOTE
+DOTE
+DOTH
+DOTH
+DOTS
+DOTY
+DOUBT
+DOUGH
+DOUM
+DOUM
+DOUM
+DOUM
+DOUM
+DOUM
+DOUM
+DOUMA
+DOUMA
+DOUMA
+DOUMA
+DOUMA
+DOUMA
+DOUR
+DOUR
+DOUR
+DOUR
+DOUR
+DOURA
+DOURA
+DOURA
+DOURA
+DOURA
+DOURA
+DOUX
+DOUX
+DOUX
+DOUX
+DOUX
+DOVE
+DOW
+DOW
+DOW
+DOW
+DOW
+DOZE
+DRAB
+DRABS
+DRAT
+DRIB
+DRIBS
+DRIP
+DRIP
+DRIP
+DRIP
+DRIP
+DRIPT
+DROIT
+DROP
+DROP
+DROP
+DROP
+DROP
+DROPT
+DRUB
+DRUBS
+DRUID
+DUAD
+DUAD
+DUAD
+DUAD
+DUAD
+DUADS
+DUAL
+DUAL
+DUAL
+DUAL
+DUAL
+DUB
+DUB
+DUB
+DUB
+DUCAT
+DUCE
+DUCI
+DUCI
+DUCI
+DUCI
+DUCI
+DUCT
+DUD
+DUD
+DUD
+DUDE
+DUDE
+DUDS
+DUE
+DUE
+DUE
+DUE
+DUE
+DUE
+DUE
+DUE
+DUE
+DUE
+DUEL
+DUES
+DUET
+DUET
+DUFF
+DUFF
+DUG
+DUG
+DUG
+DUI
+DUI
+DUI
+DUI
+DUI
+DUI
+DUIT
+DUIT
+DUIT
+DUIT
+DUITS
+DUKE
+DULIA
+DULIA
+DULIA
+DULIA
+DULIA
+DULIA
+DUMA
+DUMA
+DUMA
+DUMA
+DUMA
+DUMA
+DUMA
+DUMP
+DUMP
+DUMP
+DUMP
+DUN
+DUN
+DUN
+DUN
+DUN
+DUNE
+DUNT
+DUO
+DUO
+DUO
+DUO
+DUO
+DUO
+DUO
+DUO
+DUOMI
+DUOMI
+DUOMI
+DUOMO
+DUOS
+DUOS
+DUOS
+DUOS
+DUP
+DUP
+DUP
+DUP
+DUP
+DUPE
+DUPE
+DUPE
+DUPE
+DUPE
+DUPE
+DUPE
+DUPE
+DUPE
+DUPED
+DUPED
+DUPER
+DUPER
+DUPES
+DUPS
+DUPS
+DUPS
+DUPS
+DUPS
+DURA
+DURA
+DURA
+DURA
+DURA
+DURA
+DURA
+DURE
+DURO
+DURO
+DURO
+DURO
+DURO
+DURO
+DURO
+DURR
+DUST
+DUTY
+DYAD
+DYE
+DYE
+EAR
+EAR
+EAR
+EAT
+EAT
+EAT
+EAT
+EAU
+EAU
+EAU
+EAU
+EAU
+EAU
+EAU
+EAU
+EAU
+EAUX
+EAUX
+EAUX
+ECU
+ECU
+ED
+ED
+ED
+ED
+ED
+ED
+ED
+ED
+ED
+ED
+EDDO
+EDDO
+EDDO
+EDH
+EDH
+EDH
+EDIT
+EDIT
+EDIT
+EDIT
+EGAD
+EGAD
+EGO
+EGO
+EIDE
+EIDE
+EIDE
+EIDOS
+EIDOS
+ELD
+ELD
+ELD
+ELD
+EMU
+EMU
+END
+END
+EON
+EON
+EPHA
+EPHA
+EPHA
+EPHOD
+EPHOD
+EPHOD
+EPIC
+EPIC
+EPIC
+EPIZOA
+EPODE
+EPODE
+EPODE
+EPOS
+EPOS
+EPOS
+EQUID
+EQUID
+EQUIP
+EQUIP
+ERA
+ERA
+ERA
+ETA
+ETA
+ETA
+ETA
+ETUI
+ETUI
+ETUI
+EURO
+EURO
+EXPO
+EXPO
+FA
+FA
+FA
+FA
+FA
+FA
+FA
+FA
+FAD
+FAD
+FAD
+FAD
+FADE
+FADE
+FADO
+FADO
+FADO
+FADO
+FADO
+FADO
+FADO
+FADOS
+FADS
+FAG
+FAIL
+FAIN
+FAIR
+FAIR
+FAN
+FANO
+FAR
+FAR
+FARD
+FARO
+FAS
+FAT
+FAT
+FAULD
+FAUN
+FAUX
+FAX
+FAY
+FED
+FED
+FED
+FED
+FEOD
+FEOD
+FEOD
+FEU
+FEU
+FEU
+FEUD
+FEUD
+FEUD
+FIAR
+FIAR
+FIAT
+FIAT
+FIB
+FICO
+FID
+FID
+FIDO
+FIDO
+FIDO
+FIDO
+FIDO
+FIDOS
+FIDS
+FIE
+FIE
+FIG
+FIL
+FILA
+FILO
+FIN
+FIND
+FINO
+FIORD
+FIR
+FIR
+FIT
+FIT
+FIX
+FIZ
+FLAP
+FLAP
+FLIP
+FLIP
+FLOP
+FLOP
+FLU
+FLU
+FLUID
+FLUID
+FOAL
+FOAM
+FOB
+FOCI
+FOE
+FOE
+FOG
+FOH
+FOH
+FOIL
+FOIN
+FOLD
+FOLIA
+FON
+FOND
+FONDU
+FOOD
+FOP
+FOP
+FOP
+FOP
+FOPS
+FOR
+FOR
+FORA
+FORD
+FOU
+FOU
+FOU
+FOU
+FOU
+FOUL
+FOUND
+FOUR
+FOUR
+FOX
+FOY
+FRAP
+FRAUD
+FRO
+FUB
+FUCI
+FUD
+FUDS
+FUG
+FUGIO
+FUJI
+FUN
+FUND
+FUNDI
+FUR
+FUR
+GAD
+GAD
+GAD
+GADI
+GADI
+GADI
+GADI
+GADI
+GAE
+GAED
+GAIT
+GAOL
+GAP
+GAP
+GAPE
+GAPED
+GAR
+GAT
+GAUD
+GAUR
+GED
+GEOID
+GHI
+GID
+GID
+GIE
+GIED
+GIP
+GIP
+GIT
+GLAD
+GLIA
+GLOP
+GO
+GO
+GO
+GO
+GO
+GO
+GO
+GOA
+GOA
+GOA
+GOA
+GOA
+GOA
+GOA
+GOA
+GOAD
+GOAD
+GOAL
+GOAT
+GOD
+GOD
+GOO
+GOR
+GOT
+GOUT
+GRAB
+GRUB
+GUAR
+GUDE
+GUID
+GUT
+HA
+HA
+HA
+HA
+HA
+HA
+HA
+HA
+HA
+HA
+HA
+HA
+HABU
+HAD
+HAD
+HAD
+HAD
+HAD
+HADE
+HADE
+HADJ
+HAE
+HAE
+HAE
+HAED
+HAED
+HAED
+HAG
+HAH
+HAH
+HAIK
+HAIL
+HAIL
+HAIR
+HAIR
+HAJ
+HAJI
+HALID
+HALIDE
+HALO
+HAM
+HAND
+HAO
+HAO
+HAO
+HAO
+HAO
+HAO
+HAO
+HAO
+HAO
+HAP
+HAP
+HAP
+HAP
+HAPLOID
+HAPS
+HARD
+HARP
+HAS
+HASP
+HAT
+HAT
+HAUL
+HAUL
+HAUT
+HAUT
+HAW
+HAY
+HEAD
+HEAD
+HEAD
+HEAP
+HEAP
+HEAP
+HEP
+HEP
+HEP
+HEP
+HI
+HI
+HI
+HI
+HI
+HI
+HIC
+HID
+HID
+HID
+HIDE
+HIDE
+HIE
+HIE
+HIED
+HIED
+HILA
+HIM
+HIN
+HIND
+HIP
+HIP
+HIP
+HIPPO
+HIPPO
+HIPS
+HIS
+HIT
+HIT
+HO
+HO
+HO
+HO
+HO
+HO
+HO
+HO
+HO
+HO
+HOAGIE
+HOAR
+HOAR
+HOAX
+HOB
+HOD
+HOD
+HOD
+HOD
+HODS
+HOE
+HOE
+HOED
+HOED
+HOG
+HOLD
+HOLP
+HON
+HOOD
+HOODIE
+HOOP
+HOP
+HOP
+HOP
+HOP
+HOPE
+HOPE
+HOPED
+HOPS
+HORA
+HOT
+HOT
+HOUR
+HOUR
+HOW
+HOWDIE
+HOY
+HOYA
+HUB
+HUE
+HUE
+HUED
+HUED
+HUG
+HUH
+HUH
+HUIC
+HULA
+HUM
+HUMP
+HUN
+HUP
+HUP
+HUP
+HUT
+HUT
+HYP
+HYPO
+ICE
+ICED
+ICH
+ID
+ID
+ID
+ID
+ID
+ID
+ID
+IDEA
+IDEA
+IDEA
+IDEA
+IDEA
+IDEA
+IDEA
+IDEA
+IDEA
+IDEA
+IDEA
+IDEAL
+IDEAS
+IDEM
+IDES
+IDES
+IDIOT
+IDLE
+IDLE
+IDOL
+IDOL
+IDOL
+IDOL
+IDS
+IDS
+IDS
+IDS
+IDS
+IF
+IF
+IF
+IFF
+IFF
+IFS
+IKAT
+ILEA
+ILEA
+ILEA
+ILIA
+ILIA
+ILIAD
+ILK
+ILK
+ILKA
+ILKA
+ILL
+ILL
+IMP
+IMP
+IMPED
+IMPED
+IN
+IN
+IN
+IN
+INAPT
+INFO
+INPUT
+IODATE
+ION
+ION
+ION
+ION
+ION
+IOTA
+IOTA
+IOTA
+IOTA
+IOTA
+IOTA
+IOTA
+IOTA
+IOTA
+IRE
+IRED
+IRED
+IS
+IS
+IS
+IS
+IS
+IS
+IT
+IT
+IT
+ITS
+IZAR
+JADE
+JAIL
+JAPE
+JAPED
+JAR
+JAUP
+JAUP
+JAUP
+JEU
+JIAO
+JIAO
+JIAO
+JIAO
+JIAO
+JIAO
+JIHAD
+JO
+JO
+JO
+JO
+JO
+JO
+JOE
+JOT
+JOTA
+JUDO
+JUDO
+JUDO
+JUDO
+JUPE
+JUT
+KA
+KA
+KA
+KA
+KA
+KADI
+KADI
+KADI
+KADI
+KAE
+KAF
+KAIF
+KAPA
+KAPH
+KAPUT
+KAT
+KEA
+KEA
+KEP
+KEP
+KEPI
+KEPI
+KHADI
+KHI
+KID
+KIF
+KIP
+KIP
+KIR
+KIT
+KOA
+KOA
+KOA
+KOA
+KOA
+KOA
+KOA
+KOI
+KOI
+KOI
+KOP
+KOP
+KOPH
+KOPPA
+KOPPA
+KOR
+KRUBI
+KUDO
+KUDO
+KUDO
+KUDO
+KUDU
+KUE
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LAB
+LAB
+LAC
+LAC
+LAD
+LAD
+LAD
+LAD
+LAD
+LADE
+LADE
+LADS
+LADY
+LAG
+LAG
+LAIC
+LAID
+LAID
+LAID
+LAID
+LAIN
+LAIR
+LAIR
+LAM
+LAM
+LAMP
+LAND
+LAP
+LAP
+LAP
+LAP
+LAPS
+LAPS
+LAPSABLE
+LAR
+LAR
+LAR
+LARD
+LARI
+LAS
+LAS
+LAT
+LAT
+LAT
+LATED
+LATEN
+LATER
+LATI
+LATI
+LAUD
+LAUD
+LAV
+LAV
+LAW
+LAW
+LAX
+LAX
+LAY
+LAY
+LEA
+LEA
+LEA
+LEA
+LEA
+LEAD
+LEAD
+LEAD
+LEAP
+LEAP
+LEAP
+LED
+LED
+LED
+LED
+LED
+LED
+LEI
+LEI
+LEI
+LEI
+LEU
+LEU
+LEU
+LEU
+LEUD
+LEUD
+LEUD
+LI
+LI
+LI
+LI
+LI
+LI
+LI
+LIAR
+LIAR
+LIB
+LIB
+LID
+LID
+LID
+LID
+LIDAR
+LIDO
+LIDO
+LIDO
+LIDO
+LIDO
+LIDO
+LIDS
+LIE
+LIE
+LIE
+LIED
+LIED
+LIEU
+LIEU
+LIMA
+LIMO
+LIMP
+LIN
+LIN
+LINO
+LION
+LIP
+LIP
+LIP
+LIP
+LIPS
+LIRA
+LIS
+LIS
+LISP
+LIT
+LIT
+LIT
+LITU
+LO
+LO
+LO
+LO
+LO
+LO
+LO
+LO
+LO
+LO
+LOAD
+LOAD
+LOAD
+LOAD
+LOADMASTER
+LOAF
+LOAF
+LOAM
+LOAN
+LOB
+LOB
+LOCA
+LOCI
+LODE
+LODE
+LOG
+LOG
+LOIN
+LOO
+LOO
+LOO
+LOOP
+LOP
+LOP
+LOP
+LOP
+LOP
+LOPE
+LOPE
+LOPED
+LOPS
+LORD
+LOSABLE
+LOT
+LOT
+LOT
+LOTA
+LOTA
+LOTI
+LOTI
+LOUD
+LOUD
+LOUP
+LOUP
+LOUP
+LOUP
+LOUR
+LOUR
+LOUT
+LOUT
+LOW
+LOW
+LOX
+LOX
+LUAU
+LUAU
+LUAU
+LUDE
+LUDE
+LUG
+LUG
+LUM
+LUM
+LUMP
+LUNA
+LUV
+LUV
+LUX
+LUX
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MAD
+MAD
+MAD
+MAD
+MADE
+MAE
+MAE
+MAID
+MAID
+MAID
+MAID
+MAIL
+MAIR
+MAP
+MAP
+MAP
+MAR
+MASTERED
+MASTERS
+MASTERY
+MAT
+MAUD
+MAUD
+MAUL
+MAUT
+MEAD
+MEAD
+MED
+MED
+MED
+MEDIA
+MEDIA
+MEDIA
+MEOU
+MEOU
+MHO
+MI
+MI
+MI
+MI
+MI
+MIAOU
+MIAOU
+MIAOU
+MID
+MID
+MIR
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MOA
+MOA
+MOA
+MOA
+MOA
+MOA
+MOA
+MOA
+MOAT
+MOD
+MOD
+MOD
+MODE
+MODI
+MODI
+MODI
+MODI
+MOIL
+MOO
+MOP
+MOP
+MOP
+MOPE
+MOPED
+MOR
+MOT
+MOUE
+MOULD
+MU
+MU
+MU
+MUT
+NA
+NA
+NA
+NA
+NA
+NA
+NA
+NA
+NA
+NA
+NA
+NA
+NADA
+NADIR
+NAE
+NAE
+NAH
+NAIAD
+NAIF
+NAIL
+NAOI
+NAOI
+NAOI
+NAOI
+NAOI
+NAOI
+NAP
+NAP
+NAP
+NAP
+NAPE
+NEAP
+NEAP
+NIDE
+NIP
+NIP
+NIP
+NIP
+NIPA
+NIPA
+NIPA
+NIPA
+NIPA
+NIPA
+NIPA
+NIT
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NOD
+NOD
+NOD
+NOD
+NODE
+NODI
+NODI
+NODI
+NODI
+NODI
+NOH
+NOIL
+NOIR
+NOO
+NOPE
+NOR
+NOT
+NOTA
+NU
+NU
+NU
+NU
+NUDE
+NUT
+OAF
+OAF
+OAF
+OAF
+OAF
+OAF
+OAFS
+OAK
+OAK
+OAK
+OAK
+OAR
+OAR
+OAR
+OAR
+OAR
+OAR
+OAR
+OARED
+OAST
+OAT
+OAT
+OAT
+OAT
+OAT
+OAT
+OAT
+OATH
+OATH
+OATH
+OATS
+OATS
+OBE
+OBE
+OBE
+OBI
+OBI
+OBI
+OBI
+OBI
+OBI
+OBIA
+OBIA
+OBIA
+OBIA
+OBIA
+OBIA
+OBIA
+OBIA
+OBIT
+OCA
+OCA
+OCA
+OCA
+OCA
+OCA
+OCA
+OD
+OD
+OD
+OD
+OD
+OD
+OD
+ODD
+ODD
+ODD
+ODD
+ODD
+ODDS
+ODE
+ODE
+ODE
+ODE
+ODE
+ODE
+ODE
+ODE
+ODE
+ODE
+ODE
+ODEA
+ODEA
+ODEA
+ODEA
+ODEA
+ODEA
+ODEA
+ODEA
+ODEA
+ODEA
+ODEA
+ODEA
+ODES
+ODEUM
+ODIC
+ODIC
+ODIC
+ODIC
+ODIC
+ODIST
+ODIUM
+ODIUM
+ODIUM
+ODIUM
+ODIUM
+ODIUM
+ODIUM
+ODIUM
+ODOR
+ODOUR
+ODS
+ODS
+ODS
+ODS
+ODS
+ODS
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OES
+OF
+OF
+OF
+OF
+OFAY
+OFF
+OFF
+OFT
+OFT
+OH
+OH
+OH
+OH
+OH
+OHED
+OHED
+OHED
+OHIA
+OHIA
+OHIA
+OHIA
+OHIA
+OHIA
+OHIA
+OHIA
+OHIA
+OHIAS
+OHM
+OHO
+OHO
+OHS
+OIDIA
+OIDIA
+OIDIA
+OIDIA
+OIDIA
+OIDIA
+OIDIA
+OIL
+OIL
+OIL
+OILCUP
+OILED
+OILED
+OILS
+OILY
+OKA
+OKA
+OKA
+OKA
+OKA
+OKA
+OKA
+OKAPI
+OKAPI
+OKAPI
+OKAPI
+OKAPI
+OKE
+OKE
+OLD
+OLD
+OLD
+OLD
+OLDIE
+OLDS
+OLDY
+OLE
+OLE
+OLE
+OLEA
+OLEA
+OLEA
+OLIO
+OLIO
+OLLA
+OLLA
+OM
+OM
+OM
+OM
+OM
+OM
+OMIT
+ON
+ON
+ON
+ON
+ON
+ON
+ON
+ONE
+ONE
+OOH
+OOT
+OP
+OP
+OP
+OP
+OP
+OPAH
+OPAH
+OPAH
+OPAH
+OPAH
+OPAH
+OPAHS
+OPAL
+OPAL
+OPAL
+OPAL
+OPAL
+OPE
+OPE
+OPE
+OPE
+OPE
+OPE
+OPE
+OPE
+OPE
+OPE
+OPED
+OPED
+OPED
+OPED
+OPED
+OPED
+OPED
+OPEN
+OPEN
+OPERA
+OPERA
+OPES
+OPIATE
+OPIATE
+OPIATED
+OPIUM
+OPIUM
+OPIUM
+OPIUM
+OPIUM
+OPIUM
+OPS
+OPS
+OPS
+OPS
+OPT
+OPT
+OPT
+OPT
+OPTED
+OPTED
+OPTS
+OPUNTIA
+OPUS
+OPUS
+OPUS
+OPUS
+OR
+OR
+OR
+OR
+OR
+OR
+OR
+ORA
+ORA
+ORA
+ORA
+ORA
+ORA
+ORA
+ORA
+ORA
+ORA
+ORAD
+ORAD
+ORAD
+ORAD
+ORAD
+ORAD
+ORDO
+ORE
+OREAD
+ORIBI
+ORT
+OS
+OS
+OS
+OS
+OS
+OS
+OSAR
+OSE
+OSTIA
+OUCH
+OUD
+OUD
+OUDS
+OUDS
+OUDS
+OUPH
+OUPH
+OUPH
+OUPH
+OUPHE
+OUPHS
+OUR
+OUR
+OUR
+OUREBI
+OUST
+OUT
+OUT
+OUT
+OUT
+OUTDO
+OUTDO
+OUTED
+OUTHUMOR
+OUTLAID
+OUTS
+OUZO
+OVA
+OVA
+OVA
+OVA
+OVA
+OVA
+OVA
+OW
+OW
+OW
+OW
+OW
+OWE
+OWED
+OWL
+OX
+OX
+OX
+OX
+OXID
+OXID
+OXID
+OXID
+OXLIP
+OXO
+OY
+OY
+OY
+OY
+PA
+PA
+PA
+PA
+PA
+PA
+PA
+PA
+PAC
+PAC
+PAC
+PAC
+PACA
+PACE
+PACED
+PACT
+PAD
+PAD
+PAD
+PAD
+PADAUK
+PADI
+PADI
+PADI
+PADI
+PADI
+PADI
+PADIS
+PADIS
+PADIS
+PADIS
+PADOUK
+PADOUK
+PADOUK
+PADRI
+PADRI
+PADRI
+PADS
+PADS
+PADS
+PADS
+PADS
+PAEON
+PAGE
+PAGED
+PAGOD
+PAGOD
+PAGOD
+PAGOD
+PAGODA
+PAGODA
+PAH
+PAH
+PAH
+PAH
+PAH
+PAID
+PAID
+PAID
+PAID
+PAID
+PAIK
+PAIK
+PAIK
+PAIL
+PAIL
+PAIL
+PAIL
+PAIN
+PAIN
+PAIN
+PAIN
+PAIN
+PAINT
+PAIR
+PAIR
+PAIR
+PAIR
+PAIR
+PAIR
+PAISA
+PAISA
+PAL
+PAL
+PAL
+PAL
+PALE
+PALED
+PALP
+PALP
+PALPI
+PAM
+PAM
+PAM
+PAM
+PAM
+PAM
+PAN
+PAN
+PAN
+PAN
+PAN
+PANDA
+PANDIT
+PANE
+PANED
+PANT
+PAP
+PAP
+PAP
+PAP
+PAP
+PAPA
+PAPA
+PAPA
+PAPA
+PAPPI
+PAPPI
+PAPS
+PAPS
+PAR
+PAR
+PAR
+PAR
+PAR
+PAR
+PARA
+PARD
+PARD
+PARD
+PARD
+PARDI
+PARDI
+PARDI
+PARE
+PARED
+PAREO
+PAREU
+PARR
+PARS
+PARSABLE
+PART
+PAS
+PAS
+PAS
+PAS
+PAS
+PASE
+PASEO
+PASH
+PASS
+PASSABLE
+PAST
+PAT
+PAT
+PAT
+PAT
+PAT
+PATE
+PATE
+PATED
+PATH
+PATH
+PATIO
+PATIO
+PATIO
+PATIO
+PATIO
+PATIO
+PATIO
+PATS
+PATY
+PAVE
+PAVED
+PAVID
+PAVID
+PAVID
+PAW
+PAW
+PAW
+PAWED
+PAX
+PAX
+PAX
+PAX
+PAX
+PAY
+PAY
+PAY
+PAYED
+PAYMASTER
+PAYOR
+PAYOUT
+PE
+PE
+PE
+PE
+PE
+PE
+PE
+PE
+PEA
+PEA
+PEA
+PEA
+PEA
+PEA
+PEA
+PEA
+PEA
+PEA
+PEAG
+PEAK
+PEAL
+PEAN
+PEAR
+PEAR
+PEAS
+PEAT
+PEAT
+PEC
+PED
+PED
+PED
+PED
+PED
+PEDAL
+PEDAL
+PEDALO
+PEDALO
+PEDRO
+PEDS
+PEE
+PEE
+PEED
+PEED
+PEG
+PEH
+PEH
+PEH
+PEIN
+PEN
+PEN
+PEND
+PEON
+PEP
+PEP
+PEP
+PEP
+PEPO
+PEPO
+PEPO
+PEPO
+PER
+PER
+PER
+PERDU
+PERI
+PERI
+PERIOD
+PERIOD
+PES
+PESO
+PET
+PET
+PEW
+PEW
+PFUI
+PFUI
+PFUI
+PFUI
+PHAT
+PHAT
+PHI
+PHI
+PHI
+PHI
+PHI
+PHIAL
+PHIS
+PHIZ
+PHON
+PHOT
+PHOT
+PHT
+PHT
+PHUT
+PHUT
+PI
+PI
+PI
+PI
+PIA
+PIA
+PIA
+PIA
+PIA
+PIA
+PIA
+PIA
+PIAL
+PIAL
+PIAL
+PIAL
+PIAN
+PIAN
+PIAN
+PIAN
+PIAN
+PIANO
+PIANO
+PIANO
+PIANO
+PIANO
+PIAS
+PIAS
+PIAS
+PIAS
+PIAS
+PIC
+PIC
+PICA
+PICA
+PICA
+PICA
+PICA
+PICE
+PICOT
+PIE
+PIE
+PIE
+PIE
+PIE
+PIE
+PIE
+PIED
+PIED
+PIED
+PIED
+PIER
+PIER
+PIES
+PIETA
+PIETA
+PIG
+PIGOUT
+PIKA
+PIKA
+PIKA
+PIKA
+PIKA
+PIKE
+PIKED
+PILAF
+PILAR
+PILAU
+PILAU
+PILAU
+PILE
+PILEA
+PILED
+PILOT
+PIMA
+PIMA
+PIMA
+PIMA
+PIMA
+PIMA
+PIMP
+PIMP
+PIN
+PIN
+PIN
+PINA
+PINA
+PINA
+PINA
+PINA
+PINA
+PINE
+PINED
+PINOT
+PINT
+PINTA
+PINUP
+PION
+PION
+PION
+PION
+PIOUS
+PIP
+PIP
+PIP
+PIPAL
+PIPE
+PIPE
+PIPE
+PIPED
+PIPED
+PIPS
+PIPS
+PIPY
+PIPY
+PIS
+PIS
+PISH
+PISO
+PISO
+PISO
+PISO
+PISO
+PIT
+PIT
+PIT
+PITA
+PITA
+PITA
+PITA
+PITA
+PITA
+PITA
+PITH
+PITH
+PITS
+PITY
+PIU
+PIU
+PIU
+PIU
+PIVOT
+PIX
+PLAID
+PLAID
+PLAID
+PLAID
+PLAIN
+PLAIT
+PLAIT
+PLAN
+PLAT
+PLAT
+PLATEAU
+PLATEAUED
+PLATEAUS
+PLATEAUX
+PLATED
+PLATEN
+PLATER
+PLATES
+PLAUDIT
+PLAY
+PLEA
+PLEA
+PLEA
+PLEAD
+PLEAD
+PLED
+PLED
+PLED
+PLEIAD
+PLICA
+PLIE
+PLIE
+PLIED
+PLIED
+PLOD
+PLOD
+PLOD
+PLODS
+PLOP
+PLOP
+PLOP
+PLOT
+PLOT
+PLOW
+PLOY
+PLUG
+PLUM
+PLUS
+PLY
+POACH
+POCO
+POD
+POD
+PODIA
+PODIA
+PODIA
+PODIA
+PODITE
+PODIUM
+PODIUM
+PODS
+PODS
+POEM
+POET
+POET
+POH
+POH
+POH
+POI
+POI
+POI
+POI
+POILU
+POILU
+POINT
+POIS
+POIS
+POISHA
+POKE
+POKED
+POL
+POLAR
+POLE
+POLED
+POLIO
+POLO
+POM
+POM
+POM
+POM
+POME
+POMP
+POMP
+POND
+PONE
+POOD
+POOD
+POOF
+POOH
+POOP
+POOP
+POOR
+POP
+POP
+POP
+POPE
+POPE
+POPE
+POPPA
+POPPA
+POPS
+POPS
+PORE
+PORED
+PORT
+POSE
+POSED
+POSH
+POSIT
+POST
+POT
+POT
+POTS
+POUCH
+POUF
+POUF
+POUF
+POUFED
+POUFF
+POUFF
+POUFS
+POULT
+POUR
+POUR
+POUT
+POUT
+POUT
+POUTS
+POUTY
+POW
+POW
+POX
+POX
+POXED
+PRAHU
+PRAO
+PRAO
+PRAO
+PRAO
+PRAO
+PRAO
+PRAO
+PRAT
+PRAU
+PRAU
+PRAU
+PRAU
+PRIED
+PRIOR
+PRO
+PRO
+PRO
+PRO
+PRO
+PRO
+PROA
+PROA
+PROA
+PROA
+PROA
+PROA
+PROA
+PROBAND
+PROBE
+PROD
+PROD
+PROF
+PROP
+PROP
+PRUTA
+PSEUD
+PSEUDO
+PSI
+PSI
+PSI
+PSI
+PSOAI
+PSOAI
+PUB
+PUB
+PUCE
+PUD
+PUDS
+PUDS
+PUFF
+PUFF
+PUG
+PUGH
+PUJA
+PUJA
+PUJA
+PUJA
+PUJA
+PUJAH
+PUKE
+PUKED
+PUL
+PUL
+PULA
+PULA
+PULA
+PULA
+PULA
+PULE
+PULED
+PULI
+PULI
+PULI
+PULP
+PULP
+PUMA
+PUMA
+PUMA
+PUMA
+PUMA
+PUMP
+PUMP
+PUN
+PUN
+PUN
+PUNA
+PUNA
+PUNA
+PUNA
+PUNA
+PUNDIT
+PUNT
+PUP
+PUP
+PUP
+PUPA
+PUPA
+PUPA
+PUPA
+PUPA
+PUPA
+PUPAE
+PUPAL
+PUPAS
+PUPIL
+PUPS
+PUPS
+PUR
+PUR
+PURDA
+PURDA
+PURDA
+PURE
+PURI
+PURI
+PURI
+PURR
+PUS
+PUS
+PUSH
+PUT
+PUT
+PUT
+PUTS
+PUTT
+PUTT
+PUTTI
+PUTTI
+PUTTO
+PYA
+PYA
+PYA
+PYA
+PYA
+PYA
+PYE
+PYE
+PYOID
+QAID
+QAID
+QAID
+QAT
+QOPH
+QUA
+QUA
+QUA
+QUA
+QUA
+QUA
+QUA
+QUAD
+QUAD
+QUAI
+QUAI
+QUAI
+QUAI
+QUID
+QUIP
+QUIP
+QUIPU
+QUIT
+QUOD
+QUOIT
+QUOTA
+RAD
+RAD
+RAD
+RAD
+RAD
+RAD
+RADIO
+RADIO
+RADIO
+RADIO
+RADIO
+RADIO
+RADIO
+RAH
+RAIA
+RAID
+RAID
+RAID
+RAID
+RAID
+RAISABLE
+RAP
+RAP
+RAP
+RAP
+RAPE
+RAPED
+RAPID
+RAPID
+RAPID
+RAPID
+RAPT
+RAT
+RATIO
+READ
+READ
+REAP
+REAP
+RED
+RED
+RED
+REDIA
+REDIA
+REDIP
+REDIP
+REDO
+REDO
+REI
+REI
+REP
+REP
+REPAID
+REPAID
+REPO
+REPO
+RHO
+RIA
+RIA
+RIA
+RIA
+RIA
+RIA
+RIA
+RIA
+RIB
+RIBALD
+RIBAND
+RIBS
+RID
+RID
+RID
+RIDE
+RIF
+RIOT
+RIP
+RIP
+RIP
+RIPE
+RIPED
+ROAD
+ROAD
+ROAD
+ROAD
+ROAR
+ROB
+ROBAND
+ROBE
+ROBS
+ROD
+ROD
+ROD
+ROD
+RODE
+ROE
+ROPE
+ROPED
+ROT
+ROTA
+ROTI
+ROUE
+ROUP
+ROUP
+ROUP
+ROUP
+ROUT
+RUB
+RUBE
+RUBIED
+RUBS
+RUBY
+RUDE
+RUE
+RUED
+RUT
+SABLED
+SABLES
+SAD
+SAD
+SAD
+SAD
+SAD
+SADE
+SADHU
+SADI
+SADI
+SADI
+SADI
+SADI
+SADI
+SADI
+SAE
+SAID
+SAID
+SAID
+SAID
+SAID
+SAIL
+SAP
+SAP
+SAP
+SAP
+SAPID
+SAPID
+SAPID
+SAPID
+SAPOR
+SAT
+SATI
+SAU
+SAU
+SAU
+SAU
+SAU
+SAU
+SAU
+SAUL
+SEA
+SEA
+SEI
+SEI
+SEPIA
+SEPIA
+SHA
+SHAD
+SHIP
+SHOD
+SHOP
+SI
+SI
+SI
+SI
+SI
+SI
+SI
+SIDE
+SIP
+SIP
+SIP
+SIP
+SIPE
+SIPED
+SIR
+SIT
+SLAP
+SLID
+SLIP
+SLOID
+SLOP
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SOAP
+SOAP
+SOAP
+SOAP
+SOAP
+SOAPED
+SOAR
+SOD
+SOD
+SOD
+SOD
+SOD
+SOD
+SODA
+SODA
+SODA
+SODA
+SODA
+SODA
+SODA
+SODA
+SODA
+SOFA
+SOIL
+SOP
+SOP
+SOP
+SOP
+SOP
+SOPH
+SOT
+SOU
+SOU
+SOU
+SOU
+SOU
+SOU
+SOU
+SOUL
+SOUP
+SOUP
+SOUP
+SOUP
+SOUP
+SOUR
+SPA
+SPA
+SPA
+SPA
+SPA
+SPA
+SPA
+SPA
+SPADO
+SPADO
+SPADO
+SPADO
+SPADO
+SPADO
+SPAE
+SPAED
+SPAHI
+SPAIT
+SPAR
+SPAT
+SPED
+SPIED
+SPIT
+SPOT
+SPOUT
+SPUD
+SPUD
+SPUD
+SPUE
+SPUED
+SPUR
+SPUTA
+SUDOR
+SUE
+SUED
+SUIT
+SUP
+SUP
+SUP
+SUP
+SUPE
+TA
+TA
+TA
+TA
+TA
+TA
+TA
+TA
+TA
+TA
+TA
+TAB
+TABU
+TACO
+TAD
+TAD
+TAD
+TAD
+TADS
+TAE
+TAE
+TAE
+TAG
+TAIL
+TAIL
+TAIN
+TAJ
+TALI
+TAM
+TAMP
+TAN
+TAO
+TAO
+TAO
+TAO
+TAO
+TAO
+TAO
+TAO
+TAO
+TAOS
+TAP
+TAP
+TAP
+TAP
+TAPA
+TAPA
+TAPE
+TAPE
+TAPED
+TAPIR
+TAPS
+TAR
+TAR
+TARO
+TARP
+TAS
+TAT
+TAT
+TAU
+TAU
+TAU
+TAU
+TAU
+TAUS
+TAUT
+TAUT
+TAV
+TAW
+TAX
+TAXI
+TEA
+TEA
+TEA
+TEA
+TEA
+TED
+TED
+TED
+TED
+TED
+TEPA
+TEPA
+TEPA
+TEPA
+TEPID
+TEPID
+TEPID
+THIO
+THIO
+THIO
+THO
+THO
+THO
+THOU
+THOU
+THUD
+THUD
+TI
+TI
+TI
+TI
+TI
+TI
+TI
+TIC
+TIDE
+TIDE
+TIDY
+TIE
+TIE
+TIE
+TIED
+TIED
+TIL
+TIN
+TIP
+TIP
+TIP
+TIPI
+TIPS
+TIRO
+TIS
+TIT
+TIT
+TO
+TO
+TO
+TO
+TO
+TO
+TO
+TO
+TO
+TOAD
+TOAD
+TOAD
+TOAD
+TOD
+TOD
+TOD
+TOD
+TODS
+TODY
+TOE
+TOE
+TOEA
+TOEA
+TOED
+TOED
+TOFU
+TOFU
+TOG
+TOGA
+TOIL
+TOIL
+TOIT
+TOIT
+TOLA
+TOLD
+TOLU
+TOM
+TON
+TOO
+TOO
+TOP
+TOP
+TOP
+TOP
+TOPE
+TOPE
+TOPED
+TOPH
+TOPH
+TOPHI
+TOPI
+TOPI
+TOPI
+TOPI
+TOPI
+TOPS
+TOR
+TOR
+TORA
+TORI
+TOT
+TOT
+TOUR
+TOUR
+TOUT
+TOUT
+TOW
+TOY
+TRAD
+TRAP
+TRIAD
+TRIO
+TRIO
+TRIP
+TROD
+TROP
+TUB
+TUBA
+TUFA
+TUFA
+TUG
+TUI
+TUI
+TUI
+TUI
+TUIS
+TUMP
+TUN
+TUNA
+TUP
+TUP
+TUP
+TUPS
+TURD
+TUT
+TUT
+TUX
+TWA
+TWA
+TWO
+TWO
+TYPO
+UDO
+UDO
+UDO
+UDO
+UDO
+UDO
+UDOS
+UDOS
+UGH
+UH
+UH
+UKE
+ULAN
+ULAN
+ULNA
+ULNA
+ULNAD
+ULPAN
+ULU
+ULU
+ULU
+ULU
+ULVA
+ULVA
+UM
+UM
+UM
+UMP
+UMPED
+UN
+UN
+UNAI
+UNAI
+UNAI
+UNAI
+UNAI
+UNAPT
+UNAU
+UNDE
+UNDO
+UNDO
+UNDO
+UNDO
+UNFEARED
+UNHIP
+UNIPOD
+UNIT
+UNPAID
+UNPAID
+UP
+UP
+UPAS
+UPAS
+UPAS
+UPAS
+UPAS
+UPDART
+UPDATE
+UPDO
+UPDO
+UPDO
+UPDO
+UPDO
+UPDOS
+UPDOS
+UPEND
+UPFOLD
+UPHOLD
+UPLIT
+UPLOAD
+UPO
+UPO
+UPO
+UPO
+UPO
+UPO
+UPON
+UPON
+UPON
+UPPED
+UPPED
+UPPED
+UPS
+UPS
+URAEI
+URD
+UREA
+UREDIA
+UREDO
+US
+US
+USABLE
+USE
+USED
+UT
+UT
+UTA
+UTA
+UTA
+UTA
+UTA
+UTA
+UTOPIA
+UTOPIA
+UTS
+UVEA
+VAIR
+VAPID
+VAPID
+VAPID
+VAPOR
+VAR
+VAT
+VAU
+VAU
+VAU
+VAU
+VIA
+VIA
+VIA
+VIA
+VIA
+VIA
+VIA
+VIDE
+VIDEO
+VIE
+VIED
+VITA
+VOE
+VOID
+WAD
+WAD
+WAD
+WAD
+WADE
+WADI
+WADI
+WADI
+WADI
+WADI
+WADI
+WAE
+WAE
+WAIF
+WAIL
+WAIR
+WAIT
+WAP
+WAP
+WAP
+WAR
+WAT
+WAUL
+WAUR
+WED
+WHA
+WHAP
+WHAUP
+WHID
+WHIP
+WHO
+WHOA
+WHOP
+WIDE
+WIPE
+WIPED
+WIT
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WOAD
+WOAD
+WOALD
+WOE
+WOO
+WOP
+WOP
+WOT
+WOULD
+XI
+XI
+XI
+XI
+XI
+XU
+XU
+XU
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YA
+YAH
+YAP
+YAP
+YAP
+YAR
+YAUD
+YAUD
+YAULD
+YAUP
+YAUP
+YAUP
+YAUP
+YEA
+YEA
+YEP
+YEP
+YID
+YID
+YID
+YIP
+YIP
+YIPE
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YO
+YOD
+YOD
+YOD
+YODH
+YOU
+YOU
+YOU
+YOUR
+YUP
+YUP
+ZAP
+ZAP
+ZED
+ZIP
+ZIP
+ZIT
+ZOA
+ZOA
+ZOA
+ZOA
+ZOA
+ZOA
+ZOA
+ZOEA
+ZOO
 Best Horizontal Word: ADIPOUS
         Points: 84
 Best Vertical Word: PADIS
