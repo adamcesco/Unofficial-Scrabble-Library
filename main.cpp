@@ -1,5 +1,7 @@
+#define CATCH_CONFIG_RUNNER
 #include "HorizontalBoardReader/HorizontalBoardReader.h"
 #include "VerticalBoardReader/VerticalBoardReader.h"
+#include "Test_Folder/catch.hpp"
 
 //TODO: erase premium tile values when word is placed into the board
 
@@ -24,17 +26,22 @@ void printAnswerSet(VerticalBoardReader vr, HorizontalBoardReader hr){
 }
 
 
-int main(){
+int main(int argc, char* argv[]){
+    if(argc == 1) {
+        Catch::Session().run();
+        return 0;
+    }
+
     string hand = "GRO?LEE";    //blank letter should be marked as a '?'
 
     HorizontalBoardReader hReader(hand);
-    hReader.build_board();
+    hReader.build_board(argv[1]);
     hReader.validate_board();
     hReader.print_formatted_board();
     hReader.clear_wordSets();
 
     VerticalBoardReader vReader(hand);
-    vReader.build_board();
+    vReader.build_board(argv[1]);
     vReader.validate_board();
     vReader.print_formatted_board();
     vReader.clear_wordSets();

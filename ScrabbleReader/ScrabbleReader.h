@@ -9,7 +9,7 @@
 class ScrabbleReader {
 public:
     //TODO: remove some pure virtual methods that are too restricting for future users of the class
-    virtual void build_board() = 0;
+    virtual void build_board(const string &) = 0;
     virtual void print_formatted_board() const = 0;
     virtual Type get_reader_type() const = 0;
     virtual vector<LString> return_formatted_board() const = 0;     //needs testing
@@ -37,16 +37,16 @@ public:
     int points_of_word(const LString &);
     int find_points_of_word(const string&);
     void place_best_word_into_board();
-    char **return_raw_char_board(char **);          //needs testing
+    char** return_raw_char_board(char **);          //needs testing
     char** return_raw_perkBoard(char **);           //needs testing
 
 protected:
     int perpendicular_points(const LString&) const;
     bool contains_letter_of_hand(const LString&) const;
     bool contains_letter_of_hand(const string&) const;
-    vector<LString> return_all_fitted_tangential_words(LString &, int);
-    unordered_map<LString, LString, MyHashFunction> return_all_fitted_filled_rows(LString &, int);
-    unordered_map<LString, LString, MyHashFunction> return_all_fitted_rows(LString &, int);
+    vector<LString> return_all_fitted_tangential_words(LString&, int);
+    unordered_map<LString, LString, MyHashFunction> return_all_fitted_filled_rows(LString&, int);
+    unordered_map<LString, LString, MyHashFunction> return_all_fitted_rows(LString&, int);
 
     int bestX, bestY;
     LString bestWord;

@@ -38,11 +38,11 @@ HorizontalBoardReader::HorizontalBoardReader(const LString& passed) {
     englishWords.close();
 }
 
-void HorizontalBoardReader::build_board() {
+void HorizontalBoardReader::build_board(const string& filePath) {
     ifstream boardFile;
-    boardFile.open("../Data/Board.csv");
+    boardFile.open(filePath);
     if(!boardFile.is_open())
-        throw invalid_argument("could not open ../Data/Board.csv");
+        throw invalid_argument("could not open " + filePath);
 
     string row;
     int rowCount = 0;
@@ -52,7 +52,7 @@ void HorizontalBoardReader::build_board() {
         stringstream strStr(row);
         int cellCount = 0;
         LString rowVect;
-        while (getline(strStr, cell, ',')){
+        while (getline(strStr, cell, ',') && cellCount < 15){
             if(!cell.empty() && isalpha(cell[0])) {
                 rowVect.push_back(Letter(cell[0], cellCount, rowCount, 1));
             }
@@ -223,4 +223,14 @@ vector<LString>* HorizontalBoardReader::return_formatted_wordSets(vector<LString
         passed[i] = wordSets[i];
     }
     return passed;
+}
+
+void HorizontalBoardReader::set_board(vector<LString> passed) {
+    board = passed;
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            if(board[i][j] != ' ')
+                perkBoard[i][j] = ' ';
+        }
+    }
 }
