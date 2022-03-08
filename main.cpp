@@ -11,7 +11,7 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
-    string hand = "POIAUD?";    //blank letter should be marked as a '?'
+    string hand = "PJIAMD?";    //blank letter should be marked as a '?'
 
     HorizontalScrabbleVectorizer hReader(hand);
     hReader.build_board(argv[1]);
@@ -25,13 +25,13 @@ int main(int argc, char* argv[]){
     vReader.print_formatted_board();
     vReader.clear_wordSets();
 
-    vReader.search_for_intersecting_words();
+//    vReader.search_for_intersecting_words();
 //    vReader.search_for_tangential_words();
-//    vReader.search_for_all_words();
+    vReader.search_for_all_words();
 
-    hReader.search_for_intersecting_words();
+//    hReader.search_for_intersecting_words();
 //    hReader.search_for_tangential_words();
-//    hReader.search_for_all_words();
+    hReader.search_for_all_words();
 
     vector<int> duoVals = hReader.find_points_of_word("DUO");
     cout << "DUO - " << duoVals[0] << endl;

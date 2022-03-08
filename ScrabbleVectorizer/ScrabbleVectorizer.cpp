@@ -70,7 +70,7 @@ void ScrabbleVectorizer::place_into_board(const LString &toPrint) {
 bool ScrabbleVectorizer::contains_letter_of_hand(const LString &passed) const {
     unordered_set<char> handSet;
     for (int i = 0; i < hand.length(); ++i)
-        handSet.emplace(toupper(hand.read_at(i).LData));
+        handSet.emplace(toupper(hand[i]));
 
     for (int i = 0; i < passed.length(); ++i) {
         if (handSet.find(toupper(passed.read_at(i).LData)) != handSet.end()) {

@@ -21,7 +21,7 @@ HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer() {
     englishWords.close();
 }
 
-HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer(const LString& passed) {
+HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer(const string &passed) {
     hand = passed;
     bestX = bestY = 8;
 
@@ -84,7 +84,7 @@ void HorizontalScrabbleVectorizer::print_formatted_board() const{
 }
 
 string HorizontalScrabbleVectorizer::to_string() const {
-    string buffer = "Hand: " + hand.to_string() + "\n";
+    string buffer = "Hand: " + hand + "\n";
     buffer += "\nBest Horizontal Word: " + bestWord.to_string() + " - " + ::to_string(bestWord.get_letter_points() +
                                                                                       perpendicular_points(bestWord));
     buffer += "\n\tPostion X: " + ::to_string(bestX);

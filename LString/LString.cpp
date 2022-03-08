@@ -441,7 +441,7 @@ bool LString::containsIgnorePadding(LString passed) const {
     return false;
 }
 
-bool LString::row_is_descendent_of(const LString& hand, const LString& row, LString& word) {
+bool LString::row_is_descendent_of(const string& hand, const LString& row, LString& word) {
     if(eleCount == 0)
         return false;
 
@@ -453,10 +453,10 @@ bool LString::row_is_descendent_of(const LString& hand, const LString& row, LStr
         letterCount[i] = 0;
     }
 
-    for (int i = 0; i < hand.eleCount; ++i) {
-        if(hand.read_at(i) == '?')
+    for (int i = 0; i < hand.length(); ++i) {
+        if(hand[i] == '?')
             blankCount++;
-        sumMap[abs(toupper(hand.read_at(i).LData))]++;
+        sumMap[abs(toupper(hand[i]))]++;
     }
     for (int i = word[0].x; i < word.length() + word[0].x; ++i)
         sumMap[abs(toupper(row.read_at(i).LData))]++;
@@ -607,7 +607,7 @@ bool LString::is_blank_LStr() const {
     return true;
 }
 
-bool LString::is_descendent_of(const LString &hand) {
+bool LString::is_descendent_of(const string& hand) {
     if(eleCount == 0)
         return false;
 
@@ -617,10 +617,10 @@ bool LString::is_descendent_of(const LString &hand) {
     for (int i = 0; i < 123; ++i)
         handMap[i] = letterCount[i] = 0;
 
-    for (int i = 0; i < hand.eleCount; ++i) {
-        if(hand.read_at(i) == '?')
+    for (int i = 0; i < hand.length(); ++i) {
+        if(hand[i] == '?')
             blankCount++;
-        handMap[abs(toupper(hand.read_at(i).LData))]++;
+        handMap[abs(toupper(hand[i]))]++;
     }
 
     for (int i = 0; i < eleCount; ++i)

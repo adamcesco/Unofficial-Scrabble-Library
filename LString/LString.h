@@ -158,8 +158,8 @@ public:
     LString operator+(const Letter&) const;
     LString operator+(char) const;
     string to_string() const;
-    bool row_is_descendent_of(const LString &hand, const LString &row, LString &word);
-    bool is_descendent_of(const LString&);
+    bool row_is_descendent_of(const string&, const LString&, LString&);
+    bool is_descendent_of(const string&);
     int get_letter_points() const;
     static int get_horizontal_points(string);
     LString& set_x_vals_to_subscripts();

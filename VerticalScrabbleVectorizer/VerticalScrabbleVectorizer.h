@@ -10,7 +10,7 @@
 class VerticalScrabbleVectorizer: public ScrabbleVectorizer{
 public:
     VerticalScrabbleVectorizer();
-    explicit VerticalScrabbleVectorizer(const LString&);
+    explicit VerticalScrabbleVectorizer(const string &passed);
 
     void build_board(const string &);
     void print_formatted_board() const;
@@ -20,7 +20,7 @@ public:
     Type get_vectorizer_type() const{return VERTICAL;}
     vector<LString> return_word_set_of(int subscript){return answerSets[14 - subscript];}
     vector<LString> return_formatted_board() const;
-    void set_board(vector<LString>);
+    void set_board(vector<LString>);                //assumes the passed board is oriented in a horizontal format
     void validate_board() const;
     int points_of_best_word(){return points_of_word(bestWord);}
 

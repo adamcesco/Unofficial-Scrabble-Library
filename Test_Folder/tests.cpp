@@ -319,7 +319,7 @@ TEST_CASE("Testing method LString::is_descendent_of", "[LString]"){
 }
 
 TEST_CASE("Testing method LString::row_is_descendent_of", "[LString]"){
-    LString givenHand = "LEO?UDQ";
+    string givenHand = "LEO?UDQ";
     LString givenRow = "     R B  D    ";
     givenRow.set_x_vals_to_subscripts();
 

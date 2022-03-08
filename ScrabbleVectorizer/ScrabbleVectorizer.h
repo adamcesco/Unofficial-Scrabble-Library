@@ -18,6 +18,7 @@ public:
     virtual void validate_board() const = 0;
     virtual vector<string> return_formatted_char_board() const = 0;
     virtual vector<string> return_formatted_perkBoard() const = 0;
+    virtual LString update_best_word() = 0;
 
     void search_for_intersecting_words();
     void search_for_tangential_words();
@@ -27,7 +28,7 @@ public:
     int get_best_x() const{return bestX;}
     int get_best_y() const {return bestY;}
     void reset_all_data();
-    void set_hand(const LString& passed){hand = passed;}
+    void set_hand(const string& passed){hand = passed;}
     LString get_hand(){return hand;}
     void place_into_board(const LString&);
     vector<LString>& get_raw_board(){return board;}
@@ -50,7 +51,9 @@ protected:
 
     int bestX, bestY;
     LString bestWord;
-    LString hand;
+    string hand;
+    unordered_set<LString, MyHashFunction> scrabbleWordSet;
+    vector<LString> answerSets[15];
     vector<LString> board;
     char perkBoard[15][15] =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
                                 {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
@@ -67,8 +70,6 @@ protected:
                                 {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
                                 {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
                                 {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'}};
-    unordered_set<LString, MyHashFunction> scrabbleWordSet;
-    vector<LString> answerSets[15];
 };
 
 
