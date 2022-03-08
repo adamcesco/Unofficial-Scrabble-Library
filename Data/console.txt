@@ -29,6 +29,33 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu-20.04 --exec /bin/bash -c "cd 
 
 
 
+BOTA
+BOUT
+BRA
+BRAD
+BUDDY
+BUN
+BUND
+BUR
+BUR
+BURD
+BUT
+CAD
+CAD
+CADE
+CADI
+CADI
+CADI
+CADI
+CAID
+CAID
+CAID
+CAP
+CAP
+CAPE
+CAPED
+CAPH
+CAPO
 CAPO
 CAPO
 CAPO
