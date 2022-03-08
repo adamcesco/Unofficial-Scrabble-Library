@@ -184,13 +184,16 @@ void HorizontalBoardReader::validate_board() const{
     }
 }
 
-char** HorizontalBoardReader::return_formatted_perkBoard(char** passed) const {
+vector<string> HorizontalBoardReader::return_formatted_perkBoard() const {
+    vector<string> toReturn;
     for (int i = 0; i < 15; ++i) {
+        string column;
         for (int j = 0; j < 15; ++j) {
-            passed[i][j] = perkBoard[i][j];
+            column += perkBoard[i][j];
         }
+        toReturn.push_back(column);
     }
-    return passed;
+    return toReturn;
 }
 
 vector<LString> HorizontalBoardReader::return_formatted_board_with(const LString &toPrint) const {
@@ -209,20 +212,24 @@ vector<LString> HorizontalBoardReader::return_formatted_board_with(const LString
     return boardCpy;
 }
 
-char** HorizontalBoardReader::return_formatted_char_board(char** passed) const {
+vector<string> HorizontalBoardReader::return_formatted_char_board() const {
+    vector<string> boardCpy;
     for (int i = 0; i < 15; ++i) {
+        string column;
         for (int j = 0; j < 15; ++j) {
-            passed[i][j] = board[i].read_at(j).LData;
+            column += board[i].read_at(j).LData;
         }
+        boardCpy.push_back(column);
     }
-    return passed;
+    return boardCpy;
 }
 
-vector<LString>* HorizontalBoardReader::return_formatted_wordSets(vector<LString>* passed) const {
-    for (int i = 0; i < 15; ++i) {
-        passed[i] = wordSets[i];
+vector<vector<LString>> HorizontalBoardReader::return_formatted_wordSets() const {
+    vector<vector<LString>> toReturn;
+    for (const auto & wordSet : wordSets) {
+        toReturn.push_back(wordSet);
     }
-    return passed;
+    return toReturn;
 }
 
 void HorizontalBoardReader::set_board(vector<LString> passed) {

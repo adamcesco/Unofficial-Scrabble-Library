@@ -80,19 +80,6 @@ bool ScrabbleReader::contains_letter_of_hand(const LString &passed) const {
     return false;
 }
 
-bool ScrabbleReader::contains_letter_of_hand(const string &passed) const {
-    unordered_set<char> handSet;
-    for (int i = 0; i < hand.length(); ++i)
-        handSet.emplace(toupper(hand.read_at(i).LData));
-
-    for (char i : passed) {
-        if(handSet.find(toupper(i)) != handSet.end()) {
-            return true;
-        }
-    }
-    return false;
-}
-
 vector<LString> ScrabbleReader::return_raw_board_with(const LString &toPrint) const {
     vector<LString> boardCpy = board;
     int toPrintX = toPrint.read_at(0).x;
@@ -436,20 +423,26 @@ void ScrabbleReader::place_best_word_into_board() {
     }
 }
 
-char** ScrabbleReader::return_raw_perkBoard(char** passed) {
+vector<string> ScrabbleReader::return_raw_perkBoard() {
+    vector<string> toReturn;
     for (int i = 0; i < 15; ++i) {
+        string row;
         for (int j = 0; j < 15; ++j) {
-            passed[i] = perkBoard[i];
+            row += perkBoard[i][j];
         }
+        toReturn.push_back(row);
     }
-    return passed;
+    return toReturn;
 }
 
-char** ScrabbleReader::return_raw_char_board(char** passed) {
+vector<string> ScrabbleReader::return_raw_char_board() {
+    vector<string> toReturn;
     for (int i = 0; i < 15; ++i) {
+        string row;
         for (int j = 0; j < 15; ++j) {
-            passed[i][j] = board[i][j].LData;
+            row += board[i][j].LData;
         }
+        toReturn.push_back(row);
     }
-    return passed;
+    return toReturn;
 }

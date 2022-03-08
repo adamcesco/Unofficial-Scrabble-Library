@@ -212,34 +212,34 @@ void VerticalBoardReader::validate_board() const{
     }
 }
 
-char** VerticalBoardReader::return_formatted_perkBoard(char** passed) const {
-    for (int i = 14; i >= 0; i--) {  //i = x
-        for (int j = 0; j < 15; j++) {  //j = y
-            passed[14 - i][j] = perkBoard[j][i];
+vector<string> VerticalBoardReader::return_formatted_perkBoard() const {
+    vector<string> toReturn;
+    for (int i = 0; i < 15; ++i) {
+        string column;
+        for (int j = 14; j >= 0; --j) {
+            column += perkBoard[j][i];
         }
+        toReturn.push_back(column);
     }
-
-    return passed;
+    return toReturn;
 }
 
 vector<LString> VerticalBoardReader::return_formatted_board_with(const LString &toPrint) const {
     vector<LString> boardCpy = board;
-    int toPrintX = toPrint.read_at(0).x;
-    int toPrintY = toPrint.read_at(0).y;
-    for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
-        if(boardCpy[toPrintY][i] == ' ') {
-            boardCpy[toPrintY][i] = toPrint.read_at(i - toPrintX);
-            boardCpy[toPrintY][i].flag = -2;
-        }
+    int toPrintX = toPrint.read_at(0).y;
+    int toPrintY = 14 - toPrint.read_at(0).x;
+    for (int i = toPrintY; i >= toPrintY - toPrint.length(); i--) {
+        if(boardCpy[i][toPrintX] == ' ')
+            boardCpy[i][toPrintX] = Letter(toPrint.read_at(toPrintY - i).LData, i, toPrintX, -2);
         else
-            boardCpy[toPrintY][i].flag = 1;
+            boardCpy[i][toPrintX].flag = 1;
     }
 
     vector<LString> boardCpy2;
-    for (int i = 14; i >= 0; i--) {
+    for (int i = 0; i < 15; i++) {
         LString column;
-        for (int j = 0; j < 15; j++) {
-            column += Letter(boardCpy[j].read_at(i).LData, j, 14 - i, 1);
+        for (int j = 14; j >= 0; j--) {
+            column += boardCpy[j].read_at(i);
         }
         boardCpy2.push_back(column);
     }
@@ -247,20 +247,24 @@ vector<LString> VerticalBoardReader::return_formatted_board_with(const LString &
     return boardCpy2;
 }
 
-char** VerticalBoardReader::return_formatted_char_board(char** passed) const {
+vector<string> VerticalBoardReader::return_formatted_char_board() const {
+    vector<string> boardCpy;
     for (int i = 0; i < 15; ++i) {
+        string column;
         for (int j = 14; j >= 0; --j) {
-            passed[i][j] = board[j].read_at(i).LData;
+            column += board[j].read_at(i).LData;
         }
+        boardCpy.push_back(column);
     }
-    return passed;
+    return boardCpy;
 }
 
-vector<LString>* VerticalBoardReader::return_formatted_wordSets(vector<LString>* passed) const {
+vector<vector<LString>> VerticalBoardReader::return_formatted_wordSets() const {
+    vector<vector<LString>> toReturn;
     for (int i = 0; i < 15; ++i) {
-        passed[i] = wordSets[14 - i];
+        toReturn.push_back(wordSets[14 - i]);
     }
-    return passed;
+    return toReturn;
 }
 
 vector<LString> VerticalBoardReader::return_formatted_board() const {

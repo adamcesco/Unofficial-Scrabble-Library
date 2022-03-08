@@ -32,7 +32,7 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
-    string hand = "GRO?LEE";    //blank letter should be marked as a '?'
+    string hand = "POIAUD?";    //blank letter should be marked as a '?'
 
     HorizontalBoardReader hReader(hand);
     hReader.build_board(argv[1]);

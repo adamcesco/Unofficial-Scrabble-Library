@@ -12,13 +12,13 @@ public:
     virtual void build_board(const string &) = 0;
     virtual void print_formatted_board() const = 0;
     virtual Type get_reader_type() const = 0;
-    virtual vector<LString> return_formatted_board() const = 0;     //needs testing
-    virtual void set_board(vector<LString>) = 0;                    //needs testing
+    virtual vector<LString> return_formatted_board() const = 0;
+    virtual void set_board(vector<LString>) = 0;
     virtual void validate_board() const = 0;
-    virtual vector<LString> return_formatted_board_with(const LString&) const = 0;     //needs testing
-    virtual char** return_formatted_char_board(char**) const = 0;                       //needs testing
-    virtual vector<LString>* return_formatted_wordSets(vector<LString>*) const = 0;    //needs testing
-    virtual char** return_formatted_perkBoard(char**) const = 0;                        //needs testing
+    virtual vector<LString> return_formatted_board_with(const LString&) const = 0;      //assumes that the passed word is formatted horizontally
+    virtual vector<string> return_formatted_char_board() const = 0;
+    virtual vector<vector<LString>> return_formatted_wordSets() const = 0;
+    virtual vector<string> return_formatted_perkBoard() const = 0;
 
     LString get_best_word() const{return bestWord;}
     int get_best_x() const{return bestX;}
@@ -37,13 +37,12 @@ public:
     int points_of_word(const LString &);
     int find_points_of_word(const string&);
     void place_best_word_into_board();
-    char** return_raw_char_board(char **);          //needs testing
-    char** return_raw_perkBoard(char **);           //needs testing
+    vector<string> return_raw_char_board();
+    vector<string> return_raw_perkBoard();
 
 protected:
     int perpendicular_points(const LString&) const;
     bool contains_letter_of_hand(const LString&) const;
-    bool contains_letter_of_hand(const string&) const;
     vector<LString> return_all_fitted_tangential_words(LString&, int);
     unordered_map<LString, LString, MyHashFunction> return_all_fitted_filled_rows(LString&, int);
     unordered_map<LString, LString, MyHashFunction> return_all_fitted_rows(LString&, int);
