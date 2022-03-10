@@ -33,9 +33,6 @@ int main(int argc, char* argv[]){
 //    hReader.search_for_tangential_words();
     hReader.search_for_all_words();
 
-    vector<int> duoVals = hReader.find_points_of_word("DUO");
-    cout << "DUO - " << duoVals[0] << endl;
-
     vReader.validate_words();
     hReader.validate_words();
 
