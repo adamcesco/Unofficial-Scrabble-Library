@@ -98,9 +98,9 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         REQUIRE(vReader.return_formatted_board_with(word) == testBoard);
     }
 
-    SECTION("ScrabbleVectorizer::return_formatted_char_board(char**)") {
-        vector<string> testVBoard = vReader.return_formatted_char_board();
-        vector<string> testHBoard = hReader.return_formatted_char_board();
+    SECTION("ScrabbleVectorizer::return_formatted_char_board_copy(char**)") {
+        vector<string> testVBoard = vReader.return_formatted_char_board_copy();
+        vector<string> testHBoard = hReader.return_formatted_char_board_copy();
 
         for (int i = 0; i < 15; ++i) {
             REQUIRE(testHBoard[i] == originalBoard[i].to_string());
@@ -108,9 +108,9 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         }
     }
 
-    SECTION("ScrabbleVectorizer::return_formatted_perkBoard()") {
-        vector<string> testVPerks = vReader.return_formatted_perkBoard();
-        vector<string> testHPerks = hReader.return_formatted_perkBoard();
+    SECTION("ScrabbleVectorizer::return_formatted_perkBoard_copy()") {
+        vector<string> testVPerks = vReader.return_formatted_perkBoard_copy();
+        vector<string> testHPerks = hReader.return_formatted_perkBoard_copy();
 
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {

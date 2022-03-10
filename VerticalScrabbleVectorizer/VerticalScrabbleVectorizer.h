@@ -16,16 +16,16 @@ public:
     Type get_vectorizer_type() const{return VERTICAL;}
     vector<LString> return_word_set_of(int subscript){return answerSets[14 - subscript];}
     vector<LString> return_formatted_board() const;
-    void set_board(vector<LString>);                //assumes the passed board is oriented in a horizontal format
-    void set_board(vector<string>);             //assumes the passed board is oriented in a horizontal format
-    void set_perkBoard(vector<string>);
+    void set_board(const vector<LString>&);                //assumes the passed board is oriented in a horizontal format
+    void set_board(const vector<string>&);             //assumes the passed board is oriented in a horizontal format
+    void set_perkBoard(const vector<string>&);
     void validate_board() const;
     int points_of_best_word(){return points_of_word(bestWord);}
 
     vector<vector<LString>> return_formatted_answerSets() const;
-    vector<string> return_formatted_perkBoard() const;
+    vector<string> return_formatted_perkBoard_copy() const;
     vector<LString> return_formatted_board_with(const LString &) const;     //assumes that the passed word is formatted with respect to a horizontal board
-    vector<string> return_formatted_char_board() const;
+    vector<string> return_formatted_char_board_copy() const;
 };
 
 

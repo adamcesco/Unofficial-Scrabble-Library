@@ -10,26 +10,27 @@ public:
     virtual void print_formatted_board() const = 0;
     virtual Type get_vectorizer_type() const = 0;
     virtual vector<LString> return_formatted_board() const = 0;
-    virtual void set_board(vector<string>) = 0;
-    virtual void set_perkBoard(vector<string>) = 0;
+    virtual void set_board(const vector<string>&) = 0;
+    virtual void set_perkBoard(const vector<string>&) = 0;
     virtual void validate_board() const = 0;
-    virtual vector<string> return_formatted_char_board() const = 0;
-    virtual vector<string> return_formatted_perkBoard() const = 0;
+    virtual vector<string> return_formatted_char_board_copy() const = 0;
+    virtual vector<string> return_formatted_perkBoard_copy() const = 0;
     virtual LString update_best_word() = 0;
+    virtual vector<vector<LString>> return_formatted_answerSets() const = 0;
 
     void search_for_intersecting_words();
     void search_for_tangential_words();
     void search_for_all_words();
     void clear_wordSets();
-    LString get_best_word() const{return bestWord;}
-    int get_best_x() const{return bestX;}
-    int get_best_y() const {return bestY;}
+    LString& get_best_word(){return bestWord;}
+    int& get_best_x() {return bestX;}
+    int& get_best_y() {return bestY;}
     void reset_all_data();
     void set_hand(const string& passed){hand = passed;}
-    LString get_hand(){return hand;}
+    string& get_hand(){return hand;}
     void place_into_board(const LString&);
     vector<LString>& get_raw_board(){return board;}
-    void set_raw_board(vector<LString> passed){board = passed;}
+    void set_raw_board(const vector<LString>& passed){board = passed;}
     vector<int> find_points_of_word(const string&);
     vector<LString> return_all_of_raw_word(const string&);
     void place_best_word_into_board();
@@ -38,7 +39,7 @@ public:
     unordered_set<LString, MyHashFunction>& get_all_scrabble_words(){ return scrabbleWordSet; }
 
 protected:
-    int points_of_word(const LString &);        //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type
+    int points_of_word(const LString &);                            //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type
     vector<LString> return_raw_board_with(const LString&) const;    //assumes that the passed word is formatted with respect to the current vectorizer type
     int perpendicular_points(const LString&) const;
     bool contains_letter_of_hand(const LString&) const;
@@ -69,8 +70,8 @@ protected:
                                 {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'}};
                                         //2 = double word premium
                                         //3 = triple word premium
-                                        //b = double letter premium
-                                        //c = triple letter premium
+                                        //B = double letter premium
+                                        //C = triple letter premium
 };
 
 

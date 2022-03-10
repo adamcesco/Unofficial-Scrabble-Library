@@ -180,7 +180,7 @@ void HorizontalScrabbleVectorizer::validate_board() const{
     }
 }
 
-vector<string> HorizontalScrabbleVectorizer::return_formatted_perkBoard() const {
+vector<string> HorizontalScrabbleVectorizer::return_formatted_perkBoard_copy() const {
     vector<string> toReturn;
     for (int i = 0; i < 15; ++i) {
         string column;
@@ -208,7 +208,7 @@ vector<LString> HorizontalScrabbleVectorizer::return_formatted_board_with(const 
     return boardCpy;
 }
 
-vector<string> HorizontalScrabbleVectorizer::return_formatted_char_board() const {
+vector<string> HorizontalScrabbleVectorizer::return_formatted_char_board_copy() const {
     vector<string> boardCpy;
     for (int i = 0; i < 15; ++i) {
         string column;
@@ -228,7 +228,7 @@ vector<vector<LString>> HorizontalScrabbleVectorizer::return_formatted_answerSet
     return toReturn;
 }
 
-void HorizontalScrabbleVectorizer::set_board(vector<LString> passed) {
+void HorizontalScrabbleVectorizer::set_board(const vector<LString> &passed) {
     if(passed.size() != 15)
         throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument is not of a proper size.");
     vector<LString> boardCpy;
@@ -238,7 +238,7 @@ void HorizontalScrabbleVectorizer::set_board(vector<LString> passed) {
 
         LString row;
         for (int j = 0; j < 15; ++j) {
-            char cell = passed[i][j].LData;
+            char cell = passed[i].read_at(j).LData;
             if(isalpha(cell)) {
                 row.push_back(Letter(cell, j, i, 1));
             }
@@ -258,7 +258,7 @@ void HorizontalScrabbleVectorizer::set_board(vector<LString> passed) {
     }
 }
 
-void HorizontalScrabbleVectorizer::set_board(vector<string> passed) {
+void HorizontalScrabbleVectorizer::set_board(const vector<string> &passed) {
     if(passed.size() != 15)
         throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<string> passed) | passed argument is not of a proper size.");
     vector<LString> boardCpy;
@@ -288,7 +288,7 @@ void HorizontalScrabbleVectorizer::set_board(vector<string> passed) {
     }
 }
 
-void HorizontalScrabbleVectorizer::set_perkBoard(vector<string> passed) {
+void HorizontalScrabbleVectorizer::set_perkBoard(const vector<string> &passed) {
     if(passed.size() != 15)
         throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument is not of a proper size.");
 

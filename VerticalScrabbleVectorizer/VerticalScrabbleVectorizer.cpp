@@ -158,7 +158,7 @@ void VerticalScrabbleVectorizer::validate_words() {
     }
 }
 
-void VerticalScrabbleVectorizer::set_board(vector<LString> passed) {   //assumes that passed is formatted as a proper board
+void VerticalScrabbleVectorizer::set_board(const vector<LString> &passed) {   //assumes that passed is formatted as a proper board
     if(passed.size() != 15)
         throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument is not of a proper size.");
 
@@ -168,7 +168,7 @@ void VerticalScrabbleVectorizer::set_board(vector<LString> passed) {   //assumes
             throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument has an element that is not of a proper size.");
         LString column;
         for (int j = 0; j < 15; j++) {  //j = y
-            char cell = passed[i][j].LData;
+            char cell = passed[i].read_at(j).LData;
             if(isalpha(cell)) {
                 column += Letter(cell, j, 14 - i, 1);
             }
@@ -219,7 +219,7 @@ void VerticalScrabbleVectorizer::validate_board() const{
     }
 }
 
-vector<string> VerticalScrabbleVectorizer::return_formatted_perkBoard() const {
+vector<string> VerticalScrabbleVectorizer::return_formatted_perkBoard_copy() const {
     vector<string> toReturn;
     for (int i = 0; i < 15; ++i) {
         string column;
@@ -254,7 +254,7 @@ vector<LString> VerticalScrabbleVectorizer::return_formatted_board_with(const LS
     return boardCpy2;
 }
 
-vector<string> VerticalScrabbleVectorizer::return_formatted_char_board() const {
+vector<string> VerticalScrabbleVectorizer::return_formatted_char_board_copy() const {
     vector<string> boardCpy;
     for (int i = 0; i < 15; ++i) {
         string column;
@@ -286,7 +286,7 @@ vector<LString> VerticalScrabbleVectorizer::return_formatted_board() const {
     return boardCpy;
 }
 
-void VerticalScrabbleVectorizer::set_board(vector<string> passed) {
+void VerticalScrabbleVectorizer::set_board(const vector<string> &passed) {
     if(passed.size() != 15)
         throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<string> passed) | passed argument is not of a proper size.");
 
@@ -316,7 +316,7 @@ void VerticalScrabbleVectorizer::set_board(vector<string> passed) {
     }
 }
 
-void VerticalScrabbleVectorizer::set_perkBoard(vector<string> passed) {
+void VerticalScrabbleVectorizer::set_perkBoard(const vector<string> &passed) {
     if(passed.size() != 15)
         throw invalid_argument("Error in VerticalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument is not of a proper size.");
 
