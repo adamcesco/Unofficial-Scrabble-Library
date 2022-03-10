@@ -12,9 +12,8 @@
 #include <unordered_set>
 #include <algorithm>
 #include <stdexcept>
-#include <math.h>
 #include <cstring>
-#include <math.h>
+#include <cmath>
 using namespace std;
 
 //const int map[26] = {101, 302, 303, 204, 105, 406, 207, 408, 109, 810, 511, 112, 313, 114, 115, 316, 1017, 118, 119, 120, 121, 422, 423, 824, 425, 1026};

@@ -1,7 +1,3 @@
-//
-// Created by misc1 on 2/26/2022.
-//
-
 #ifndef SCRABBLEBOT_BOARDREADER_H
 #define SCRABBLEBOT_BOARDREADER_H
 
@@ -17,6 +13,8 @@ public:
     Type get_vectorizer_type() const{return HORIZONTAL;}
     vector<LString> return_formatted_board() const{return board;}
     void set_board(vector<LString>);            //assumes the passed board is oriented in a horizontal format
+    void set_board(vector<string>);             //assumes the passed board is oriented in a horizontal format
+    void set_perkBoard(vector<string>);
     void validate_board() const;
     vector<string> return_formatted_perkBoard() const;
     vector<string> return_formatted_char_board() const;

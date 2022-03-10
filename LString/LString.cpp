@@ -1,11 +1,4 @@
-
-
-
-
 #include "LString.h"
-
-#ifndef INC_21F_PA02_DSVECTOR_H
-#define INC_21F_PA02_DSVECTOR_H
 
 LString::LString(int size) {
     data = new Letter[size];
@@ -664,5 +657,3 @@ LString &LString::convert_horizontal_format_to_vertical() {
 
     return *this;
 }
-
-#endif

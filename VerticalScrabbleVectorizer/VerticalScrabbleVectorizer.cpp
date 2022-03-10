@@ -1,7 +1,3 @@
-//
-// Created by misc1 on 3/3/2022.
-//
-
 #include "VerticalScrabbleVectorizer.h"
 #include <sstream>
 
@@ -163,11 +159,22 @@ void VerticalScrabbleVectorizer::validate_words() {
 }
 
 void VerticalScrabbleVectorizer::set_board(vector<LString> passed) {   //assumes that passed is formatted as a proper board
+    if(passed.size() != 15)
+        throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument is not of a proper size.");
+
     vector<LString> boardCpy;
     for (int i = 14; i >= 0; i--) {  //i = x
+        if(passed[i].length() != 15)
+            throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument has an element that is not of a proper size.");
         LString column;
         for (int j = 0; j < 15; j++) {  //j = y
-            column += Letter(passed[j][i].LData, j, 14 - i, 1);
+            char cell = passed[i][j].LData;
+            if(isalpha(cell)) {
+                column += Letter(cell, j, 14 - i, 1);
+            }
+            else {
+                column += Letter(' ', j, 14 - i, 1);
+            }
         }
         boardCpy.push_back(column);
     }
@@ -277,4 +284,54 @@ vector<LString> VerticalScrabbleVectorizer::return_formatted_board() const {
         boardCpy.push_back(column);
     }
     return boardCpy;
+}
+
+void VerticalScrabbleVectorizer::set_board(vector<string> passed) {
+    if(passed.size() != 15)
+        throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<string> passed) | passed argument is not of a proper size.");
+
+    vector<LString> boardCpy;
+    for (int i = 14; i >= 0; i--) {  //i = x
+        if(passed[i].length() != 15)
+            throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<string> passed) | passed argument has an element that is not of a proper size.");
+        LString column;
+        for (int j = 0; j < 15; j++) {  //j = y
+            char cell = passed[i][j];
+            if(isalpha(cell)) {
+                column += Letter(cell, j, 14 - i, 1);
+            }
+            else {
+                column += Letter(' ', j, 14 - i, 1);
+            }
+        }
+        boardCpy.push_back(column);
+    }
+    board = boardCpy;
+
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            if(board[i][j] != ' ')
+                perkBoard[i][j] = ' ';
+        }
+    }
+}
+
+void VerticalScrabbleVectorizer::set_perkBoard(vector<string> passed) {
+    if(passed.size() != 15)
+        throw invalid_argument("Error in VerticalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument is not of a proper size.");
+
+    for (int i = 0; i < 15; ++i) {
+        if(passed[i].length() != 15)
+            throw invalid_argument("Error in VerticalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument has an element that is not of a proper size.");
+        for (int j = 0; j < 15; ++j) {
+            perkBoard[i][j] = passed[i][j];
+        }
+    }
+
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            if(board[i][j] != ' ')
+                perkBoard[i][j] = ' ';
+        }
+    }
 }

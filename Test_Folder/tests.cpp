@@ -1,7 +1,3 @@
-//
-// Created by misc1 on 3/7/2022.
-//
-
 #include "catch.hpp"
 #include "../HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.h"
 #include "../VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
@@ -124,9 +120,9 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         }
     }
 
-    SECTION("ScrabbleVectorizer::return_raw_char_board()") {
-        vector<string> testVBoard = vReader.return_raw_char_board();
-        vector<string> testHBoard = hReader.return_raw_char_board();
+    SECTION("ScrabbleVectorizer::return_raw_char_board_copy()") {
+        vector<string> testVBoard = vReader.return_raw_char_board_copy();
+        vector<string> testHBoard = hReader.return_raw_char_board_copy();
 
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {
@@ -136,9 +132,9 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         }
     }
 
-    SECTION("ScrabbleVectorizer::return_raw_char_board()") {
-        vector<string> testVPerks = vReader.return_raw_perkBoard();
-        vector<string> testHPerks = hReader.return_raw_perkBoard();
+    SECTION("ScrabbleVectorizer::return_raw_char_board_copy()") {
+        vector<string> testVPerks = vReader.return_raw_perkBoard_copy();
+        vector<string> testHPerks = hReader.return_raw_perkBoard_copy();
 
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {

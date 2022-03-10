@@ -1,7 +1,3 @@
-//
-// Created by misc1 on 2/26/2022.
-//
-
 #include "HorizontalScrabbleVectorizer.h"
 #include <sstream>
 
@@ -233,7 +229,77 @@ vector<vector<LString>> HorizontalScrabbleVectorizer::return_formatted_answerSet
 }
 
 void HorizontalScrabbleVectorizer::set_board(vector<LString> passed) {
-    board = passed;
+    if(passed.size() != 15)
+        throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument is not of a proper size.");
+    vector<LString> boardCpy;
+    for (int i = 0; i < 15; ++i) {
+        if(passed[i].length() != 15)
+            throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument has an element that is not of a proper size.");
+
+        LString row;
+        for (int j = 0; j < 15; ++j) {
+            char cell = passed[i][j].LData;
+            if(isalpha(cell)) {
+                row.push_back(Letter(cell, j, i, 1));
+            }
+            else {
+                row.push_back(Letter(' ', j, i, 1));
+            }
+        }
+        boardCpy.emplace_back(row);
+    }
+    board = boardCpy;
+
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            if(board[i][j] != ' ')
+                perkBoard[i][j] = ' ';
+        }
+    }
+}
+
+void HorizontalScrabbleVectorizer::set_board(vector<string> passed) {
+    if(passed.size() != 15)
+        throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<string> passed) | passed argument is not of a proper size.");
+    vector<LString> boardCpy;
+    for (int i = 0; i < 15; ++i) {
+        if(passed[i].length() != 15)
+            throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<string> passed) | passed argument has an element that is not of a proper size.");
+
+        LString row;
+        for (int j = 0; j < 15; ++j) {
+            char cell = passed[i][j];
+            if(isalpha(cell)) {
+                row.push_back(Letter(cell, j, i, 1));
+            }
+            else {
+                row.push_back(Letter(' ', j, i, 1));
+            }
+        }
+        boardCpy.emplace_back(row);
+    }
+    board = boardCpy;
+
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            if(board[i][j] != ' ')
+                perkBoard[i][j] = ' ';
+        }
+    }
+}
+
+void HorizontalScrabbleVectorizer::set_perkBoard(vector<string> passed) {
+    if(passed.size() != 15)
+        throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument is not of a proper size.");
+
+    for (int i = 0; i < 15; ++i) {
+        if(passed[i].length() != 15)
+            throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument has an element that is not of a proper size.");
+        for (int j = 0; j < 15; ++j) {
+            perkBoard[i][j] = passed[i][j];
+        }
+    }
+
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             if(board[i][j] != ' ')

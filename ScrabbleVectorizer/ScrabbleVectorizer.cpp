@@ -1,7 +1,3 @@
-//
-// Created by misc1 on 3/3/2022.
-//
-
 #include "ScrabbleVectorizer.h"
 
 void ScrabbleVectorizer::search_for_intersecting_words() {
@@ -428,7 +424,7 @@ void ScrabbleVectorizer::place_best_word_into_board() {
     }
 }
 
-vector<string> ScrabbleVectorizer::return_raw_perkBoard() {
+vector<string> ScrabbleVectorizer::return_raw_perkBoard_copy() {
     vector<string> toReturn;
     for (int i = 0; i < 15; ++i) {
         string row;
@@ -440,7 +436,7 @@ vector<string> ScrabbleVectorizer::return_raw_perkBoard() {
     return toReturn;
 }
 
-vector<string> ScrabbleVectorizer::return_raw_char_board() {
+vector<string> ScrabbleVectorizer::return_raw_char_board_copy() {
     vector<string> toReturn;
     for (int i = 0; i < 15; ++i) {
         string row;

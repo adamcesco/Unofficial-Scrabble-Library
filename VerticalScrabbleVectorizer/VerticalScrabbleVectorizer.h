@@ -1,7 +1,3 @@
-//
-// Created by misc1 on 3/3/2022.
-//
-
 #ifndef SCRABBLE_SOLVER_VERTICALSCRABBLEVECTORIZER_H
 #define SCRABBLE_SOLVER_VERTICALSCRABBLEVECTORIZER_H
 
@@ -21,6 +17,8 @@ public:
     vector<LString> return_word_set_of(int subscript){return answerSets[14 - subscript];}
     vector<LString> return_formatted_board() const;
     void set_board(vector<LString>);                //assumes the passed board is oriented in a horizontal format
+    void set_board(vector<string>);             //assumes the passed board is oriented in a horizontal format
+    void set_perkBoard(vector<string>);
     void validate_board() const;
     int points_of_best_word(){return points_of_word(bestWord);}
 
