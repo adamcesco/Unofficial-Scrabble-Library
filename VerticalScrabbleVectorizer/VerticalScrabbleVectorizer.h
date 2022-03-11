@@ -14,7 +14,7 @@ public:
     LString update_best_word();
     void validate_words();
     Type get_vectorizer_type() const{return VERTICAL;}
-    vector<LString> return_word_set_of(int subscript){return answerSets[14 - subscript];}
+    vector<LString>& return_answer_set_of(int subscript){return answerSets[14 - subscript];}
     vector<LString> return_formatted_board_copy() const;
     void set_board(const vector<LString>&);                //assumes the passed board is oriented in a horizontal format
     void set_board(const vector<string>&);             //assumes the passed board is oriented in a horizontal format

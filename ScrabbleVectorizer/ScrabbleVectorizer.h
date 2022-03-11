@@ -14,11 +14,9 @@ public:
     virtual LString update_best_word() = 0;
     virtual vector<vector<LString>> return_formatted_answerSets_copy() const = 0;
     virtual vector<LString> return_formatted_board_copy() const = 0;
-
     virtual Type get_vectorizer_type() const = 0;
-
-    virtual void set_board(const vector<string>&) = 0;          //needs testing
-    virtual void set_perkBoard(const vector<string>&) = 0;      //needs testing
+    virtual void set_board(const vector<string>&) = 0;
+    virtual void set_perkBoard(const vector<string>&) = 0;
 
     void search_for_intersecting_words();
     void search_for_tangential_words();
@@ -30,16 +28,17 @@ public:
     vector<LString>& get_raw_board(){return board;}
     vector<string> return_raw_char_board_copy();
     vector<string> return_raw_perkBoard_copy();
-
     int& get_best_x() {return bestX;}
     int& get_best_y() {return bestY;}
     void reset_all_data();
     string& get_hand(){return hand;}
     void set_raw_board(const vector<LString>& passed){board = passed;}
-    unordered_set<LString, MyHashFunction>& get_all_scrabble_words(){ return scrabbleWordSet; }
+    unordered_set<LString, MyHashFunction>& get_all_scrabble_words(){ return scrabbleWordSet;}
     vector<int> find_points_of_word(const string&);
     vector<LString> return_all_of_raw_word(const string&);
     void place_best_word_into_board();
+    vector<LString>* get_answerSets(){return answerSets;}
+//    char** get_perkBoard(){return perkBoard;}
 
 protected:
     int points_of_word(const LString &);                            //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type
