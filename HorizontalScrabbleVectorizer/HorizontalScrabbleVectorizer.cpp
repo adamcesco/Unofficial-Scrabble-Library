@@ -220,7 +220,7 @@ vector<string> HorizontalScrabbleVectorizer::return_formatted_char_board_copy() 
     return boardCpy;
 }
 
-vector<vector<LString>> HorizontalScrabbleVectorizer::return_formatted_answerSets() const {
+vector<vector<LString>> HorizontalScrabbleVectorizer::return_formatted_answerSets_copy() const {
     vector<vector<LString>> toReturn;
     for (const auto & wordSet : answerSets) {
         toReturn.push_back(wordSet);

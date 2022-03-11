@@ -22,7 +22,7 @@ I use a test-driven solution that is primarily object-oriented. In its current s
     - This feature is now supported
 3. ~~Add support for blank tiles to be within the program's hand~~
     - This feature is now supported
-4. Increase the usability of classes for future users/editors of the project
+4. ~~Increase the usability of classes for future users/editors of the project~~
 5. Test and Optimize solution to prime for finalization
 6. Provide an in-depth tutorial for users/editors of this library
 7. Implement a console-based solution with full gameplay support.

@@ -8,35 +8,38 @@ public:
 
     virtual void build_board(const string &) = 0;
     virtual void print_formatted_board() const = 0;
-    virtual Type get_vectorizer_type() const = 0;
-    virtual vector<LString> return_formatted_board() const = 0;
-    virtual void set_board(const vector<string>&) = 0;
-    virtual void set_perkBoard(const vector<string>&) = 0;
     virtual void validate_board() const = 0;
     virtual vector<string> return_formatted_char_board_copy() const = 0;
     virtual vector<string> return_formatted_perkBoard_copy() const = 0;
     virtual LString update_best_word() = 0;
-    virtual vector<vector<LString>> return_formatted_answerSets() const = 0;
+    virtual vector<vector<LString>> return_formatted_answerSets_copy() const = 0;
+    virtual vector<LString> return_formatted_board_copy() const = 0;
+
+    virtual Type get_vectorizer_type() const = 0;
+
+    virtual void set_board(const vector<string>&) = 0;          //needs testing
+    virtual void set_perkBoard(const vector<string>&) = 0;      //needs testing
 
     void search_for_intersecting_words();
     void search_for_tangential_words();
     void search_for_all_words();
     void clear_wordSets();
     LString& get_best_word(){return bestWord;}
+    void set_hand(const string& passed){hand = passed;}
+    void place_into_board(const LString&);
+    vector<LString>& get_raw_board(){return board;}
+    vector<string> return_raw_char_board_copy();
+    vector<string> return_raw_perkBoard_copy();
+
     int& get_best_x() {return bestX;}
     int& get_best_y() {return bestY;}
     void reset_all_data();
-    void set_hand(const string& passed){hand = passed;}
     string& get_hand(){return hand;}
-    void place_into_board(const LString&);
-    vector<LString>& get_raw_board(){return board;}
     void set_raw_board(const vector<LString>& passed){board = passed;}
+    unordered_set<LString, MyHashFunction>& get_all_scrabble_words(){ return scrabbleWordSet; }
     vector<int> find_points_of_word(const string&);
     vector<LString> return_all_of_raw_word(const string&);
     void place_best_word_into_board();
-    vector<string> return_raw_char_board_copy();
-    vector<string> return_raw_perkBoard_copy();
-    unordered_set<LString, MyHashFunction>& get_all_scrabble_words(){ return scrabbleWordSet; }
 
 protected:
     int points_of_word(const LString &);                            //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type

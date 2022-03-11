@@ -266,7 +266,7 @@ vector<string> VerticalScrabbleVectorizer::return_formatted_char_board_copy() co
     return boardCpy;
 }
 
-vector<vector<LString>> VerticalScrabbleVectorizer::return_formatted_answerSets() const {
+vector<vector<LString>> VerticalScrabbleVectorizer::return_formatted_answerSets_copy() const {
     vector<vector<LString>> toReturn;
     for (int i = 0; i < 15; ++i) {
         toReturn.push_back(answerSets[14 - i]);
@@ -274,7 +274,7 @@ vector<vector<LString>> VerticalScrabbleVectorizer::return_formatted_answerSets(
     return toReturn;
 }
 
-vector<LString> VerticalScrabbleVectorizer::return_formatted_board() const {
+vector<LString> VerticalScrabbleVectorizer::return_formatted_board_copy() const {
     vector<LString> boardCpy;
     for (int i = 0; i < 15; ++i) {
         LString column;
@@ -291,12 +291,12 @@ void VerticalScrabbleVectorizer::set_board(const vector<string> &passed) {
         throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<string> passed) | passed argument is not of a proper size.");
 
     vector<LString> boardCpy;
-    for (int i = 14; i >= 0; i--) {  //i = x
+    for (int i = 14; i >= 0; --i) {  //i = x
         if(passed[i].length() != 15)
             throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<string> passed) | passed argument has an element that is not of a proper size.");
         LString column;
         for (int j = 0; j < 15; j++) {  //j = y
-            char cell = passed[i][j];
+            char cell = passed[j][i];
             if(isalpha(cell)) {
                 column += Letter(cell, j, 14 - i, 1);
             }
@@ -320,11 +320,11 @@ void VerticalScrabbleVectorizer::set_perkBoard(const vector<string> &passed) {
     if(passed.size() != 15)
         throw invalid_argument("Error in VerticalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument is not of a proper size.");
 
-    for (int i = 0; i < 15; ++i) {
+    for (int i = 14; i >= 0; --i) {
         if(passed[i].length() != 15)
             throw invalid_argument("Error in VerticalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument has an element that is not of a proper size.");
         for (int j = 0; j < 15; ++j) {
-            perkBoard[i][j] = passed[i][j];
+            perkBoard[14 - i][j] = passed[j][i];
         }
     }
 

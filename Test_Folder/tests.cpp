@@ -75,24 +75,24 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     }
 
 
-    SECTION("ScrabbleVectorizer::return_formatted_board() and ScrabbleVectorizer::get_raw_board()") {
-        REQUIRE(hReader.return_formatted_board() == originalBoard);
+    SECTION("ScrabbleVectorizer::return_formatted_board_copy() and ScrabbleVectorizer::get_raw_board()") {
+        REQUIRE(hReader.return_formatted_board_copy() == originalBoard);
         REQUIRE(hReader.get_raw_board() == originalBoard);
-        REQUIRE(vReader.return_formatted_board() == originalBoard);
+        REQUIRE(vReader.return_formatted_board_copy() == originalBoard);
     }
 
     SECTION("ScrabbleVectorizer::set_board()") {
         hReader.set_board(originalBoard);
         vReader.set_board(originalBoard);
 
-        REQUIRE(hReader.return_formatted_board() == originalBoard);
+        REQUIRE(hReader.return_formatted_board_copy() == originalBoard);
         REQUIRE(hReader.get_raw_board() == originalBoard);
-        REQUIRE(vReader.return_formatted_board() == originalBoard);
+        REQUIRE(vReader.return_formatted_board_copy() == originalBoard);
     }
 
     SECTION("ScrabbleVectorizer::return_formatted_board_with()") {
         defaultReader.place_into_board(word);
-        vector<LString> testBoard = defaultReader.return_formatted_board();
+        vector<LString> testBoard = defaultReader.return_formatted_board_copy();
 
         REQUIRE(hReader.return_formatted_board_with(word) == testBoard);
         REQUIRE(vReader.return_formatted_board_with(word) == testBoard);
@@ -176,10 +176,10 @@ TEST_CASE("Testing the difference in resulting word sets formed from different f
     vReader2.validate_words();
     hReader2.validate_words();
 
-    vector<vector<LString>> vr1WS = vReader.return_formatted_answerSets();
-    vector<vector<LString>> vr2WS = vReader2.return_formatted_answerSets();
-    vector<vector<LString>> hr1WS = hReader.return_formatted_answerSets();
-    vector<vector<LString>> hr2WS = hReader2.return_formatted_answerSets();
+    vector<vector<LString>> vr1WS = vReader.return_formatted_answerSets_copy();
+    vector<vector<LString>> vr2WS = vReader2.return_formatted_answerSets_copy();
+    vector<vector<LString>> hr1WS = hReader.return_formatted_answerSets_copy();
+    vector<vector<LString>> hr2WS = hReader2.return_formatted_answerSets_copy();
 
     SECTION("Testing the word count of vertical answerSets formed from differently filtrated readers") {
         REQUIRE(vr1WS.size() == vr2WS.size());
@@ -367,5 +367,61 @@ TEST_CASE("Testing method LString::row_is_descendent_of", "[LString]"){
         givenWord.set_x_vals_to_subscripts();
         givenWord.add_to_x_vals(5);
         REQUIRE(!toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+    }
+}
+
+TEST_CASE("Testing manual board and perk-board setting", "[ScrabbleVectorizer]"){
+    string hand = "POIAUD?";
+
+    HorizontalScrabbleVectorizer hReader(hand);
+    hReader.build_board("../Test_Folder/Board.csv");
+    hReader.validate_board();
+    VerticalScrabbleVectorizer vReader(hand);
+    vReader.build_board("../Test_Folder/Board.csv");
+    vReader.validate_board();
+    vector<string> customPerkBoard =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', '|', ' ', ' ', '3'},
+                                        {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', '2', ' '},
+                                        {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', '2', ' ', ' '},
+                                        {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '|', ' ', ' ', 'B'},
+                                        {'=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '|', '=', '=', '='},
+                                        {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', 'C', ' '},
+                                        {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', 'B', ' ', ' '},
+                                        {'3', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', ' ', '|', ' ', ' ', '3'},
+                                        {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', 'B', ' ', ' '},
+                                        {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', 'C', ' '},
+                                        {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', '|', ' ', ' ', ' '},
+                                        {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '|', ' ', ' ', 'B'},
+                                        {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', '2', ' ', ' '},
+                                        {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', '2', ' '},
+                                        {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', '|', ' ', ' ', '3'}};
+
+    vector<string> customBoard =       {{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', ' ', ' '},
+                                        {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', ' ', ' '},
+                                        {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', 'L', ' '},
+                                        {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', 'L', ' '},
+                                        {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                        {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                        {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                        {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                        {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '}};
+
+    SECTION("ScrabbleVectorizer::set_perkBoard(const vector<string>&)"){
+        vReader.set_perkBoard(customPerkBoard);
+        hReader.set_perkBoard(customPerkBoard);
+
+        REQUIRE(vReader.return_formatted_perkBoard_copy() == hReader.return_formatted_perkBoard_copy());
+    }
+
+    SECTION("ScrabbleVectorizer::set_board(const vector<string>&)"){
+        vReader.set_board(customPerkBoard);
+        hReader.set_board(customPerkBoard);
+
+        REQUIRE(vReader.return_formatted_board_copy() == hReader.return_formatted_board_copy());
     }
 }
