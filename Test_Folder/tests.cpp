@@ -81,13 +81,24 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         REQUIRE(vReader.return_formatted_board_copy() == originalBoard);
     }
 
-    SECTION("ScrabbleVectorizer::set_board()") {
+    SECTION("ScrabbleVectorizer::set_board(const vector<LString> &passed)") {
         hReader.set_board(originalBoard);
         vReader.set_board(originalBoard);
 
         REQUIRE(hReader.return_formatted_board_copy() == originalBoard);
         REQUIRE(hReader.get_raw_board() == originalBoard);
         REQUIRE(vReader.return_formatted_board_copy() == originalBoard);
+
+        vector<LString> vboardFormattedCopy = vReader.return_formatted_board_copy();
+        vector<LString> hboardFormattedCopy = hReader.return_formatted_board_copy();
+        for (int i = 0; i < 15; ++i) {
+            for (int j = 0; j < 15; ++j) {
+                REQUIRE(vboardFormattedCopy[i][j].x == i);
+                REQUIRE(vboardFormattedCopy[i][j].y == 14 - j);
+                REQUIRE(hboardFormattedCopy[i][j].x == j);
+                REQUIRE(hboardFormattedCopy[i][j].y == i);
+            }
+        }
     }
 
     SECTION("ScrabbleVectorizer::return_formatted_board_with()") {
@@ -98,7 +109,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         REQUIRE(vReader.return_formatted_board_with(word) == testBoard);
     }
 
-    SECTION("ScrabbleVectorizer::return_formatted_char_board_copy(char**)") {
+    SECTION("ScrabbleVectorizer::return_formatted_char_board_copy()") {
         vector<string> testVBoard = vReader.return_formatted_char_board_copy();
         vector<string> testHBoard = hReader.return_formatted_char_board_copy();
 
@@ -419,8 +430,8 @@ TEST_CASE("Testing manual board and perk-board setting", "[ScrabbleVectorizer]")
     }
 
     SECTION("ScrabbleVectorizer::set_board(const vector<string>&)"){
-        vReader.set_board(customPerkBoard);
-        hReader.set_board(customPerkBoard);
+        vReader.set_board(customBoard);
+        hReader.set_board(customBoard);
 
         REQUIRE(vReader.return_formatted_board_copy() == hReader.return_formatted_board_copy());
     }

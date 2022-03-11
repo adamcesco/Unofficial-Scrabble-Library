@@ -38,7 +38,6 @@ public:
     vector<LString> return_all_of_raw_word(const string&);
     void place_best_word_into_board();
     vector<LString>* get_answerSets(){return answerSets;}
-//    char** get_perkBoard(){return perkBoard;}
 
 protected:
     int points_of_word(const LString &);                            //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type

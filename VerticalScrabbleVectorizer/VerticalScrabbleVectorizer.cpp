@@ -168,7 +168,7 @@ void VerticalScrabbleVectorizer::set_board(const vector<LString> &passed) {   //
             throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument has an element that is not of a proper size.");
         LString column;
         for (int j = 0; j < 15; j++) {  //j = y
-            char cell = passed[i].read_at(j).LData;
+            char cell = passed[j].read_at(i).LData;
             if(isalpha(cell)) {
                 column += Letter(cell, j, 14 - i, 1);
             }
@@ -278,9 +278,8 @@ vector<LString> VerticalScrabbleVectorizer::return_formatted_board_copy() const 
     vector<LString> boardCpy;
     for (int i = 0; i < 15; ++i) {
         LString column;
-        for (int j = 14; j >= 0; --j) {
+        for (int j = 14; j >= 0; --j)
             column += board[j].read_at(i);
-        }
         boardCpy.push_back(column);
     }
     return boardCpy;
