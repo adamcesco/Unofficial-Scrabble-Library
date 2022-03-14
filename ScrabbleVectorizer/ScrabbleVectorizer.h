@@ -4,8 +4,6 @@
 
 class ScrabbleVectorizer {
 public:
-    //TODO: remove some pure virtual methods that are too restricting for future users of the class
-
     virtual void build_board(const string &) = 0;
     virtual void print_formatted_board() const = 0;
     virtual void validate_board() const = 0;
@@ -40,9 +38,8 @@ public:
     vector<LString>* get_answerSets(){return answerSets;}
 
 protected:
-    int points_of_word(const LString &);                            //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type
+    int points_of_word(const LString &) const;                            //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type
     vector<LString> return_raw_board_with(const LString&) const;    //assumes that the passed word is formatted with respect to the current vectorizer type
-    int perpendicular_points(const LString&) const;
     bool contains_letter_of_hand(const LString&) const;
     vector<LString> return_all_fitted_tangential_words(LString&, int);
     unordered_map<LString, LString, MyHashFunction> return_all_fitted_filled_rows(LString&, int);

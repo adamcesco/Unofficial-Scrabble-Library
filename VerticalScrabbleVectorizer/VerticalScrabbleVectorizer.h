@@ -20,7 +20,7 @@ public:
     void set_board(const vector<string>&);             //assumes the passed board is oriented in a horizontal format
     void set_perkBoard(const vector<string>&);
     void validate_board() const;
-    int points_of_best_word(){return points_of_word(bestWord);}
+    int points_of_best_word() const{return points_of_word(bestWord);}
 
     vector<vector<LString>> return_formatted_answerSets_copy() const;
     vector<string> return_formatted_perkBoard_copy() const;

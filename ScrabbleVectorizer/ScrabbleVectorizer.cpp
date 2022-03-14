@@ -92,38 +92,6 @@ vector<LString> ScrabbleVectorizer::return_raw_board_with(const LString &toPrint
     return boardCpy;
 }
 
-int ScrabbleVectorizer::perpendicular_points(const LString &word) const {
-    if(word.is_empty())
-        return 0;
-
-    int crossWordSum = 0;
-    vector<LString> boardCpy = return_raw_board_with(word);
-    for (int i = 0; i < 15; ++i) {
-        LString column;
-        for (int j = 0; j < 15; ++j) {
-            column += boardCpy[j].read_at(i);
-        }
-
-        vector<LString> colShards = column.break_into_frags();
-
-        for (const auto& shard : colShards) {
-            if(shard.contains_flag(-2) && shard.length() > 1){
-                int firstY = shard.read_at(0).y;
-                for (int j = firstY; j < firstY + shard.length(); ++j) {
-                    char curPerk = perkBoard[j][i];
-                    if(isalpha(curPerk) && j == word.read_at(0).y)
-                        crossWordSum += shard.read_at(j - firstY).val * (curPerk & 31);
-                    else{
-                        crossWordSum += shard.read_at(j - firstY).val;
-                    }
-                }
-            }
-        }
-    }
-
-    return crossWordSum;
-}
-
 void ScrabbleVectorizer::search_for_tangential_words() {
     if(scrabbleWordSet.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
@@ -340,7 +308,7 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleVectorizer::return_all_f
     return toReturn;
 }
 
-int ScrabbleVectorizer::points_of_word(const LString &word) {
+int ScrabbleVectorizer::points_of_word(const LString &word) const{
     // If a letter is shared between words, then count it's premium value for all words
     // Any word multiplier only gets assigned to the original word, and not any subsequently formed words
     // If a word is placed on two or more multiplier tiles, the words value is multiplied by both tile values
@@ -390,7 +358,7 @@ int ScrabbleVectorizer::points_of_word(const LString &word) {
         else
             wordSum += word.read_at(i - firstX).val;
 
-        if(board[firstY][i] != ' ')
+        if(board[firstY].read_at(i) != ' ')
             letterCount++;
     }
     wordSum *= multiplier;

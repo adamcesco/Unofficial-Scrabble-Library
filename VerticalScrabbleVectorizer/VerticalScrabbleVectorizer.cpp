@@ -88,8 +88,7 @@ void VerticalScrabbleVectorizer::print_formatted_board() const{
 
 string VerticalScrabbleVectorizer::to_string() const {
     string buffer = "Hand: " + hand + "\n";
-    buffer += "Best Vertical Word: " + bestWord.to_string() + " - " + ::to_string(bestWord.get_letter_points() +
-                                                                                   perpendicular_points(bestWord));
+    buffer += "Best Vertical Word: " + bestWord.to_string() + " - " + ::to_string(points_of_best_word());
     buffer += "\n\tPostion X: " + ::to_string(bestX);
     buffer += "\n\tPostion Y: " + ::to_string(bestY);
     buffer += "\n\tVertical";
