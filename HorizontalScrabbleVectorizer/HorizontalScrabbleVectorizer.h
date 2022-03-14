@@ -9,7 +9,7 @@ public:
     explicit HorizontalScrabbleVectorizer(const string &passed);
 
     void build_board(const string &);
-    void print_formatted_board() const;
+    void console_print_formatted_board() const;
     Type get_vectorizer_type() const{return HORIZONTAL;}
     vector<LString> return_formatted_board_copy() const{return board;}
     void set_board(const vector<LString>&);            //assumes the passed board is oriented in a horizontal format

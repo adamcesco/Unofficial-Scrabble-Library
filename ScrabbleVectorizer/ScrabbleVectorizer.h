@@ -5,7 +5,7 @@
 class ScrabbleVectorizer {
 public:
     virtual void build_board(const string &) = 0;
-    virtual void print_formatted_board() const = 0;
+    virtual void console_print_formatted_board() const = 0;
     virtual void validate_board() const = 0;
     virtual vector<string> return_formatted_char_board_copy() const = 0;
     virtual vector<string> return_formatted_perkBoard_copy() const = 0;

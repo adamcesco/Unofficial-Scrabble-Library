@@ -9,7 +9,7 @@ public:
     explicit VerticalScrabbleVectorizer(const string &passed);
 
     void build_board(const string &);
-    void print_formatted_board() const;
+    void console_print_formatted_board() const;
     string to_string() const;
     LString update_best_word();
     void validate_words();

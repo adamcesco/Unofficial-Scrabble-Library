@@ -14,13 +14,13 @@ int main(int argc, char* argv[]){
     HorizontalScrabbleVectorizer hReader(hand);
     hReader.build_board(argv[1]);
     hReader.validate_board();
-    hReader.print_formatted_board();
+    hReader.console_print_formatted_board();
     hReader.clear_wordSets();
 
     VerticalScrabbleVectorizer vReader(hand);
     vReader.build_board(argv[1]);
     vReader.validate_board();
-    vReader.print_formatted_board();
+    vReader.console_print_formatted_board();
     vReader.clear_wordSets();
 
 //    vReader.search_for_intersecting_words();
@@ -61,8 +61,8 @@ int main(int argc, char* argv[]){
     //printing to board
     vReader.place_into_board(bestVWord);
     hReader.place_into_board(bestHWord);
-    hReader.print_formatted_board();
-    vReader.print_formatted_board();
+    hReader.console_print_formatted_board();
+    vReader.console_print_formatted_board();
 
     return 0;
 }

@@ -70,7 +70,7 @@ void HorizontalScrabbleVectorizer::build_board(const string& filePath) {
     }
 }
 
-void HorizontalScrabbleVectorizer::print_formatted_board() const{
+void HorizontalScrabbleVectorizer::console_print_formatted_board() const{
     for (const auto &row: board) {
         for (int i = 0; i < row.length(); ++i) {
             cout << row.read_at(i).LData;
