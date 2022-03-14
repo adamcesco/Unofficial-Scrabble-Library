@@ -11,7 +11,7 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
-    string hand = "PNAELUQ";    //blank letter should be marked as a '?'
+    string hand = "KEYPAD?";    //blank letter should be marked as a '?'
 
     HorizontalScrabbleVectorizer hReader(hand);
     hReader.build_board(argv[1]);

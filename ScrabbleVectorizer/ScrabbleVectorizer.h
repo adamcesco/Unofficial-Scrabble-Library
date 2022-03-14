@@ -18,9 +18,9 @@ public:
     virtual void set_board(const vector<string>&) = 0;
     virtual void set_perkBoard(const vector<string>&) = 0;
 
-    void search_for_intersecting_words();
-    void search_for_tangential_words();
-    void search_for_all_words();
+    virtual void search_for_intersecting_words();
+    virtual void search_for_tangential_words();
+    virtual void search_for_all_words();
     void clear_wordSets();
     LString& get_best_word(){return bestWord;}
     void set_hand(const string& passed){hand = passed;}
