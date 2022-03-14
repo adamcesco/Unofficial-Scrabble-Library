@@ -134,6 +134,9 @@ void ScrabbleVectorizer::search_for_tangential_words() {
             if (contains_letter_of_hand(word) && word.is_descendent_of(hand)) {
                 vector<LString> toPush = return_all_fitted_tangential_words(word, rowSubscript);
                 for (auto& it: toPush) {
+                    if(get_vectorizer_type() == VERTICAL && it[0].x == 0){
+                        cout << it.to_string() << endl;
+                    }
                     it.set_y_vals_equal_to(rowSubscript);
                     answerSets[rowSubscript].push_back(it);
                 }
