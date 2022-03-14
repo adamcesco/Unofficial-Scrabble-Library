@@ -20,6 +20,9 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                     LString second = it.second;
 
                     if(first.row_is_descendent_of(hand, row, second)) {
+                        if(get_vectorizer_type() == VERTICAL && second[0].x == 0){
+                            cout << second.to_string() << endl;
+                        }
                         answerSets[rowSubscript].push_back(second);
                     }
                 }
@@ -179,6 +182,9 @@ void ScrabbleVectorizer::search_for_all_words() {
                     LString second = it.second;
 
                     if(first.row_is_descendent_of(hand, row, second)) {
+                        if(get_vectorizer_type() == VERTICAL && second[0].x == 0){
+                            cout << second.to_string() << endl;
+                        }
                         answerSets[rowSubscript].push_back(second);
                     }
                 }
