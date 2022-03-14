@@ -196,7 +196,7 @@ vector<LString> ScrabbleVectorizer::return_all_fitted_tangential_words(LString& 
     vector<LString> toReturn;
     word.set_x_vals_to_subscripts();
     word.add_to_x_vals(15 - word.length());
-    for (int i = 0; i < 15 - word.length(); ++i) {
+    for (int i = 0; i < 15 - word.length() + 1; ++i) {
         for (int j = 15 - 1; j >= 15 - word.length(); --j) {
             if(rowCpy[j - i] == ' ')
                 rowCpy[j - i] = word[(word.length() - 1) - ((15 - 1) - j)];
@@ -245,7 +245,7 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleVectorizer::return_all_f
     unordered_map<LString, LString, MyHashFunction> toReturn;
     word.set_x_vals_to_subscripts();
     word.add_to_x_vals(15 - word.length());
-    for (int i = 0; i < 15 - word.length(); ++i) {
+    for (int i = 0; i < 15 - word.length() + 1; ++i) {
         for (int j = 15 - 1; j >= 15 - word.length(); --j) {
             if(rowCpy[j - i] == ' ')
                 rowCpy[j - i] = word[(word.length() - 1) - ((15 - 1) - j)];
@@ -298,7 +298,7 @@ unordered_map<LString, LString, MyHashFunction> ScrabbleVectorizer::return_all_f
     unordered_map<LString, LString, MyHashFunction> toReturn;
     word.set_x_vals_to_subscripts();
     word.add_to_x_vals(15 - word.length());
-    for (int i = 0; i < 15 - word.length(); ++i) {
+    for (int i = 0; i < 15 - word.length() + 1; ++i) {
         for (int j = 15 - 1; j >= 15 - word.length(); --j) {
             if(rowCpy[j - i] == ' ')
                 rowCpy[j - i] = word[(word.length() - 1) - ((15 - 1) - j)];
