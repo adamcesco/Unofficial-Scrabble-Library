@@ -3,15 +3,13 @@
 #include "VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
 #include "Test_Folder/catch.hpp"
 
-//TODO: erase premium tile values when word is placed into the board
-
 int main(int argc, char* argv[]){
     if(argc == 1) {
         Catch::Session().run();
         return 0;
     }
 
-    string hand = "ADRHGT?";    //blank letter should be marked as a '?'
+    string hand = "ADRHGT?";    //blank tiles should be marked as a '?'
 
     HorizontalScrabbleVectorizer hReader(hand);
     hReader.build_board(argv[1]);
