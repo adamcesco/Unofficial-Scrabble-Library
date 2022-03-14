@@ -19,10 +19,11 @@ public:
     virtual void search_for_intersecting_words();
     virtual void search_for_tangential_words();
     virtual void search_for_all_words();
+    virtual void place_into_board(const LString&);
+    virtual void place_best_word_into_board();
     void clear_wordSets();
     LString& get_best_word(){return bestWord;}
     void set_hand(const string& passed){hand = passed;}
-    virtual void place_into_board(const LString&);
     vector<LString>& get_raw_board(){return board;}
     vector<string> return_raw_char_board_copy();
     vector<string> return_raw_perkBoard_copy();
@@ -34,16 +35,15 @@ public:
     unordered_set<LString, MyHashFunction>& get_all_scrabble_words(){return scrabbleWordSet;}
     vector<int> find_points_of_word(const string&) const;
     vector<LString> return_all_of_raw_word(const string&) const;
-    virtual void place_best_word_into_board();
     vector<LString>* get_answerSets(){return answerSets;}
 
 protected:
     virtual int points_of_word(const LString &) const;                            //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type
     virtual vector<LString> return_raw_board_with(const LString&) const;    //assumes that the passed word is formatted with respect to the current vectorizer type
-    bool contains_letter_of_hand(const LString&) const;
     virtual vector<LString> return_all_fitted_tangential_words(LString&, int);
     virtual unordered_map<LString, LString, MyHashFunction> return_all_fitted_filled_rows(LString&, int);
     virtual unordered_map<LString, LString, MyHashFunction> return_all_fitted_rows(LString&, int);
+    bool contains_letter_of_hand(const LString&) const;
 
     int bestX, bestY;
     LString bestWord;
