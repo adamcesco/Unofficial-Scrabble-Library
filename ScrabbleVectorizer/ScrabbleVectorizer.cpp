@@ -370,7 +370,7 @@ int ScrabbleVectorizer::points_of_word(const LString &word) const{
     return wordSum;
 }
 
-vector<int> ScrabbleVectorizer::find_points_of_word(const string& passed) {
+vector<int> ScrabbleVectorizer::find_points_of_word (const string& passed) const {
     vector<int> values;
     for (auto & curWordSet : answerSets) {
         for (const auto& word : curWordSet) {
@@ -416,7 +416,7 @@ vector<string> ScrabbleVectorizer::return_raw_char_board_copy() {
     return toReturn;
 }
 
-vector<LString> ScrabbleVectorizer::return_all_of_raw_word(const string& passed) {
+vector<LString> ScrabbleVectorizer::return_all_of_raw_word(const string& passed) const {
     vector<LString> foundVersions;
     for (auto & curWordSet : answerSets) {
         for (const auto& word : curWordSet) {
