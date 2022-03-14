@@ -155,6 +155,8 @@ public:
     LString operator+(const Letter&) const;
     LString operator+(char) const;
     string to_string() const;
+
+    //Methods below are unique to LString
     bool row_is_descendent_of(const string&, const LString&, LString&);
     bool is_descendent_of(const string&);
     int get_letter_points() const;
