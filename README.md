@@ -1,18 +1,24 @@
-# Scrabble Board Solver
+# ![plot](C:/Users/escob/Downloads/ss.jpg) Scrabble Board Solver
 
-##### Project Name: Scrabble Solver
-##### Author: Adam C. Escobedo
-##### Start Date: Feb 10th, 2022
+![Generic badge](https://img.shields.io/badge/build-passing-color.svg)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/adamcesco/scrabble-solver/graphs/commit-activity)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-## Notes About Applicability
+---
+
+##Usage
+
+### Notes About Applicability
 
 This project uses the Data/board.csv file for game board input, the "hand" variable within main.cpp for the input of the program's current hand of letters, and the Data/scrabble_word_list.txt file to hold a word bank of all English words. Currently, users need to manually edit the program's hand and board.csv in order to use this solution throughout the course of a changing Scrabble game, this will be changed soon as I implement a U.I-based solution.
 
 Note that this solution may not compute all possible words that are in the official Scrabble dictionary, this is due to the requirement of a Scrabble-development license to obtain an official scrabble dictionary in a text-file-based format.
 
-## About This Solution
+### About This Solution
 
 I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for a horizontal-word-filter and vertical-word-filter, they are both derived classes from an abstract Scrabble-Vectorizer class. Throughout implementation, I continue to enhance the usability of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application.
+
+---
 
 ## Road Map / To-Do List
 
