@@ -102,7 +102,7 @@ void HorizontalScrabbleVectorizer::validate_words() {
                     column += boardCpy[j].read_at(i);
                 }
 
-                vector<LString> colShards = column.break_into_frags();
+                vector<LString> colShards = column.fragments();
 
                 for (const auto& shard : colShards) {
                     if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
@@ -110,7 +110,7 @@ void HorizontalScrabbleVectorizer::validate_words() {
                     }
                 }
 
-                vector<LString> rowShards = row.break_into_frags();
+                vector<LString> rowShards = row.fragments();
 
                 for (const auto& shard : rowShards) {
                     if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
@@ -163,14 +163,14 @@ void HorizontalScrabbleVectorizer::validate_board() const{
             column += board[j].read_at(i);
         }
 
-        vector<LString> colShards = column.break_into_frags();
+        vector<LString> colShards = column.fragments();
 
         for (const auto& shard : colShards) {
             if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
                 throw invalid_argument("Invalid vertical Word in Data/Board.csv | " + shard.to_string());
         }
 
-        vector<LString> rowShards = row.break_into_frags();
+        vector<LString> rowShards = row.fragments();
 
         for (const auto& shard : rowShards) {
             if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())

@@ -160,13 +160,13 @@ public:
     bool row_is_descendent_of(const string&, const LString&, LString&);
     bool is_descendent_of(const string&);
     int get_letter_points() const;
-    static int get_horizontal_points(string);
+    static int get_letter_points(string);
     LString& set_x_vals_to_subscripts();
     LString& add_to_x_vals(int);
     LString& set_x_vals_equal_to(int);
     LString& set_y_vals_equal_to(int);
     bool contains_flag(int) const;
-    vector<LString> break_into_frags() const;
+    vector<LString> fragments() const;
     bool is_blank_LStr() const;
     LString& convert_vertical_format_to_horizontal();       //needs testing
     LString& convert_horizontal_format_to_vertical();       //needs testing

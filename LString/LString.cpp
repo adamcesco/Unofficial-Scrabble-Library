@@ -494,7 +494,7 @@ LString::LString(char* toCpy) {
     }
 }
 
-int LString::get_horizontal_points(string passed) {
+int LString::get_letter_points(string passed) {
     const int valLegend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8,  5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
     int sum = 0;
     for(char it : passed)
@@ -538,7 +538,7 @@ bool LString::contains_flag(int passed) const{
     return false;
 }
 
-vector<LString> LString::break_into_frags() const{
+vector<LString> LString::fragments() const{
     vector<LString> fragments;
     LString curFragment;
     for (int i = 0; i < eleCount; ++i) {

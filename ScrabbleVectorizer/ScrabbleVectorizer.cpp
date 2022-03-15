@@ -325,7 +325,7 @@ int ScrabbleVectorizer::points_of_word(const LString &word) const{
             column += boardCpy[j].read_at(i);
         }
 
-        vector<LString> colShards = column.break_into_frags();
+        vector<LString> colShards = column.fragments();
 
         for (const auto& shard : colShards) {
             if(shard.contains_flag(-2) && shard.length() > 1){
@@ -363,7 +363,7 @@ int ScrabbleVectorizer::points_of_word(const LString &word) const{
     }
     wordSum *= multiplier;
     wordSum += crossWordSum;
-    if(word.length() - letterCount == 7)
+    if(word.length() - letterCount == hand.length())
         wordSum += 50;
 
 
