@@ -7,11 +7,11 @@ class ScrabbleDataset {
 public:
     ScrabbleDataset();
     explicit ScrabbleDataset(string);
-    vector<string> return_this_at(char toFind, int subscript){return data[(abs(toFind) * 15) + subscript];}
+    vector<string> return_this_at(int x, int y, char toFind){return data[x][y][abs(toFind) & 31];}
     ~ScrabbleDataset(){delete[] data;}
 
 private:
-    vector<string>* data = nullptr;
+    vector<string>*** data = nullptr;
 };
 
 

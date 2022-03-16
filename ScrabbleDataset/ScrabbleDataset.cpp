@@ -1,9 +1,12 @@
 #include "ScrabbleDataset.h"
 
 ScrabbleDataset::ScrabbleDataset() {
-    data = new vector<string>[1366];
-    for (int i = 0; i < 1366; ++i) {
-        data[i] = vector<string>();
+    data = new vector<string>**[15];
+    for (int i = 0; i < 15; ++i) {
+        data[i] = new vector<string>*[15];
+        for (int j = 0; j < 15; ++j) {
+            data[i][j] = new vector<string>[27];
+        }
     }
 
     ifstream englishWords;
@@ -18,18 +21,27 @@ ScrabbleDataset::ScrabbleDataset() {
         if(curWord.length() > 15)
             continue;
 
-        for (int i = 0; i < curWord.length(); ++i) {
-            char curChar = curWord[i];
-            data[(abs(curChar) * 15) + i].emplace_back(curWord);
+        for (int i = 0; i < 15; ++i) {
+            for (int j = 0; j < 15; ++j) {
+                if(j + curWord.length() > 15)
+                    break;
+                for (int k = 0; k < curWord.length(); ++k) {
+                    char curChar = curWord[k];
+                    data[i][j + k][abs(curChar) & 31].emplace_back(curWord);
+                }
+            }
         }
     }
     englishWords.close();
 }
 
 ScrabbleDataset::ScrabbleDataset(string filePath){
-    data = new vector<string>[1366];
-    for (int i = 0; i < 1366; ++i) {
-        data[i] = vector<string>();
+    data = new vector<string>**[15];
+    for (int i = 0; i < 15; ++i) {
+        data[i] = new vector<string>*[15];
+        for (int j = 0; j < 15; ++j) {
+            data[i][j] = new vector<string>[27];
+        }
     }
 
     ifstream englishWords;
@@ -44,9 +56,15 @@ ScrabbleDataset::ScrabbleDataset(string filePath){
         if(curWord.length() > 15)
             continue;
 
-        for (int i = 0; i < curWord.length(); ++i) {
-            char curChar = curWord[i];
-            data[(abs(curChar) * 15) + i].emplace_back(curWord);
+        for (int i = 0; i < 15; ++i) {
+            for (int j = 0; j < 15; ++j) {
+                if(j + curWord.length() > 15)
+                    break;
+                for (int k = 0; k < curWord.length(); ++k) {
+                    char curChar = curWord[k];
+                    data[i][j + k][abs(curChar) & 31].emplace_back(curWord);
+                }
+            }
         }
     }
     englishWords.close();
