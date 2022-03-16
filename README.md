@@ -1,4 +1,4 @@
-# Scrabble Board Solver ![plot](./ss.jpg)
+# ![plot](./ss.jpg) Scrabble Board Solver
 
 ![Generic badge](https://img.shields.io/badge/build-passing-color.svg)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/adamcesco/scrabble-solver/graphs/commit-activity)
