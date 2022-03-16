@@ -232,11 +232,11 @@ vector<string> VerticalScrabbleVectorizer::return_formatted_perkBoard_copy() con
 
 vector<LString> VerticalScrabbleVectorizer::return_formatted_board_with(const LString &toPrint) const {
     vector<LString> boardCpy = board;
-    int toPrintX = toPrint.read_at(0).y;
-    int toPrintY = 14 - toPrint.read_at(0).x;
-    for (int i = toPrintY; i >= toPrintY - toPrint.length(); i--) {
-        if(boardCpy[i][toPrintX] == ' ')
-            boardCpy[i][toPrintX] = Letter(toPrint.read_at(toPrintY - i).LData, i, toPrintX, -2);
+    int toPrintX = toPrint.read_at(0).x;
+    int toPrintY = toPrint.read_at(0).y;
+    for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
+        if(boardCpy[toPrintY][i] == ' ')
+            boardCpy[toPrintY][i] = Letter(toPrint.read_at(i - toPrintX).LData, i, toPrintY, -2);
         else
             boardCpy[i][toPrintX].flag = 1;
     }
