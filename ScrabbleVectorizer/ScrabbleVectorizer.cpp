@@ -2,10 +2,14 @@
 
 void ScrabbleVectorizer::search_for_intersecting_words() {
     if(scrabbleWordSet.empty())
-        throw invalid_argument("Error in ScrabbleVectorizer::search_for_all_words() | The set of all scrabble words is empty.");
+        throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;
     for (auto& row: board) {
+        row.set_x_vals_to_subscripts();
+        LString rowCpy = row;
+        rowCpy.set_x_vals_to_subscripts();
+
         int tileCount = 0;
         for (auto& tile : row) {
             if(tile == ' ') {
@@ -13,7 +17,6 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 continue;
             }
 
-            LString rowCpy = row;
             for (int i = 0; i < 15; ++i) {
                 vector<string> wordsOfTile = wordDataset.return_this_at(tile.LData, i);
                 for (auto & j : wordsOfTile) {
@@ -23,17 +26,18 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
 
                     bool skip = false;
                     for (int k = 0 - i; k < curLStr.length() - i; ++k) {
-                        if(k < 0 || k > 14 || (board[rowSubscript][k] != ' ' && board[rowSubscript][k] != curLStr[k + i])){
+                        if((tileCount - i) < 0 || tileCount + k > 14 || (board[rowSubscript][tileCount + k] != ' ' && board[rowSubscript][tileCount + k] != curLStr[k + i])){
                             skip = true;
                             break;
                         }
 
                         curLStr[k + i].x = k;
-                        rowCpy[k] = curLStr[k + i].LData;
-                        rowCpy[k].flag = -2;
+                        rowCpy[tileCount + k] = curLStr[k + i].LData;
+                        rowCpy[tileCount + k].flag = -2;
                     }
                     if(skip)
                         continue;
+
                     if(rowCpy.row_is_descendent_of(hand, row, curLStr))
                         answerSets[rowSubscript].push_back(curLStr);
                 }
