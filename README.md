@@ -9,7 +9,7 @@
 
 #### Notes About Applicability
 
-This project uses the *Data/board.csv* file for game board input, the "hand" variable within *main.cpp* for the input of the program's current hand of letters, and the *Data/scrabble_word_list.txt* file to hold a word bank of all English words. Currently, users need to manually edit the program's hand and board.csv in order to use this solution throughout the course of a changing Scrabble game, this will be changed soon as I implement a U.I-based solution.
+This project uses the *Data/board.csv* file for game board input, the "hand" variable within *main.cpp* for the input of the program's current hand of letters, and the *Data/scrabble_word_list.txt* file to hold a word bank of all English words. Currently, users need to manually edit the program's hand and *board.csv* in order to use this solution throughout the course of a changing Scrabble game, this will be changed soon as I implement a U.I-based solution.
 
 Note that this solution may not compute all possible words that are in the official Scrabble dictionary, this is due to the requirement of a Scrabble-development license to obtain an official scrabble dictionary in a text-file-based format.
 
