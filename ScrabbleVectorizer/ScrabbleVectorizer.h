@@ -1,6 +1,7 @@
 #ifndef SCRABBLE_SOLVER_SCRABBLEVECTORIZER_H
 #define SCRABBLE_SOLVER_SCRABBLEVECTORIZER_H
-#include "../LString/LString.h"
+
+#include "../ScrabbleDataset/ScrabbleDataset.h"
 
 class ScrabbleVectorizer {
 public:
