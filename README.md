@@ -32,3 +32,8 @@ I use a test-driven solution that is primarily object-oriented. In its current s
 8. Implement a U.I-based solution with full gameplay support.
 9. Enhance U.X features to support the user's U.I intuition.
 10. Implement dynamic gameplay structures that enhance competitive and casual play for players of this Scrabble application.
+
+## Inspiration
+
+- [Gordon, Steven, A. (1994), A Faster Scrabble Move Generation Algorithm. East Carolina University. Software - Practice and Experience, Vol 24: 219-232.](https://doi.org/10.1002/spe.4380240205)
+- [Jason Katz-Brown, John O'Laughlin, et al. (2016), Quackle - Scrabble Artificial Intelligence and Analysis Tool.](https://people.csail.mit.edu/jasonkb/quackle/doc/how_quackle_plays_scrabble.html)
