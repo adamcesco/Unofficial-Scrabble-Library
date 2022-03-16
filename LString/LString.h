@@ -95,7 +95,7 @@ private:
     Letter* data = nullptr;
     int eleCount;
     int maxCap;
-    
+
 public:
     struct Iterator{
         Iterator(Letter* pssdDataPtr){dataPtr = pssdDataPtr;}

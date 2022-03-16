@@ -427,3 +427,17 @@ vector<LString> ScrabbleVectorizer::return_all_of_raw_word(const string& passed)
     }
     return foundVersions;
 }
+
+void ScrabbleVectorizer::build_scrabble_word_dataset(string filePath) { //  ../Data/scrabble_word_list.txt
+    ifstream englishWords;
+    englishWords.open(filePath);
+    if(!englishWords.is_open())
+        throw invalid_argument("could not open " + filePath);
+
+    string curWord;
+    while(englishWords.good()){
+        getline(englishWords, curWord);
+        //do something here
+    }
+    englishWords.close();
+}

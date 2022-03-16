@@ -21,6 +21,9 @@ public:
     virtual void search_for_all_words();
     virtual void place_into_board(const LString&);
     virtual void place_best_word_into_board();
+
+    virtual void build_scrabble_word_dataset(string);
+
     void clear_wordSets();
     LString& get_best_word(){return bestWord;}
     void set_hand(const string& passed){hand = passed;}
