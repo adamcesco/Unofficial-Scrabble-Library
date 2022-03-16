@@ -31,15 +31,17 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                             break;
                         }
 
-                        curLStr[k + i].x = k;
+                        curLStr[k + i].x = tileCount + k;
                         rowCpy[tileCount + k] = curLStr[k + i].LData;
                         rowCpy[tileCount + k].flag = -2;
                     }
                     if(skip)
                         continue;
 
-                    if(rowCpy.row_is_descendent_of(hand, row, curLStr))
+                    if(rowCpy.row_is_descendent_of(hand, row, curLStr)) {   //TODO: Remove the need to check if its a descendent
+                        curLStr.set_y_vals_equal_to(rowSubscript);
                         answerSets[rowSubscript].push_back(curLStr);
+                    }
                 }
             }
 
