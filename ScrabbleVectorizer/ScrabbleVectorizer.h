@@ -19,11 +19,8 @@ public:
 
     virtual void search_for_intersecting_words();
     virtual void search_for_tangential_words();
-    virtual void search_for_all_words();        //outdated
     virtual void place_into_board(const LString&);
     virtual void place_best_word_into_board();
-
-    virtual void build_scrabble_word_dataset(string);
 
     void clear_wordSets();
     LString& get_best_word(){return bestWord;}
@@ -44,9 +41,6 @@ public:
 protected:
     virtual int points_of_word(const LString &) const;                          //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type
     virtual vector<LString> return_raw_board_with(const LString&) const;        //assumes that the passed word is formatted with respect to the current vectorizer type
-    virtual vector<LString> return_all_fitted_tangential_words(LString&, int);                              //outdated
-    virtual unordered_map<LString, LString, MyHashFunction> return_all_fitted_filled_rows(LString&, int);   //outdated
-    virtual unordered_map<LString, LString, MyHashFunction> return_all_fitted_rows(LString&, int);          //outdated
     bool contains_letter_of_hand(const LString&) const;
 
     int bestX, bestY;
