@@ -47,16 +47,16 @@ int main(int argc, char* argv[]){
     cout << "Best Vertical Word: " << bestVWord.to_string() << endl;
     cout << "\tPoints: " << vPoints << endl;
 
-//    cout << "Best word for the board: ";
-//    if (hPoints > vPoints) {
-//        cout << bestHWord.to_string() << endl;
-//        cout << "\tPoints: " << hPoints << endl;
-//        cout << "\thorizontal" << endl;
-//    } else {
-//        cout << bestVWord.to_string() << endl;
-//        cout << "\tPoints: " << vPoints << endl;
-//        cout << "\tvertical" << endl;
-//    }
+    cout << "Best word for the board: ";
+    if (hPoints > vPoints) {
+        cout << bestHWord.to_string() << endl;
+        cout << "\tPoints: " << hPoints << endl;
+        cout << "\thorizontal" << endl;
+    } else {
+        cout << bestVWord.to_string() << endl;
+        cout << "\tPoints: " << vPoints << endl;
+        cout << "\tvertical" << endl;
+    }
 
     //printing to board
     vReader.place_into_board(bestVWord);

@@ -124,9 +124,10 @@ void ScrabbleVectorizer::search_for_tangential_words() {
         LString rowCpy = row;
         rowCpy.set_x_vals_to_subscripts();
 
+        //computing tangential words above
         int tileCount = 0;
         for (auto& tile : row) {
-            if(tile == ' ' || rowSubscript - 1 < 0 || board[rowSubscript - 1][tileCount] != ' ') {
+            if(rowSubscript - 1 < 0 || !(tile != ' ' && board[rowSubscript - 1][tileCount] == ' ')) {
                 tileCount++;
                 continue;
             }
@@ -155,13 +156,54 @@ void ScrabbleVectorizer::search_for_tangential_words() {
                             continue;
 
                         curLStr.set_y_vals_equal_to(rowSubscript - 1);
-                        answerSets[rowSubscript].push_back(curLStr);
+                        answerSets[rowSubscript - 1].push_back(curLStr);
                     }
                 }
             }
 
             tileCount++;
         }
+        
+        //computing tangential words below
+        tileCount = 0;
+        for (auto& tile : row) {
+            if(rowSubscript + 1 > 14 || !(tile != ' ' && board[rowSubscript + 1][tileCount] == ' ')) {
+                tileCount++;
+                continue;
+            }
+
+            for (int i = 0; i < 15; ++i) {
+                for(int j = 0; j < hand.length(); ++j){
+                    vector<string> wordsOfTile = wordDataset.return_this_at(hand[j], i);
+
+                    for (auto &word: wordsOfTile) {
+                        LString curLStr(word);
+                        if (!curLStr.is_descendent_of(hand))
+                            continue;
+
+                        bool skip = false;
+                        for (int k = 0 - i; k < curLStr.length() - i; ++k) {
+                            if ((tileCount - i) < 0 || tileCount + k > 14 || board[rowSubscript + 1][tileCount + k] != ' ') {
+                                skip = true;
+                                break;
+                            }
+
+                            curLStr[k + i].x = tileCount + k;
+                            rowCpy[tileCount + k] = curLStr[k + i].LData;
+                            rowCpy[tileCount + k].flag = -2;
+                        }
+                        if (skip)
+                            continue;
+
+                        curLStr.set_y_vals_equal_to(rowSubscript + 1);
+                        answerSets[rowSubscript + 1].push_back(curLStr);
+                    }
+                }
+            }
+
+            tileCount++;
+        }
+        
         rowSubscript++;
     }
 }
