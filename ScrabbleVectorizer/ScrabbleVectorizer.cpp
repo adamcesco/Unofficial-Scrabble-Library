@@ -2,28 +2,44 @@
 
 void ScrabbleVectorizer::search_for_intersecting_words() {
     if(scrabbleWordSet.empty())
-        throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
+        throw invalid_argument("Error in ScrabbleVectorizer::search_for_all_words() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;
-    for (const auto &row: board) {
-        if(row.is_blank_LStr()) {
-            rowSubscript++;
-            continue;
-        }
-        for (auto word : scrabbleWordSet) {
-            if (contains_letter_of_hand(word)) {
-                word.set_y_vals_equal_to(rowSubscript);
-                unordered_map<LString, LString, MyHashFunction> toPush = return_all_fitted_filled_rows(word,
-                                                                                                       rowSubscript);
-                for (auto& it: toPush) {
-                    LString first = it.first;
-                    LString second = it.second;
+    for (auto& row: board) {
+        int tileCount = 0;
+        for (auto& tile : row) {
+            if(tile == ' ') {
+                tileCount++;
+                continue;
+            }
 
-                    if(first.row_is_descendent_of(hand, row, second)) {
-                        answerSets[rowSubscript].push_back(second);
+            LString rowCpy = row;
+            for (int i = 0; i < 15; ++i) {
+                vector<string> wordsOfTile = wordDataset.return_this_at(tile.LData, i);
+                for (auto & j : wordsOfTile) {
+                    LString curLStr(j);
+                    if(!contains_letter_of_hand(curLStr))
+                        continue;
+
+                    bool skip = false;
+                    for (int k = 0 - i; k < curLStr.length() - i; ++k) {
+                        if(k < 0 || k > 14 || (board[rowSubscript][k] != ' ' && board[rowSubscript][k] != curLStr[k + i])){
+                            skip = true;
+                            break;
+                        }
+
+                        curLStr[k + i].x = k;
+                        rowCpy[k] = curLStr[k + i].LData;
+                        rowCpy[k].flag = -2;
                     }
+                    if(skip)
+                        continue;
+                    if(rowCpy.row_is_descendent_of(hand, row, curLStr))
+                        answerSets[rowSubscript].push_back(curLStr);
                 }
             }
+
+            tileCount++;
         }
         rowSubscript++;
     }

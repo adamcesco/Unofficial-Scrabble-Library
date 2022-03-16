@@ -5,6 +5,7 @@
 
 class ScrabbleDataset {
 public:
+    ScrabbleDataset();
     explicit ScrabbleDataset(string);
     vector<string> return_this_at(char toFind, int subscript){return data[(abs(toFind) * 15) + subscript];}
     ~ScrabbleDataset(){delete[] data;}

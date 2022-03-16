@@ -55,6 +55,7 @@ protected:
     unordered_set<LString, MyHashFunction> scrabbleWordSet;
     vector<LString> answerSets[15];
     vector<LString> board;
+    ScrabbleDataset wordDataset;
     char perkBoard[15][15] =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
                                 {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
                                 {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},

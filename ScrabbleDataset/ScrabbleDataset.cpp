@@ -1,5 +1,31 @@
 #include "ScrabbleDataset.h"
 
+ScrabbleDataset::ScrabbleDataset() {
+    data = new vector<string>[1366];
+    for (int i = 0; i < 1366; ++i) {
+        data[i] = vector<string>();
+    }
+
+    ifstream englishWords;
+    englishWords.open("../Data/scrabble_word_list.txt");
+    if(!englishWords.is_open())
+        throw invalid_argument("Could not open ../Data/scrabble_word_list.txt");
+
+    string curWord;
+    while(englishWords.good()){
+        getline(englishWords, curWord);
+
+        if(curWord.length() > 15)
+            continue;
+
+        for (int i = 0; i < curWord.length(); ++i) {
+            char curChar = curWord[i];
+            data[(abs(curChar) * 15) + i].emplace_back(curWord);
+        }
+    }
+    englishWords.close();
+}
+
 ScrabbleDataset::ScrabbleDataset(string filePath){
     data = new vector<string>[1366];
     for (int i = 0; i < 1366; ++i) {

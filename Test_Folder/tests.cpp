@@ -9,7 +9,6 @@ TEST_CASE("Testing ScrabbleDataset Usage and Speed", "[ScrabbleDataset]"){
     SECTION("Testing words with \'A\' as the first letter"){
         vector<string> data = wordData.return_this_at('A', 0);
         for (auto& word : data) {
-            cout << word << endl;
             REQUIRE(word[0] == 'A');
         }
     }
@@ -17,7 +16,6 @@ TEST_CASE("Testing ScrabbleDataset Usage and Speed", "[ScrabbleDataset]"){
     SECTION("Testing words with \'S\' as the 5th letter (subscript 4)"){
         vector<string> data = wordData.return_this_at('S', 4);
         for (auto& word : data) {
-            cout << word << endl;
             REQUIRE(word[4] == 'S');
         }
     }
