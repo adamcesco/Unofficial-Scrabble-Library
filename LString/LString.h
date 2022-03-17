@@ -120,27 +120,27 @@ public:
     LString& operator=(const string&);
     LString& operator=(char*);
 
-    Letter& operator[](int);
-    Letter read_at(int) const;
-    int length() const{ return eleCount; }
-    static int max_capacity() { return 45; }
-    Letter read_back() const;
-    Letter& back();
+    inline Letter& operator[](int);
+    inline Letter read_at(int) const;
+    inline int length() const{ return eleCount; }
+    inline static int max_capacity() { return 45; }
+    inline Letter read_back() const;
+    inline Letter& back();
     int find_pos_of(char) const;
 
-    LString& push_back(Letter);
-    LString& push_back(char);
+    inline LString& push_back(Letter);
+    inline LString& push_back(char);
 
-    LString& pop_back();
-    LString& clear(){ eleCount = 0; return *this; }
+    inline LString& pop_back();
+    inline LString& clear(){ eleCount = 0; return *this; }
     LString& erase_at(int);     //needs testing
 
-    bool is_empty() const{ if(eleCount > 0){ return false; } return true; }
+    inline bool is_empty() const{ if(eleCount > 0){ return false; } return true; }
     bool contains(Letter) const;
     bool contains(char) const;
     bool operator==(const LString&) const;
-    LString& operator+=(const Letter&);
-    LString& operator+=(char);
+    inline LString& operator+=(const Letter&);
+    inline LString& operator+=(char);
     LString operator+(const Letter&) const;
     LString operator+(char) const;
     string to_string() const;

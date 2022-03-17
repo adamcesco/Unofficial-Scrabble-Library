@@ -336,3 +336,11 @@ bool LString::is_descendent_of(const string& hand) {
 
     return true;
 }
+
+int LString::find_pos_of(char toFind) const {
+    for (int i = 0; i < eleCount; ++i) {
+        if(data[i] == toFind)
+            return i;
+    }
+    return -1;
+}
