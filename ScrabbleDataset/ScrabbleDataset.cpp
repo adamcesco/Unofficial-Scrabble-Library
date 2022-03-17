@@ -1,9 +1,12 @@
 #include "ScrabbleDataset.h"
 
 ScrabbleDataset::ScrabbleDataset() {
-    data = new vector<string>[1366];
-    for (int i = 0; i < 1366; ++i) {
-        data[i] = vector<string>();
+    data = new vector<AnchoredString>**[15];
+    for (int i = 0; i < 15; ++i) {
+        data[i] = new vector<AnchoredString>*[15];
+        for (int j = 0; j < 15; ++j) {
+            data[i][j] = new vector<AnchoredString>[27];
+        }
     }
 
     ifstream englishWords;
@@ -15,21 +18,27 @@ ScrabbleDataset::ScrabbleDataset() {
     while(englishWords.good()){
         getline(englishWords, curWord);
 
-        if(curWord.length() > 15)
-            continue;
-
-        for (int i = 0; i < curWord.length(); ++i) {
-            char curChar = curWord[i];
-            data[(abs(curChar) * 15) + i].emplace_back(curWord);
+        for (int i = 0; i < 15; ++i) {
+            for (int j = 0; j < 15; ++j) {
+                if(j + curWord.length() > 15)
+                    break;
+                for (int k = 0; k < curWord.length(); ++k) {
+                    int index = int(abs(curWord[k]) & 31);
+                    data[i][j + k][index].emplace_back(AnchoredString(curWord, k));
+                }
+            }
         }
     }
     englishWords.close();
 }
 
 ScrabbleDataset::ScrabbleDataset(string filePath){
-    data = new vector<string>[1366];
-    for (int i = 0; i < 1366; ++i) {
-        data[i] = vector<string>();
+    data = new vector<AnchoredString>**[15];
+    for (int i = 0; i < 15; ++i) {
+        data[i] = new vector<AnchoredString>*[15];
+        for (int j = 0; j < 15; ++j) {
+            data[i][j] = new vector<AnchoredString>[27];
+        }
     }
 
     ifstream englishWords;
@@ -41,13 +50,25 @@ ScrabbleDataset::ScrabbleDataset(string filePath){
     while(englishWords.good()){
         getline(englishWords, curWord);
 
-        if(curWord.length() > 15)
-            continue;
-
-        for (int i = 0; i < curWord.length(); ++i) {
-            char curChar = curWord[i];
-            data[(abs(curChar) * 15) + i].emplace_back(curWord);
+        for (int i = 0; i < 15; ++i) {
+            for (int j = 0; j < 15; ++j) {
+                if(j + curWord.length() > 15)
+                    break;
+                for (int k = 0; k < curWord.length(); ++k) {
+                    int index = int(abs(curWord[k]) & 31);
+                    data[i][j + k][index].emplace_back(AnchoredString(curWord, k));
+                }
+            }
         }
     }
     englishWords.close();
+}
+
+ScrabbleDataset::~ScrabbleDataset() {
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j)
+            delete[] data[i][j];
+        delete[] data[i];
+    }
+    delete[] data;
 }

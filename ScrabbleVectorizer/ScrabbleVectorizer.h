@@ -3,6 +3,8 @@
 
 #include "../ScrabbleDataset/ScrabbleDataset.h"
 
+enum Type{HORIZONTAL, VERTICAL, UNDEFINED};
+
 class ScrabbleVectorizer {
 public:
     virtual void build_board(const string &) = 0;
@@ -23,20 +25,20 @@ public:
     virtual void place_best_word_into_board();
 
     void clear_wordSets();
-    LString& get_best_word(){return bestWord;}
-    void set_hand(const string& passed){hand = passed;}
-    vector<LString>& get_raw_board(){return board;}
+    LString& get_best_word(){ return bestWord; }
+    void set_hand(const string& passed){ hand = passed; }
+    vector<LString>& get_raw_board(){ return board; }
     vector<string> return_raw_char_board_copy();
     vector<string> return_raw_perkBoard_copy();
-    int& get_best_x() {return bestX;}
-    int& get_best_y() {return bestY;}
+    int& get_best_x() { return bestX; }
+    int& get_best_y() { return bestY; }
     void reset_all_data();
-    string& get_hand(){return hand;}
-    void set_raw_board(const vector<LString>& passed){board = passed;}
-    unordered_set<LString, MyHashFunction>& get_all_scrabble_words(){return scrabbleWordSet;}
+    string& get_hand(){ return hand; }
+    void set_raw_board(const vector<LString>& passed){ board = passed; }
+    unordered_set<LString, MyHashFunction>& get_all_scrabble_words(){ return scrabbleWordSet; }
     vector<int> find_points_of_word(const string&) const;
     vector<LString> return_all_of_raw_word(const string&) const;
-    vector<LString>* get_answerSets(){return answerSets;}
+    vector<LString>* get_answerSets(){ return answerSets; }
 
 protected:
     virtual int points_of_word(const LString &) const;                          //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type

@@ -17,31 +17,30 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 continue;
             }
 
-            for (int i = 0; i < 15; ++i) {
-                vector<string> wordsOfTile = wordDataset.return_this_at(tile.LData, i);
-                for (auto & j : wordsOfTile) {
-                    LString curLStr(j);
-                    if(!contains_letter_of_hand(curLStr))
-                        continue;
+            vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.LData);
+            for (auto & it : wordsOfTile) {
+                LString curLStr(it.first);
+                int anchorIndex = it.second;
+                if((tileCount - anchorIndex) < 0 || !contains_letter_of_hand(curLStr))
+                    continue;
 
-                    bool skip = false;
-                    for (int k = 0 - i; k < curLStr.length() - i; ++k) {
-                        if((tileCount - i) < 0 || tileCount + k > 14 || (board[rowSubscript][tileCount + k] != ' ' && board[rowSubscript][tileCount + k] != curLStr[k + i])){
-                            skip = true;
-                            break;
-                        }
-
-                        curLStr[k + i].x = tileCount + k;
-                        rowCpy[tileCount + k] = curLStr[k + i].LData;
-                        rowCpy[tileCount + k].flag = -2;
+                bool skip = false;
+                for (int i = 0 - anchorIndex; i < curLStr.length() - anchorIndex; ++i) {
+                    if(tileCount + i > 14 || (board[rowSubscript][tileCount + i] != ' ' && board[rowSubscript][tileCount + i] != curLStr[i + anchorIndex])){
+                        skip = true;
+                        break;
                     }
-                    if(skip)
-                        continue;
 
-                    if(rowCpy.row_is_descendent_of(hand, row, curLStr)) {   //TODO: Remove the need to check if its a descendent
-                        curLStr.set_y_vals_equal_to(rowSubscript);
-                        answerSets[rowSubscript].push_back(curLStr);
-                    }
+                    curLStr[i + anchorIndex].x = tileCount + i;
+                    rowCpy[tileCount + i] = curLStr[i + anchorIndex].LData;
+                    rowCpy[tileCount + i].flag = -2;
+                }
+                if(skip)
+                    continue;
+
+                if(rowCpy.row_is_descendent_of(hand, row, curLStr)) {   //TODO: Remove the need to check if its a descendent
+                    curLStr.set_y_vals_equal_to(rowSubscript);
+                    answerSets[rowSubscript].push_back(curLStr);
                 }
             }
 
@@ -132,32 +131,31 @@ void ScrabbleVectorizer::search_for_tangential_words() {
                 continue;
             }
 
-            for (int i = 0; i < 15; ++i) {
-                for(int j = 0; j < hand.length(); ++j){
-                    vector<string> wordsOfTile = wordDataset.return_this_at(hand[j], i);
+            for(int j = 0; j < hand.length(); ++j){
+                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, hand[j]);
 
-                    for (auto &word: wordsOfTile) {
-                        LString curLStr(word);
-                        if (!curLStr.is_descendent_of(hand))
-                            continue;
+                for (auto &it: wordsOfTile) {
+                    LString curLStr(it.first);
+                    int anchorIndex = it.second;
+                    if ((tileCount - anchorIndex) < 0 || !curLStr.is_descendent_of(hand))
+                        continue;
 
-                        bool skip = false;
-                        for (int k = 0 - i; k < curLStr.length() - i; ++k) {
-                            if ((tileCount - i) < 0 || tileCount + k > 14 || board[rowSubscript - 1][tileCount + k] != ' ') {
-                                skip = true;
-                                break;
-                            }
-
-                            curLStr[k + i].x = tileCount + k;
-                            rowCpy[tileCount + k] = curLStr[k + i].LData;
-                            rowCpy[tileCount + k].flag = -2;
+                    bool skip = false;
+                    for (int k = 0 - anchorIndex; k < curLStr.length() - anchorIndex; ++k) {
+                        if (tileCount + k > 14 || board[rowSubscript - 1][tileCount + k] != ' ') {
+                            skip = true;
+                            break;
                         }
-                        if (skip)
-                            continue;
 
-                        curLStr.set_y_vals_equal_to(rowSubscript - 1);
-                        answerSets[rowSubscript - 1].push_back(curLStr);
+                        curLStr[k + anchorIndex].x = tileCount + k;
+                        rowCpy[tileCount + k] = curLStr[k + anchorIndex].LData;
+                        rowCpy[tileCount + k].flag = -2;
                     }
+                    if (skip)
+                        continue;
+
+                    curLStr.set_y_vals_equal_to(rowSubscript - 1);
+                    answerSets[rowSubscript - 1].push_back(curLStr);
                 }
             }
 
@@ -172,32 +170,31 @@ void ScrabbleVectorizer::search_for_tangential_words() {
                 continue;
             }
 
-            for (int i = 0; i < 15; ++i) {
-                for(int j = 0; j < hand.length(); ++j){
-                    vector<string> wordsOfTile = wordDataset.return_this_at(hand[j], i);
+            for(int j = 0; j < hand.length(); ++j){
+                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, hand[j]);
 
-                    for (auto &word: wordsOfTile) {
-                        LString curLStr(word);
-                        if (!curLStr.is_descendent_of(hand))
-                            continue;
+                for (auto &it: wordsOfTile) {
+                    LString curLStr(it.first);
+                    int anchorIndex = it.second;
+                    if ((tileCount - anchorIndex) < 0 || !curLStr.is_descendent_of(hand))
+                        continue;
 
-                        bool skip = false;
-                        for (int k = 0 - i; k < curLStr.length() - i; ++k) {
-                            if ((tileCount - i) < 0 || tileCount + k > 14 || board[rowSubscript + 1][tileCount + k] != ' ') {
-                                skip = true;
-                                break;
-                            }
-
-                            curLStr[k + i].x = tileCount + k;
-                            rowCpy[tileCount + k] = curLStr[k + i].LData;
-                            rowCpy[tileCount + k].flag = -2;
+                    bool skip = false;
+                    for (int k = 0 - anchorIndex; k < curLStr.length() - anchorIndex; ++k) {
+                        if (tileCount + k > 14 || board[rowSubscript + 1][tileCount + k] != ' ') {
+                            skip = true;
+                            break;
                         }
-                        if (skip)
-                            continue;
 
-                        curLStr.set_y_vals_equal_to(rowSubscript + 1);
-                        answerSets[rowSubscript + 1].push_back(curLStr);
+                        curLStr[k + anchorIndex].x = tileCount + k;
+                        rowCpy[tileCount + k] = curLStr[k + anchorIndex].LData;
+                        rowCpy[tileCount + k].flag = -2;
                     }
+                    if (skip)
+                        continue;
+
+                    curLStr.set_y_vals_equal_to(rowSubscript + 1);
+                    answerSets[rowSubscript + 1].push_back(curLStr);
                 }
             }
 

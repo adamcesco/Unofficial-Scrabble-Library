@@ -3,15 +3,25 @@
 
 #include "../LString/LString.h"
 
+struct AnchoredString{
+    AnchoredString(const string& str1, int subscript){ first = str1; second = subscript; }
+    string first;
+    int second;
+};
+
 class ScrabbleDataset {
 public:
     ScrabbleDataset();
     explicit ScrabbleDataset(string);
-    vector<string> return_this_at(char toFind, int subscript){return data[(abs(toFind) * 15) + subscript];}
-    ~ScrabbleDataset(){delete[] data;}
+    vector<AnchoredString> return_this_at(int x, int y, char toFind){
+        if(x > 14 || y > 14 || !isalpha(toFind))
+            throw invalid_argument("Error in vector<AnchoredString> return_this_at(int x, int y, char toFind) | Invalid "
+                                   "parameter value.\nX: " + to_string(x) + "\nY: " + to_string(y) + "\nChar: " + toFind);
+        return data[x][y][int(abs(toFind) & 31)]; }
+    ~ScrabbleDataset();
 
 private:
-    vector<string>* data = nullptr;
+    vector<AnchoredString>*** data = nullptr;
 };
 
 
