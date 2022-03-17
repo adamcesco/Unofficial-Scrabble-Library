@@ -9,7 +9,7 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
-    string hand = "FARTEQX";    //blank tiles should be marked as a '?'
+    string hand = "UOGLAIR";    //blank tiles should be marked as a '?'
 
     HorizontalScrabbleVectorizer hReader(hand);
     hReader.build_board(argv[1]);
@@ -24,12 +24,16 @@ int main(int argc, char* argv[]){
     vReader.clear_wordSets();
 
     //start timer here (timing word generation)
+    auto start = chrono::high_resolution_clock::now();
     vReader.search_for_intersecting_words();
     vReader.search_for_tangential_words();
 
     hReader.search_for_intersecting_words();
     hReader.search_for_tangential_words();
     //end timer here
+    auto stop = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::seconds>(stop - start);
+    cout << "Time taken by word generation: " << duration.count() << " seconds" << endl;
 
     vReader.validate_words();
     hReader.validate_words();
