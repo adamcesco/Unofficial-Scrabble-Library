@@ -19,13 +19,13 @@ LString& LString::operator=(const LString& toAssign){
     return *this;
 }
 
-Letter& LString::operator[](int subscript){
+inline Letter& LString::operator[](int subscript){
     if(subscript < 0 || subscript >= eleCount)
         throw invalid_argument("invalid subscript for LString::operator[](int) | subscript parameter is invalid");
     return data[subscript];
 }
 
-Letter LString::read_at(int subscript) const{
+inline Letter LString::read_at(int subscript) const{
     if(subscript < 0 || subscript >= eleCount)
         throw invalid_argument("invalid subscript for LString::read_at(int) | subscript parameter is invalid");
     return data[subscript];
@@ -43,15 +43,7 @@ Letter& LString::back(){
     return data[eleCount - 1];
 }
 
-LString& LString::push_back(Letter pssd){
-    if(eleCount > 44)
-        throw invalid_argument("invalid call for LString& LString::push_back(Letter) | Max capacity of LString has been reached");
-    data[eleCount] = pssd;
-    eleCount++;
-    return *this;
-}
-
-LString& LString::pop_back(){
+inline LString& LString::pop_back(){
     if(eleCount == 0)
         throw invalid_argument("invalid subscript for LString::pop_front(int) | LString::length is 0");
     eleCount--;
@@ -102,7 +94,7 @@ LString &LString::operator=(const string &toAssign) {
     return *this;
 }
 
-LString& LString::operator+=(const Letter &pssd){
+inline LString& LString::operator+=(const Letter &pssd){
     if(eleCount > 44)
         throw invalid_argument("invalid call for LString& LString::operator+=(const Letter &) | Max capacity of LString has been reached");
     data[eleCount] = pssd;
@@ -110,7 +102,7 @@ LString& LString::operator+=(const Letter &pssd){
     return *this;
 }
 
-LString& LString::operator+=(char pssd) {
+inline LString& LString::operator+=(char pssd) {
     if(eleCount > 44)
         throw invalid_argument("invalid call for LString& LString::operator+=(char) | Max capacity of LString has been reached");
     data[eleCount] = pssd;
@@ -124,14 +116,6 @@ bool LString::contains(char toFind) const {
             return true;
     }
     return false;
-}
-
-LString &LString::push_back(char pssd) {
-    if(eleCount > 44)
-        throw invalid_argument("invalid call for LString &LString::push_back(char) | Max capacity of LString has been reached");
-    data[eleCount] = pssd;
-    eleCount++;
-    return *this;
 }
 
 string LString::to_string() const{
@@ -343,4 +327,22 @@ int LString::find_pos_of(char toFind) const {
             return i;
     }
     return -1;
+}
+
+vector<string> LString::string_fragments() const {
+    vector<string> fragments;
+    string curFragment;
+    for (int i = 0; i < eleCount; ++i) {
+        if(data[i].LData != ' ') {
+            curFragment += data[i].LData;
+        }
+        else if (curFragment.length() != 0){
+            fragments.push_back(curFragment);
+            curFragment.clear();
+        }
+    }
+    if (curFragment.length() != 0)
+        fragments.push_back(curFragment);
+
+    return fragments;
 }

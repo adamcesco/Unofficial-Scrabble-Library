@@ -12,7 +12,7 @@ HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer() {
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        scrabbleWordSet.emplace(LString(curWord));
+        scrabbleWordSet.emplace(curWord);
     }
     englishWords.close();
 }
@@ -29,7 +29,7 @@ HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer(const string &passed)
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        scrabbleWordSet.emplace(LString(curWord));
+        scrabbleWordSet.emplace(curWord);
     }
     englishWords.close();
 }
@@ -47,17 +47,17 @@ void HorizontalScrabbleVectorizer::build_board(const string& filePath) {
         string cell;
         stringstream strStr(row);
         int cellCount = 0;
-        LString rowVect;
+        LString LRow;
         while (getline(strStr, cell, ',') && cellCount < 15){
             if(!cell.empty() && isalpha(cell[0])) {
-                rowVect.push_back(Letter(cell[0], cellCount, rowCount, 1));
+                LRow += Letter(cell[0], cellCount, rowCount, 1);
             }
             else {
-                rowVect.push_back(Letter(' ', cellCount, rowCount, 1));
+                LRow += Letter(' ', cellCount, rowCount, 1);
             }
             cellCount++;
         }
-        board.push_back(rowVect);
+        board.push_back(LRow);
         rowCount++;
     }
     boardFile.close();
@@ -102,7 +102,7 @@ void HorizontalScrabbleVectorizer::validate_words() {
                     column += boardCpy[j].read_at(i);
                 }
 
-                vector<LString> colShards = column.fragments();
+                vector<string> colShards = column.string_fragments();
 
                 for (const auto& shard : colShards) {
                     if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
@@ -110,7 +110,7 @@ void HorizontalScrabbleVectorizer::validate_words() {
                     }
                 }
 
-                vector<LString> rowShards = row.fragments();
+                vector<string> rowShards = row.string_fragments();
 
                 for (const auto& shard : rowShards) {
                     if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
@@ -163,18 +163,18 @@ void HorizontalScrabbleVectorizer::validate_board() const{
             column += board[j].read_at(i);
         }
 
-        vector<LString> colShards = column.fragments();
+        vector<string> colShards = column.string_fragments();
 
         for (const auto& shard : colShards) {
             if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
-                throw invalid_argument("Invalid vertical Word in Data/Board.csv | " + shard.to_string());
+                throw invalid_argument("Invalid vertical Word in Data/Board.csv |" + shard + '|');
         }
 
-        vector<LString> rowShards = row.fragments();
+        vector<string> rowShards = row.string_fragments();
 
         for (const auto& shard : rowShards) {
             if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
-                throw invalid_argument("Invalid horizontal Word in Data/Board.csv | " + shard.to_string());
+                throw invalid_argument("Invalid horizontal Word in Data/Board.csv |" + shard + '|');
         }
     }
 }
@@ -204,7 +204,7 @@ vector<string> HorizontalScrabbleVectorizer::return_formatted_char_board_copy() 
 }
 
 vector<vector<LString>> HorizontalScrabbleVectorizer::return_formatted_answerSets_copy() const {
-    vector<vector<LString>> toReturn;
+    vector<vector<LString>> toReturn(15);
     for (const auto & wordSet : answerSets) {
         toReturn.push_back(wordSet);
     }
@@ -223,10 +223,10 @@ void HorizontalScrabbleVectorizer::set_board(const vector<LString> &passed) {
         for (int j = 0; j < 15; ++j) {
             char cell = passed[i].read_at(j).LData;
             if(isalpha(cell)) {
-                row.push_back(Letter(cell, j, i, 1));
+                row += Letter(cell, j, i, 1);
             }
             else {
-                row.push_back(Letter(' ', j, i, 1));
+                row += Letter(' ', j, i, 1);
             }
         }
         boardCpy.emplace_back(row);
@@ -253,10 +253,10 @@ void HorizontalScrabbleVectorizer::set_board(const vector<string> &passed) {
         for (int j = 0; j < 15; ++j) {
             char cell = passed[i][j];
             if(isalpha(cell)) {
-                row.push_back(Letter(cell, j, i, 1));
+                row += Letter(cell, j, i, 1);
             }
             else {
-                row.push_back(Letter(' ', j, i, 1));
+                row += Letter(' ', j, i, 1);
             }
         }
         boardCpy.emplace_back(row);

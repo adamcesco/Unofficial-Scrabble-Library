@@ -69,7 +69,7 @@ void ScrabbleVectorizer::reset_all_data() {
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        scrabbleWordSet.emplace(LString(curWord));
+        scrabbleWordSet.emplace(curWord);
     }
     englishWords.close();
 }

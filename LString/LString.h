@@ -120,18 +120,15 @@ public:
     LString& operator=(const string&);
     LString& operator=(char*);
 
-    inline Letter& operator[](int);
-    inline Letter read_at(int) const;
+    Letter& operator[](int);
+    Letter read_at(int) const;
     inline int length() const{ return eleCount; }
-    inline static int max_capacity() { return 45; }
-    inline Letter read_back() const;
-    inline Letter& back();
+    static int max_capacity() { return 45; }
+    Letter read_back() const;
+    Letter& back();
     int find_pos_of(char) const;
 
-    inline LString& push_back(Letter);
-    inline LString& push_back(char);
-
-    inline LString& pop_back();
+    LString& pop_back();
     inline LString& clear(){ eleCount = 0; return *this; }
     LString& erase_at(int);     //needs testing
 
@@ -139,8 +136,8 @@ public:
     bool contains(Letter) const;
     bool contains(char) const;
     bool operator==(const LString&) const;
-    inline LString& operator+=(const Letter&);
-    inline LString& operator+=(char);
+    LString& operator+=(const Letter&);
+    LString& operator+=(char);
     LString operator+(const Letter&) const;
     LString operator+(char) const;
     string to_string() const;
@@ -156,6 +153,7 @@ public:
     LString& set_y_vals_equal_to(int);
     bool contains_flag(int) const;
     vector<LString> fragments() const;
+    vector<string> string_fragments() const;
     bool is_all_whitespace() const;
 };
 

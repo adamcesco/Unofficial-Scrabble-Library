@@ -35,7 +35,7 @@ public:
     void reset_all_data();
     string& get_hand(){ return hand; }
     void set_raw_board(const vector<LString>& passed){ board = passed; }
-    unordered_set<LString, MyHashFunction>& get_all_scrabble_words(){ return scrabbleWordSet; }
+    unordered_set<string>& get_all_scrabble_words(){ return scrabbleWordSet; }
     vector<int> find_points_of_word(const string&) const;
     vector<LString> return_all_of_raw_word(const string&) const;
     vector<LString>* get_answerSets(){ return answerSets; }
@@ -48,7 +48,7 @@ protected:
     int bestX, bestY;
     LString bestWord;
     string hand;
-    unordered_set<LString, MyHashFunction> scrabbleWordSet;
+    unordered_set<string> scrabbleWordSet;
     vector<LString> answerSets[15];
     vector<LString> board;
     ScrabbleDataset wordDataset;
