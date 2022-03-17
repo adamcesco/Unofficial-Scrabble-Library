@@ -30,15 +30,16 @@ int main(int argc, char* argv[]){
 
     hReader.search_for_intersecting_words();
     hReader.search_for_tangential_words();
+
+    vReader.validate_words();
+    hReader.validate_words();
     auto stop = chrono::high_resolution_clock::now();   //end timer here
     auto duration = chrono::duration_cast<chrono::seconds>(stop - start);
     cout << "Time taken by word generation: " << duration.count() << " seconds" << endl;
 
-    vReader.validate_words();
-    hReader.validate_words();
-
     vReader.update_best_word();
     hReader.update_best_word();
+
     int vPoints = vReader.points_of_best_word();
     LString bestVWord = vReader.get_best_word();
     int hPoints = hReader.points_of_best_word();
