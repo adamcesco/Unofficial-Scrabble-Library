@@ -20,8 +20,6 @@ using namespace std;
 //                       a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p,  q, r, s, t, u, v, w, x, y,  z
 const int legend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 
-enum Type{HORIZONTAL, VERTICAL, UNDEFINED};
-
 struct Letter {
     char LData;     //think of the LData as the face value of the Letter object, with all other data members being the Letter objects description
     int x, y;
@@ -98,15 +96,15 @@ private:
 
 public:
     struct Iterator{
-        Iterator(Letter* pssdDataPtr){dataPtr = pssdDataPtr;}
+        Iterator(Letter* pssdDataPtr){ dataPtr = pssdDataPtr; }
 
-        Letter& operator*() const { return *dataPtr; }
-        Iterator& operator++() { dataPtr++; return *this; }
+        Letter& operator*() const{ return *dataPtr; }
+        Iterator& operator++()   { dataPtr++; return *this; }
         Iterator operator++(int) { Iterator temp = *this; dataPtr++; return temp; }
-        Iterator& operator--() { dataPtr--; return *this; }
+        Iterator& operator--()   { dataPtr--; return *this; }
         Iterator operator--(int) { Iterator temp = *this; dataPtr--; return temp; }
-        friend bool operator== (const Iterator& a, const Iterator& b) { return (a.dataPtr == b.dataPtr); };
-        friend bool operator!= (const Iterator& a, const Iterator& b) { return (a.dataPtr != b.dataPtr); };
+        friend bool operator== (const Iterator& a, const Iterator& b){ return (a.dataPtr == b.dataPtr); };
+        friend bool operator!= (const Iterator& a, const Iterator& b){ return (a.dataPtr != b.dataPtr); };
 
         Letter* dataPtr;
     };
@@ -171,10 +169,10 @@ public:
     LString& convert_vertical_format_to_horizontal();       //needs testing
     LString& convert_horizontal_format_to_vertical();       //needs testing
     
-    ~LString(){delete[] data;}
+    ~LString(){ delete[] data; }
 
 protected:
-    LString(int);
+    explicit LString(int);
     void increaseMaxCapacity();
 };
 

@@ -63,3 +63,12 @@ ScrabbleDataset::ScrabbleDataset(string filePath){
     }
     englishWords.close();
 }
+
+ScrabbleDataset::~ScrabbleDataset() {
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j)
+            delete[] data[i][j];
+        delete[] data[i];
+    }
+    delete[] data;
+}

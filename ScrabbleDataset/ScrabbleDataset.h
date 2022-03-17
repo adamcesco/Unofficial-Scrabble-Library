@@ -4,7 +4,7 @@
 #include "../LString/LString.h"
 
 struct AnchoredString{
-    AnchoredString(string str1, int subscript){ first = str1; second = subscript;}
+    AnchoredString(const string& str1, int subscript){ first = str1; second = subscript; }
     string first;
     int second;
 };
@@ -13,8 +13,8 @@ class ScrabbleDataset {
 public:
     ScrabbleDataset();
     explicit ScrabbleDataset(string);
-    vector<AnchoredString> return_this_at(int x, int y, char toFind){return data[x][y][int(abs(toFind) & 31)];}
-    ~ScrabbleDataset(){delete[] data;}
+    vector<AnchoredString> return_this_at(int x, int y, char toFind){ return data[x][y][int(abs(toFind) & 31)]; }
+    ~ScrabbleDataset();
 
 private:
     vector<AnchoredString>*** data = nullptr;
