@@ -191,22 +191,6 @@ vector<string> HorizontalScrabbleVectorizer::return_formatted_perkBoard_copy() c
     return toReturn;
 }
 
-vector<LString> HorizontalScrabbleVectorizer::return_formatted_board_with(const LString &toPrint) const {
-    vector<LString> boardCpy = board;
-    int toPrintX = toPrint.read_at(0).x;
-    int toPrintY = toPrint.read_at(0).y;
-    for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
-        if(boardCpy[toPrintY][i] == ' ') {
-            boardCpy[toPrintY][i] = toPrint.read_at(i - toPrintX);
-            boardCpy[toPrintY][i].flag = -2;
-        }
-        else
-            boardCpy[toPrintY][i].flag = 1;
-    }
-
-    return boardCpy;
-}
-
 vector<string> HorizontalScrabbleVectorizer::return_formatted_char_board_copy() const {
     vector<string> boardCpy;
     for (int i = 0; i < 15; ++i) {

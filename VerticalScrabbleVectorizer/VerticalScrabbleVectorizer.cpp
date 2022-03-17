@@ -230,29 +230,6 @@ vector<string> VerticalScrabbleVectorizer::return_formatted_perkBoard_copy() con
     return toReturn;
 }
 
-vector<LString> VerticalScrabbleVectorizer::return_formatted_board_with(const LString &toPrint) const {
-    vector<LString> boardCpy = board;
-    int toPrintX = toPrint.read_at(0).x;
-    int toPrintY = toPrint.read_at(0).y;
-    for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
-        if(boardCpy[toPrintY][i] == ' ')
-            boardCpy[toPrintY][i] = Letter(toPrint.read_at(i - toPrintX).LData, i, toPrintY, -2);
-        else
-            boardCpy[i][toPrintX].flag = 1;
-    }
-
-    vector<LString> boardCpy2;
-    for (int i = 0; i < 15; i++) {
-        LString column;
-        for (int j = 14; j >= 0; j--) {
-            column += boardCpy[j].read_at(i);
-        }
-        boardCpy2.push_back(column);
-    }
-
-    return boardCpy2;
-}
-
 vector<string> VerticalScrabbleVectorizer::return_formatted_char_board_copy() const {
     vector<string> boardCpy;
     for (int i = 0; i < 15; ++i) {
