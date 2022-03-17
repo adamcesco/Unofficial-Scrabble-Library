@@ -10,10 +10,18 @@ HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer() {
         throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
 
     string curWord;
+    int count = 0;
     while(englishWords.good()){
         getline(englishWords, curWord);
+        count++;
+
+        while(isspace(curWord.back()))
+            curWord.pop_back();
+
         scrabbleWordSet.emplace(curWord);
     }
+    cout << "HorizontalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
+
     englishWords.close();
 }
 
@@ -27,17 +35,18 @@ HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer(const string &passed)
         throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
 
     string curWord;
+    int count = 0;
     while(englishWords.good()){
         getline(englishWords, curWord);
+        count++;
 
-        for(auto it: curWord){
-            if(!isalpha(it)){
-                throw invalid_argument("curWord has a non-alpha in it");
-            }
-        }
+        while(isspace(curWord.back()))
+            curWord.pop_back();
 
         scrabbleWordSet.emplace(curWord);
     }
+    cout << "HorizontalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
+
     englishWords.close();
 }
 
@@ -157,7 +166,7 @@ LString HorizontalScrabbleVectorizer::update_best_word() {
 
 void HorizontalScrabbleVectorizer::validate_board() const{
     if(scrabbleWordSet.empty())
-        throw invalid_argument("Error in ScrabbleVectorizer::validate_board() | unordered_map<LString> scrabbleWordSet is empty.");
+        throw invalid_argument("Error in void HorizontalScrabbleVectorizer::validate_board() const | unordered_map<LString> scrabbleWordSet is empty.");
 
     for (int i = 0; i < 15; ++i) {
         LString row;
@@ -173,15 +182,16 @@ void HorizontalScrabbleVectorizer::validate_board() const{
         vector<string> colShards = column.string_fragments();
 
         for (const auto& shard : colShards) {
-            if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
-                throw invalid_argument("Invalid vertical Word in Data/Board.csv |" + shard + '|');
+            if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
+                throw invalid_argument("Error in void HorizontalScrabbleVectorizer::validate_board() const | Invalid vertical Word in Data/Board.csv |" + shard + '/');
+            }
         }
 
         vector<string> rowShards = row.string_fragments();
 
         for (const auto& shard : rowShards) {
             if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
-                throw invalid_argument("Invalid horizontal Word in Data/Board.csv |" + shard + '|');
+                throw invalid_argument("Error in void HorizontalScrabbleVectorizer::validate_board() const | Invalid horizontal Word in Data/Board.csv |" + shard + '/');
         }
     }
 }

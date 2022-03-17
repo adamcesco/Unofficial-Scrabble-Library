@@ -8,10 +8,18 @@ VerticalScrabbleVectorizer::VerticalScrabbleVectorizer() {
         throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
 
     string curWord;
+    int count = 0;
     while(englishWords.good()){
         getline(englishWords, curWord);
+        count++;
+
+        while(isspace(curWord.back()))
+            curWord.pop_back();
+
         scrabbleWordSet.emplace(curWord);
     }
+    cout << "VerticalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
+
     englishWords.close();
 }
 
@@ -24,10 +32,18 @@ VerticalScrabbleVectorizer::VerticalScrabbleVectorizer(const string &passed) {
         throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
 
     string curWord;
+    int count = 0;
     while(englishWords.good()){
         getline(englishWords, curWord);
+        count++;
+
+        while(isspace(curWord.back()))
+            curWord.pop_back();
+
         scrabbleWordSet.emplace(curWord);
     }
+    cout << "VerticalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
+
     englishWords.close();
 }
 
@@ -159,12 +175,12 @@ void VerticalScrabbleVectorizer::validate_words() {
 
 void VerticalScrabbleVectorizer::set_board(const vector<LString> &passed) {   //assumes that passed is formatted as a proper board
     if(passed.size() != 15)
-        throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument is not of a proper size.");
+        throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString>) | passed argument is not of a proper size.");
 
     vector<LString> boardCpy;
     for (int i = 14; i >= 0; i--) {  //i = x
         if(passed[i].length() != 15)
-            throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument has an element that is not of a proper size.");
+            throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString>) | passed argument has an element that is not of a proper size.");
         LString column;
         for (int j = 0; j < 15; j++) {  //j = y
             char cell = passed[j].read_at(i).LData;
@@ -206,14 +222,14 @@ void VerticalScrabbleVectorizer::validate_board() const{
 
         for (const auto& shard : colShards) {
             if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
-                throw invalid_argument("Invalid vertical Word in Data/Board.csv |" + shard + '|');
+                throw invalid_argument("Error in void VerticalScrabbleVectorizer::validate_board() | Invalid vertical Word in Data/Board.csv |" + shard + '|');
         }
 
         vector<string> rowShards = row.string_fragments();
 
         for (const auto& shard : rowShards) {
             if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
-                throw invalid_argument("Invalid horizontal Word in Data/Board.csv |" + shard + '|');
+                throw invalid_argument("Error in void VerticalScrabbleVectorizer::validate_board() | Invalid horizontal Word in Data/Board.csv |" + shard + '|');
         }
     }
 }

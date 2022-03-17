@@ -18,6 +18,9 @@ ScrabbleDataset::ScrabbleDataset() {
     while(englishWords.good()){
         getline(englishWords, curWord);
 
+        while(isspace(curWord.back()))
+            curWord.pop_back();
+
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {
                 if(j + curWord.length() > 15)
@@ -49,6 +52,9 @@ ScrabbleDataset::ScrabbleDataset(string filePath){
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
+
+        while(isspace(curWord.back()))
+            curWord.pop_back();
 
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {
