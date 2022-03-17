@@ -1,11 +1,11 @@
 #include "ScrabbleDataset.h"
 
 ScrabbleDataset::ScrabbleDataset() {
-    data = new vector<AnchoredSet>**[15];
+    data = new vector<AnchoredString>**[15];
     for (int i = 0; i < 15; ++i) {
-        data[i] = new vector<AnchoredSet>*[15];
+        data[i] = new vector<AnchoredString>*[15];
         for (int j = 0; j < 15; ++j) {
-            data[i][j] = new vector<AnchoredSet>[27];
+            data[i][j] = new vector<AnchoredString>[27];
         }
     }
 
@@ -24,7 +24,7 @@ ScrabbleDataset::ScrabbleDataset() {
                     break;
                 for (int k = 0; k < curWord.length(); ++k) {
                     int index = int(abs(curWord[k]) & 31);
-                    data[i][j + k][index].emplace_back(AnchoredSet(curWord, k));
+                    data[i][j + k][index].emplace_back(AnchoredString(curWord, k));
                 }
             }
         }
@@ -33,11 +33,11 @@ ScrabbleDataset::ScrabbleDataset() {
 }
 
 ScrabbleDataset::ScrabbleDataset(string filePath){
-    data = new vector<AnchoredSet>**[15];
+    data = new vector<AnchoredString>**[15];
     for (int i = 0; i < 15; ++i) {
-        data[i] = new vector<AnchoredSet>*[15];
+        data[i] = new vector<AnchoredString>*[15];
         for (int j = 0; j < 15; ++j) {
-            data[i][j] = new vector<AnchoredSet>[27];
+            data[i][j] = new vector<AnchoredString>[27];
         }
     }
 
@@ -56,7 +56,7 @@ ScrabbleDataset::ScrabbleDataset(string filePath){
                     break;
                 for (int k = 0; k < curWord.length(); ++k) {
                     int index = int(abs(curWord[k]) & 31);
-                    data[i][j + k][index].emplace_back(AnchoredSet(curWord, k));
+                    data[i][j + k][index].emplace_back(AnchoredString(curWord, k));
                 }
             }
         }

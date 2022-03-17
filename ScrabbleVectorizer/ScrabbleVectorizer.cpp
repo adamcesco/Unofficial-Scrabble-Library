@@ -17,7 +17,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 continue;
             }
 
-            vector<AnchoredSet> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.LData);
+            vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.LData);
             for (auto & it : wordsOfTile) {
                 LString curLStr(it.first);
                 int anchorIndex = it.second;
@@ -132,7 +132,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {
             }
 
             for(int j = 0; j < hand.length(); ++j){
-                vector<AnchoredSet> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, hand[j]);
+                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, hand[j]);
 
                 for (auto &it: wordsOfTile) {
                     LString curLStr(it.first);
@@ -171,7 +171,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {
             }
 
             for(int j = 0; j < hand.length(); ++j){
-                vector<AnchoredSet> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, hand[j]);
+                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, hand[j]);
 
                 for (auto &it: wordsOfTile) {
                     LString curLStr(it.first);
