@@ -24,7 +24,6 @@ public:
 
     vector<vector<LString>> return_formatted_answerSets_copy() const;
     vector<string> return_formatted_perkBoard_copy() const;
-    vector<LString> return_formatted_board_with(const LString &) const;     //assumes that the passed word is formatted with respect to a horizontal board
     vector<string> return_formatted_char_board_copy() const;
 };
 

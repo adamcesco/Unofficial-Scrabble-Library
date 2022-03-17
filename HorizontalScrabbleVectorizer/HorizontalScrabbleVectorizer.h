@@ -25,7 +25,6 @@ public:
     vector<LString>& return_answer_set_of(int subscript){ return answerSets[subscript]; }
     int points_of_best_word() const{ return points_of_word(bestWord); }
     vector<vector<LString>> return_formatted_answerSets_copy() const;
-    vector<LString> return_formatted_board_with(const LString &) const;     //assumes that the passed word is formatted with respect to a horizontal board
 };
 
 #endif //SCRABBLEBOT_BOARDREADER_H

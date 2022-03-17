@@ -133,14 +133,6 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         }
     }
 
-    SECTION("ScrabbleVectorizer::return_formatted_board_with()") {
-        defaultReader.place_into_board(word);
-        vector<LString> testBoard = defaultReader.return_formatted_board_copy();
-
-        REQUIRE(hReader.return_formatted_board_with(word) == testBoard);    //TODO: fix
-        REQUIRE(vReader.return_formatted_board_with(word) == testBoard);
-    }
-
     SECTION("ScrabbleVectorizer::return_formatted_char_board_copy()") {
         vector<string> testVBoard = vReader.return_formatted_char_board_copy();
         vector<string> testHBoard = hReader.return_formatted_char_board_copy();
