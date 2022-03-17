@@ -94,7 +94,7 @@ private:
     int eleCount = 0;
 
 public:
-    struct Iterator{    //needs testing
+    struct Iterator{
         Iterator(Letter* pssdDataPtr){ dataPtr = pssdDataPtr; }
 
         Letter& operator*() const{ return *dataPtr; }
@@ -132,7 +132,7 @@ public:
     LString& push_back(char);
 
     LString& pop_back();
-    LString& clear();
+    LString& clear(){ eleCount = 0; return *this; }
     LString& erase_at(int);     //needs testing
 
     bool is_empty() const{ if(eleCount > 0){ return false; } return true; }

@@ -54,14 +54,7 @@ LString& LString::push_back(Letter pssd){
 LString& LString::pop_back(){
     if(eleCount == 0)
         throw invalid_argument("invalid subscript for LString::pop_front(int) | LString::length is 0");
-
     eleCount--;
-
-    return *this;
-}
-
-LString& LString::clear(){
-    eleCount = 0;
     return *this;
 }
 
@@ -212,18 +205,17 @@ LString::LString(char* toCpy) {
         data[i] = toCpy[i];
 }
 
-int LString::get_letter_points(string passed) {
-    const int valLegend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8,  5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
-    int sum = 0;
-    for(char it : passed)
-        sum += valLegend[(it & 31) - 1];
-    return sum;
-}
-
 int LString::get_letter_points() const{
     int sum = 0;
     for (int i = 0; i < eleCount; ++i)
         sum += data[i].val;
+    return sum;
+}
+
+int LString::get_letter_points(string passed) {
+    int sum = 0;
+    for(char it : passed)
+        sum += legend[(it & 31) - 1];
     return sum;
 }
 
@@ -301,9 +293,8 @@ LString &LString::set_y_vals_equal_to(int passed) {
 
 bool LString::is_all_whitespace() const {
     for (int i = 0; i < eleCount; ++i) {
-        if(isalpha(data[i].LData)) {
+        if(isalpha(data[i].LData))
             return false;
-        }
     }
     return true;
 }
@@ -318,10 +309,10 @@ bool LString::is_descendent_of(const string& hand) {
     for (int i = 0; i < 123; ++i)
         handMap[i] = letterCount[i] = 0;
 
-    for (int i = 0; i < hand.length(); ++i) {
-        if(hand[i] == '?')
+    for (char it : hand) {
+        if(it == '?')
             blankCount++;
-        handMap[abs(toupper(hand[i]))]++;
+        handMap[abs(toupper(it))]++;
     }
 
     for (int i = 0; i < eleCount; ++i)
@@ -331,14 +322,14 @@ bool LString::is_descendent_of(const string& hand) {
     letterCount[32] = 0;
 
     for (int i = 0; i < eleCount; ++i) {
-        char curChar = abs(toupper(data[i].LData));
-        if(handMap[curChar] < letterCount[curChar] && blankCount == 0)
+        int index = abs(toupper(data[i].LData));
+        if(handMap[index] < letterCount[index] && blankCount == 0)
             return false;
-        else if (handMap[curChar] < letterCount[curChar]) {
+        else if (handMap[index] < letterCount[index]) {
             data[i].val = 0;
             data[i].isBlank = true;
             blankCount--;
-            letterCount[curChar]--;
+            letterCount[index]--;
             i--;
         }
     }
