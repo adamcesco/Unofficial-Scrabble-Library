@@ -24,15 +24,13 @@ int main(int argc, char* argv[]){
     vReader.console_print_formatted_board();
     vReader.clear_wordSets();
 
-    //start timer here (timing word generation)
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::high_resolution_clock::now();  //start timer here (timing word generation)
     vReader.search_for_intersecting_words();
     vReader.search_for_tangential_words();
 
     hReader.search_for_intersecting_words();
     hReader.search_for_tangential_words();
-    //end timer here
-    auto stop = chrono::high_resolution_clock::now();
+    auto stop = chrono::high_resolution_clock::now();   //end timer here
     auto duration = chrono::duration_cast<chrono::seconds>(stop - start);
     cout << "Time taken by word generation: " << duration.count() << " seconds" << endl;
 

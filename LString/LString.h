@@ -108,8 +108,8 @@ public:
 
         Letter* dataPtr;
     };
-    Iterator begin() { return Iterator(data); }
-    Iterator end()   { return Iterator(data + eleCount); }
+    Iterator begin() const { return Iterator(data); }
+    Iterator end() const   { return Iterator(data + eleCount); }
 
 
 
