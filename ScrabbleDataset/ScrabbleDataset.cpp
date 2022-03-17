@@ -1,11 +1,11 @@
 #include "ScrabbleDataset.h"
 
 ScrabbleDataset::ScrabbleDataset() {
-    data = new vector<string>**[15];
+    data = new vector<AnchoredSet>**[15];
     for (int i = 0; i < 15; ++i) {
-        data[i] = new vector<string>*[15];
+        data[i] = new vector<AnchoredSet>*[15];
         for (int j = 0; j < 15; ++j) {
-            data[i][j] = new vector<string>[27];
+            data[i][j] = new vector<AnchoredSet>[27];
         }
     }
 
@@ -18,16 +18,13 @@ ScrabbleDataset::ScrabbleDataset() {
     while(englishWords.good()){
         getline(englishWords, curWord);
 
-        if(curWord.length() > 15)
-            continue;
-
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {
                 if(j + curWord.length() > 15)
                     break;
                 for (int k = 0; k < curWord.length(); ++k) {
-                    char curChar = curWord[k];
-                    data[i][j + k][abs(curChar) & 31].emplace_back(curWord);
+                    int index = int(abs(curWord[k]) & 31);
+                    data[i][j + k][index].emplace_back(AnchoredSet(curWord, k));
                 }
             }
         }
@@ -36,11 +33,11 @@ ScrabbleDataset::ScrabbleDataset() {
 }
 
 ScrabbleDataset::ScrabbleDataset(string filePath){
-    data = new vector<string>**[15];
+    data = new vector<AnchoredSet>**[15];
     for (int i = 0; i < 15; ++i) {
-        data[i] = new vector<string>*[15];
+        data[i] = new vector<AnchoredSet>*[15];
         for (int j = 0; j < 15; ++j) {
-            data[i][j] = new vector<string>[27];
+            data[i][j] = new vector<AnchoredSet>[27];
         }
     }
 
@@ -53,16 +50,13 @@ ScrabbleDataset::ScrabbleDataset(string filePath){
     while(englishWords.good()){
         getline(englishWords, curWord);
 
-        if(curWord.length() > 15)
-            continue;
-
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {
                 if(j + curWord.length() > 15)
                     break;
                 for (int k = 0; k < curWord.length(); ++k) {
-                    char curChar = curWord[k];
-                    data[i][j + k][abs(curChar) & 31].emplace_back(curWord);
+                    int index = int(abs(curWord[k]) & 31);
+                    data[i][j + k][index].emplace_back(AnchoredSet(curWord, k));
                 }
             }
         }

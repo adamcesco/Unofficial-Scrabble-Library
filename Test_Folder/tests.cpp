@@ -7,16 +7,16 @@ TEST_CASE("Testing ScrabbleDataset Usage and Speed", "[ScrabbleDataset]"){
     ScrabbleDataset wordData("../Data/scrabble_word_list.txt");
 
     SECTION("Testing words with \'A\' as the first letter"){
-        vector<string> data = wordData.return_this_at('A', 0);
-        for (auto& word : data) {
-            REQUIRE(word[0] == 'A');
+        vector<AnchoredSet> data = wordData.return_this_at(2, 2, 'A');
+        for (auto& it : data) {
+            REQUIRE(it.first[it.second] == 'A');
         }
     }
 
-    SECTION("Testing words with \'S\' as the 5th letter (subscript 4)"){
-        vector<string> data = wordData.return_this_at('S', 4);
-        for (auto& word : data) {
-            REQUIRE(word[4] == 'S');
+    SECTION("Testing words with \'S\' as the 5th tile of the 3rd row"){
+        vector<AnchoredSet> data = wordData.return_this_at(2, 4, 'S');
+        for (auto& it : data) {
+            REQUIRE(it.first[it.second] == 'S');
         }
     }
 }

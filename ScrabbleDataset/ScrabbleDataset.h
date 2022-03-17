@@ -3,15 +3,21 @@
 
 #include "../LString/LString.h"
 
+struct AnchoredSet{
+    AnchoredSet(string str1, int subscript){first = str1; second = subscript;}
+    string first;
+    int second;
+};
+
 class ScrabbleDataset {
 public:
     ScrabbleDataset();
     explicit ScrabbleDataset(string);
-    vector<string> return_this_at(int x, int y, char toFind){return data[x][y][abs(toFind) & 31];}
+    vector<AnchoredSet> return_this_at(int x, int y, char toFind){return data[x][y][int(abs(toFind) & 31)];}
     ~ScrabbleDataset(){delete[] data;}
 
 private:
-    vector<string>*** data = nullptr;
+    vector<AnchoredSet>*** data = nullptr;
 };
 
 
