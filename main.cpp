@@ -10,7 +10,7 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
-    string hand = "ADFUJEL";    //blank tiles should be marked as a '?'
+    string hand = "FUHJGIL";    //blank tiles should be marked as a '?'
 
     HorizontalScrabbleVectorizer hReader(hand);
     hReader.build_board(argv[1]);

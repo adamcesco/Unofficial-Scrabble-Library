@@ -134,7 +134,7 @@ LString HorizontalScrabbleVectorizer::update_best_word() {
                 bestWord = word;
                 bestX = bestWord[0].x + 1;
                 bestY = rowSubscript + 1;
-            } else if (wordPoints == bestWordPoints) {
+            } else if (wordPoints != 0 && wordPoints == bestWordPoints) {
                 if (word.length() < bestWord.length() || bestWord.is_empty()) {
                     bestWord = word;
                     bestX = bestWord[0].x + 1;

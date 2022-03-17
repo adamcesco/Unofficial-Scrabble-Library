@@ -109,7 +109,7 @@ LString VerticalScrabbleVectorizer::update_best_word(){
                 //x = y, y = 14 - x
                 bestX = (14 - rowSubscript) + 1;
                 bestY = (bestWord[0].x) + 1;
-            } else if (wordPoints == bestWordPoints) {
+            } else if (wordPoints != 0 && wordPoints == bestWordPoints) {
                 if (word.length() < bestWord.length() || bestWord.is_empty()) {
                     bestWord = word;
                     //x = y, y = 14 - x
