@@ -29,6 +29,13 @@ HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer(const string &passed)
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
+
+        for(auto it: curWord){
+            if(!isalpha(it)){
+                throw invalid_argument("curWord has a non-alpha in it");
+            }
+        }
+
         scrabbleWordSet.emplace(curWord);
     }
     englishWords.close();
