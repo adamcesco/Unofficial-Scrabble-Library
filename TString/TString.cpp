@@ -125,13 +125,13 @@ string TString::to_string() const{
     return temp;
 }
 
-TString::TString(const string &toCpy) {
+TString::TString(const string toCpy) {
     eleCount = toCpy.length();
     for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy[i];
 }
 
-TString &TString::operator=(char* toAssign) {
+TString &TString::operator=(const char* toAssign) {
     int passedSize = strlen(toAssign);
     eleCount = (passedSize < 46) ? passedSize : throw invalid_argument("invalid subscript for TString &TString::operator=(char* toAssign) | Passed string is of a length that is larger than the max capacity for an TString");;
 
@@ -183,7 +183,7 @@ bool TString::row_is_descendent_of(const string& hand, const TString& row, TStri
     return true;
 }
 
-TString::TString(char* toCpy) {
+TString::TString(const char* toCpy) {
     eleCount = strlen(toCpy);
     for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy[i];
@@ -345,4 +345,28 @@ vector<string> TString::string_fragments() const {
         fragments.push_back(curFragment);
 
     return fragments;
+}
+
+bool TString::operator==(const string& toComp) const {
+    if(eleCount != toComp.length())
+        return false;
+
+    for (int i = 0; i < eleCount; i++) {
+        if(toComp[i] != data[i].letter)
+            return false;
+    }
+
+    return true;
+}
+
+bool TString::operator==(const char* toComp) const {
+    if(eleCount != strlen(toComp))
+        return false;
+
+    for (int i = 0; i < eleCount; i++) {
+        if(toComp[i] != data[i].letter)
+            return false;
+    }
+
+    return true;
 }

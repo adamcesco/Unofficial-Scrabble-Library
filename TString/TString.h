@@ -30,11 +30,11 @@ public:
 
     TString(){ eleCount = 0; }
     TString(const TString&);
-    TString(const string&);
-    TString(char *);
+    TString(string);
+    TString(const char *);
     TString& operator=(const TString&);
     TString& operator=(const string&);
-    TString& operator=(char*);
+    TString& operator=(const char*);
 
     Tile& operator[](int);
     Tile read_at(int) const;
@@ -46,12 +46,14 @@ public:
 
     TString& pop_back();
     inline TString& clear(){ eleCount = 0; return *this; }
-    TString& erase_at(int);     //needs testing
+    TString& erase_at(int);
 
     inline bool is_empty() const{ if(eleCount > 0){ return false; } return true; }
     virtual bool contains(Tile) const;
     bool contains(char) const;
     virtual bool operator==(const TString&) const;
+    bool operator==(const string&) const;
+    bool operator==(const char*) const;
     TString& operator+=(const Tile&);
     TString& operator+=(char);
     TString operator+(const Tile&) const;

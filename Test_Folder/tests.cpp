@@ -3,6 +3,43 @@
 #include "../VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
 #include <sstream>
 
+TEST_CASE("Testing TString::erase_at(int)", "[TString]"){
+    SECTION("Testing a populated TString"){
+        TString testDummy = "Adam";
+        testDummy.erase_at(2);
+        REQUIRE(testDummy == "Adm");
+
+        bool error_thrown = false;
+        try{
+            TString testDummy = "Adam";
+            testDummy.erase_at(-1);
+        } catch(const invalid_argument& e){
+            error_thrown = true;
+        }
+        REQUIRE(error_thrown);
+
+        error_thrown = false;
+        try{
+            TString testDummy = "Adam";
+            testDummy.erase_at(4);
+        } catch(const invalid_argument& e){
+            error_thrown = true;
+        }
+        REQUIRE(error_thrown);
+    }
+
+    SECTION("Testing an empty TString"){
+        bool error_thrown = false;
+        try{
+            TString testDummy;
+            testDummy.erase_at(0);
+        } catch(const invalid_argument& e){
+            error_thrown = true;
+        }
+        REQUIRE(error_thrown);
+    }
+}
+
 TEST_CASE("Testing ScrabbleDataset Usage and Speed", "[ScrabbleDataset]"){
     ScrabbleDataset wordData("../Data/scrabble_word_list.txt");
 
