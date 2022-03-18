@@ -38,7 +38,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 if(skip)
                     continue;
 
-                if(rowCpy.row_is_descendent_of(hand, row, curLStr)) {   //TODO: Remove the need to check if its a descendent
+                if(rowCpy.row_is_descendent_of(rack, row, curLStr)) {   //TODO: Remove the need to check if its a descendent
                     curLStr.set_y_vals_equal_to(rowSubscript);
                     answerSets[rowSubscript].push_back(curLStr);
                 }
@@ -53,7 +53,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
 void ScrabbleVectorizer::reset_all_data() {
     bestX = bestY = 8;
     bestWord.clear();
-    hand.clear();
+    rack.clear();
     board.clear();
 
     for (auto & words : answerSets) {
@@ -86,8 +86,8 @@ void ScrabbleVectorizer::place_into_board(const TString &toPrint) {
 
 bool ScrabbleVectorizer::contains_letter_of_hand(const TString &passed) const {
     unordered_set<char> handSet;
-    for (int i = 0; i < hand.length(); ++i)
-        handSet.emplace(toupper(hand[i]));
+    for (int i = 0; i < rack.length(); ++i)
+        handSet.emplace(toupper(rack[i]));
 
     for (int i = 0; i < passed.length(); ++i) {
         if (handSet.find(toupper(passed.read_at(i).letter)) != handSet.end()) {
@@ -131,13 +131,13 @@ void ScrabbleVectorizer::search_for_tangential_words() {
                 continue;
             }
 
-            for(int j = 0; j < hand.length(); ++j){
-                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, hand[j]);
+            for(int j = 0; j < rack.length(); ++j){
+                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, rack[j]);
 
                 for (auto &it: wordsOfTile) {
                     TString curLStr(it.first);
                     int anchorIndex = it.second;
-                    if ((tileCount - anchorIndex) < 0 || !curLStr.is_descendent_of(hand))
+                    if ((tileCount - anchorIndex) < 0 || !curLStr.is_descendent_of(rack))
                         continue;
 
                     bool skip = false;
@@ -170,13 +170,13 @@ void ScrabbleVectorizer::search_for_tangential_words() {
                 continue;
             }
 
-            for(int j = 0; j < hand.length(); ++j){
-                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, hand[j]);
+            for(int j = 0; j < rack.length(); ++j){
+                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, rack[j]);
 
                 for (auto &it: wordsOfTile) {
                     TString curLStr(it.first);
                     int anchorIndex = it.second;
-                    if ((tileCount - anchorIndex) < 0 || !curLStr.is_descendent_of(hand))
+                    if ((tileCount - anchorIndex) < 0 || !curLStr.is_descendent_of(rack))
                         continue;
 
                     bool skip = false;
@@ -227,7 +227,7 @@ int ScrabbleVectorizer::points_of_word(const TString &word) const{
     // If a letter is shared between words, then count it's premium value for all words
     // Any word multiplier only gets assigned to the original word, and not any subsequently formed words
     // If a word is placed on two or more multiplier tiles, the words value is multiplied by both tile values
-    // If a word uses all the tiles in the hand then 50 is added to the final total
+    // If a word uses all the tiles in the rack then 50 is added to the final total
 
     if(word.is_empty())
         return 0;
@@ -278,7 +278,7 @@ int ScrabbleVectorizer::points_of_word(const TString &word) const{
     }
     wordSum *= multiplier;
     wordSum += crossWordSum;
-    int handLen = hand.length();
+    int handLen = rack.length();
     if(handLen == 7 && word.length() - letterCount == handLen)
         wordSum += 50;
 

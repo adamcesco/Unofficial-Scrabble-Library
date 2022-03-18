@@ -10,15 +10,15 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
-    string hand = "YUIOHFR";    //blank tiles should be marked as a '?'
+    string rack = "YUIOHFR";    //blank tiles should be marked as a '?'
 
-    HorizontalScrabbleVectorizer hReader(hand);
+    HorizontalScrabbleVectorizer hReader(rack);
     hReader.build_board(argv[1]);
     hReader.validate_board();
     hReader.console_print_formatted_board();
     hReader.clear_wordSets();
 
-    VerticalScrabbleVectorizer vReader(hand);
+    VerticalScrabbleVectorizer vReader(rack);
     vReader.build_board(argv[1]);
     vReader.validate_board();
     vReader.console_print_formatted_board();

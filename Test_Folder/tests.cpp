@@ -73,7 +73,7 @@ TEST_CASE("Testing ScrabbleDataset Usage and Speed", "[ScrabbleDataset]"){
 }
 
 TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
-    string hand = "GRO?LEE";
+    string rack = "GRO?LEE";
     TString word = "ADAM";
     word[0].x = 10;
     word[1].x = 11;
@@ -84,13 +84,13 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     word[2].y = 3;
     word[3].y = 3;
 
-    HorizontalScrabbleVectorizer defaultReader(hand);
+    HorizontalScrabbleVectorizer defaultReader(rack);
     defaultReader.build_board("../Test_Folder/Board.csv");
 
-    HorizontalScrabbleVectorizer hReader(hand);
+    HorizontalScrabbleVectorizer hReader(rack);
     hReader.build_board("../Test_Folder/Board.csv");
 
-    VerticalScrabbleVectorizer vReader(hand);
+    VerticalScrabbleVectorizer vReader(rack);
     vReader.build_board("../Test_Folder/Board.csv");
 
     ifstream boardFile;
@@ -218,40 +218,40 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
 }
 
 TEST_CASE("Testing method TString::is_descendent_of", "[TString]"){
-    string givenHand = "DOEWJ?K";
+    string givenRack = "DOEWJ?K";
 
     SECTION("Testing different variations of the given word \"DOEWJ?K\" as input"){
         TString toValidate = "JOOKED";
-        REQUIRE(toValidate.is_descendent_of(givenHand));
+        REQUIRE(toValidate.is_descendent_of(givenRack));
 
         toValidate = "JOUKED";
-        REQUIRE(toValidate.is_descendent_of(givenHand));
+        REQUIRE(toValidate.is_descendent_of(givenRack));
 
         toValidate = "JOWLED";
-        REQUIRE(toValidate.is_descendent_of(givenHand));
+        REQUIRE(toValidate.is_descendent_of(givenRack));
 
         toValidate = "WORKED";
-        REQUIRE(toValidate.is_descendent_of(givenHand));
+        REQUIRE(toValidate.is_descendent_of(givenRack));
 
         toValidate = "WORK";
-        REQUIRE(toValidate.is_descendent_of(givenHand));
+        REQUIRE(toValidate.is_descendent_of(givenRack));
 
         toValidate = "JOKEY";
-        REQUIRE(toValidate.is_descendent_of(givenHand));
+        REQUIRE(toValidate.is_descendent_of(givenRack));
 
         toValidate = "JOKERS";
-        REQUIRE(!toValidate.is_descendent_of(givenHand));
+        REQUIRE(!toValidate.is_descendent_of(givenRack));
 
         toValidate = "JOKING";
-        REQUIRE(!toValidate.is_descendent_of(givenHand));
+        REQUIRE(!toValidate.is_descendent_of(givenRack));
 
         toValidate = "";
-        REQUIRE(!toValidate.is_descendent_of(givenHand));
+        REQUIRE(!toValidate.is_descendent_of(givenRack));
     }
 }
 
 TEST_CASE("Testing method TString::row_is_descendent_of", "[TString]"){
-    string givenHand = "LEO?UDQ";
+    string givenRack = "LEO?UDQ";
     TString givenRow = "     R B  D    ";
     givenRow.set_x_vals_to_subscripts();
 
@@ -260,59 +260,59 @@ TEST_CASE("Testing method TString::row_is_descendent_of", "[TString]"){
         TString givenWord = "BUDDY";
         givenWord.set_x_vals_to_subscripts();
         givenWord.add_to_x_vals(7);
-        REQUIRE(toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+        REQUIRE(toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
 
         toValidate = "     ROB  D    ";
         givenWord = "ROB";
         givenWord.set_x_vals_to_subscripts();
         givenWord.add_to_x_vals(5);
-        REQUIRE(toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+        REQUIRE(toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
 
         toValidate = "     R BLED    ";
         givenWord = "BLED";
         givenWord.set_x_vals_to_subscripts();
         givenWord.add_to_x_vals(7);
-        REQUIRE(toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+        REQUIRE(toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
 
         toValidate = "     R B  DAD  ";
         givenWord = "DAD";
         givenWord.set_x_vals_to_subscripts();
         givenWord.add_to_x_vals(10);
-        REQUIRE(toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+        REQUIRE(toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
 
         toValidate = "     RUB  D    ";
         givenWord = "RUB";
         givenWord.set_x_vals_to_subscripts();
         givenWord.add_to_x_vals(5);
-        REQUIRE(toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+        REQUIRE(toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
 
         toValidate = "     R BADDY   ";
         givenWord = "BADDY";
         givenWord.set_x_vals_to_subscripts();
         givenWord.add_to_x_vals(7);
-        REQUIRE(!toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+        REQUIRE(!toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
 
         toValidate = "     R B  DUCK ";
         givenWord = "DUCK";
         givenWord.set_x_vals_to_subscripts();
         givenWord.add_to_x_vals(10);
-        REQUIRE(!toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+        REQUIRE(!toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
 
         toValidate = "";
         givenWord = "ROB";
         givenWord.set_x_vals_to_subscripts();
         givenWord.add_to_x_vals(5);
-        REQUIRE(!toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));
+        REQUIRE(!toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
     }
 }
 
 TEST_CASE("Testing manual board and perk-board setting", "[ScrabbleVectorizer]"){
-    string hand = "POIAUD?";
+    string rack = "POIAUD?";
 
-    HorizontalScrabbleVectorizer hReader(hand);
+    HorizontalScrabbleVectorizer hReader(rack);
     hReader.build_board("../Test_Folder/Board.csv");
     hReader.validate_board();
-    VerticalScrabbleVectorizer vReader(hand);
+    VerticalScrabbleVectorizer vReader(rack);
     vReader.build_board("../Test_Folder/Board.csv");
     vReader.validate_board();
     vector<string> customPerkBoard =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', '|', ' ', ' ', '3'},

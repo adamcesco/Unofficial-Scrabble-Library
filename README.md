@@ -9,15 +9,15 @@
 
 #### Notes About Applicability
 
-This project uses the *Data/board.csv* file for game board input, the "hand" variable within *main.cpp* for the input of the program's current hand of letters, and the *Data/scrabble_word_list.txt* file to hold a word bank of all English words. Currently, users need to manually edit the program's hand and *board.csv* in order to use this solution throughout the course of a changing Scrabble game, this will be changed soon as I implement a U.I-based solution.
+This project uses the *Data/board.csv* file for game board input, the "rack" variable within *main.cpp* for the input of the program's current rack of letters, and the *Data/scrabble_word_list.txt* file to hold a word bank of all English words. Currently, users need to manually edit the program's rack and *board.csv* in order to use this solution throughout the course of a changing Scrabble game, this will be changed soon as I implement a U.I-based solution.
 
-Note that this solution may not compute all possible words that are in the official Scrabble dictionary, this is due to the requirement of a Scrabble-development license to obtain an official scrabble dictionary in a text-file-based format.
+Note that this solution may not compute all possible words that are in the official Scrabble dictionary, this is due to the requirement of a Scrabble-development license to obtain an official scrabble dictionary in a text-file-based format. Obtaining a Scrabble-development license is coming soon,
 
 #### About This Solution
 
-I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for a horizontal-word-filter and vertical-word-filter, they are both derived classes from an abstract Scrabble-Vectorizer class. Throughout implementation, I continue to enhance the usability of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application.
+I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for a horizontal-word-filter and vertical-word-filter, and they are both derived classes from an abstract Scrabble-Vectorizer class. Throughout implementation, I continue to enhance the usability of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application.
 
-The average time it takes this solution to compute all possible moves for a given board and hand is dependent on the number of words within the scrabble-dictionary that have at least one letter within them that is within your given hand. Essentially, the move generation time metric depends on the number of different letters with respect to the number of playable words that have those letters. For example, with a board pre-set with 5 words on it, and a hand of 7 different common letters, the word-generation time metric is 15 seconds (on my local machine).
+The average time it takes this solution to compute all possible moves for a given board and rack is dependent on the number of words within the scrabble-dictionary that have at least one letter within them that is within your given rack. Essentially, the move generation time metric depends on the number of playable words that have a letter from your rack. For example, with a board pre-set with 5 words on it, and a rack of 7 different common letters, the word-generation time metric is 15 seconds (on my local machine).
 
 
 ## Road Map / To-Do List
@@ -26,7 +26,7 @@ The average time it takes this solution to compute all possible moves for a give
     - This feature is now supported
 2. ~~Implementation of word grading that accounts for word/letter multipliers.~~
     - This feature is now supported
-3. ~~Add support for blank tiles to be within the program's hand~~
+3. ~~Add support for blank tiles to be within the program's rack~~
     - This feature is now supported
 4. ~~Increase the usability of classes for future users/editors of the project~~
 5. Test and Optimize solution to prime for finalization

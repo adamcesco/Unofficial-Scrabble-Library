@@ -26,7 +26,7 @@ HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer() {
 }
 
 HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer(const string &passed) {
-    hand = passed;
+    rack = passed;
     bestX = bestY = 8;
 
     ifstream englishWords;
@@ -96,7 +96,7 @@ void HorizontalScrabbleVectorizer::console_print_formatted_board() const{
 }
 
 string HorizontalScrabbleVectorizer::to_string() const {
-    string buffer = "Hand: " + hand + "\n";
+    string buffer = "Hand: " + rack + "\n";
     buffer += "\nBest Horizontal Word: " + bestWord.to_string() + " - " + ::to_string(points_of_best_word());
     buffer += "\n\tPostion X: " + ::to_string(bestX);
     buffer += "\n\tPostion Y: " + ::to_string(bestY);

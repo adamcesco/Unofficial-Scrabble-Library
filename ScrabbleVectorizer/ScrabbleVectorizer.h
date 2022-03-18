@@ -26,14 +26,14 @@ public:
 
     void clear_wordSets();
     TString& get_best_word(){ return bestWord; }
-    void set_hand(const string& passed){ hand = passed; }
+    void set_hand(const string& passed){ rack = passed; }
     vector<TString>& get_raw_board(){ return board; }
     vector<string> return_raw_char_board_copy();
     vector<string> return_raw_perkBoard_copy();
     int& get_best_x() { return bestX; }
     int& get_best_y() { return bestY; }
     void reset_all_data();
-    string& get_hand(){ return hand; }
+    string& get_hand(){ return rack; }
     void set_raw_board(const vector<TString>& passed){ board = passed; }
     unordered_set<string>& get_all_scrabble_words(){ return scrabbleWordSet; }
     vector<int> find_points_of_word(const string&) const;
@@ -47,7 +47,7 @@ protected:
 
     int bestX, bestY;
     TString bestWord;
-    string hand;
+    string rack;
     unordered_set<string> scrabbleWordSet;
     vector<TString> answerSets[15];
     vector<TString> board;

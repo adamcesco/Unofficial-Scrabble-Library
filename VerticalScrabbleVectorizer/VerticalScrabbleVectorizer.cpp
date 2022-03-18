@@ -24,7 +24,7 @@ VerticalScrabbleVectorizer::VerticalScrabbleVectorizer() {
 }
 
 VerticalScrabbleVectorizer::VerticalScrabbleVectorizer(const string &passed) {
-    hand = passed;
+    rack = passed;
 
     ifstream englishWords;
     englishWords.open("../Data/scrabble_word_list.txt");
@@ -103,7 +103,7 @@ void VerticalScrabbleVectorizer::console_print_formatted_board() const{
 }
 
 string VerticalScrabbleVectorizer::to_string() const {
-    string buffer = "Hand: " + hand + "\n";
+    string buffer = "Hand: " + rack + "\n";
     buffer += "Best Vertical Word: " + bestWord.to_string() + " - " + ::to_string(points_of_best_word());
     buffer += "\n\tPostion X: " + ::to_string(bestX);
     buffer += "\n\tPostion Y: " + ::to_string(bestY);
