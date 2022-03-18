@@ -1,7 +1,3 @@
-
-
-
-
 #ifndef SCRABBLE_SOLVER_LSTRING_H
 #define SCRABBLE_SOLVER_LSTRING_H
 #include <iostream>
