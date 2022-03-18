@@ -90,9 +90,8 @@ struct Letter {
 
 class LString{
 private:
-    Letter* data = nullptr;
-    int eleCount;
-    int maxCap;
+    Letter data[46];
+    int eleCount = 0;
 
 public:
     struct Iterator{
@@ -108,12 +107,12 @@ public:
 
         Letter* dataPtr;
     };
-    Iterator begin() const { return Iterator(data); }
-    Iterator end() const   { return Iterator(data + eleCount); }
+    Iterator begin() { return Iterator(data); }
+    Iterator end()   { return Iterator(data + eleCount); }
 
+    //----------------------------------------------------------------------
 
-
-    LString();
+    LString(){ eleCount = 0; }
     LString(const LString&);
     LString(const string&);
     LString(char *);
@@ -123,33 +122,22 @@ public:
 
     Letter& operator[](int);
     Letter read_at(int) const;
-    int length() const;
-    int read_maxCap() const;
+    inline int length() const{ return eleCount; }
+    static int max_capacity() { return 45; }
     Letter read_back() const;
     Letter& back();
-    int find_pos_of(Letter) const;
-
-    LString& push_back(Letter);
-    LString& push_front(Letter);
-    LString& push_back(char);
-    LString& push_front(char);
+    int find_pos_of(char) const;
 
     LString& pop_back();
-    LString& pop_front();
-    LString& clear();
-    LString& erase_at(int);
+    inline LString& clear(){ eleCount = 0; return *this; }
+    LString& erase_at(int);     //needs testing
 
-    bool is_empty() const;
+    inline bool is_empty() const{ if(eleCount > 0){ return false; } return true; }
     bool contains(Letter) const;
     bool contains(char) const;
-    bool contains(string) const;
-    bool contains(LString) const;
-    bool containsIgnorePadding(LString) const;
     bool operator==(const LString&) const;
-    LString& operator+=(const LString&);
     LString& operator+=(const Letter&);
     LString& operator+=(char);
-    LString operator+(const LString&) const;
     LString operator+(const Letter&) const;
     LString operator+(char) const;
     string to_string() const;
@@ -165,15 +153,8 @@ public:
     LString& set_y_vals_equal_to(int);
     bool contains_flag(int) const;
     vector<LString> fragments() const;
-    bool is_blank_LStr() const;
-    LString& convert_vertical_format_to_horizontal();       //needs testing
-    LString& convert_horizontal_format_to_vertical();       //needs testing
-    
-    ~LString(){ delete[] data; }
-
-protected:
-    explicit LString(int);
-    void increaseMaxCapacity();
+    vector<string> string_fragments() const;
+    bool is_all_whitespace() const;
 };
 
 class MyHashFunction {

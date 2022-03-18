@@ -72,10 +72,10 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         LString rowVect;
         while (getline(strStr, cell, ',') && cellCount < 15){
             if(!cell.empty() && isalpha(cell[0])) {
-                rowVect.push_back(Letter(cell[0], cellCount, rowCount, 1));
+                rowVect += Letter(cell[0], cellCount, rowCount, 1);
             }
             else {
-                rowVect.push_back(Letter(' ', cellCount, rowCount, 1));
+                rowVect += Letter(' ', cellCount, rowCount, 1);
             }
             cellCount++;
         }

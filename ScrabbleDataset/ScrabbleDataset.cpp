@@ -15,8 +15,13 @@ ScrabbleDataset::ScrabbleDataset() {
         throw invalid_argument("Could not open ../Data/scrabble_word_list.txt");
 
     string curWord;
+    int count = 0;
     while(englishWords.good()){
         getline(englishWords, curWord);
+        count++;
+
+        while(isspace(curWord.back()))
+            curWord.pop_back();
 
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {
@@ -29,6 +34,8 @@ ScrabbleDataset::ScrabbleDataset() {
             }
         }
     }
+    cout << "ScrabbleDataset:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
+
     englishWords.close();
 }
 
@@ -47,8 +54,13 @@ ScrabbleDataset::ScrabbleDataset(string filePath){
         throw invalid_argument("Could not open " + filePath);
 
     string curWord;
+    int count = 0;
     while(englishWords.good()){
         getline(englishWords, curWord);
+        count++;
+
+        while(isspace(curWord.back()))
+            curWord.pop_back();
 
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {
@@ -61,6 +73,8 @@ ScrabbleDataset::ScrabbleDataset(string filePath){
             }
         }
     }
+    cout << "ScrabbleDataset:: " << count << " words read from " <<  filePath << endl;
+
     englishWords.close();
 }
 

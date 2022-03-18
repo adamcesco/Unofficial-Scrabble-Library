@@ -8,10 +8,18 @@ VerticalScrabbleVectorizer::VerticalScrabbleVectorizer() {
         throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
 
     string curWord;
+    int count = 0;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        scrabbleWordSet.emplace(LString(curWord));
+        count++;
+
+        while(isspace(curWord.back()))
+            curWord.pop_back();
+
+        scrabbleWordSet.emplace(curWord);
     }
+    cout << "VerticalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
+
     englishWords.close();
 }
 
@@ -24,10 +32,18 @@ VerticalScrabbleVectorizer::VerticalScrabbleVectorizer(const string &passed) {
         throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
 
     string curWord;
+    int count = 0;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        scrabbleWordSet.emplace(LString(curWord));
+        count++;
+
+        while(isspace(curWord.back()))
+            curWord.pop_back();
+
+        scrabbleWordSet.emplace(curWord);
     }
+    cout << "VerticalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
+
     englishWords.close();
 }
 
@@ -44,17 +60,17 @@ void VerticalScrabbleVectorizer::build_board(const string& filePath) {
         string cell;
         stringstream strStr(row);
         int cellCount = 0;
-        LString rowVect;
+        LString LRow;
         while (getline(strStr, cell, ',') && cellCount < 15){
             if(!cell.empty() && isalpha(cell[0])) {
-                rowVect.push_back(Letter(cell[0], cellCount, rowCount, 1));
+                LRow += Letter(cell[0], cellCount, rowCount, 1);
             }
             else {
-                rowVect.push_back(Letter(' ', cellCount, rowCount, 1));
+                LRow += Letter(' ', cellCount, rowCount, 1);
             }
             cellCount++;
         }
-        board.push_back(rowVect);
+        board.push_back(LRow);
         rowCount++;
     }
     boardFile.close();
@@ -109,7 +125,7 @@ LString VerticalScrabbleVectorizer::update_best_word(){
                 //x = y, y = 14 - x
                 bestX = (14 - rowSubscript) + 1;
                 bestY = (bestWord[0].x) + 1;
-            } else if (wordPoints == bestWordPoints) {
+            } else if (wordPoints != 0 && wordPoints == bestWordPoints) {
                 if (word.length() < bestWord.length() || bestWord.is_empty()) {
                     bestWord = word;
                     //x = y, y = 14 - x
@@ -137,7 +153,7 @@ void VerticalScrabbleVectorizer::validate_words() {
                     column += boardCpy[14 - j].read_at(i);
                 }
 
-                vector<LString> colShards = column.fragments();
+                vector<string> colShards = column.string_fragments();
 
                 for (const auto& shard : colShards) {
                     if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
@@ -145,7 +161,7 @@ void VerticalScrabbleVectorizer::validate_words() {
                     }
                 }
 
-                vector<LString> rowShards = row.fragments();
+                vector<string> rowShards = row.string_fragments();
 
                 for (const auto& shard : rowShards) {
                     if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
@@ -159,12 +175,12 @@ void VerticalScrabbleVectorizer::validate_words() {
 
 void VerticalScrabbleVectorizer::set_board(const vector<LString> &passed) {   //assumes that passed is formatted as a proper board
     if(passed.size() != 15)
-        throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument is not of a proper size.");
+        throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString>) | passed argument is not of a proper size.");
 
     vector<LString> boardCpy;
     for (int i = 14; i >= 0; i--) {  //i = x
         if(passed[i].length() != 15)
-            throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument has an element that is not of a proper size.");
+            throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString>) | passed argument has an element that is not of a proper size.");
         LString column;
         for (int j = 0; j < 15; j++) {  //j = y
             char cell = passed[j].read_at(i).LData;
@@ -202,18 +218,18 @@ void VerticalScrabbleVectorizer::validate_board() const{
             row += board[j].read_at(i);
         }
 
-        vector<LString> colShards = column.fragments();
+        vector<string> colShards = column.string_fragments();
 
         for (const auto& shard : colShards) {
             if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
-                throw invalid_argument("Invalid vertical Word in Data/Board.csv | " + shard.to_string());
+                throw invalid_argument("Error in void VerticalScrabbleVectorizer::validate_board() | Invalid vertical Word in Data/Board.csv |" + shard + '|');
         }
 
-        vector<LString> rowShards = row.fragments();
+        vector<string> rowShards = row.string_fragments();
 
         for (const auto& shard : rowShards) {
             if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
-                throw invalid_argument("Invalid horizontal Word in Data/Board.csv | " + shard.to_string());
+                throw invalid_argument("Error in void VerticalScrabbleVectorizer::validate_board() | Invalid horizontal Word in Data/Board.csv |" + shard + '|');
         }
     }
 }
@@ -243,7 +259,7 @@ vector<string> VerticalScrabbleVectorizer::return_formatted_char_board_copy() co
 }
 
 vector<vector<LString>> VerticalScrabbleVectorizer::return_formatted_answerSets_copy() const {
-    vector<vector<LString>> toReturn;
+    vector<vector<LString>> toReturn(15);
     for (int i = 0; i < 15; ++i) {
         toReturn.push_back(answerSets[14 - i]);
     }

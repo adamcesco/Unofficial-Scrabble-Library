@@ -69,7 +69,7 @@ void ScrabbleVectorizer::reset_all_data() {
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        scrabbleWordSet.emplace(LString(curWord));
+        scrabbleWordSet.emplace(curWord);
     }
     englishWords.close();
 }
@@ -278,7 +278,8 @@ int ScrabbleVectorizer::points_of_word(const LString &word) const{
     }
     wordSum *= multiplier;
     wordSum += crossWordSum;
-    if(word.length() - letterCount == hand.length())
+    int handLen = hand.length();
+    if(handLen == 7 && word.length() - letterCount == handLen)
         wordSum += 50;
 
 
