@@ -17,7 +17,7 @@ Note that this solution may not compute all possible words that are in the offic
 
 I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for a horizontal-word-filter and vertical-word-filter, they are both derived classes from an abstract Scrabble-Vectorizer class. Throughout implementation, I continue to enhance the usability of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application.
 
-The average time it takes this solution to compute all possible moves for a given board and hand is dependent on the amount of words within the scrabble-dictionary that have at least one letter within them that is within your given hand. Essentially, the move generation time metric depends on the amount of different letters with respect to the amount of playable words that have those letters. For example, with a board pre-set with 5 words on it, and a hand of 7 completely different (common) letters, the word-generation time metric is 15 seconds (on my local machine).  
+The average time it takes this solution to compute all possible moves for a given board and hand is dependent on the number of words within the scrabble-dictionary that have at least one letter within them that is within your given hand. Essentially, the move generation time metric depends on the number of different letters with respect to the number of playable words that have those letters. For example, with a board pre-set with 5 words on it, and a hand of 7 different common letters, the word-generation time metric is 15 seconds (on my local machine).
 
 
 ## Road Map / To-Do List
