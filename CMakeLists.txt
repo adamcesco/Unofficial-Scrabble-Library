@@ -13,4 +13,4 @@ foreach(file IN LISTS input01 input02 input03)
     configure_file(${file} ${file} COPYONLY)
 endforeach()
 
-add_executable(scrabble-solver main.cpp ScrabbleDataset/ScrabbleDataset.cpp ScrabbleDataset/ScrabbleDataset.h HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.cpp HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.h LString/LString.cpp LString/LString.h VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.cpp VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h ScrabbleVectorizer/ScrabbleVectorizer.cpp ScrabbleVectorizer/ScrabbleVectorizer.h Test_Folder/tests.cpp)
+add_executable(scrabble-solver main.cpp ScrabbleDataset/ScrabbleDataset.cpp ScrabbleDataset/ScrabbleDataset.h HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.cpp HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.h TString/TString.cpp TString/TString.h VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.cpp VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h ScrabbleVectorizer/ScrabbleVectorizer.cpp ScrabbleVectorizer/ScrabbleVectorizer.h Test_Folder/tests.cpp)

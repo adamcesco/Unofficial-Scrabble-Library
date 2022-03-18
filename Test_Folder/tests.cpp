@@ -37,7 +37,7 @@ TEST_CASE("Testing ScrabbleDataset Usage and Speed", "[ScrabbleDataset]"){
 
 TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     string hand = "GRO?LEE";
-    LString word = "ADAM";
+    TString word = "ADAM";
     word[0].x = 10;
     word[1].x = 11;
     word[2].x = 12;
@@ -61,7 +61,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     if(!boardFile.is_open())
         throw invalid_argument("could not open ../Test_Folder/Board.csv");
 
-    vector<LString> originalBoard;
+    vector<TString> originalBoard;
     string row;
     int rowCount = 0;
     while (boardFile.good()){
@@ -69,13 +69,13 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         string cell;
         stringstream strStr(row);
         int cellCount = 0;
-        LString rowVect;
+        TString rowVect;
         while (getline(strStr, cell, ',') && cellCount < 15){
             if(!cell.empty() && isalpha(cell[0])) {
-                rowVect += Letter(cell[0], cellCount, rowCount, 1);
+                rowVect += Tile(cell[0], cellCount, rowCount, 1);
             }
             else {
-                rowVect += Letter(' ', cellCount, rowCount, 1);
+                rowVect += Tile(' ', cellCount, rowCount, 1);
             }
             cellCount++;
         }
@@ -113,7 +113,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         REQUIRE(vReader.return_formatted_board_copy() == originalBoard);
     }
 
-    SECTION("ScrabbleVectorizer::set_board(const vector<LString> &passed)") {
+    SECTION("ScrabbleVectorizer::set_board(const vector<TString> &passed)") {
         hReader.set_board(originalBoard);
         vReader.set_board(originalBoard);
 
@@ -121,8 +121,8 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         REQUIRE(hReader.get_raw_board() == originalBoard);
         REQUIRE(vReader.return_formatted_board_copy() == originalBoard);
 
-        vector<LString> vboardFormattedCopy = vReader.return_formatted_board_copy();
-        vector<LString> hboardFormattedCopy = hReader.return_formatted_board_copy();
+        vector<TString> vboardFormattedCopy = vReader.return_formatted_board_copy();
+        vector<TString> hboardFormattedCopy = hReader.return_formatted_board_copy();
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {
                 REQUIRE(vboardFormattedCopy[i][j].x == i);
@@ -180,11 +180,11 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     }
 }
 
-TEST_CASE("Testing method LString::is_descendent_of", "[LString]"){
+TEST_CASE("Testing method TString::is_descendent_of", "[TString]"){
     string givenHand = "DOEWJ?K";
 
     SECTION("Testing different variations of the given word \"DOEWJ?K\" as input"){
-        LString toValidate = "JOOKED";
+        TString toValidate = "JOOKED";
         REQUIRE(toValidate.is_descendent_of(givenHand));
 
         toValidate = "JOUKED";
@@ -213,14 +213,14 @@ TEST_CASE("Testing method LString::is_descendent_of", "[LString]"){
     }
 }
 
-TEST_CASE("Testing method LString::row_is_descendent_of", "[LString]"){
+TEST_CASE("Testing method TString::row_is_descendent_of", "[TString]"){
     string givenHand = "LEO?UDQ";
-    LString givenRow = "     R B  D    ";
+    TString givenRow = "     R B  D    ";
     givenRow.set_x_vals_to_subscripts();
 
     SECTION("Testing different variations of the given word \"LEO?UDQ\" with row \"     R B  D    \" as input"){
-        LString toValidate = "     R BUDDY   ";
-        LString givenWord = "BUDDY";
+        TString toValidate = "     R BUDDY   ";
+        TString givenWord = "BUDDY";
         givenWord.set_x_vals_to_subscripts();
         givenWord.add_to_x_vals(7);
         REQUIRE(toValidate.row_is_descendent_of(givenHand, givenRow, givenWord));

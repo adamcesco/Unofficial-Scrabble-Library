@@ -1,13 +1,13 @@
-#include "LString.h"
+#include "TString.h"
 
-LString::LString(const LString& toCpy){
+TString::TString(const TString& toCpy){
     eleCount = toCpy.eleCount;
 
     for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy.data[i];
 }
 
-LString& LString::operator=(const LString& toAssign){
+TString& TString::operator=(const TString& toAssign){
     if(this == &toAssign)
         return *this;
 
@@ -19,40 +19,40 @@ LString& LString::operator=(const LString& toAssign){
     return *this;
 }
 
-inline Letter& LString::operator[](int subscript){
+inline Tile& TString::operator[](int subscript){
     if(subscript < 0 || subscript >= eleCount)
-        throw invalid_argument("invalid subscript for LString::operator[](int) | subscript parameter is invalid");
+        throw invalid_argument("invalid subscript for TString::operator[](int) | subscript parameter is invalid");
     return data[subscript];
 }
 
-inline Letter LString::read_at(int subscript) const{
+inline Tile TString::read_at(int subscript) const{
     if(subscript < 0 || subscript >= eleCount)
-        throw invalid_argument("invalid subscript for LString::read_at(int) | subscript parameter is invalid");
+        throw invalid_argument("invalid subscript for TString::read_at(int) | subscript parameter is invalid");
     return data[subscript];
 }
 
-Letter LString::read_back() const{
+Tile TString::read_back() const{
     if(eleCount < 1)
-        throw invalid_argument("invalid call for LString::back() | eleCount parameter is less than 1");
+        throw invalid_argument("invalid call for TString::back() | eleCount parameter is less than 1");
     return data[eleCount - 1];
 }
 
-Letter& LString::back(){
+Tile& TString::back(){
     if(eleCount < 1)
-        throw invalid_argument("invalid call for LString::back() | eleCount parameter is less than 1");
+        throw invalid_argument("invalid call for TString::back() | eleCount parameter is less than 1");
     return data[eleCount - 1];
 }
 
-inline LString& LString::pop_back(){
+inline TString& TString::pop_back(){
     if(eleCount == 0)
-        throw invalid_argument("invalid subscript for LString::pop_front(int) | LString::length is 0");
+        throw invalid_argument("invalid subscript for TString::pop_front(int) | TString::length is 0");
     eleCount--;
     return *this;
 }
 
-LString& LString::erase_at(int subscript){
+TString& TString::erase_at(int subscript){
     if(subscript < 0 || subscript >= eleCount)
-        throw invalid_argument("invalid subscript for LString::erase_at()");
+        throw invalid_argument("invalid subscript for TString::erase_at()");
 
     for (int i = (subscript + 1); i < eleCount; ++i) {
         data[i - 1] = data[i];
@@ -62,7 +62,7 @@ LString& LString::erase_at(int subscript){
     return *this;
 }
 
-bool LString::contains(Letter toFind) const{
+bool TString::contains(Tile toFind) const{
     for (int i = 0; i < eleCount; ++i) {
         if(data[i] == toFind)
             return true;
@@ -71,7 +71,7 @@ bool LString::contains(Letter toFind) const{
     return false;
 }
 
-bool LString::operator==(const LString& dsv1) const{
+bool TString::operator==(const TString& dsv1) const{
     if(eleCount != dsv1.eleCount)
         return false;
 
@@ -83,9 +83,9 @@ bool LString::operator==(const LString& dsv1) const{
     return true;
 }
 
-LString &LString::operator=(const string &toAssign) {
+TString &TString::operator=(const string &toAssign) {
     int passedSize = toAssign.size();
-    eleCount = (passedSize < 46) ? passedSize : throw invalid_argument("invalid subscript for LString &LString::operator=(const string &toAssign) | Passed string is of a length that is larger than the max capacity for an LString");;
+    eleCount = (passedSize < 46) ? passedSize : throw invalid_argument("invalid subscript for TString &TString::operator=(const string &toAssign) | Passed string is of a length that is larger than the max capacity for an TString");;
 
     for (int i = 0; i < eleCount; ++i) {
         data[i] = toAssign[i];
@@ -94,23 +94,23 @@ LString &LString::operator=(const string &toAssign) {
     return *this;
 }
 
-inline LString& LString::operator+=(const Letter &pssd){
+inline TString& TString::operator+=(const Tile &pssd){
     if(eleCount > 44)
-        throw invalid_argument("invalid call for LString& LString::operator+=(const Letter &) | Max capacity of LString has been reached");
+        throw invalid_argument("invalid call for TString& TString::operator+=(const Tile &) | Max capacity of TString has been reached");
     data[eleCount] = pssd;
     eleCount++;
     return *this;
 }
 
-inline LString& LString::operator+=(char pssd) {
+inline TString& TString::operator+=(char pssd) {
     if(eleCount > 44)
-        throw invalid_argument("invalid call for LString& LString::operator+=(char) | Max capacity of LString has been reached");
+        throw invalid_argument("invalid call for TString& TString::operator+=(char) | Max capacity of TString has been reached");
     data[eleCount] = pssd;
     eleCount++;
     return *this;
 }
 
-bool LString::contains(char toFind) const {
+bool TString::contains(char toFind) const {
     for (int i = 0; i < eleCount; ++i) {
         if(data[i] == toFind)
             return true;
@@ -118,22 +118,22 @@ bool LString::contains(char toFind) const {
     return false;
 }
 
-string LString::to_string() const{
+string TString::to_string() const{
     string temp;
     for(int i = 0; i < eleCount; i++)
         temp += data[i].LData;
     return temp;
 }
 
-LString::LString(const string &toCpy) {
+TString::TString(const string &toCpy) {
     eleCount = toCpy.length();
     for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy[i];
 }
 
-LString &LString::operator=(char* toAssign) {
+TString &TString::operator=(char* toAssign) {
     int passedSize = strlen(toAssign);
-    eleCount = (passedSize < 46) ? passedSize : throw invalid_argument("invalid subscript for LString &LString::operator=(char* toAssign) | Passed string is of a length that is larger than the max capacity for an LString");;
+    eleCount = (passedSize < 46) ? passedSize : throw invalid_argument("invalid subscript for TString &TString::operator=(char* toAssign) | Passed string is of a length that is larger than the max capacity for an TString");;
 
     for (int i = 0; i < eleCount; ++i)
         data[i] = toAssign[i];
@@ -141,7 +141,7 @@ LString &LString::operator=(char* toAssign) {
     return *this;
 }
 
-bool LString::row_is_descendent_of(const string& hand, const LString& row, LString& word) {
+bool TString::row_is_descendent_of(const string& hand, const TString& row, TString& word) {
     if(eleCount == 0)
         return false;
 
@@ -183,48 +183,48 @@ bool LString::row_is_descendent_of(const string& hand, const LString& row, LStri
     return true;
 }
 
-LString::LString(char* toCpy) {
+TString::TString(char* toCpy) {
     eleCount = strlen(toCpy);
     for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy[i];
 }
 
-int LString::get_letter_points() const{
+int TString::get_letter_points() const{
     int sum = 0;
     for (int i = 0; i < eleCount; ++i)
         sum += data[i].val;
     return sum;
 }
 
-int LString::get_letter_points(string passed) {
+int TString::get_letter_points(string passed) {
     int sum = 0;
     for(char it : passed)
         sum += legend[(it & 31) - 1];
     return sum;
 }
 
-LString& LString::set_x_vals_to_subscripts() {
+TString& TString::set_x_vals_to_subscripts() {
     for (int i = 0; i < eleCount; ++i)
         data[i].x = i;
 
     return *this;
 }
 
-LString &LString::add_to_x_vals(int passed) {
+TString &TString::add_to_x_vals(int passed) {
     for (int i = 0; i < eleCount; ++i)
         data[i].x += passed;
 
     return *this;
 }
 
-LString &LString::set_x_vals_equal_to(int passed) {
+TString &TString::set_x_vals_equal_to(int passed) {
     for (int i = 0; i < eleCount; ++i)
         data[i].x = passed;
 
     return *this;
 }
 
-bool LString::contains_flag(int passed) const{
+bool TString::contains_flag(int passed) const{
     for (int i = 0; i < eleCount; ++i) {
         if(data[i].flag == passed)
             return true;
@@ -232,9 +232,9 @@ bool LString::contains_flag(int passed) const{
     return false;
 }
 
-vector<LString> LString::fragments() const{
-    vector<LString> fragments;
-    LString curFragment;
+vector<TString> TString::fragments() const{
+    vector<TString> fragments;
+    TString curFragment;
     for (int i = 0; i < eleCount; ++i) {
         if(data[i].LData != ' ') {
             curFragment += data[i];
@@ -250,32 +250,32 @@ vector<LString> LString::fragments() const{
     return fragments;
 }
 
-LString LString::operator+(const Letter& toAppend) const {
-    LString temp(*this);
+TString TString::operator+(const Tile& toAppend) const {
+    TString temp(*this);
     if(temp.eleCount > 44)
-        throw invalid_argument("invalid call for LString LString::operator+(const Letter& toAppend) | Max capacity of LString has been reached");
+        throw invalid_argument("invalid call for TString TString::operator+(const Tile& toAppend) | Max capacity of TString has been reached");
     temp.data[temp.eleCount] = toAppend;
     temp.eleCount++;
     return temp;
 }
 
-LString LString::operator+(char toAppend) const {
-    LString temp(*this);
+TString TString::operator+(char toAppend) const {
+    TString temp(*this);
     if(temp.eleCount > 44)
-        throw invalid_argument("invalid call for LString LString::operator+(char toAppend) | Max capacity of LString has been reached");
+        throw invalid_argument("invalid call for TString TString::operator+(char toAppend) | Max capacity of TString has been reached");
     temp.data[temp.eleCount] = toAppend;
     temp.eleCount++;
     return temp;
 }
 
-LString &LString::set_y_vals_equal_to(int passed) {
+TString &TString::set_y_vals_equal_to(int passed) {
     for (int i = 0; i < eleCount; ++i)
         data[i].y = passed;
 
     return *this;
 }
 
-bool LString::is_all_whitespace() const {
+bool TString::is_all_whitespace() const {
     for (int i = 0; i < eleCount; ++i) {
         if(isalpha(data[i].LData))
             return false;
@@ -283,7 +283,7 @@ bool LString::is_all_whitespace() const {
     return true;
 }
 
-bool LString::is_descendent_of(const string& hand) {
+bool TString::is_descendent_of(const string& hand) {
     if(eleCount == 0)
         return false;
 
@@ -321,7 +321,7 @@ bool LString::is_descendent_of(const string& hand) {
     return true;
 }
 
-int LString::find_pos_of(char toFind) const {
+int TString::find_pos_of(char toFind) const {
     for (int i = 0; i < eleCount; ++i) {
         if(data[i] == toFind)
             return i;
@@ -329,7 +329,7 @@ int LString::find_pos_of(char toFind) const {
     return -1;
 }
 
-vector<string> LString::string_fragments() const {
+vector<string> TString::string_fragments() const {
     vector<string> fragments;
     string curFragment;
     for (int i = 0; i < eleCount; ++i) {

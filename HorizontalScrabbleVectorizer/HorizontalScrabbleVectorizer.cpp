@@ -63,13 +63,13 @@ void HorizontalScrabbleVectorizer::build_board(const string& filePath) {
         string cell;
         stringstream strStr(row);
         int cellCount = 0;
-        LString LRow;
+        TString LRow;
         while (getline(strStr, cell, ',') && cellCount < 15){
             if(!cell.empty() && isalpha(cell[0])) {
-                LRow += Letter(cell[0], cellCount, rowCount, 1);
+                LRow += Tile(cell[0], cellCount, rowCount, 1);
             }
             else {
-                LRow += Letter(' ', cellCount, rowCount, 1);
+                LRow += Tile(' ', cellCount, rowCount, 1);
             }
             cellCount++;
         }
@@ -108,11 +108,11 @@ string HorizontalScrabbleVectorizer::to_string() const {
 void HorizontalScrabbleVectorizer::validate_words() {
     for (auto & wordSet : answerSets) {
         for (auto& word: wordSet) {
-            vector<LString> boardCpy = return_raw_board_with(word);
+            vector<TString> boardCpy = return_raw_board_with(word);
 
             for (int i = 0; i < 15; i++) {
-                LString row;
-                LString column;
+                TString row;
+                TString column;
                 for (int j = 0; j < 15; ++j) {
                     row += boardCpy[i].read_at(j);
                     column += boardCpy[j].read_at(i);
@@ -138,7 +138,7 @@ void HorizontalScrabbleVectorizer::validate_words() {
     }
 }
 
-LString HorizontalScrabbleVectorizer::update_best_word() {
+TString HorizontalScrabbleVectorizer::update_best_word() {
     int rowSubscript = 0;
     bestWord.clear();
     for (auto & wordSet : answerSets) {
@@ -166,15 +166,15 @@ LString HorizontalScrabbleVectorizer::update_best_word() {
 
 void HorizontalScrabbleVectorizer::validate_board() const{
     if(scrabbleWordSet.empty())
-        throw invalid_argument("Error in void HorizontalScrabbleVectorizer::validate_board() const | unordered_map<LString> scrabbleWordSet is empty.");
+        throw invalid_argument("Error in void HorizontalScrabbleVectorizer::validate_board() const | unordered_map<TString> scrabbleWordSet is empty.");
 
     for (int i = 0; i < 15; ++i) {
-        LString row;
+        TString row;
         for (int j = 0; j < 15; ++j) {
             row += board[i].read_at(j);
         }
 
-        LString column;
+        TString column;
         for (int j = 0; j < 15; ++j) {
             column += board[j].read_at(i);
         }
@@ -220,30 +220,30 @@ vector<string> HorizontalScrabbleVectorizer::return_formatted_char_board_copy() 
     return boardCpy;
 }
 
-vector<vector<LString>> HorizontalScrabbleVectorizer::return_formatted_answerSets_copy() const {
-    vector<vector<LString>> toReturn(15);
+vector<vector<TString>> HorizontalScrabbleVectorizer::return_formatted_answerSets_copy() const {
+    vector<vector<TString>> toReturn(15);
     for (const auto & wordSet : answerSets) {
         toReturn.push_back(wordSet);
     }
     return toReturn;
 }
 
-void HorizontalScrabbleVectorizer::set_board(const vector<LString> &passed) {
+void HorizontalScrabbleVectorizer::set_board(const vector<TString> &passed) {
     if(passed.size() != 15)
-        throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument is not of a proper size.");
-    vector<LString> boardCpy;
+        throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<TString> passed) | passed argument is not of a proper size.");
+    vector<TString> boardCpy;
     for (int i = 0; i < 15; ++i) {
         if(passed[i].length() != 15)
-            throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<LString> passed) | passed argument has an element that is not of a proper size.");
+            throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<TString> passed) | passed argument has an element that is not of a proper size.");
 
-        LString row;
+        TString row;
         for (int j = 0; j < 15; ++j) {
             char cell = passed[i].read_at(j).LData;
             if(isalpha(cell)) {
-                row += Letter(cell, j, i, 1);
+                row += Tile(cell, j, i, 1);
             }
             else {
-                row += Letter(' ', j, i, 1);
+                row += Tile(' ', j, i, 1);
             }
         }
         boardCpy.emplace_back(row);
@@ -261,19 +261,19 @@ void HorizontalScrabbleVectorizer::set_board(const vector<LString> &passed) {
 void HorizontalScrabbleVectorizer::set_board(const vector<string> &passed) {
     if(passed.size() != 15)
         throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<string> passed) | passed argument is not of a proper size.");
-    vector<LString> boardCpy;
+    vector<TString> boardCpy;
     for (int i = 0; i < 15; ++i) {
         if(passed[i].length() != 15)
             throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<string> passed) | passed argument has an element that is not of a proper size.");
 
-        LString row;
+        TString row;
         for (int j = 0; j < 15; ++j) {
             char cell = passed[i][j];
             if(isalpha(cell)) {
-                row += Letter(cell, j, i, 1);
+                row += Tile(cell, j, i, 1);
             }
             else {
-                row += Letter(' ', j, i, 1);
+                row += Tile(' ', j, i, 1);
             }
         }
         boardCpy.emplace_back(row);

@@ -41,9 +41,9 @@ int main(int argc, char* argv[]){
     hReader.update_best_word();
 
     int vPoints = vReader.points_of_best_word();
-    LString bestVWord = vReader.get_best_word();
+    TString bestVWord = vReader.get_best_word();
     int hPoints = hReader.points_of_best_word();
-    LString bestHWord = hReader.get_best_word();
+    TString bestHWord = hReader.get_best_word();
 
     //printing the information of the best word for the board to the console
     cout << "Best Horizontal Word: " << bestHWord.to_string() << endl;

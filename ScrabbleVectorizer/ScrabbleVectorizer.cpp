@@ -7,7 +7,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
     int rowSubscript = 0;
     for (auto& row: board) {
         row.set_x_vals_to_subscripts();
-        LString rowCpy = row;
+        TString rowCpy = row;
         rowCpy.set_x_vals_to_subscripts();
 
         int tileCount = 0;
@@ -19,7 +19,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
 
             vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.LData);
             for (auto & it : wordsOfTile) {
-                LString curLStr(it.first);
+                TString curLStr(it.first);
                 int anchorIndex = it.second;
                 if((tileCount - anchorIndex) < 0 || !contains_letter_of_hand(curLStr))
                     continue;
@@ -74,17 +74,17 @@ void ScrabbleVectorizer::reset_all_data() {
     englishWords.close();
 }
 
-void ScrabbleVectorizer::place_into_board(const LString &toPrint) {
+void ScrabbleVectorizer::place_into_board(const TString &toPrint) {
     for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
         if (board[toPrint.read_at(0).y][i] == ' ')
-            board[toPrint.read_at(0).y][i] = Letter(toPrint.read_at(i - toPrint.read_at(0).x).LData,
-                                                    i,
-                                                    toPrint.read_at(0).y, 1);
+            board[toPrint.read_at(0).y][i] = Tile(toPrint.read_at(i - toPrint.read_at(0).x).LData,
+                                                  i,
+                                                  toPrint.read_at(0).y, 1);
         perkBoard[toPrint.read_at(0).y][i] = ' ';
     }
 }
 
-bool ScrabbleVectorizer::contains_letter_of_hand(const LString &passed) const {
+bool ScrabbleVectorizer::contains_letter_of_hand(const TString &passed) const {
     unordered_set<char> handSet;
     for (int i = 0; i < hand.length(); ++i)
         handSet.emplace(toupper(hand[i]));
@@ -97,8 +97,8 @@ bool ScrabbleVectorizer::contains_letter_of_hand(const LString &passed) const {
     return false;
 }
 
-vector<LString> ScrabbleVectorizer::return_raw_board_with(const LString &toPrint) const {
-    vector<LString> boardCpy = board;
+vector<TString> ScrabbleVectorizer::return_raw_board_with(const TString &toPrint) const {
+    vector<TString> boardCpy = board;
     int toPrintX = toPrint.read_at(0).x;
     int toPrintY = toPrint.read_at(0).y;
     for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
@@ -120,7 +120,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {
     int rowSubscript = 0;
     for (auto& row: board) {
         row.set_x_vals_to_subscripts();
-        LString rowCpy = row;
+        TString rowCpy = row;
         rowCpy.set_x_vals_to_subscripts();
 
         //computing tangential words above
@@ -135,7 +135,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {
                 vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, hand[j]);
 
                 for (auto &it: wordsOfTile) {
-                    LString curLStr(it.first);
+                    TString curLStr(it.first);
                     int anchorIndex = it.second;
                     if ((tileCount - anchorIndex) < 0 || !curLStr.is_descendent_of(hand))
                         continue;
@@ -174,7 +174,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {
                 vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, hand[j]);
 
                 for (auto &it: wordsOfTile) {
-                    LString curLStr(it.first);
+                    TString curLStr(it.first);
                     int anchorIndex = it.second;
                     if ((tileCount - anchorIndex) < 0 || !curLStr.is_descendent_of(hand))
                         continue;
@@ -223,7 +223,7 @@ void ScrabbleVectorizer::clear_wordSets() {
     answerSets[14].clear();
 }
 
-int ScrabbleVectorizer::points_of_word(const LString &word) const{
+int ScrabbleVectorizer::points_of_word(const TString &word) const{
     // If a letter is shared between words, then count it's premium value for all words
     // Any word multiplier only gets assigned to the original word, and not any subsequently formed words
     // If a word is placed on two or more multiplier tiles, the words value is multiplied by both tile values
@@ -233,14 +233,14 @@ int ScrabbleVectorizer::points_of_word(const LString &word) const{
         return 0;
 
     int crossWordSum = 0;
-    vector<LString> boardCpy = return_raw_board_with(word);
+    vector<TString> boardCpy = return_raw_board_with(word);
     for (int i = 0; i < 15; ++i) {
-        LString column;
+        TString column;
         for (int j = 0; j < 15; ++j) {
             column += boardCpy[j].read_at(i);
         }
 
-        vector<LString> colShards = column.fragments();
+        vector<TString> colShards = column.fragments();
 
         for (const auto& shard : colShards) {
             if(shard.contains_flag(-2) && shard.length() > 1){
@@ -301,9 +301,9 @@ vector<int> ScrabbleVectorizer::find_points_of_word (const string& passed) const
 void ScrabbleVectorizer::place_best_word_into_board() {
     for (int i = bestWord.read_at(0).x; i < bestWord.length() + bestWord.read_at(0).x; i++) {
         if (board[bestWord.read_at(0).y][i] == ' ')
-            board[bestWord.read_at(0).y][i] = Letter(bestWord.read_at(i - bestWord.read_at(0).x).LData,
-                                                    i,
-                                                    bestWord.read_at(0).y, 1);
+            board[bestWord.read_at(0).y][i] = Tile(bestWord.read_at(i - bestWord.read_at(0).x).LData,
+                                                   i,
+                                                   bestWord.read_at(0).y, 1);
         perkBoard[bestWord.read_at(0).y][i] = ' ';
     }
 }
@@ -332,8 +332,8 @@ vector<string> ScrabbleVectorizer::return_raw_char_board_copy() {
     return toReturn;
 }
 
-vector<LString> ScrabbleVectorizer::return_all_of_raw_word(const string& passed) const {
-    vector<LString> foundVersions;
+vector<TString> ScrabbleVectorizer::return_all_of_raw_word(const string& passed) const {
+    vector<TString> foundVersions;
     for (auto & curWordSet : answerSets) {
         for (const auto& word : curWordSet) {
             if(word == passed){

@@ -1,5 +1,5 @@
-#ifndef SCRABBLE_SOLVER_LSTRING_H
-#define SCRABBLE_SOLVER_LSTRING_H
+#ifndef SCRABBLE_SOLVER_TSTRING_H
+#define SCRABBLE_SOLVER_TSTRING_H
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -16,21 +16,21 @@ using namespace std;
 //                       a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p,  q, r, s, t, u, v, w, x, y,  z
 const int legend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 
-struct Letter {
-    char LData;     //think of the LData as the face value of the Letter object, with all other data members being the Letter objects description
+struct Tile {
+    char LData;     //think of the LData as the face value of the Tile object, with all other data members being the Tile objects description
     int x, y;
     int val;
     int flag;
     bool isBlank = false;
 
-    Letter(){
+    Tile(){
         x = y = flag = -1;
         val = 0;
         LData = ' ';
         isBlank = false;
     }
 
-    Letter(char passed, int xp, int yp, int fl){
+    Tile(char passed, int xp, int yp, int fl){
         LData = abs(passed);
         x = xp;
         y = yp;
@@ -43,7 +43,7 @@ struct Letter {
             val = 0;
     }
 
-    bool operator==(const Letter& invoked) const{
+    bool operator==(const Tile& invoked) const{
         return (abs(invoked.LData) == abs(this->LData));
     }
 
@@ -51,7 +51,7 @@ struct Letter {
         return (abs(invoked) == abs(this->LData));
     }
 
-    bool operator!=(const Letter& invoked) const{
+    bool operator!=(const Tile& invoked) const{
         return (abs(invoked.LData) != abs(this->LData));
     }
 
@@ -59,7 +59,7 @@ struct Letter {
         return (abs(invoked) != abs(this->LData));
     }
 
-    Letter& operator=(const Letter& invoked){
+    Tile& operator=(const Tile& invoked){
         if(this == &invoked)
             return *this;
         LData = invoked.LData;
@@ -71,7 +71,7 @@ struct Letter {
         return *this;
     }
 
-    Letter& operator=(char invoked){
+    Tile& operator=(char invoked){
         LData = abs(invoked);
         y = x = flag = -1;
         isBlank = false;
@@ -84,16 +84,16 @@ struct Letter {
     }
 };
 
-class LString{
+class TString{
 private:
-    Letter data[46];
+    Tile data[46];
     int eleCount = 0;
 
 public:
     struct Iterator{
-        Iterator(Letter* pssdDataPtr){ dataPtr = pssdDataPtr; }
+        Iterator(Tile* pssdDataPtr){ dataPtr = pssdDataPtr; }
 
-        Letter& operator*() const{ return *dataPtr; }
+        Tile& operator*() const{ return *dataPtr; }
         Iterator& operator++()   { dataPtr++; return *this; }
         Iterator operator++(int) { Iterator temp = *this; dataPtr++; return temp; }
         Iterator& operator--()   { dataPtr--; return *this; }
@@ -101,61 +101,61 @@ public:
         friend bool operator== (const Iterator& a, const Iterator& b){ return (a.dataPtr == b.dataPtr); };
         friend bool operator!= (const Iterator& a, const Iterator& b){ return (a.dataPtr != b.dataPtr); };
 
-        Letter* dataPtr;
+        Tile* dataPtr;
     };
     Iterator begin() { return Iterator(data); }
     Iterator end()   { return Iterator(data + eleCount); }
 
     //----------------------------------------------------------------------
 
-    LString(){ eleCount = 0; }
-    LString(const LString&);
-    LString(const string&);
-    LString(char *);
-    LString& operator=(const LString&);
-    LString& operator=(const string&);
-    LString& operator=(char*);
+    TString(){ eleCount = 0; }
+    TString(const TString&);
+    TString(const string&);
+    TString(char *);
+    TString& operator=(const TString&);
+    TString& operator=(const string&);
+    TString& operator=(char*);
 
-    Letter& operator[](int);
-    Letter read_at(int) const;
+    Tile& operator[](int);
+    Tile read_at(int) const;
     inline int length() const{ return eleCount; }
     static int max_capacity() { return 45; }
-    Letter read_back() const;
-    Letter& back();
+    Tile read_back() const;
+    Tile& back();
     int find_pos_of(char) const;
 
-    LString& pop_back();
-    inline LString& clear(){ eleCount = 0; return *this; }
-    LString& erase_at(int);     //needs testing
+    TString& pop_back();
+    inline TString& clear(){ eleCount = 0; return *this; }
+    TString& erase_at(int);     //needs testing
 
     inline bool is_empty() const{ if(eleCount > 0){ return false; } return true; }
-    bool contains(Letter) const;
+    bool contains(Tile) const;
     bool contains(char) const;
-    bool operator==(const LString&) const;
-    LString& operator+=(const Letter&);
-    LString& operator+=(char);
-    LString operator+(const Letter&) const;
-    LString operator+(char) const;
+    bool operator==(const TString&) const;
+    TString& operator+=(const Tile&);
+    TString& operator+=(char);
+    TString operator+(const Tile&) const;
+    TString operator+(char) const;
     string to_string() const;
 
-    //Methods below are unique to LString
-    bool row_is_descendent_of(const string&, const LString&, LString&);
+    //Methods below are unique to TString
+    bool row_is_descendent_of(const string&, const TString&, TString&);
     bool is_descendent_of(const string&);
     int get_letter_points() const;
     static int get_letter_points(string);
-    LString& set_x_vals_to_subscripts();
-    LString& add_to_x_vals(int);
-    LString& set_x_vals_equal_to(int);
-    LString& set_y_vals_equal_to(int);
+    TString& set_x_vals_to_subscripts();
+    TString& add_to_x_vals(int);
+    TString& set_x_vals_equal_to(int);
+    TString& set_y_vals_equal_to(int);
     bool contains_flag(int) const;
-    vector<LString> fragments() const;
+    vector<TString> fragments() const;
     vector<string> string_fragments() const;
     bool is_all_whitespace() const;
 };
 
 class MyHashFunction {
 public:
-    size_t operator()(const LString& lstr) const{
+    size_t operator()(const TString& lstr) const{
         unsigned long hash = 5381;
 
         for (int i = 0; i < lstr.length(); ++i) {

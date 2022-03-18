@@ -60,13 +60,13 @@ void VerticalScrabbleVectorizer::build_board(const string& filePath) {
         string cell;
         stringstream strStr(row);
         int cellCount = 0;
-        LString LRow;
+        TString LRow;
         while (getline(strStr, cell, ',') && cellCount < 15){
             if(!cell.empty() && isalpha(cell[0])) {
-                LRow += Letter(cell[0], cellCount, rowCount, 1);
+                LRow += Tile(cell[0], cellCount, rowCount, 1);
             }
             else {
-                LRow += Letter(' ', cellCount, rowCount, 1);
+                LRow += Tile(' ', cellCount, rowCount, 1);
             }
             cellCount++;
         }
@@ -75,11 +75,11 @@ void VerticalScrabbleVectorizer::build_board(const string& filePath) {
     }
     boardFile.close();
 
-    vector<LString> boardCpy;
+    vector<TString> boardCpy;
     for (int i = 14; i >= 0; i--) {  //i = x
-        LString column;
+        TString column;
         for (int j = 0; j < 15; j++) {  //j = y
-            column += Letter(board[j][i].LData, j, 14 - i, 1);
+            column += Tile(board[j][i].LData, j, 14 - i, 1);
         }
         boardCpy.push_back(column);
     }
@@ -112,7 +112,7 @@ string VerticalScrabbleVectorizer::to_string() const {
     return buffer;
 }
 
-LString VerticalScrabbleVectorizer::update_best_word(){
+TString VerticalScrabbleVectorizer::update_best_word(){
     int rowSubscript = 0;
     bestWord.clear();
     for (auto & wordSet : answerSets) {
@@ -143,11 +143,11 @@ LString VerticalScrabbleVectorizer::update_best_word(){
 void VerticalScrabbleVectorizer::validate_words() {
     for (auto & wordSet : answerSets) {
         for (auto& word: wordSet) {
-            vector<LString> boardCpy = return_raw_board_with(word);
+            vector<TString> boardCpy = return_raw_board_with(word);
 
             for (int i = 0; i < 15; i++) {
-                LString row;
-                LString column;
+                TString row;
+                TString column;
                 for (int j = 0; j < 15; ++j) {
                     row += boardCpy[i].read_at(j);
                     column += boardCpy[14 - j].read_at(i);
@@ -173,22 +173,22 @@ void VerticalScrabbleVectorizer::validate_words() {
     }
 }
 
-void VerticalScrabbleVectorizer::set_board(const vector<LString> &passed) {   //assumes that passed is formatted as a proper board
+void VerticalScrabbleVectorizer::set_board(const vector<TString> &passed) {   //assumes that passed is formatted as a proper board
     if(passed.size() != 15)
-        throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString>) | passed argument is not of a proper size.");
+        throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<TString>) | passed argument is not of a proper size.");
 
-    vector<LString> boardCpy;
+    vector<TString> boardCpy;
     for (int i = 14; i >= 0; i--) {  //i = x
         if(passed[i].length() != 15)
-            throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<LString>) | passed argument has an element that is not of a proper size.");
-        LString column;
+            throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<TString>) | passed argument has an element that is not of a proper size.");
+        TString column;
         for (int j = 0; j < 15; j++) {  //j = y
             char cell = passed[j].read_at(i).LData;
             if(isalpha(cell)) {
-                column += Letter(cell, j, 14 - i, 1);
+                column += Tile(cell, j, 14 - i, 1);
             }
             else {
-                column += Letter(' ', j, 14 - i, 1);
+                column += Tile(' ', j, 14 - i, 1);
             }
         }
         boardCpy.push_back(column);
@@ -205,15 +205,15 @@ void VerticalScrabbleVectorizer::set_board(const vector<LString> &passed) {   //
 
 void VerticalScrabbleVectorizer::validate_board() const{
     if(scrabbleWordSet.empty())
-        throw invalid_argument("Error in ScrabbleVectorizer::validate_board() | unordered_map<LString> scrabbleWordSet is empty.");
+        throw invalid_argument("Error in ScrabbleVectorizer::validate_board() | unordered_map<TString> scrabbleWordSet is empty.");
 
     for (int i = 0; i < 15; ++i) {
-        LString column;
+        TString column;
         for (int j = 0; j < 15; ++j) {
             column += board[i].read_at(j);
         }
 
-        LString row;
+        TString row;
         for (int j = 14; j >= 0; --j) {
             row += board[j].read_at(i);
         }
@@ -258,18 +258,18 @@ vector<string> VerticalScrabbleVectorizer::return_formatted_char_board_copy() co
     return boardCpy;
 }
 
-vector<vector<LString>> VerticalScrabbleVectorizer::return_formatted_answerSets_copy() const {
-    vector<vector<LString>> toReturn(15);
+vector<vector<TString>> VerticalScrabbleVectorizer::return_formatted_answerSets_copy() const {
+    vector<vector<TString>> toReturn(15);
     for (int i = 0; i < 15; ++i) {
         toReturn.push_back(answerSets[14 - i]);
     }
     return toReturn;
 }
 
-vector<LString> VerticalScrabbleVectorizer::return_formatted_board_copy() const {
-    vector<LString> boardCpy;
+vector<TString> VerticalScrabbleVectorizer::return_formatted_board_copy() const {
+    vector<TString> boardCpy;
     for (int i = 0; i < 15; ++i) {
-        LString column;
+        TString column;
         for (int j = 14; j >= 0; --j)
             column += board[j].read_at(i);
         boardCpy.push_back(column);
@@ -281,18 +281,18 @@ void VerticalScrabbleVectorizer::set_board(const vector<string> &passed) {
     if(passed.size() != 15)
         throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<string> passed) | passed argument is not of a proper size.");
 
-    vector<LString> boardCpy;
+    vector<TString> boardCpy;
     for (int i = 14; i >= 0; --i) {  //i = x
         if(passed[i].length() != 15)
             throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<string> passed) | passed argument has an element that is not of a proper size.");
-        LString column;
+        TString column;
         for (int j = 0; j < 15; j++) {  //j = y
             char cell = passed[j][i];
             if(isalpha(cell)) {
-                column += Letter(cell, j, 14 - i, 1);
+                column += Tile(cell, j, 14 - i, 1);
             }
             else {
-                column += Letter(' ', j, 14 - i, 1);
+                column += Tile(' ', j, 14 - i, 1);
             }
         }
         boardCpy.push_back(column);
