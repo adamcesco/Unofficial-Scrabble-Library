@@ -1,7 +1,7 @@
 # Scrabble Board Solver
 
 ![Generic badge](https://img.shields.io/badge/build-passing-color.svg)
-![Github Release](https://img.shields.io/badge/release-v0.2.2--beta-informational)
+![Github Release](https://img.shields.io/badge/release-v0.2.3--beta-informational)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/adamcesco/scrabble-solver/graphs/commit-activity)
 [![MIT-license](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE.txt)
 
@@ -16,6 +16,8 @@ Note that this solution may not compute all possible words that are in the offic
 #### About This Solution
 
 I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for a horizontal-word-filter and vertical-word-filter, they are both derived classes from an abstract Scrabble-Vectorizer class. Throughout implementation, I continue to enhance the usability of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application.
+
+The average time it takes this solution to compute all possible moves for a given board and hand is dependent on the amount of words within the scrabble-dictionary that have at least one letter within them that is within your given hand. Essentially, the move generation time metric depends on the amount of different letters with respect to the amount of playable words that have those letters. For example, with a board pre-set with 5 words on it, and a hand of 7 completely different (common) letters, the word-generation time metric is 15 seconds (on my local machine).  
 
 
 ## Road Map / To-Do List
