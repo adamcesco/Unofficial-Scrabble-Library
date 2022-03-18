@@ -101,7 +101,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
                                         {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'}};
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
-            if(originalBoard[i][j].LData != ' ')
+            if(originalBoard[i][j].letter != ' ')
                 originalPerkBoard[i][j] = ' ';
         }
     }
@@ -161,8 +161,8 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
 
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {
-                REQUIRE(testVBoard[i][j] == originalBoard[j][14 - i].LData);
-                REQUIRE(testHBoard[i][j] == originalBoard[i][j].LData);
+                REQUIRE(testVBoard[i][j] == originalBoard[j][14 - i].letter);
+                REQUIRE(testHBoard[i][j] == originalBoard[i][j].letter);
             }
         }
     }

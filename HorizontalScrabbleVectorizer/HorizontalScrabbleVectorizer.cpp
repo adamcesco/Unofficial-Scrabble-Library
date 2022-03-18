@@ -89,7 +89,7 @@ void HorizontalScrabbleVectorizer::build_board(const string& filePath) {
 void HorizontalScrabbleVectorizer::console_print_formatted_board() const{
     for (const auto &row: board) {
         for (int i = 0; i < row.length(); ++i) {
-            cout << row.read_at(i).LData;
+            cout << row.read_at(i).letter;
         }
         cout << endl;
     }
@@ -213,7 +213,7 @@ vector<string> HorizontalScrabbleVectorizer::return_formatted_char_board_copy() 
     for (int i = 0; i < 15; ++i) {
         string column;
         for (int j = 0; j < 15; ++j) {
-            column += board[i].read_at(j).LData;
+            column += board[i].read_at(j).letter;
         }
         boardCpy.push_back(column);
     }
@@ -238,7 +238,7 @@ void HorizontalScrabbleVectorizer::set_board(const vector<TString> &passed) {
 
         TString row;
         for (int j = 0; j < 15; ++j) {
-            char cell = passed[i].read_at(j).LData;
+            char cell = passed[i].read_at(j).letter;
             if(isalpha(cell)) {
                 row += Tile(cell, j, i, 1);
             }

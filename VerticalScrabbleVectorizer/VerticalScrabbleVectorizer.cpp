@@ -79,7 +79,7 @@ void VerticalScrabbleVectorizer::build_board(const string& filePath) {
     for (int i = 14; i >= 0; i--) {  //i = x
         TString column;
         for (int j = 0; j < 15; j++) {  //j = y
-            column += Tile(board[j][i].LData, j, 14 - i, 1);
+            column += Tile(board[j][i].letter, j, 14 - i, 1);
         }
         boardCpy.push_back(column);
     }
@@ -96,7 +96,7 @@ void VerticalScrabbleVectorizer::build_board(const string& filePath) {
 void VerticalScrabbleVectorizer::console_print_formatted_board() const{
     for (int i = 0; i < 15; ++i) {
         for (int j = 14; j >= 0; --j) {
-            cout << board[j].read_at(i).LData;
+            cout << board[j].read_at(i).letter;
         }
         cout << endl;
     }
@@ -183,7 +183,7 @@ void VerticalScrabbleVectorizer::set_board(const vector<TString> &passed) {   //
             throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<TString>) | passed argument has an element that is not of a proper size.");
         TString column;
         for (int j = 0; j < 15; j++) {  //j = y
-            char cell = passed[j].read_at(i).LData;
+            char cell = passed[j].read_at(i).letter;
             if(isalpha(cell)) {
                 column += Tile(cell, j, 14 - i, 1);
             }
@@ -251,7 +251,7 @@ vector<string> VerticalScrabbleVectorizer::return_formatted_char_board_copy() co
     for (int i = 0; i < 15; ++i) {
         string column;
         for (int j = 14; j >= 0; --j) {
-            column += board[j].read_at(i).LData;
+            column += board[j].read_at(i).letter;
         }
         boardCpy.push_back(column);
     }

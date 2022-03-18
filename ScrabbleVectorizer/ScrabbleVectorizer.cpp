@@ -17,7 +17,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 continue;
             }
 
-            vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.LData);
+            vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.letter);
             for (auto & it : wordsOfTile) {
                 TString curLStr(it.first);
                 int anchorIndex = it.second;
@@ -32,7 +32,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                     }
 
                     curLStr[i + anchorIndex].x = tileCount + i;
-                    rowCpy[tileCount + i] = curLStr[i + anchorIndex].LData;
+                    rowCpy[tileCount + i] = curLStr[i + anchorIndex].letter;
                     rowCpy[tileCount + i].flag = -2;
                 }
                 if(skip)
@@ -77,7 +77,7 @@ void ScrabbleVectorizer::reset_all_data() {
 void ScrabbleVectorizer::place_into_board(const TString &toPrint) {
     for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
         if (board[toPrint.read_at(0).y][i] == ' ')
-            board[toPrint.read_at(0).y][i] = Tile(toPrint.read_at(i - toPrint.read_at(0).x).LData,
+            board[toPrint.read_at(0).y][i] = Tile(toPrint.read_at(i - toPrint.read_at(0).x).letter,
                                                   i,
                                                   toPrint.read_at(0).y, 1);
         perkBoard[toPrint.read_at(0).y][i] = ' ';
@@ -90,7 +90,7 @@ bool ScrabbleVectorizer::contains_letter_of_hand(const TString &passed) const {
         handSet.emplace(toupper(hand[i]));
 
     for (int i = 0; i < passed.length(); ++i) {
-        if (handSet.find(toupper(passed.read_at(i).LData)) != handSet.end()) {
+        if (handSet.find(toupper(passed.read_at(i).letter)) != handSet.end()) {
             return true;
         }
     }
@@ -148,7 +148,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {
                         }
 
                         curLStr[k + anchorIndex].x = tileCount + k;
-                        rowCpy[tileCount + k] = curLStr[k + anchorIndex].LData;
+                        rowCpy[tileCount + k] = curLStr[k + anchorIndex].letter;
                         rowCpy[tileCount + k].flag = -2;
                     }
                     if (skip)
@@ -187,7 +187,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {
                         }
 
                         curLStr[k + anchorIndex].x = tileCount + k;
-                        rowCpy[tileCount + k] = curLStr[k + anchorIndex].LData;
+                        rowCpy[tileCount + k] = curLStr[k + anchorIndex].letter;
                         rowCpy[tileCount + k].flag = -2;
                     }
                     if (skip)
@@ -248,9 +248,9 @@ int ScrabbleVectorizer::points_of_word(const TString &word) const{
                 for (int j = firstY; j < firstY + shard.length(); ++j) {
                     char curPerk = perkBoard[j][i];
                     if(isalpha(curPerk) && j == word.read_at(0).y)
-                        crossWordSum += shard.read_at(j - firstY).val * (curPerk & 31);
+                        crossWordSum += shard.read_at(j - firstY).points * (curPerk & 31);
                     else{
-                        crossWordSum += shard.read_at(j - firstY).val;
+                        crossWordSum += shard.read_at(j - firstY).points;
                     }
                 }
             }
@@ -265,13 +265,13 @@ int ScrabbleVectorizer::points_of_word(const TString &word) const{
     for (int i = firstX; i < firstX + word.length(); ++i) {
         char curPerk = perkBoard[firstY][i];
         if(isalpha(curPerk))
-            wordSum += word.read_at(i - firstX).val * (curPerk & 31);
+            wordSum += word.read_at(i - firstX).points * (curPerk & 31);
         else if(isdigit(curPerk)) {
             multiplier *= curPerk & 15;
-            wordSum += word.read_at(i - firstX).val;
+            wordSum += word.read_at(i - firstX).points;
         }
         else
-            wordSum += word.read_at(i - firstX).val;
+            wordSum += word.read_at(i - firstX).points;
 
         if(board[firstY].read_at(i) != ' ')
             letterCount++;
@@ -301,7 +301,7 @@ vector<int> ScrabbleVectorizer::find_points_of_word (const string& passed) const
 void ScrabbleVectorizer::place_best_word_into_board() {
     for (int i = bestWord.read_at(0).x; i < bestWord.length() + bestWord.read_at(0).x; i++) {
         if (board[bestWord.read_at(0).y][i] == ' ')
-            board[bestWord.read_at(0).y][i] = Tile(bestWord.read_at(i - bestWord.read_at(0).x).LData,
+            board[bestWord.read_at(0).y][i] = Tile(bestWord.read_at(i - bestWord.read_at(0).x).letter,
                                                    i,
                                                    bestWord.read_at(0).y, 1);
         perkBoard[bestWord.read_at(0).y][i] = ' ';
@@ -325,7 +325,7 @@ vector<string> ScrabbleVectorizer::return_raw_char_board_copy() {
     for (int i = 0; i < 15; ++i) {
         string row;
         for (int j = 0; j < 15; ++j) {
-            row += board[i][j].LData;
+            row += board[i][j].letter;
         }
         toReturn.push_back(row);
     }

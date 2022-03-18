@@ -7390,16 +7390,16 @@ namespace Catch {
             {
                 using TStorage = typename std::aligned_storage<sizeof(T), std::alignment_of<T>::value>::type;
 
-                ObjectStorage() : data() {}
+                ObjectStorage() : letter() {}
 
                 ObjectStorage(const ObjectStorage& other)
                 {
-                    new(&data) T(other.stored_object());
+                    new(&letter) T(other.stored_object());
                 }
 
                 ObjectStorage(ObjectStorage&& other)
                 {
-                    new(&data) T(std::move(other.stored_object()));
+                    new(&letter) T(std::move(other.stored_object()));
                 }
 
                 ~ObjectStorage() { destruct_on_exit<T>(); }
@@ -7407,7 +7407,7 @@ namespace Catch {
                 template <typename... Args>
                 void construct(Args&&... args)
                 {
-                    new (&data) T(std::forward<Args>(args)...);
+                    new (&letter) T(std::forward<Args>(args)...);
                 }
 
                 template <bool AllowManualDestruction = !Destruct>
@@ -7425,14 +7425,14 @@ namespace Catch {
                 void destruct_on_exit(typename std::enable_if<!Destruct, U>::type* = 0) { }
 
                 T& stored_object() {
-                    return *static_cast<T*>(static_cast<void*>(&data));
+                    return *static_cast<T*>(static_cast<void*>(&letter));
                 }
 
                 T const& stored_object() const {
-                    return *static_cast<T*>(static_cast<void*>(&data));
+                    return *static_cast<T*>(static_cast<void*>(&letter));
                 }
 
-                TStorage data;
+                TStorage letter;
             };
         }
 
@@ -12916,7 +12916,7 @@ namespace Catch {
         m_reporter->fatalErrorEncountered(message);
 
         // Don't rebuild the result -- the stringification itself can cause more fatal errors
-        // Instead, fake a result data.
+        // Instead, fake a result letter.
         AssertionResultData tempResult( ResultWas::FatalErrorCondition, { false } );
         tempResult.message = static_cast<std::string>(message);
         AssertionResult result(m_lastAssertionInfo, tempResult);
@@ -15556,7 +15556,7 @@ namespace {
                     hexEscapeChar(os, c);
                     break;
                 }
-                // The header is valid, check data
+                // The header is valid, check letter
                 // The next encBytes bytes must together be a valid utf-8
                 // This means: bitpattern 10XX XXXX and the extracted value is sane (ish)
                 bool valid = true;

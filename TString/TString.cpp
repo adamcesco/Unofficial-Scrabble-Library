@@ -76,7 +76,7 @@ bool TString::operator==(const TString& dsv1) const{
         return false;
 
     for (int i = 0; i < eleCount; i++) {
-        if(dsv1.data[i].LData != data[i].LData)
+        if(dsv1.data[i].letter != data[i].letter)
             return false;
     }
 
@@ -121,7 +121,7 @@ bool TString::contains(char toFind) const {
 string TString::to_string() const{
     string temp;
     for(int i = 0; i < eleCount; i++)
-        temp += data[i].LData;
+        temp += data[i].letter;
     return temp;
 }
 
@@ -159,20 +159,20 @@ bool TString::row_is_descendent_of(const string& hand, const TString& row, TStri
         sumMap[abs(toupper(hand[i]))]++;
     }
     for (int i = word[0].x; i < word.length() + word[0].x; ++i)
-        sumMap[abs(toupper(row.read_at(i).LData))]++;
+        sumMap[abs(toupper(row.read_at(i).letter))]++;
 
     for (int i = word[0].x; i < word.length() + word[0].x; ++i)
-        letterCount[abs(toupper(data[i].LData))]++;
+        letterCount[abs(toupper(data[i].letter))]++;
 
     sumMap[32] = 0;
     letterCount[32] = 0;
 
     for (int i = word[0].x; i < word.length() + word[0].x; ++i){
-        char curChar = abs(toupper(data[i].LData));
+        char curChar = abs(toupper(data[i].letter));
         if(sumMap[curChar] < letterCount[curChar] && blankCount == 0)
             return false;
         else if (sumMap[curChar] < letterCount[curChar]) {
-            word[i - word[0].x].val = 0;
+            word[i - word[0].x].points = 0;
             word[i - word[0].x].isBlank = true;
             blankCount--;
             letterCount[curChar]--;
@@ -192,7 +192,7 @@ TString::TString(char* toCpy) {
 int TString::get_letter_points() const{
     int sum = 0;
     for (int i = 0; i < eleCount; ++i)
-        sum += data[i].val;
+        sum += data[i].points;
     return sum;
 }
 
@@ -236,7 +236,7 @@ vector<TString> TString::fragments() const{
     vector<TString> fragments;
     TString curFragment;
     for (int i = 0; i < eleCount; ++i) {
-        if(data[i].LData != ' ') {
+        if(data[i].letter != ' ') {
             curFragment += data[i];
         }
         else if (curFragment.eleCount != 0){
@@ -277,7 +277,7 @@ TString &TString::set_y_vals_equal_to(int passed) {
 
 bool TString::is_all_whitespace() const {
     for (int i = 0; i < eleCount; ++i) {
-        if(isalpha(data[i].LData))
+        if(isalpha(data[i].letter))
             return false;
     }
     return true;
@@ -300,17 +300,17 @@ bool TString::is_descendent_of(const string& hand) {
     }
 
     for (int i = 0; i < eleCount; ++i)
-        letterCount[abs(toupper(data[i].LData))]++;
+        letterCount[abs(toupper(data[i].letter))]++;
 
     handMap[32] = 0;
     letterCount[32] = 0;
 
     for (int i = 0; i < eleCount; ++i) {
-        int index = abs(toupper(data[i].LData));
+        int index = abs(toupper(data[i].letter));
         if(handMap[index] < letterCount[index] && blankCount == 0)
             return false;
         else if (handMap[index] < letterCount[index]) {
-            data[i].val = 0;
+            data[i].points = 0;
             data[i].isBlank = true;
             blankCount--;
             letterCount[index]--;
@@ -333,8 +333,8 @@ vector<string> TString::string_fragments() const {
     vector<string> fragments;
     string curFragment;
     for (int i = 0; i < eleCount; ++i) {
-        if(data[i].LData != ' ') {
-            curFragment += data[i].LData;
+        if(data[i].letter != ' ') {
+            curFragment += data[i].letter;
         }
         else if (curFragment.length() != 0){
             fragments.push_back(curFragment);
