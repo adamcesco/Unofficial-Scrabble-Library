@@ -21,8 +21,6 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
             for (const auto& it : wordsOfTile) {
                 TString curLStr(it.first);
                 int anchorIndex = it.second;
-                if((tileCount - anchorIndex) < 0)
-                    continue;
 
                 bool skip = false;
                 for (int i = 0 - anchorIndex; i < curLStr.length() - anchorIndex; ++i) {

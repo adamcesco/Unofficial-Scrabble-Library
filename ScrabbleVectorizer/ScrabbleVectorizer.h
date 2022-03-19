@@ -1,7 +1,7 @@
 #ifndef SCRABBLE_SOLVER_SCRABBLEVECTORIZER_H
 #define SCRABBLE_SOLVER_SCRABBLEVECTORIZER_H
 
-#include "../ScrabbleDataset/ScrabbleDataset.h"
+#include "../CADS/CADS.h"
 
 enum Type{HORIZONTAL, VERTICAL, UNDEFINED};
 
@@ -51,7 +51,7 @@ protected:
     unordered_set<string> scrabbleWordSet;
     vector<TString> answerSets[15];
     vector<TString> board;
-    ScrabbleDataset wordDataset;
+    CADS wordDataset;
     char perkBoard[15][15] =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
                                 {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
                                 {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},

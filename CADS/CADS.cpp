@@ -1,6 +1,6 @@
-#include "ScrabbleDataset.h"
+#include "CADS.h"
 
-ScrabbleDataset::ScrabbleDataset() {
+CADS::CADS() {
     data = new vector<AnchoredString>**[15];
     for (int i = 0; i < 15; ++i) {
         data[i] = new vector<AnchoredString>*[15];
@@ -34,12 +34,12 @@ ScrabbleDataset::ScrabbleDataset() {
             }
         }
     }
-    cout << "ScrabbleDataset:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
+    cout << "CADS:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
 
     englishWords.close();
 }
 
-ScrabbleDataset::ScrabbleDataset(string filePath){
+CADS::CADS(string filePath){
     data = new vector<AnchoredString>**[15];
     for (int i = 0; i < 15; ++i) {
         data[i] = new vector<AnchoredString>*[15];
@@ -73,12 +73,12 @@ ScrabbleDataset::ScrabbleDataset(string filePath){
             }
         }
     }
-    cout << "ScrabbleDataset:: " << count << " words read from " <<  filePath << endl;
+    cout << "CADS:: " << count << " words read from " <<  filePath << endl;
 
     englishWords.close();
 }
 
-ScrabbleDataset::~ScrabbleDataset() {
+CADS::~CADS() {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j)
             delete[] data[i][j];

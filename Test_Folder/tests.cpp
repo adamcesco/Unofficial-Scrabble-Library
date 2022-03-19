@@ -40,8 +40,8 @@ TEST_CASE("Testing TString::erase_at(int)", "[TString]"){
     }
 }
 
-TEST_CASE("Testing ScrabbleDataset Usage and Speed", "[ScrabbleDataset]"){
-    ScrabbleDataset wordData("../Data/scrabble_word_list.txt");
+TEST_CASE("Testing CADS Usage and Speed", "[CADS]"){
+    CADS wordData("../Data/scrabble_word_list.txt");
 
     SECTION("Testing words with \'A\' as the first letter"){
         vector<AnchoredString> data = wordData.return_this_at(2, 2, 'A');
@@ -57,7 +57,7 @@ TEST_CASE("Testing ScrabbleDataset Usage and Speed", "[ScrabbleDataset]"){
         }
     }
 
-    SECTION("Testing all words formed within ScrabbleDataset"){
+    SECTION("Testing all words formed within CADS"){
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {
                 for (int k = 0; k < 26; ++k) {
