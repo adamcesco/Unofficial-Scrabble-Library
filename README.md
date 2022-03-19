@@ -17,7 +17,13 @@ Note that this solution may not compute all possible words that are in the offic
 
 I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for a horizontal-word-filter and vertical-word-filter, and they are both derived classes from an abstract Scrabble-Vectorizer class. Throughout implementation, I continue to enhance the usability of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application.
 
+##### Timing Metrics
+
 The average time it takes this solution to compute all possible moves for a given board and rack is dependent on the number of words within the scrabble-dictionary that have at least one letter within them that is within your given rack. Essentially, the move generation time metric depends on the number of playable words that have a letter from your rack. For example, with a board pre-set with 5 words on it, and a rack of 7 different common letters, the word-generation time metric was 12 seconds (on my local machine) to compute all playable moves.
+
+Currently, I am working on improving the speed of generating moved of only intersectional words. Due to the similarity between generating intersectional and tangential moves, all speed-improving implementations applied to intersection-move generation can be applied to tangential words; so there is little use optimizing both move-generators at the same time. As of March 19th 2022, the time it takes on my local machine to compute all possible intersectional moves is ~1.1 seconds for any given rack of common letters.
+
+My current hypothesis is that applying a data structure that holds all playable letters per a given coordinate would dramatically increase the speed for tangential move generation. As for intersectional move generation, this will still increase the speed, but the speed increase would pale in comparison.
 
 
 ## Road Map / To-Do List
