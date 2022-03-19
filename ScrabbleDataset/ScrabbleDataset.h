@@ -13,7 +13,7 @@ class ScrabbleDataset {
 public:
     ScrabbleDataset();
     explicit ScrabbleDataset(string);
-    vector<AnchoredString> return_this_at(int x, int y, char toFind){
+    vector<AnchoredString>& return_this_at(int x, int y, char toFind){
         if(x > 14 || y > 14 || !isalpha(toFind))
             throw invalid_argument("Error in vector<AnchoredString> return_this_at(int x, int y, char toFind) | Invalid "
                                    "parameter value.\nX: " + to_string(x) + "\nY: " + to_string(y) + "\nChar: " + toFind);

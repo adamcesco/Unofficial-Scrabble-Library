@@ -18,7 +18,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
             }
 
             vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.letter);
-            for (auto & it : wordsOfTile) {
+            for (const auto& it : wordsOfTile) {
                 TString curLStr(it.first);
                 int anchorIndex = it.second;
                 if((tileCount - anchorIndex) < 0 || !contains_letter_of_hand(curLStr))
