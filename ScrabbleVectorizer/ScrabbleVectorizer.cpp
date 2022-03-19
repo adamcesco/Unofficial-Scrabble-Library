@@ -19,7 +19,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
             }
 
             vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.letter);
-            for (const auto& it : wordsOfTile) {    //Goals for this for-loop, skip invalid words as soon as possible
+            for (const auto& it : wordsOfTile) {
                 TString curTStr;
                 int anchorIndex = it.second;
                 int rackCount[27];
