@@ -10,6 +10,8 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
+    cout.precision(9);
+
     string rack = "YUIOHFR";    //blank tiles should be marked as a '?'
 
     HorizontalScrabbleVectorizer hReader(rack);
@@ -26,16 +28,16 @@ int main(int argc, char* argv[]){
 
     auto start = chrono::high_resolution_clock::now();  //start timer here (timing word generation)
     vReader.search_for_intersecting_words();
-    vReader.search_for_tangential_words();
+//    vReader.search_for_tangential_words();
 
     hReader.search_for_intersecting_words();
-    hReader.search_for_tangential_words();
+//    hReader.search_for_tangential_words();
 
-    vReader.validate_words();
+    vReader.validate_words();           //uses ~0.03 seconds for horizontal and vertical word validation
     hReader.validate_words();
-    auto stop = chrono::high_resolution_clock::now();   //end timer here
-    auto duration = chrono::duration_cast<chrono::seconds>(stop - start);
-    cout << "Time taken by move generation: " << duration.count() << " seconds" << endl;
+    auto end = chrono::high_resolution_clock::now();   //end timer here
+    auto time_in_seconds = chrono::duration<double>(end - start);
+    cout << "Time taken by move generation: " << time_in_seconds.count() << " seconds" << endl;
 
     vReader.update_best_word();
     hReader.update_best_word();
