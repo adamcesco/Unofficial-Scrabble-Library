@@ -2,9 +2,10 @@
 
 void ScrabbleVectorizer::search_for_intersecting_words() {
     //TODO: Remove as many if-statements as possible.
+    // Convert AnchoredString into AnchoredTString, so that ScrabbleDataset is composed of pre-defined TStrings.
     // Turn rackCount into a class/struct.
-    // Implement custom data-structure for tile placement checking.
     // After optimizing this method as much as possible, implement all time saving implementations into search_for_tangential_words()
+    // Implement custom data-structure for tile placement checking for tangential words only.
 
     if(scrabbleWordSet.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
