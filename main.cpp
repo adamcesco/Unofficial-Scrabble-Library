@@ -35,7 +35,7 @@ int main(int argc, char* argv[]){
     hReader.validate_words();
     auto stop = chrono::high_resolution_clock::now();   //end timer here
     auto duration = chrono::duration_cast<chrono::seconds>(stop - start);
-    cout << "Time taken by word generation: " << duration.count() << " seconds" << endl;
+    cout << "Time taken by move generation: " << duration.count() << " seconds" << endl;
 
     vReader.update_best_word();
     hReader.update_best_word();
