@@ -146,10 +146,6 @@ void ScrabbleVectorizer::search_for_tangential_words() {
 
     int rowSubscript = 0;
     for (auto& row: board) {
-        row.set_x_vals_to_subscripts();
-        TString rowCpy = row;
-        rowCpy.set_x_vals_to_subscripts();
-
         //computing tangential words above
         int tileCount = 0;
         for (auto& tile : row) {
@@ -164,19 +160,17 @@ void ScrabbleVectorizer::search_for_tangential_words() {
                 for (auto &it: wordsOfTile) {
                     TString curLStr(it.first);
                     int anchorIndex = it.second;
-                    if ((tileCount - anchorIndex) < 0 || !curLStr.is_descendent_of(rack))
+                    if (!curLStr.is_descendent_of(rack))
                         continue;
 
                     bool skip = false;
                     for (int k = 0 - anchorIndex; k < curLStr.length() - anchorIndex; ++k) {
-                        if (tileCount + k > 14 || board[rowSubscript - 1][tileCount + k] != ' ') {
+                        if (board[rowSubscript - 1][tileCount + k] != ' ') {
                             skip = true;
                             break;
                         }
 
                         curLStr[k + anchorIndex].x = tileCount + k;
-                        rowCpy[tileCount + k] = curLStr[k + anchorIndex].letter;
-                        rowCpy[tileCount + k].flag = -2;
                     }
                     if (skip)
                         continue;
@@ -203,19 +197,17 @@ void ScrabbleVectorizer::search_for_tangential_words() {
                 for (auto &it: wordsOfTile) {
                     TString curLStr(it.first);
                     int anchorIndex = it.second;
-                    if ((tileCount - anchorIndex) < 0 || !curLStr.is_descendent_of(rack))
+                    if (!curLStr.is_descendent_of(rack))
                         continue;
 
                     bool skip = false;
                     for (int k = 0 - anchorIndex; k < curLStr.length() - anchorIndex; ++k) {
-                        if (tileCount + k > 14 || board[rowSubscript + 1][tileCount + k] != ' ') {
+                        if (board[rowSubscript + 1][tileCount + k] != ' ') {
                             skip = true;
                             break;
                         }
 
                         curLStr[k + anchorIndex].x = tileCount + k;
-                        rowCpy[tileCount + k] = curLStr[k + anchorIndex].letter;
-                        rowCpy[tileCount + k].flag = -2;
                     }
                     if (skip)
                         continue;

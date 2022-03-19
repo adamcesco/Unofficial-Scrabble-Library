@@ -21,7 +21,7 @@ public:
     ~CADS();
 
 private:
-    vector<AnchoredString>*** data = nullptr;
+    vector<AnchoredString>*** data = nullptr;   //all rows for any CADS are all the same
 };
 
 
