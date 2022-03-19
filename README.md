@@ -17,7 +17,7 @@ Note that this solution may not compute all possible words that are in the offic
 
 I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for a horizontal-word-filter and vertical-word-filter, and they are both derived classes from an abstract Scrabble-Vectorizer class. Throughout implementation, I continue to enhance the usability of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application.
 
-The average time it takes this solution to compute all possible moves for a given board and rack is dependent on the number of words within the scrabble-dictionary that have at least one letter within them that is within your given rack. Essentially, the move generation time metric depends on the number of playable words that have a letter from your rack. For example, with a board pre-set with 5 words on it, and a rack of 7 different common letters, the word-generation time metric is 12 seconds (on my local machine).
+The average time it takes this solution to compute all possible moves for a given board and rack is dependent on the number of words within the scrabble-dictionary that have at least one letter within them that is within your given rack. Essentially, the move generation time metric depends on the number of playable words that have a letter from your rack. For example, with a board pre-set with 5 words on it, and a rack of 7 different common letters, the word-generation time metric was 12 seconds (on my local machine) to compute all playable moves.
 
 
 ## Road Map / To-Do List
@@ -30,7 +30,7 @@ The average time it takes this solution to compute all possible moves for a give
     - This feature is now supported
 4. ~~Increase the usability of classes for future users/editors of the project~~
 5. Test and Optimize solution to prime for finalization
-    - I am currently improving the speed of this solution. The main way of increasing this solutions speed would be to implement a DAWG, a GADDAG, or another custom data structure. I plan to implement a custom data structure soon that will reduce the amount of characters parsed through during move-generation. This new data structure in tandem with my custom CADS data structure should decrease the computation time of this solution to be less than 5 seconds. If the improved solution is not faster than expected, I then plan to implement a DAWG based CADS data structure which should increase computation speed.
+    - I am currently improving the speed of this solution. The main way of increasing this solutions speed would be to implement a DAWG, a GADDAG, or a custom data structure. I want to explore creation within this field, so I plan to implement a custom data structure that should reduce the amount of characters parsed through during move-generation. This new data structure in tandem with my custom CADS data structure should decrease the computation time of this solution to be less than 3 seconds. If the improved solution is not faster than expected, I then plan to implement a DAWG based CADS data structure which should increase computation speed even more. My goal is to have this solution only require 2 seconds of computation time to produce all possible moves per turn.
 6. Provide an in-depth tutorial for users/editors of this library
 7. Implement a console-based solution with full gameplay support.
 8. Implement a U.I-based solution with full gameplay support.
