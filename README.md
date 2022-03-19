@@ -38,5 +38,6 @@ The average time it takes this solution to compute all possible moves for a give
 
 ## Inspiration
 
-- [Gordon, Steven, A. (1994), A Faster Scrabble Move Generation Algorithm. East Carolina University. Software - Practice and Experience, Vol 24: 219-232.](https://doi.org/10.1002/spe.4380240205)
-- [Jason Katz-Brown, John O'Laughlin, et al. (2016), Quackle - Scrabble Artificial Intelligence and Analysis Tool.](https://people.csail.mit.edu/jasonkb/quackle/doc/how_quackle_plays_scrabble.html)
+- [Appel, Andrew & Guy Jacobson. "The World's Fastest Scrabble Program". Princeton University & Carnegie Mellon University. 1988. Communications of the ACM, Vol 31](https://dl.acm.org/doi/10.1145/42411.42420)
+- [Gordon, Steven."A Faster Scrabble Move Generation Algorithm". East Carolina University. 1994. Software - Practice and Experience, Vol 24.](https://doi.org/10.1002/spe.4380240205)
+- [Katz-Brown, O'Laughlin, et al."Quackle - Scrabble Artificial Intelligence and Analysis Tool". 2016. Github.com & Quackle.org](https://github.com/quackle/quackle)
