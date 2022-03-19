@@ -1,15 +1,16 @@
 #include "ScrabbleVectorizer.h"
 
 void ScrabbleVectorizer::search_for_intersecting_words() {
+    //TODO: Remove as many if-statements as possible.
+    // Turn rackCount into a class/struct.
+    // Implement custom data-structure for tile placement checking.
+    // After optimizing this method as much as possible, implement all time saving implementations into search_for_tangential_words()
+
     if(scrabbleWordSet.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;
     for (auto& row: board) {
-        row.set_x_vals_to_subscripts();
-        TString rowCpy = row;
-        rowCpy.set_x_vals_to_subscripts();
-
         int tileCount = 0;
         for (auto& tile : row) {
             if(tile == ' ') {
@@ -19,7 +20,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
 
             vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.letter);
             for (const auto& it : wordsOfTile) {    //Goals for this for-loop, skip invalid words as soon as possible
-                TString curLStr;
+                TString curTStr;
                 int anchorIndex = it.second;
                 int rackCount[27];
                 int blankCount = 0;
@@ -34,32 +35,39 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 }
 
                 bool skip = false;
-                for (int i = 0 - anchorIndex; i < it.first.length() - anchorIndex; ++i) {
-                    if(board[rowSubscript][tileCount + i] == it.first[i + anchorIndex]) {
-                        curLStr += Tile(it.first[i + anchorIndex], tileCount + i, rowSubscript, -1);
+                int start = 0 - anchorIndex;
+                int end = it.first.length() - anchorIndex;
+                for (int i = start; i < end; ++i) {
+                    char curChar = abs(it.first[i + anchorIndex]);
+                    Tile curBoardTile = board[rowSubscript][tileCount + i];
+
+                    if(curBoardTile == curChar) {
+                        curTStr += Tile(curChar, tileCount + i, rowSubscript, -1);
                     }
-                    else if (board[rowSubscript][tileCount + i] != ' '){
+                    else if (curBoardTile != ' '){
                         skip = true;
                         break;
                     }
                     else{
-                        if(rackCount[it.first[i + anchorIndex] & 31] == 0){
+                        curTStr += Tile(curChar, tileCount + i, rowSubscript, -1);
+
+                        if(rackCount[curChar & 31] == 0){
                             if(blankCount == 0){
                                 skip = true;
                                 break;
                             }
                             blankCount--;
+                            curTStr.back().points = 0;
+                            curTStr.back().isBlank = true;
                         }
                         else
-                            rackCount[it.first[i + anchorIndex] & 31]--;
-
-                        curLStr += Tile(it.first[i + anchorIndex], tileCount + i, rowSubscript, -1);
+                            rackCount[curChar & 31]--;
                     }
                 }
-                if(skip || curLStr.is_empty())
+                if(skip)
                     continue;
 
-                answerSets[rowSubscript].push_back(curLStr);
+                answerSets[rowSubscript].push_back(curTStr);    //problem: anchored index must be 0 for the word to be passed on
             }
 
             tileCount++;
