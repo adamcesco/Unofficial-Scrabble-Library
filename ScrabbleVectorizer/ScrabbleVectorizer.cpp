@@ -19,7 +19,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
 
             vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.letter);
             for (const auto& it : wordsOfTile) {    //Goals for this for-loop, skip invalid words as soon as possible
-                TString curLStr(it.first);
+                TString curLStr;
                 int anchorIndex = it.second;
                 int rackCount[27];
                 int blankCount = 0;
@@ -34,36 +34,31 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 }
 
                 bool skip = false;
-                for (int i = 0 - anchorIndex; i < curLStr.length() - anchorIndex; ++i) {
-                    if(board[rowSubscript][tileCount + i] == curLStr[i + anchorIndex]) {
-                        curLStr[i + anchorIndex].x = tileCount + i;
-                        rowCpy[tileCount + i] = curLStr[i + anchorIndex].letter;
-                        rowCpy[tileCount + i].flag = -2;
+                for (int i = 0 - anchorIndex; i < it.first.length() - anchorIndex; ++i) {
+                    if(board[rowSubscript][tileCount + i] == it.first[i + anchorIndex]) {
+                        curLStr += Tile(it.first[i + anchorIndex], tileCount + i, rowSubscript, -1);
                     }
                     else if (board[rowSubscript][tileCount + i] != ' '){
                         skip = true;
                         break;
                     }
                     else{
-                        if(rackCount[curLStr[i + anchorIndex].letter & 31] == 0){
-                            blankCount--;
-                            if(blankCount == -1){
+                        if(rackCount[it.first[i + anchorIndex] & 31] == 0){
+                            if(blankCount == 0){
                                 skip = true;
                                 break;
                             }
+                            blankCount--;
                         }
                         else
-                            rackCount[curLStr[i + anchorIndex].letter & 31]--;
+                            rackCount[it.first[i + anchorIndex] & 31]--;
 
-                        curLStr[i + anchorIndex].x = tileCount + i;
-                        rowCpy[tileCount + i] = curLStr[i + anchorIndex].letter;
-                        rowCpy[tileCount + i].flag = -2;
+                        curLStr += Tile(it.first[i + anchorIndex], tileCount + i, rowSubscript, -1);
                     }
                 }
-                if(skip)
+                if(skip || curLStr.is_empty())
                     continue;
 
-                curLStr.set_y_vals_equal_to(rowSubscript);
                 answerSets[rowSubscript].push_back(curLStr);
             }
 
