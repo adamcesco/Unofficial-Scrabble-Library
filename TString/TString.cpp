@@ -142,7 +142,7 @@ TString &TString::operator=(const char* toAssign) {
 }
 
 bool TString::row_is_descendent_of(const string& hand, const TString& row, TString& word) {
-    if(eleCount == 0)
+    if(eleCount == 0 || word.eleCount == 0)
         return false;
 
     int sumMap[123];
