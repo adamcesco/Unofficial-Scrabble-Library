@@ -26,10 +26,10 @@ int main(int argc, char* argv[]){
 
     auto start = chrono::high_resolution_clock::now();  //start timer here (timing word generation)
     vReader.search_for_intersecting_words();
-    vReader.search_for_tangential_words();
+//    vReader.search_for_tangential_words();
 
     hReader.search_for_intersecting_words();
-    hReader.search_for_tangential_words();
+//    hReader.search_for_tangential_words();
 
     vReader.validate_words();
     hReader.validate_words();

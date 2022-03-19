@@ -21,25 +21,50 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
             for (const auto& it : wordsOfTile) {    //Goals for this for-loop, skip invalid words as soon as possible
                 TString curLStr(it.first);
                 int anchorIndex = it.second;
+                int rackCount[27];
+                int blankCount = 0;
+                for (int i = 0; i < 27; ++i) {
+                    rackCount[i] = 0;
+                }
+                for (int i = 0; i < rack.length(); ++i) {
+                    if(rack[i] == '?')
+                        blankCount++;
+                    else
+                        rackCount[abs(rack[i]) & 31]++;
+                }
 
                 bool skip = false;
                 for (int i = 0 - anchorIndex; i < curLStr.length() - anchorIndex; ++i) {
-                    if(board[rowSubscript][tileCount + i] != ' ' && board[rowSubscript][tileCount + i] != curLStr[i + anchorIndex]){
+                    if(board[rowSubscript][tileCount + i] == curLStr[i + anchorIndex]) {
+                        curLStr[i + anchorIndex].x = tileCount + i;
+                        rowCpy[tileCount + i] = curLStr[i + anchorIndex].letter;
+                        rowCpy[tileCount + i].flag = -2;
+                    }
+                    else if (board[rowSubscript][tileCount + i] != ' '){
                         skip = true;
                         break;
                     }
+                    else{
+                        if(rackCount[curLStr[i + anchorIndex].letter & 31] == 0){
+                            blankCount--;
+                            if(blankCount == -1){
+                                skip = true;
+                                break;
+                            }
+                        }
+                        else
+                            rackCount[curLStr[i + anchorIndex].letter & 31]--;
 
-                    curLStr[i + anchorIndex].x = tileCount + i;
-                    rowCpy[tileCount + i] = curLStr[i + anchorIndex].letter;
-                    rowCpy[tileCount + i].flag = -2;
+                        curLStr[i + anchorIndex].x = tileCount + i;
+                        rowCpy[tileCount + i] = curLStr[i + anchorIndex].letter;
+                        rowCpy[tileCount + i].flag = -2;
+                    }
                 }
                 if(skip)
                     continue;
 
-                if(rowCpy.row_is_descendent_of(rack, row, curLStr)) {   //TODO: Remove the need to check if its a descendent
-                    curLStr.set_y_vals_equal_to(rowSubscript);
-                    answerSets[rowSubscript].push_back(curLStr);
-                }
+                curLStr.set_y_vals_equal_to(rowSubscript);
+                answerSets[rowSubscript].push_back(curLStr);
             }
 
             tileCount++;
