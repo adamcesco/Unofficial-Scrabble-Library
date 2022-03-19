@@ -43,7 +43,7 @@ My current hypothesis is that applying a data structure that holds all playable 
 9. Enhance U.X features to support the user's U.I intuition.
 10. Implement dynamic gameplay structures that enhance competitive and casual play for players of this Scrabble application.
 
-## Inspiration
+## References
 
 - [Appel, Andrew & Guy Jacobson. "The World's Fastest Scrabble Program". Princeton University & Carnegie Mellon University. 1988. Communications of the ACM, Vol 31](https://dl.acm.org/doi/10.1145/42411.42420)
 - [Gordon, Steven."A Faster Scrabble Move Generation Algorithm". East Carolina University. 1994. Software - Practice and Experience, Vol 24.](https://doi.org/10.1002/spe.4380240205)
