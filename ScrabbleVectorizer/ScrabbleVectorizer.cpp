@@ -18,13 +18,13 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
             }
 
             vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.letter);
-            for (const auto& it : wordsOfTile) {
+            for (const auto& it : wordsOfTile) {    //Goals for this for-loop, skip invalid words as soon as possible
                 TString curLStr(it.first);
                 int anchorIndex = it.second;
 
                 bool skip = false;
                 for (int i = 0 - anchorIndex; i < curLStr.length() - anchorIndex; ++i) {
-                    if(tileCount + i > 14 || (board[rowSubscript][tileCount + i] != ' ' && board[rowSubscript][tileCount + i] != curLStr[i + anchorIndex])){
+                    if(board[rowSubscript][tileCount + i] != ' ' && board[rowSubscript][tileCount + i] != curLStr[i + anchorIndex]){
                         skip = true;
                         break;
                     }
