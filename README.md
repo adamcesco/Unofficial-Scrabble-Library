@@ -30,6 +30,7 @@ The average time it takes this solution to compute all possible moves for a give
     - This feature is now supported
 4. ~~Increase the usability of classes for future users/editors of the project~~
 5. Test and Optimize solution to prime for finalization
+    - I am currently improving the speed of this solution. The main way of increasing this solutions speed would be to implement a DAWG, a GADDAG, or another custom data structure. I plan to implement a custom data structure soon that will reduce the amount of characters parsed through during move-generation. This new data structure in tandem with my custom CADS data structure should decrease the computation time of this solution to be less than 5 seconds. If the improved solution is not faster than expected, I then plan to implement a DAWG based CADS data structure which should increase computation speed.
 6. Provide an in-depth tutorial for users/editors of this library
 7. Implement a console-based solution with full gameplay support.
 8. Implement a U.I-based solution with full gameplay support.
