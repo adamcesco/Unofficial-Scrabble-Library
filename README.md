@@ -19,7 +19,7 @@ I use a test-driven solution that is primarily object-oriented. In its current s
 
 #### Time Measurements
 
-The average time it takes this solution to compute all possible moves for a given board and rack is dependent on the number of words within the scrabble-dictionary that have at least one letter within them that is within your given rack. Essentially, the move generation time metric depends on the number of playable words that have a letter from your rack. For example, with a board pre-set with 5 words on it, and a rack of 7 different common letters, the word-generation time metric was 12 seconds (on my local machine) to compute all playable moves.
+The average time it takes this solution to compute all possible moves for a given board and rack is dependent on the number of words within the scrabble-dictionary that have at least one letter within them that is within your given rack. Essentially, the move generation time metric depends on the number of playable words that have a letter from your rack. For example, with a board pre-set with 5 words on it, and a rack of 7 different common letters, the word-generation time metric was ~8.7 seconds (on my local machine) to compute all playable moves.
 
 Currently, I am working on improving the speed of generating moved of only intersectional words. Due to the similarity between generating intersectional and tangential moves, all speed-improving implementations applied to intersection-move generation can be applied to tangential words; so there is little use optimizing both move-generators at the same time. As of March 19th 2022, the time it takes on my local machine to compute all possible intersectional moves is ~1.1 seconds for any given rack of common letters.
 

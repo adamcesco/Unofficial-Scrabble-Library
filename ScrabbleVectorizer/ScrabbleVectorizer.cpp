@@ -4,8 +4,6 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
     //TODO: Remove as many if-statements as possible.
     // Convert AnchoredString into AnchoredTString, so that ScrabbleDataset is composed of pre-defined TStrings.
     // Turn rackCount into a class/struct.
-    // After optimizing this method as much as possible, implement all time saving implementations into search_for_tangential_words()
-    // Implement custom data-structure for tile placement checking for tangential words only.
 
     if(scrabbleWordSet.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
@@ -140,87 +138,69 @@ vector<TString> ScrabbleVectorizer::return_raw_board_with(const TString &toPrint
     return boardCpy;
 }
 
-void ScrabbleVectorizer::search_for_tangential_words() {
+void ScrabbleVectorizer::search_for_tangential_words() {    //does not support blank tiles
+    //TODO: Remove as many if-statements as possible.
+    // Convert AnchoredString into AnchoredTString, so that ScrabbleDataset is composed of pre-defined TStrings.
+    // Turn rackCount into a class/struct.
+    // Implement custom data-structure for tile placement checking for tangential words only.
     if(scrabbleWordSet.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_tangential_words() | The set of all scrabble words is empty.");
 
-    int rowSubscript = 0;
-    for (auto& row: board) {
-        //computing tangential words above
+    for (int i = 0; i < 15; ++i) {
         int tileCount = 0;
-        for (auto& tile : row) {
-            if(rowSubscript - 1 < 0 || !(tile != ' ' && board[rowSubscript - 1][tileCount] == ' ')) {
+        for (auto& tile : board[i]) {
+            if(tile == ' ') {
                 tileCount++;
                 continue;
             }
 
-            for(int j = 0; j < rack.length(); ++j){
-                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, rack[j]);
+            for (auto& j : rack){
+                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(i, tileCount, j);
+                if(i - 1 != 0 && board[i - 1][tileCount] == ' '){
+                    for (const auto &it: wordsOfTile) {
+                        TString curLStr0;
+                        int anchorIndex = it.second;
 
-                for (auto &it: wordsOfTile) {
-                    TString curLStr(it.first);
-                    int anchorIndex = it.second;
-                    if (!curLStr.is_descendent_of(rack))
-                        continue;
+                        bool above = true;
+                        int start = 0 - anchorIndex;
+                        int end = it.first.length() - anchorIndex;
+                        for (int k = start; k < end; ++k) {
+                            if (board[i - 1][tileCount + k] != ' ') {
+                                above = false;
+                                break;
+                            }
 
-                    bool skip = false;
-                    for (int k = 0 - anchorIndex; k < curLStr.length() - anchorIndex; ++k) {
-                        if (board[rowSubscript - 1][tileCount + k] != ' ') {
-                            skip = true;
-                            break;
+                            curLStr0 += Tile(it.first[k + anchorIndex], tileCount + k, i - 1, -1);
                         }
-
-                        curLStr[k + anchorIndex].x = tileCount + k;
+                        if (above && curLStr0.is_descendent_of(rack))
+                            answerSets[i - 1].push_back(curLStr0);
                     }
-                    if (skip)
-                        continue;
+                }
 
-                    curLStr.set_y_vals_equal_to(rowSubscript - 1);
-                    answerSets[rowSubscript - 1].push_back(curLStr);
+                if(i + 1 != 15 && board[i + 1][tileCount] == ' '){
+                    for (const auto &it: wordsOfTile) {
+                        TString curLStr1;
+                        int anchorIndex = it.second;
+
+                        bool below = true;
+                        int start = 0 - anchorIndex;
+                        int end = it.first.length() - anchorIndex;
+                        for (int k = start; k < end; ++k) {
+                            if (board[i + 1][tileCount + k] != ' ') {
+                                below = false;
+                                break;
+                            }
+
+                            curLStr1 += Tile(it.first[k + anchorIndex], tileCount + k, i + 1, -1);
+                        }
+                        if (below && curLStr1.is_descendent_of(rack))
+                            answerSets[i + 1].push_back(curLStr1);
+                    }
                 }
             }
 
             tileCount++;
         }
-        
-        //computing tangential words below
-        tileCount = 0;
-        for (auto& tile : row) {
-            if(rowSubscript + 1 > 14 || !(tile != ' ' && board[rowSubscript + 1][tileCount] == ' ')) {
-                tileCount++;
-                continue;
-            }
-
-            for(int j = 0; j < rack.length(); ++j){
-                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, rack[j]);
-
-                for (auto &it: wordsOfTile) {
-                    TString curLStr(it.first);
-                    int anchorIndex = it.second;
-                    if (!curLStr.is_descendent_of(rack))
-                        continue;
-
-                    bool skip = false;
-                    for (int k = 0 - anchorIndex; k < curLStr.length() - anchorIndex; ++k) {
-                        if (board[rowSubscript + 1][tileCount + k] != ' ') {
-                            skip = true;
-                            break;
-                        }
-
-                        curLStr[k + anchorIndex].x = tileCount + k;
-                    }
-                    if (skip)
-                        continue;
-
-                    curLStr.set_y_vals_equal_to(rowSubscript + 1);
-                    answerSets[rowSubscript + 1].push_back(curLStr);
-                }
-            }
-
-            tileCount++;
-        }
-        
-        rowSubscript++;
     }
 }
 
