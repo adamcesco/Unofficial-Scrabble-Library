@@ -44,14 +44,14 @@ TEST_CASE("Testing CADS Usage and Speed", "[CADS]"){
     CADS wordData("../Data/scrabble_word_list.txt");
 
     SECTION("Testing words with \'A\' as the first letter"){
-        vector<AnchoredString> data = wordData.return_this_at(2, 2, 'A');
+        vector<AnchoredString> data = wordData.return_this_at(2, 'A');
         for (auto& it : data) {
             REQUIRE(it.first[it.second] == 'A');
         }
     }
 
     SECTION("Testing words with \'S\' as the 5th tile of the 3rd row"){
-        vector<AnchoredString> data = wordData.return_this_at(2, 4, 'S');
+        vector<AnchoredString> data = wordData.return_this_at(4, 'S');
         for (auto& it : data) {
             REQUIRE(it.first[it.second] == 'S');
         }
@@ -62,7 +62,7 @@ TEST_CASE("Testing CADS Usage and Speed", "[CADS]"){
             for (int j = 0; j < 15; ++j) {
                 for (int k = 0; k < 26; ++k) {
                     char curChar = 'A' + k;
-                    vector<AnchoredString> data = wordData.return_this_at(i, j, curChar);
+                    vector<AnchoredString> data = wordData.return_this_at(j, curChar);
                     for (auto& it : data) {
                         REQUIRE(it.first[it.second] == curChar);
                     }

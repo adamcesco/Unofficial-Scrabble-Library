@@ -17,7 +17,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 continue;
             }
 
-            vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(rowSubscript, tileCount, tile.letter);
+            vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(tileCount, tile.letter);
             for (const auto& it : wordsOfTile) {
                 TString curTStr;
                 int anchorIndex = it.second;
@@ -155,7 +155,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
             }
 
             for (auto& j : rack){
-                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(i, tileCount, j);
+                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(tileCount, j);
                 if(i - 1 != 0 && board[i - 1][tileCount] == ' '){
                     for (const auto &it: wordsOfTile) {
                         TString curLStr0;

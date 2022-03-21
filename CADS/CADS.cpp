@@ -1,12 +1,9 @@
 #include "CADS.h"
 
 CADS::CADS() {
-    data = new vector<AnchoredString>**[15];
+    data = new vector<AnchoredString>*[15];
     for (int i = 0; i < 15; ++i) {
-        data[i] = new vector<AnchoredString>*[15];
-        for (int j = 0; j < 15; ++j) {
-            data[i][j] = new vector<AnchoredString>[27];
-        }
+        data[i] = new vector<AnchoredString>[27];
     }
 
     ifstream englishWords;
@@ -23,14 +20,12 @@ CADS::CADS() {
         while(isspace(curWord.back()))
             curWord.pop_back();
 
-        for (int i = 0; i < 15; ++i) {
-            for (int j = 0; j < 15; ++j) {
-                if(j + curWord.length() > 15)
-                    break;
-                for (int k = 0; k < curWord.length(); ++k) {
-                    int index = int(abs(curWord[k]) & 31);
-                    data[i][j + k][index].emplace_back(AnchoredString(curWord, k));
-                }
+        for (int j = 0; j < 15; ++j) {
+            if(j + curWord.length() > 15)
+                break;
+            for (int k = 0; k < curWord.length(); ++k) {
+                int index = int(abs(curWord[k]) & 31);
+                data[j + k][index].emplace_back(AnchoredString(curWord, k));
             }
         }
     }
@@ -40,12 +35,9 @@ CADS::CADS() {
 }
 
 CADS::CADS(string filePath){
-    data = new vector<AnchoredString>**[15];
+    data = new vector<AnchoredString>*[15];
     for (int i = 0; i < 15; ++i) {
-        data[i] = new vector<AnchoredString>*[15];
-        for (int j = 0; j < 15; ++j) {
-            data[i][j] = new vector<AnchoredString>[27];
-        }
+        data[i] = new vector<AnchoredString>[27];
     }
 
     ifstream englishWords;
@@ -62,14 +54,12 @@ CADS::CADS(string filePath){
         while(isspace(curWord.back()))
             curWord.pop_back();
 
-        for (int i = 0; i < 15; ++i) {
-            for (int j = 0; j < 15; ++j) {
-                if(j + curWord.length() > 15)
-                    break;
-                for (int k = 0; k < curWord.length(); ++k) {
-                    int index = int(abs(curWord[k]) & 31);
-                    data[i][j + k][index].emplace_back(AnchoredString(curWord, k));
-                }
+        for (int j = 0; j < 15; ++j) {
+            if(j + curWord.length() > 15)
+                break;
+            for (int k = 0; k < curWord.length(); ++k) {
+                int index = int(abs(curWord[k]) & 31);
+                data[j + k][index].emplace_back(AnchoredString(curWord, k));
             }
         }
     }
@@ -79,10 +69,7 @@ CADS::CADS(string filePath){
 }
 
 CADS::~CADS() {
-    for (int i = 0; i < 15; ++i) {
-        for (int j = 0; j < 15; ++j)
-            delete[] data[i][j];
+    for (int i = 0; i < 15; ++i)
         delete[] data[i];
-    }
     delete[] data;
 }
