@@ -10,6 +10,8 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
+    RMAC::compute_and_print_rack_database("../Data/scrabble_word_list.txt", "../Data/RackDatabase.csv");
+
     cout.precision(9);
 
     string rack = "YUIOHFR";    //blank tiles should be marked as a '?'
@@ -27,11 +29,11 @@ int main(int argc, char* argv[]){
     vReader.clear_wordSets();
 
     auto start = chrono::high_resolution_clock::now();  //start timer here (timing word generation)
-    vReader.search_for_intersecting_words();
-//    vReader.search_for_tangential_words();
+//    vReader.search_for_intersecting_words();
+    vReader.search_for_tangential_words();
 
-    hReader.search_for_intersecting_words();
-//    hReader.search_for_tangential_words();
+//    hReader.search_for_intersecting_words();
+    hReader.search_for_tangential_words();
 
     vReader.validate_words();           //uses ~0.03 seconds for horizontal and vertical word validation
     hReader.validate_words();
