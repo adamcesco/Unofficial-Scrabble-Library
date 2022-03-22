@@ -2,7 +2,6 @@
 #define SCRABBLE_SOLVER_SCRABBLEVECTORIZER_H
 
 #include "../CADS/CADS.h"
-#include "../RackMap/RackMap.h"
 
 enum Type{HORIZONTAL, VERTICAL, UNDEFINED};
 
@@ -52,7 +51,6 @@ protected:
     unordered_set<string> scrabbleWordSet;
     vector<TString> answerSets[15];
     vector<TString> board;
-    RackMap rackMap;
     CADS wordDataset;
     char perkBoard[15][15] =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
                                 {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
