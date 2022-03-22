@@ -283,8 +283,8 @@ bool TString::is_all_whitespace() const {
     return true;
 }
 
-bool TString::is_descendent_of(const string& hand) {
-    if(eleCount == 0)
+bool TString::is_descendent_of(const string& rack) {
+    if(eleCount == 0 || eleCount > rack.length())
         return false;
 
     int handMap[123];
@@ -293,7 +293,7 @@ bool TString::is_descendent_of(const string& hand) {
     for (int i = 0; i < 123; ++i)
         handMap[i] = letterCount[i] = 0;
 
-    for (char it : hand) {
+    for (char it : rack) {
         if(it == '?')
             blankCount++;
         handMap[abs(toupper(it))]++;
