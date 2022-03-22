@@ -10,7 +10,7 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
-//    RMAC::compute_and_print_rack_database("../Data/scrabble_word_list.txt", "../Data/RackDatabase.csv");
+    RMAC::compute_and_print_rack_database("../Data/scrabble_word_list.txt", "../Data/RackDatabase.csv");
 
     cout.precision(9);
 

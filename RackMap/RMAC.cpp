@@ -30,34 +30,19 @@ RMAC::RMAC() {
         int x = 0;
         string cell;
         stringstream rowStr(row);
-        bool rack = false;
         string currentRack;
         int wordXVal = 1;
         while(getline(rowStr, cell, ',')){
-            if(x == 0){
-                if(cell[0] == 'r'){
-                    rack = true;
-                    count++;
-                }
-                else{
-                    rack = false;
-                }
-            }
-            else if (x == 1){
-                if(rack){
-                    currentRack = cell;
-                }
-                else{
-                    wordXVal = atoi(cell.c_str());
-                }
-            }
+            if(x == 0)
+                currentRack = cell;
+            else if (x == 1)
+                wordXVal = atoi(cell.c_str());
             else{
                 TString TStr = cell;
                 TStr.set_x_vals_to_subscripts();
                 TStr.add_to_x_vals(wordXVal);
                 (*data)[currentRack].emplace_back(TStr);
             }
-
             x++;
         }
     }
@@ -67,6 +52,11 @@ RMAC::RMAC() {
 
 void RMAC::compute_and_print_rack_database(string wordCorpusPath, string printPath) {
     auto* rackmap = new unordered_map<string, vector<TString>>();
+
+    ofstream outFile;
+    outFile.open(printPath);
+    if(!outFile.is_open())
+        throw invalid_argument("Could not open " + printPath);
 
     ifstream wordCorpus;
     wordCorpus.open(wordCorpusPath);
@@ -100,6 +90,8 @@ void RMAC::compute_and_print_rack_database(string wordCorpusPath, string printPa
         TStr.add_to_x_vals(1 - end);
         while(TStr.back().x < end){
             (*rackmap)[sorted].emplace_back(TStr);
+            outFile << sorted << ',' << TStr[0].x << ',' << curWord << endl;
+            cout << sorted << ',' << TStr[0].x << ',' << curWord << endl;
             TStr.add_to_x_vals(1);
         }
     }
@@ -108,73 +100,59 @@ void RMAC::compute_and_print_rack_database(string wordCorpusPath, string printPa
     subSevenOut.close();
 
     //------------------------------------------------------------
-
-    cout << "RMAC::compute_and_print_rack_database(2.1):: Raw-sub-rack progress" << endl;
-    for (int i = 3; i < 8; ++i) {
-        cout << "\t" << i << " - ";
-        wordCorpus.open(wordCorpusPath);
-        if(!wordCorpus.is_open())
-            throw invalid_argument("Could not open " + wordCorpusPath);
-
-        char progressFlag = '<';
-        curWord.clear();
-        string curSubSevenWord;
-        while (wordCorpus.good()) {
-            getline(wordCorpus, curWord);
-            while (isspace(curWord.back()))
-                curWord.pop_back();
-
-            if (curWord.length() != i || curWord.empty())
-                continue;
-
-            if(progressFlag != curWord[0]) {
-                progressFlag = curWord[0];
-                cout << progressFlag << ' ';
-            }
-
-            string sorted = curWord;
-            sort(sorted.begin(), sorted.end());
-
-            ifstream wordsSubSeven;
-            wordsSubSeven.open("../Data/words_length_sub_7.txt");
-            if (!wordsSubSeven.is_open())
-                throw invalid_argument("Could not open words_length_sub_7.txt");
-
-            while (wordsSubSeven.good()) {
-                getline(wordsSubSeven, curSubSevenWord);
-                while (isspace(curSubSevenWord.back()))
-                    curSubSevenWord.pop_back();
-
-                TString TStr = curSubSevenWord;
-                if(TStr.length() >= i || !TStr.is_descendent_of(curWord))
-                    continue;
-
-                int end = TStr.length();
-                TStr.set_x_vals_to_subscripts();
-                TStr.add_to_x_vals(1 - end);
-                while(TStr.back().x < end){
-                    (*rackmap)[sorted].emplace_back(TStr);
-                    TStr.add_to_x_vals(1);
+    cout << "RMAC::compute_and_print_rack_database(3.1):: Sub-rack Rebasing and Linking In-Progress" << endl;
+    unordered_map<string, vector<TString>> rmCpy = *rackmap;
+    for (int baseRackSize = 7; baseRackSize > 2; --baseRackSize) {
+        for (const auto &i: rmCpy) {
+            int rackLen = i.first.length();
+            if (rackLen == baseRackSize - 1) {
+                for (int j = 0; j < 26; ++j) {
+                    string temp = i.first + char('A' + j);
+                    for (const auto &k: (*rackmap)[i.first]) {
+                        outFile << temp << ',' << k.read_at(0).x << ',' << k.to_string() << endl;
+                    }
                 }
-            }
-            wordsSubSeven.close();
-        }
-        wordCorpus.close();
-        cout << endl;
-    }
-    cout << "RMAC::compute_and_print_rack_database(2.2):: Raw-sub-rack combination successful" << endl;
-//    cout << "RMAC::compute_and_print_rack_database(3):: Given-rack/sub-rack relationship accounting successful" << endl;
+            } else if (rackLen < baseRackSize) {
+                ifstream rackAddOnFile;
+                rackAddOnFile.open("../Data/Combinations" + to_string(baseRackSize - rackLen) + ".csv");
+                if (!rackAddOnFile.is_open())
+                    throw invalid_argument(
+                            "Could not open ../Data/Combinations" + to_string(baseRackSize - rackLen) + ".csv");
 
-    ofstream outFile;
-    outFile.open(printPath);
-    if(!outFile.is_open())
-        throw invalid_argument("Could not open " + printPath);
+                string rackAddOn;
+                while (rackAddOnFile.good()) {
+                    getline(rackAddOnFile, rackAddOn);
+                    while (isspace(rackAddOn.back()))
+                        rackAddOn.pop_back();
+
+                    for (int j = 0; j < rackAddOn.length(); ++j) {
+                        if(rackAddOn[j] == ',') {
+                            rackAddOn.erase(j, 1);
+                            j--;
+                        }
+                    }
+
+                    string temp = i.first + rackAddOn;
+                    for (const auto &k: (*rackmap)[i.first]) {
+                        outFile << temp << ',' << k.read_at(0).x << ',' << k.to_string() << endl;
+                        cout << temp << ',' << k.read_at(0).x << ',' << k.to_string() << endl;
+                    }
+                }
+                rackAddOnFile.close();
+            }
+        }
+        cout << "\tBase racks of size " << baseRackSize << " completed." << endl;
+    }
+    cout << "RMAC::compute_and_print_rack_database(3.2):: Sub-rack Rebasing and Linking Complete" << endl;
+
+    throw invalid_argument("complete success");
+
     for (const auto& i : *rackmap) {
         for (const auto& j: i.second)
             outFile << i.first << ',' << j.read_at(0).x << ',' << j.to_string() << endl;
     }
     outFile.close();
-    cout << "RMAC::compute_and_print_rack_database(3):: Rack-information printing successful. Printed to " << printPath << endl;
+    cout << "RMAC::compute_and_print_rack_database(4):: Rack-information printing successful. Printed to " << printPath << endl;
 
     throw invalid_argument("complete success");
 }
@@ -190,72 +168,4 @@ vector<TString> &RMAC::operator[](const string& key) {
         cout << it.to_string() << endl;
     }
     return (*data)[sorted];
-}
-
-void RMAC::compute_and_print_sub_racks(string printPath) {
-    ofstream outFile;
-    outFile.open(printPath);
-    if(!outFile.is_open())
-        throw invalid_argument("Could not open " + printPath);
-
-    cout << "RMAC::compute_and_print_sub_racks(string):: Sub-rack binding progress" << endl;
-
-    int baseCount = 325;
-    for (int i = 3; i < 8; ++i) {
-        cout << i << " size racks in progress" << endl;
-
-        ifstream baseRackCorpus;
-        baseRackCorpus.open("../Data/Combinations" + to_string(i) + ".csv");
-        if (!baseRackCorpus.is_open())
-            throw invalid_argument("Could not open ../Data/Combinations" + to_string(i) + ".csv");
-
-        string rackBase;
-        while (baseRackCorpus.good()) {
-            getline(baseRackCorpus, rackBase);
-            baseCount++;
-
-            while (isspace(rackBase.back()))
-                rackBase.pop_back();
-
-            string RBClean;
-            for (char j : rackBase) {
-                if(j != ' ')
-                    RBClean += j;
-            }
-
-            for (int j = i - 1; j > 1; --j) {
-                ifstream subRackCorpus;
-                subRackCorpus.open("../Data/Combinations" + to_string(j) + ".csv");
-                if (!subRackCorpus.is_open())
-                    throw invalid_argument("Could not open ../Data/Combinations" + to_string(j) + ".csv");
-
-                string rackSub;
-                while (subRackCorpus.good()) {
-                    getline(subRackCorpus, rackSub);
-
-                    while (isspace(rackSub.back()))
-                        rackSub.pop_back();
-
-                    string RSClean;
-                    for (char k : rackSub) {
-                        if(k != ' ')
-                            RSClean += k;
-                    }
-                    TString TRSClean = RSClean;
-
-                    if(TRSClean.is_descendent_of(rackBase)){
-                        outFile << RBClean << ',' << RSClean << endl;
-                    }
-                }
-                subRackCorpus.close();
-            }
-        }
-        baseRackCorpus.close();
-
-        cout << "\tcomplete" << endl;
-    }
-    outFile.close();
-
-    cout << "RMAC::compute_and_print_sub_racks(string):: Sub-rack binding fully complete" << endl;
-    throw invalid_argument("complete success");
 }
