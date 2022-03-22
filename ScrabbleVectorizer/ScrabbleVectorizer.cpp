@@ -146,6 +146,9 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
     if(scrabbleWordSet.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_tangential_words() | The set of all scrabble words is empty.");
 
+    if(rack.length() == 1)
+        return;
+
     for (int i = 0; i < 15; ++i) {
         int tileCount = 0;
         for (auto& tile : board[i]) {
@@ -154,48 +157,36 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
                 continue;
             }
 
-            for (auto& j : rack){
-                vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(tileCount, j);
-                if(i - 1 != 0 && board[i - 1][tileCount] == ' '){
-                    for (const auto &it: wordsOfTile) {
-                        TString curLStr0;
-                        int anchorIndex = it.second;
-
-                        bool above = true;
-                        int start = 0 - anchorIndex;
-                        int end = it.first.length() - anchorIndex;
-                        for (int k = start; k < end; ++k) {
-                            if (board[i - 1][tileCount + k] != ' ') {
-                                above = false;
-                                break;
-                            }
-
-                            curLStr0 += Tile(it.first[k + anchorIndex], tileCount + k, i - 1, -1);
+            vector<TString> wordOfRack = rackMap.return_this_at(tileCount, rack);
+            if(i - 1 != 0 && board[i - 1][tileCount] == ' '){
+                for (const auto &it: wordOfRack) {
+                    bool push = true;
+                    int start = it.read_at(0).x;
+                    int end = it.length() + it.read_at(0).x;
+                    for (int k = start; k < end; ++k) {
+                        if (board[i - 1][k] != ' ') {
+                            push = false;
+                            break;
                         }
-                        if (above && curLStr0.is_descendent_of(rack))
-                            answerSets[i - 1].push_back(curLStr0);
                     }
+                    if (push)
+                        answerSets[i - 1].push_back(it);
                 }
+            }
 
-                if(i + 1 != 15 && board[i + 1][tileCount] == ' '){
-                    for (const auto &it: wordsOfTile) {
-                        TString curLStr1;
-                        int anchorIndex = it.second;
-
-                        bool below = true;
-                        int start = 0 - anchorIndex;
-                        int end = it.first.length() - anchorIndex;
-                        for (int k = start; k < end; ++k) {
-                            if (board[i + 1][tileCount + k] != ' ') {
-                                below = false;
-                                break;
-                            }
-
-                            curLStr1 += Tile(it.first[k + anchorIndex], tileCount + k, i + 1, -1);
+            if(i + 1 != 15 && board[i + 1][tileCount] == ' '){
+                for (const auto &it: wordOfRack) {
+                    bool push = true;
+                    int start = it.read_at(0).x;
+                    int end = it.length() + it.read_at(0).x;
+                    for (int k = start; k < end; ++k) {
+                        if (board[i + 1][k] != ' ') {
+                            push = false;
+                            break;
                         }
-                        if (below && curLStr1.is_descendent_of(rack))
-                            answerSets[i + 1].push_back(curLStr1);
                     }
+                    if (push)
+                        answerSets[i + 1].push_back(it);
                 }
             }
 
