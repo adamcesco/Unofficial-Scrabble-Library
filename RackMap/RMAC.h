@@ -7,6 +7,7 @@ class RMAC {    //Rack Map And Calculator
 public:
     RMAC();
     static void compute_and_print_rack_database(string, string);
+    static void compute_and_print_sub_racks(string);
     vector<TString>& operator[](const string&);
     ~RMAC(){ delete data; }
 private:

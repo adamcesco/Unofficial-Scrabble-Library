@@ -55,8 +55,6 @@ RMAC::RMAC() {
                 TString TStr = cell;
                 TStr.set_x_vals_to_subscripts();
                 TStr.add_to_x_vals(wordXVal);
-                if(currentRack == "ADEGOSS")
-                    cout << "RRFF" << endl;
                 (*data)[currentRack].emplace_back(TStr);
             }
 
@@ -111,7 +109,7 @@ void RMAC::compute_and_print_rack_database(string wordCorpusPath, string printPa
 
     //------------------------------------------------------------
 
-    cout << "RMAC::compute_and_print_rack_database(2):: Raw-sub-rack progress" << endl;
+    cout << "RMAC::compute_and_print_rack_database(2.1):: Raw-sub-rack progress" << endl;
     for (int i = 3; i < 8; ++i) {
         cout << "\t" << i << " - ";
         wordCorpus.open(wordCorpusPath);
@@ -164,7 +162,7 @@ void RMAC::compute_and_print_rack_database(string wordCorpusPath, string printPa
         wordCorpus.close();
         cout << endl;
     }
-    cout << "RMAC::compute_and_print_rack_database(2):: Raw-sub-rack combination successful" << endl;
+    cout << "RMAC::compute_and_print_rack_database(2.2):: Raw-sub-rack combination successful" << endl;
 //    cout << "RMAC::compute_and_print_rack_database(3):: Given-rack/sub-rack relationship accounting successful" << endl;
 
     ofstream outFile;
@@ -172,9 +170,8 @@ void RMAC::compute_and_print_rack_database(string wordCorpusPath, string printPa
     if(!outFile.is_open())
         throw invalid_argument("Could not open " + printPath);
     for (const auto& i : *rackmap) {
-        outFile << "rack," << i.first << endl;
         for (const auto& j: i.second)
-            outFile << "word," << j.read_at(0).x << ',' << j.to_string() << endl;
+            outFile << i.first << ',' << j.read_at(0).x << ',' << j.to_string() << endl;
     }
     outFile.close();
     cout << "RMAC::compute_and_print_rack_database(3):: Rack-information printing successful. Printed to " << printPath << endl;
@@ -193,4 +190,72 @@ vector<TString> &RMAC::operator[](const string& key) {
         cout << it.to_string() << endl;
     }
     return (*data)[sorted];
+}
+
+void RMAC::compute_and_print_sub_racks(string printPath) {
+    ofstream outFile;
+    outFile.open(printPath);
+    if(!outFile.is_open())
+        throw invalid_argument("Could not open " + printPath);
+
+    cout << "RMAC::compute_and_print_sub_racks(string):: Sub-rack binding progress" << endl;
+
+    int baseCount = 325;
+    for (int i = 3; i < 8; ++i) {
+        cout << i << " size racks in progress" << endl;
+
+        ifstream baseRackCorpus;
+        baseRackCorpus.open("../Data/Combinations" + to_string(i) + ".csv");
+        if (!baseRackCorpus.is_open())
+            throw invalid_argument("Could not open ../Data/Combinations" + to_string(i) + ".csv");
+
+        string rackBase;
+        while (baseRackCorpus.good()) {
+            getline(baseRackCorpus, rackBase);
+            baseCount++;
+
+            while (isspace(rackBase.back()))
+                rackBase.pop_back();
+
+            string RBClean;
+            for (char j : rackBase) {
+                if(j != ' ')
+                    RBClean += j;
+            }
+
+            for (int j = i - 1; j > 1; --j) {
+                ifstream subRackCorpus;
+                subRackCorpus.open("../Data/Combinations" + to_string(j) + ".csv");
+                if (!subRackCorpus.is_open())
+                    throw invalid_argument("Could not open ../Data/Combinations" + to_string(j) + ".csv");
+
+                string rackSub;
+                while (subRackCorpus.good()) {
+                    getline(subRackCorpus, rackSub);
+
+                    while (isspace(rackSub.back()))
+                        rackSub.pop_back();
+
+                    string RSClean;
+                    for (char k : rackSub) {
+                        if(k != ' ')
+                            RSClean += k;
+                    }
+                    TString TRSClean = RSClean;
+
+                    if(TRSClean.is_descendent_of(rackBase)){
+                        outFile << RBClean << ',' << RSClean << endl;
+                    }
+                }
+                subRackCorpus.close();
+            }
+        }
+        baseRackCorpus.close();
+
+        cout << "\tcomplete" << endl;
+    }
+    outFile.close();
+
+    cout << "RMAC::compute_and_print_sub_racks(string):: Sub-rack binding fully complete" << endl;
+    throw invalid_argument("complete success");
 }
