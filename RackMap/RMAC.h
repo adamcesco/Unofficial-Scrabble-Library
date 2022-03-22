@@ -7,10 +7,10 @@ class RMAC {    //Rack Map And Calculator
 public:
     RMAC();
     static void compute_and_print_rack_database(string, string);
-    vector<TString>& return_this_at(int, const string&);
-    ~RMAC();
+    vector<TString>& operator[](const string&);
+    ~RMAC(){ delete data; }
 private:
-    unordered_map<string, vector<TString>>** data = nullptr;
+    unordered_map<string, vector<TString>>* data = nullptr;
 };
 
 

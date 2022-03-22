@@ -149,48 +149,35 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
     if(rack.length() == 1)
         return;
 
+    vector<TString> wordOfRack = rackMap[rack];
+
     for (int i = 0; i < 15; ++i) {
-        int tileCount = 0;
-        for (auto& tile : board[i]) {
-            if(tile == ' ') {
-                tileCount++;
-                continue;
-            }
+        if(i - 1 < 0)
+            continue;
 
-            vector<TString> wordOfRack = rackMap.return_this_at(tileCount, rack);
-            if(i - 1 != 0 && board[i - 1][tileCount] == ' '){
-                for (const auto &it: wordOfRack) {
-                    bool push = true;
-                    int start = it.read_at(0).x;
-                    int end = it.length() + it.read_at(0).x;
-                    for (int k = start; k < end; ++k) {
-                        if (board[i - 1][k] != ' ') {
-                            push = false;
-                            break;
-                        }
+        for (int j = 0; j < 15; ++j) {
+            for (auto &it: wordOfRack) {
+                cout << "RF" << endl;
+                int start = it.read_at(0).x + j;
+                int end = it.read_back().x + j;
+
+                if (start < 0 || end > 14)
+                    continue;
+
+                bool skip = false;
+                for (int k = 0; k < it.length(); ++k) {
+                    if (board[i - 1][start + k] != ' ') {
+                        skip = true;
+                        break;
                     }
-                    if (push)
-                        answerSets[i - 1].push_back(it);
+                    it[k].x = start + k;
+                    it[k].y = i - 1;
                 }
-            }
+                if (skip)
+                    continue;
 
-            if(i + 1 != 15 && board[i + 1][tileCount] == ' '){
-                for (const auto &it: wordOfRack) {
-                    bool push = true;
-                    int start = it.read_at(0).x;
-                    int end = it.length() + it.read_at(0).x;
-                    for (int k = start; k < end; ++k) {
-                        if (board[i + 1][k] != ' ') {
-                            push = false;
-                            break;
-                        }
-                    }
-                    if (push)
-                        answerSets[i + 1].push_back(it);
-                }
+                answerSets[i - 1].push_back(it);
             }
-
-            tileCount++;
         }
     }
 }
