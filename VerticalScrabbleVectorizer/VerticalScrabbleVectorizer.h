@@ -14,7 +14,7 @@ public:
     TString update_best_word();
     void validate_words();
     Type get_vectorizer_type() const{ return VERTICAL; }
-    vector<TString>& return_answer_set_of(int subscript){ return answerSets[14 - subscript]; }
+    vector<TString>& return_answer_set_of(int subscript){ return moveSets[14 - subscript]; }
     vector<TString> return_formatted_board_copy() const;
     void set_board(const vector<TString>&);                //assumes the passed board is oriented in a horizontal format
     void set_board(const vector<string>&);             //assumes the passed board is oriented in a horizontal format

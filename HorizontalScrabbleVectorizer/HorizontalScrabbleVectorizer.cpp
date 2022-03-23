@@ -27,6 +27,7 @@ HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer() {
 
 HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer(const string &passed) {
     rack = passed;
+    sort(rack.begin(), rack.end());
     bestX = bestY = 8;
 
     ifstream englishWords;
@@ -106,7 +107,7 @@ string HorizontalScrabbleVectorizer::to_string() const {
 }
 
 void HorizontalScrabbleVectorizer::validate_words() {
-    for (auto & wordSet : answerSets) {
+    for (auto & wordSet : moveSets) {
         for (auto& word: wordSet) {
             vector<TString> boardCpy = return_raw_board_with(word);
 
@@ -141,7 +142,7 @@ void HorizontalScrabbleVectorizer::validate_words() {
 TString HorizontalScrabbleVectorizer::update_best_word() {
     int rowSubscript = 0;
     bestWord.clear();
-    for (auto & wordSet : answerSets) {
+    for (auto & wordSet : moveSets) {
         for (const auto& word: wordSet) {
             int wordPoints = points_of_word(word);
             int bestWordPoints = points_of_word(bestWord);
@@ -222,7 +223,7 @@ vector<string> HorizontalScrabbleVectorizer::return_formatted_char_board_copy() 
 
 vector<vector<TString>> HorizontalScrabbleVectorizer::return_formatted_answerSets_copy() const {
     vector<vector<TString>> toReturn(15);
-    for (const auto & wordSet : answerSets) {
+    for (const auto & wordSet : moveSets) {
         toReturn.push_back(wordSet);
     }
     return toReturn;

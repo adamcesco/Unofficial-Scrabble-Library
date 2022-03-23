@@ -25,6 +25,7 @@ VerticalScrabbleVectorizer::VerticalScrabbleVectorizer() {
 
 VerticalScrabbleVectorizer::VerticalScrabbleVectorizer(const string &passed) {
     rack = passed;
+    sort(rack.begin(), rack.end());
 
     ifstream englishWords;
     englishWords.open("../Data/scrabble_word_list.txt");
@@ -115,7 +116,7 @@ string VerticalScrabbleVectorizer::to_string() const {
 TString VerticalScrabbleVectorizer::update_best_word(){
     int rowSubscript = 0;
     bestWord.clear();
-    for (auto & wordSet : answerSets) {
+    for (auto & wordSet : moveSets) {
         for (const auto& word: wordSet) {
             int wordPoints = points_of_word(word) + points_of_word(word);
             int bestWordPoints = points_of_word(bestWord) + points_of_word(bestWord);
@@ -141,7 +142,7 @@ TString VerticalScrabbleVectorizer::update_best_word(){
 }
 
 void VerticalScrabbleVectorizer::validate_words() {
-    for (auto & wordSet : answerSets) {
+    for (auto & wordSet : moveSets) {
         for (auto& word: wordSet) {
             vector<TString> boardCpy = return_raw_board_with(word);
 
@@ -261,7 +262,7 @@ vector<string> VerticalScrabbleVectorizer::return_formatted_char_board_copy() co
 vector<vector<TString>> VerticalScrabbleVectorizer::return_formatted_answerSets_copy() const {
     vector<vector<TString>> toReturn(15);
     for (int i = 0; i < 15; ++i) {
-        toReturn.push_back(answerSets[14 - i]);
+        toReturn.push_back(moveSets[14 - i]);
     }
     return toReturn;
 }

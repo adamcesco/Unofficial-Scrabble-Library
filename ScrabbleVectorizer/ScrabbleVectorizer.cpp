@@ -66,7 +66,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 if(skip)
                     continue;
 
-                answerSets[rowSubscript].push_back(curTStr);    //problem: anchored index must be 0 for the word to be passed on
+                moveSets[rowSubscript].push_back(curTStr);    //problem: anchored index must be 0 for the word to be passed on
             }
 
             tileCount++;
@@ -81,7 +81,7 @@ void ScrabbleVectorizer::reset_all_data() {
     rack.clear();
     board.clear();
 
-    for (auto & words : answerSets) {
+    for (auto & words : moveSets) {
         words.clear();
     }
 
@@ -176,28 +176,28 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
                 if (skip)
                     continue;
 
-                answerSets[i - 1].push_back(it);
+                moveSets[i - 1].push_back(it);
             }
         }
     }
 }
 
 void ScrabbleVectorizer::clear_wordSets() {
-    answerSets[0].clear();
-    answerSets[1].clear();
-    answerSets[2].clear();
-    answerSets[3].clear();
-    answerSets[4].clear();
-    answerSets[5].clear();
-    answerSets[6].clear();
-    answerSets[7].clear();
-    answerSets[8].clear();
-    answerSets[9].clear();
-    answerSets[10].clear();
-    answerSets[11].clear();
-    answerSets[12].clear();
-    answerSets[13].clear();
-    answerSets[14].clear();
+    moveSets[0].clear();
+    moveSets[1].clear();
+    moveSets[2].clear();
+    moveSets[3].clear();
+    moveSets[4].clear();
+    moveSets[5].clear();
+    moveSets[6].clear();
+    moveSets[7].clear();
+    moveSets[8].clear();
+    moveSets[9].clear();
+    moveSets[10].clear();
+    moveSets[11].clear();
+    moveSets[12].clear();
+    moveSets[13].clear();
+    moveSets[14].clear();
 }
 
 int ScrabbleVectorizer::points_of_word(const TString &word) const{
@@ -265,7 +265,7 @@ int ScrabbleVectorizer::points_of_word(const TString &word) const{
 
 vector<int> ScrabbleVectorizer::find_points_of_word (const string& passed) const {
     vector<int> values;
-    for (auto & curWordSet : answerSets) {
+    for (auto & curWordSet : moveSets) {
         for (const auto& word : curWordSet) {
             if(word == passed){
                 values.push_back(points_of_word(word));
@@ -311,7 +311,7 @@ vector<string> ScrabbleVectorizer::return_raw_char_board_copy() {
 
 vector<TString> ScrabbleVectorizer::return_all_of_raw_word(const string& passed) const {
     vector<TString> foundVersions;
-    for (auto & curWordSet : answerSets) {
+    for (auto & curWordSet : moveSets) {
         for (const auto& word : curWordSet) {
             if(word == passed){
                 foundVersions.push_back(word);

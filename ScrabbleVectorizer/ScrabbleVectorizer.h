@@ -27,7 +27,7 @@ public:
 
     void clear_wordSets();
     TString& get_best_word(){ return bestWord; }
-    void set_hand(const string& passed){ rack = passed; }
+    void set_hand(const string& passed){ rack = passed; sort(rack.begin(), rack.end()); }
     vector<TString>& get_raw_board(){ return board; }
     vector<string> return_raw_char_board_copy();
     vector<string> return_raw_perkBoard_copy();
@@ -39,7 +39,7 @@ public:
     unordered_set<string>& get_all_scrabble_words(){ return scrabbleWordSet; }
     vector<int> find_points_of_word(const string&) const;
     vector<TString> return_all_of_raw_word(const string&) const;
-    vector<TString>* get_answerSets(){ return answerSets; }
+    vector<TString>* get_moveSets(){ return moveSets; }
 
 protected:
     virtual int points_of_word(const TString &) const;                          //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type
@@ -50,7 +50,7 @@ protected:
     TString bestWord;
     string rack;
     unordered_set<string> scrabbleWordSet;
-    vector<TString> answerSets[15];
+    vector<TString> moveSets[15];
     vector<TString> board;
     RMAC rackMap;
     CADS wordDataset;

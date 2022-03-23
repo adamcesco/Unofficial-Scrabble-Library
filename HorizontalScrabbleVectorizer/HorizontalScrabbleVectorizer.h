@@ -22,7 +22,7 @@ public:
 
     string to_string() const;
     void validate_words();
-    vector<TString>& return_answer_set_of(int subscript){ return answerSets[subscript]; }
+    vector<TString>& return_answer_set_of(int subscript){ return moveSets[subscript]; }
     int points_of_best_word() const{ return points_of_word(bestWord); }
     vector<vector<TString>> return_formatted_answerSets_copy() const;
 };
