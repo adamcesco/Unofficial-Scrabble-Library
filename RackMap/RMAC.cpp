@@ -18,9 +18,15 @@ RMAC::RMAC(const string& pRack) {
         TString toPush = word;
         while(isspace(toPush.back().letter))
             toPush.pop_back();
-        if(TString::is_descendent_of(toPush, rack))
-            data.emplace_back(toPush);
+        if(TString::is_descendent_of(toPush, rack)){
+            int len = toPush.length() - 1;
+            toPush.set_x_vals_to_subscripts();
+            toPush.add_to_x_vals(0 - len);
+            for (int i = 0; i < len; ++i) {
+                toPush.add_to_x_vals(i);
+                data.push_back(toPush);
+            }
+        }
     }
     wordCorpus.close();
-    cout << "RMAC::RMAC():: " << count << " rack-information sets read from ../Data/RackDatabase.csv" << endl;
 }

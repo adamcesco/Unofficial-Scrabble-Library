@@ -390,6 +390,7 @@ bool TString::is_descendent_of(TString& sub, const string& rack) {
         lCount[sub[i].letter]++;
 
     for (int i = 0; i < slen; ++i) {
+        sub[i].x = i;
         int index = sub[i].letter;
         bool RLC = rCount[index] < lCount[index];
         if(blankCount == 0 && RLC)
@@ -401,7 +402,6 @@ bool TString::is_descendent_of(TString& sub, const string& rack) {
             lCount[index]--;
             i--;
         }
-        sub[i].x = i;
     }
 
     return true;

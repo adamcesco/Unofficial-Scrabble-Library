@@ -152,30 +152,54 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
     RMAC rackMap(rack);
 
     for (int i = 0; i < 15; ++i) {
-        if(i - 1 < 0)
-            continue;
-
-        for (int j = 0; j < 15; ++j) {
-            for (auto &it: rackMap.data) {
-                int start = it.read_at(0).x + j;
-                int end = it.read_back().x + j;
-
-                if (start < 0 || end > 14)
+        if(i - 1 > 0) {
+            for (int j = 0; j < 15; ++j) {
+                if (board[i][j] == ' ' || board[i - 1][j] != ' ')
                     continue;
+                for (auto it: rackMap.data) {
+                    int start = it.read_at(0).x + j;
+                    int end = start + it.length();
+                    if (start < 0 || end > 15)
+                        continue;
 
-                bool skip = false;
-                for (int k = 0; k < it.length(); ++k) {
-                    if (board[i - 1][start + k] != ' ') {
-                        skip = true;
-                        break;
+                    bool skip = false;
+                    for (int k = start; k < end; ++k) {
+                        if (board[i - 1][k] != ' ') {
+                            skip = true;
+                            break;
+                        }
+                        it[k - start].x = k;
+                        it[k - start].y = i - 1;
                     }
-                    it[k].x = start + k;
-                    it[k].y = i - 1;
+                    if (skip)
+                        continue;
+                    moveSets[i - 1].push_back(it);
                 }
-                if (skip)
+            }
+        }
+        if(i + 1 < 15) {
+            for (int j = 0; j < 15; ++j) {
+                if (board[i][j] == ' ' || board[i + 1][j] != ' ')
                     continue;
+                for (auto it: rackMap.data) {
+                    int start = it.read_at(0).x + j;
+                    int end = start + it.length();
+                    if (start < 0 || end > 15)
+                        continue;
 
-                moveSets[i - 1].push_back(it);
+                    bool skip = false;
+                    for (int k = start; k < end; ++k) {
+                        if (board[i + 1][k] != ' ') {
+                            skip = true;
+                            break;
+                        }
+                        it[k - start].x = k;
+                        it[k - start].y = i + 1;
+                    }
+                    if (skip)
+                        continue;
+                    moveSets[i + 1].push_back(it);
+                }
             }
         }
     }
