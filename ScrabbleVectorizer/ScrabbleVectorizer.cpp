@@ -149,15 +149,14 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
     if(rack.length() == 1)
         return;
 
-    vector<TString> wordOfRack = rackMap[rack];
+    RMAC rackMap(rack);
 
     for (int i = 0; i < 15; ++i) {
         if(i - 1 < 0)
             continue;
 
         for (int j = 0; j < 15; ++j) {
-            for (auto &it: wordOfRack) {
-                cout << "RF" << endl;
+            for (auto &it: rackMap.data) {
                 int start = it.read_at(0).x + j;
                 int end = it.read_back().x + j;
 

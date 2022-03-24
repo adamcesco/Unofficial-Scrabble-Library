@@ -63,6 +63,7 @@ public:
     //Methods below are unique to TString
     bool row_is_descendent_of(const string&, const TString&, TString&);
     bool is_descendent_of(const string&);
+    static bool is_descendent_of(TString&, const string&);      //optimize
     int get_letter_points() const;
     static int get_letter_points(string);
     TString& set_x_vals_to_subscripts();

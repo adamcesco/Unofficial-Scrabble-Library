@@ -19,13 +19,13 @@ TString& TString::operator=(const TString& toAssign){
     return *this;
 }
 
-inline Tile& TString::operator[](int subscript){
+Tile& TString::operator[](int subscript){
     if(subscript < 0 || subscript >= eleCount)
         throw invalid_argument("invalid subscript for TString::operator[](int) | subscript parameter is invalid");
     return data[subscript];
 }
 
-inline Tile TString::read_at(int subscript) const{
+Tile TString::read_at(int subscript) const{
     if(subscript < 0 || subscript >= eleCount)
         throw invalid_argument("invalid subscript for TString::read_at(int) | subscript parameter is invalid");
     return data[subscript];
@@ -43,7 +43,7 @@ Tile& TString::back(){
     return data[eleCount - 1];
 }
 
-inline TString& TString::pop_back(){
+TString& TString::pop_back(){
     if(eleCount == 0)
         throw invalid_argument("invalid subscript for TString::pop_front(int) | TString::length is 0");
     eleCount--;
@@ -94,7 +94,7 @@ TString &TString::operator=(const string &toAssign) {
     return *this;
 }
 
-inline TString& TString::operator+=(const Tile &pssd){
+TString& TString::operator+=(const Tile &pssd){
     if(eleCount > 44)
         throw invalid_argument("invalid call for TString& TString::operator+=(const Tile &) | Max capacity of TString has been reached");
     data[eleCount] = pssd;
@@ -102,7 +102,7 @@ inline TString& TString::operator+=(const Tile &pssd){
     return *this;
 }
 
-inline TString& TString::operator+=(char pssd) {
+TString& TString::operator+=(char pssd) {
     if(eleCount > 44)
         throw invalid_argument("invalid call for TString& TString::operator+=(char) | Max capacity of TString has been reached");
     data[eleCount] = pssd;
@@ -302,9 +302,6 @@ bool TString::is_descendent_of(const string& rack) {
     for (int i = 0; i < eleCount; ++i)
         letterCount[abs(toupper(data[i].letter))]++;
 
-    handMap[32] = 0;
-    letterCount[32] = 0;
-
     for (int i = 0; i < eleCount; ++i) {
         int index = abs(toupper(data[i].letter));
         if(handMap[index] < letterCount[index] && blankCount == 0)
@@ -366,6 +363,45 @@ bool TString::operator==(const char* toComp) const {
     for (int i = 0; i < eleCount; i++) {
         if(toComp[i] != data[i].letter)
             return false;
+    }
+
+    return true;
+}
+
+bool TString::is_descendent_of(TString& sub, const string& rack) {
+    int slen = sub.eleCount;
+    int rlen = rack.length();
+    if(rlen == 0 || slen > rack.length())
+        return false;
+
+    int rCount[123];
+    int lCount[123];
+    int blankCount = 0;
+    for (int i = 0; i < 123; ++i)
+        rCount[i] = lCount[i] = 0;
+
+    for (char it : rack) {
+        if(it == '?')
+            blankCount++;
+        rCount[abs(toupper(it))]++;
+    }
+
+    for (int i = 0; i < slen; ++i)
+        lCount[sub[i].letter]++;
+
+    for (int i = 0; i < slen; ++i) {
+        int index = sub[i].letter;
+        bool RLC = rCount[index] < lCount[index];
+        if(blankCount == 0 && RLC)
+            return false;
+        else if (RLC) {
+            sub[i].points = 0;
+            sub[i].isBlank = true;
+            blankCount--;
+            lCount[index]--;
+            i--;
+        }
+        sub[i].x = i;
     }
 
     return true;

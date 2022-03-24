@@ -3,14 +3,10 @@
 
 #include "../CADS/CADS.h"
 
-class RMAC {    //Rack Map And Calculator
-public:
-    RMAC();
-    static void compute_and_print_rack_database(string, string);
-    vector<TString>& operator[](const string&);
-    ~RMAC(){ delete data; }
-private:
-    unordered_map<string, vector<TString>>* data = nullptr;
+struct RMAC {    //Rack Map And Calculator
+    RMAC(const string&);
+    string rack;
+    vector<TString> data;
 };
 
 
