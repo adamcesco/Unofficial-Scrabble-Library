@@ -4,6 +4,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
     //TODO: Remove as many if-statements as possible.
     // Convert AnchoredString into AnchoredTString, so that ScrabbleDataset is composed of pre-defined TStrings.
     // Turn rackCount into a class/struct.
+    // optimize solution as much as possible
 
     if(scrabbleWordSet.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
@@ -140,9 +141,9 @@ vector<TString> ScrabbleVectorizer::return_raw_board_with(const TString &toPrint
 
 void ScrabbleVectorizer::search_for_tangential_words() {    //does not support blank tiles
     //TODO: Remove as many if-statements as possible.
-    // Convert AnchoredString into AnchoredTString, so that ScrabbleDataset is composed of pre-defined TStrings.
-    // Turn rackCount into a class/struct.
-    // Implement custom data-structure for tile placement checking for tangential words only.
+    // optimize solution as much as possible
+    // Implement custom data-structure for tile placement checking for tangential words only (so you do not have to do over under explicitly).
+    // optimize solution as much as possible
     if(scrabbleWordSet.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_tangential_words() | The set of all scrabble words is empty.");
 
