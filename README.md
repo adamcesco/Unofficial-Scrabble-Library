@@ -7,7 +7,7 @@
 
 ## Usage
 
-- To run the scrabble-board solver, use 1 command line argument:
+- To run the scrabble-board solver, provide the following command line argument:
  
    >*../Data/Board.csv*
 
