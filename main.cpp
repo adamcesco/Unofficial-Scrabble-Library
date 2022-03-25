@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
 
     cout.precision(9);
 
-    string rack = "ADEGOSS";    //blank tiles should be marked as a '?'
+    string rack = "AHUIK??";    //blank tiles should be marked as a '?'
 
     HorizontalScrabbleVectorizer hReader(rack);
     hReader.build_board(argv[1]);

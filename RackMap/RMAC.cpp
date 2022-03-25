@@ -23,7 +23,7 @@ RMAC::RMAC(const string& pRack) {
             toPush.set_x_vals_to_subscripts();
             toPush.add_to_x_vals(0 - len);
             for (int i = 0; i < len; ++i) {
-                toPush.add_to_x_vals(i);
+                toPush.add_to_x_vals(1);
                 data.push_back(toPush);
             }
         }
