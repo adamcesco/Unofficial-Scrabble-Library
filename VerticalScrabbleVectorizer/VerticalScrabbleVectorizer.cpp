@@ -16,7 +16,7 @@ VerticalScrabbleVectorizer::VerticalScrabbleVectorizer() {
         while(isspace(curWord.back()))
             curWord.pop_back();
 
-        scrabbleWordSet.emplace(curWord);
+        dictionary.emplace(curWord);
     }
     cout << "VerticalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
 
@@ -41,7 +41,7 @@ VerticalScrabbleVectorizer::VerticalScrabbleVectorizer(const string &passed) {
         while(isspace(curWord.back()))
             curWord.pop_back();
 
-        scrabbleWordSet.emplace(curWord);
+        dictionary.emplace(curWord);
     }
     cout << "VerticalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
 
@@ -157,7 +157,7 @@ void VerticalScrabbleVectorizer::validate_words() {
                 vector<string> colShards = column.string_fragments();
 
                 for (const auto& shard : colShards) {
-                    if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
+                    if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
                         word.clear();
                     }
                 }
@@ -165,7 +165,7 @@ void VerticalScrabbleVectorizer::validate_words() {
                 vector<string> rowShards = row.string_fragments();
 
                 for (const auto& shard : rowShards) {
-                    if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end()) {
+                    if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
                         word.clear();
                     }
                 }
@@ -205,8 +205,8 @@ void VerticalScrabbleVectorizer::set_board(const vector<TString> &passed) {   //
 }
 
 void VerticalScrabbleVectorizer::validate_board() const{
-    if(scrabbleWordSet.empty())
-        throw invalid_argument("Error in ScrabbleVectorizer::validate_board() | unordered_map<TString> scrabbleWordSet is empty.");
+    if(dictionary.empty())
+        throw invalid_argument("Error in ScrabbleVectorizer::validate_board() | unordered_map<TString> dictionary is empty.");
 
     for (int i = 0; i < 15; ++i) {
         TString column;
@@ -222,14 +222,14 @@ void VerticalScrabbleVectorizer::validate_board() const{
         vector<string> colShards = column.string_fragments();
 
         for (const auto& shard : colShards) {
-            if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
+            if(shard.length() > 1 && dictionary.find(shard) == dictionary.end())
                 throw invalid_argument("Error in void VerticalScrabbleVectorizer::validate_board() | Invalid vertical Word in Data/Board.csv |" + shard + '|');
         }
 
         vector<string> rowShards = row.string_fragments();
 
         for (const auto& shard : rowShards) {
-            if(shard.length() > 1 && scrabbleWordSet.find(shard) == scrabbleWordSet.end())
+            if(shard.length() > 1 && dictionary.find(shard) == dictionary.end())
                 throw invalid_argument("Error in void VerticalScrabbleVectorizer::validate_board() | Invalid horizontal Word in Data/Board.csv |" + shard + '|');
         }
     }

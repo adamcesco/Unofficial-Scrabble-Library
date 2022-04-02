@@ -6,7 +6,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
     // Turn rackCount into a class/struct.
     // optimize solution as much as possible
 
-    if(scrabbleWordSet.empty())
+    if(dictionary.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
 
     int rowSubscript = 0;
@@ -18,7 +18,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 continue;
             }
 
-            vector<AnchoredString> wordsOfTile = wordDataset.return_this_at(tileCount, tile.letter);
+            vector<AnchoredString> wordsOfTile = wordDataset.at_with(tileCount, tile.letter);
             for (const auto& it : wordsOfTile) {
                 TString curTStr;
                 int anchorIndex = it.second;
@@ -86,7 +86,7 @@ void ScrabbleVectorizer::reset_all_data() {
         words.clear();
     }
 
-    scrabbleWordSet.clear();
+    dictionary.clear();
     ifstream englishWords;
     englishWords.open("../Data/scrabble_word_list.txt");
     if(!englishWords.is_open())
@@ -95,7 +95,7 @@ void ScrabbleVectorizer::reset_all_data() {
     string curWord;
     while(englishWords.good()){
         getline(englishWords, curWord);
-        scrabbleWordSet.emplace(curWord);
+        dictionary.emplace(curWord);
     }
     englishWords.close();
 }
@@ -144,7 +144,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
     // optimize solution as much as possible
     // Implement custom data-structure for tile placement checking for tangential words only (so you do not have to do over under explicitly).
     // optimize solution as much as possible
-    if(scrabbleWordSet.empty())
+    if(dictionary.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_tangential_words() | The set of all scrabble words is empty.");
 
     if(rack.length() == 1)
@@ -343,4 +343,27 @@ vector<TString> ScrabbleVectorizer::return_all_of_raw_word(const string& passed)
         }
     }
     return foundVersions;
+}
+
+void ScrabbleVectorizer::build_dictionary_from(const char* filePath) {
+    ifstream dictionaryFile;
+    dictionaryFile.open(filePath);
+    if(!dictionaryFile.is_open())
+        throw invalid_argument("could not open file passed to void ScrabbleVectorizer::build_dictionary_from(const char* filePath)");
+
+    dictionary.clear();
+    string curWord;
+    int count = 0;
+    while(dictionaryFile.good()){
+        getline(dictionaryFile, curWord);
+        count++;
+
+        while(isspace(curWord.back()))
+            curWord.pop_back();
+
+        dictionary.emplace(curWord);
+    }
+    cout << "HorizontalScrabbleVectorizer:: " << count << " words read from " << filePath << endl;
+
+    dictionaryFile.close();
 }

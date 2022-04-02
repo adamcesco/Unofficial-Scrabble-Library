@@ -27,7 +27,7 @@ public:
 
     void clear_wordSets();
     TString& get_best_word(){ return bestWord; }
-    void set_hand(const string& passed){ rack = passed; sort(rack.begin(), rack.end()); }
+    void set_rack(const string& passed){ rack = passed; sort(rack.begin(), rack.end()); }
     vector<TString>& get_raw_board(){ return board; }
     vector<string> return_raw_char_board_copy();
     vector<string> return_raw_perkBoard_copy();
@@ -36,10 +36,12 @@ public:
     void reset_all_data();
     string& get_hand(){ return rack; }
     void set_raw_board(const vector<TString>& passed){ board = passed; }
-    unordered_set<string>& get_all_scrabble_words(){ return scrabbleWordSet; }
+    unordered_set<string>& get_all_scrabble_words(){ return dictionary; }
     vector<int> find_points_of_word(const string&) const;
     vector<TString> return_all_of_raw_word(const string&) const;
     vector<TString>* get_moveSets(){ return moveSets; }
+    void set_dictionary(const unordered_set<string>& passed){ dictionary = passed; }
+    void build_dictionary_from(const char*);
 
 protected:
     virtual int points_of_word(const TString &) const;                          //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type
@@ -49,10 +51,10 @@ protected:
     int bestX, bestY;
     TString bestWord;
     string rack;
-    unordered_set<string> scrabbleWordSet;
+    unordered_set<string> dictionary;
     vector<TString> moveSets[15];
     vector<TString> board;
-    CADS wordDataset;
+    CADS wordDataset = CADS("../Data/scrabble_word_list.txt");
     char perkBoard[15][15] =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
                                 {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
                                 {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
