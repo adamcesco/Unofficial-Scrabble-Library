@@ -1,11 +1,11 @@
 #include "RMAC.h"
 
-RMAC::RMAC(const string& pRack) {
+RMAC::RMAC(const string& pRack, const string& filePath) {
     rack = pRack;
     ifstream wordCorpus;
-    wordCorpus.open("../Data/scrabble_word_list.txt");
+    wordCorpus.open(filePath);
     if(!wordCorpus.is_open())
-        throw invalid_argument("Could not open ../Data/scrabble_word_list.txt");
+        throw invalid_argument("Could not open file path passed to RMAC::RMAC(const string& pRack, const string& filePath)");
 
     string word;
     int count = 0;

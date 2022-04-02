@@ -43,6 +43,7 @@ public:
     void set_dictionary(const unordered_set<string>& passed){ dictionary = passed; }
     void build_dictionary_from(const char*);
     void build_CADS_from(const char* filePath) { wordDataset = CADS(filePath); }
+    void set_RMAC_filepath(const string& filePath) { rackMapFilePath = filePath; }
 
     ~ScrabbleVectorizer();
 
@@ -54,6 +55,7 @@ protected:
     int bestX, bestY;
     TString bestWord;
     string rack;
+    string rackMapFilePath;
     unordered_set<string> dictionary;
     vector<TString>** moveSets;
     vector<TString> board;

@@ -4,7 +4,7 @@
 #include "../CADS/CADS.h"
 
 struct RMAC {    //Rack Map And Calculator
-    RMAC(const string&);
+    RMAC(const string&, const string&);
     string rack;
     vector<TString> data;
 };

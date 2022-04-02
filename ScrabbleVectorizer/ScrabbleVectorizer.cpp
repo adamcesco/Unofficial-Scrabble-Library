@@ -152,7 +152,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
     if(rack.length() == 1)
         return;
 
-    RMAC rackMap(rack);
+    RMAC rackMap(rack, rackMapFilePath);
 
     for (int i = 0; i < 15; ++i) {
         if(i - 1 > 0) {

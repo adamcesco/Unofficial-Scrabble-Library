@@ -12,12 +12,13 @@ int main(int argc, char* argv[]){
 
     cout.precision(9);
 
-    string rack = "AHUIKOL";    //blank tiles should be marked as a '?'
+    string rack = "DRJKALE";    //blank tiles should be marked as a '?'
 
     HorizontalScrabbleVectorizer hReader(rack);
     hReader.build_board_from(argv[1]);
     hReader.build_dictionary_from(argv[2]);
     hReader.build_CADS_from(argv[2]);
+    hReader.set_RMAC_filepath(argv[2]);
     hReader.validate_board();
     hReader.console_print_formatted_board();
     hReader.clear_wordSets();
@@ -26,6 +27,7 @@ int main(int argc, char* argv[]){
     vReader.build_board_from(argv[1]);
     vReader.build_dictionary_from(argv[2]);
     vReader.build_CADS_from(argv[2]);
+    vReader.set_RMAC_filepath(argv[2]);
     vReader.validate_board();
     vReader.console_print_formatted_board();
     vReader.clear_wordSets();
