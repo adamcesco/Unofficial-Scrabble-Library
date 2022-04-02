@@ -6751,7 +6751,7 @@ namespace Catch {
                 }
 
                 BenchmarkFunction& operator=(BenchmarkFunction const& that) {
-                    f.reset(that.f->clone());
+                    f.clear_all(that.f->clone());
                     return *this;
                 }
 

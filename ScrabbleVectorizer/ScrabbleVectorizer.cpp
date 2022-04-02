@@ -67,7 +67,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 if(skip)
                     continue;
 
-                moveSets[rowSubscript].push_back(curTStr);    //problem: anchored index must be 0 for the word to be passed on
+                moveSets[curTStr[0].y][curTStr[0].x].push_back(curTStr);    //problem: anchored index must be 0 for the word to be passed on
             }
 
             tileCount++;
@@ -82,8 +82,10 @@ void ScrabbleVectorizer::reset_all_data() {
     rack.clear();
     board.clear();
 
-    for (auto & words : moveSets) {
-        words.clear();
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            moveSets[i][j].clear();
+        }
     }
 
     dictionary.clear();
@@ -174,7 +176,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
                     }
                     if (skip)
                         continue;
-                    moveSets[i - 1].push_back(it);
+                    moveSets[i - 1][it[0].x].push_back(it);
                 }
             }
         }
@@ -199,7 +201,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
                     }
                     if (skip)
                         continue;
-                    moveSets[i + 1].push_back(it);
+                    moveSets[it[0].y][it[0].x].push_back(it);
                 }
             }
         }
@@ -207,21 +209,11 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
 }
 
 void ScrabbleVectorizer::clear_wordSets() {
-    moveSets[0].clear();
-    moveSets[1].clear();
-    moveSets[2].clear();
-    moveSets[3].clear();
-    moveSets[4].clear();
-    moveSets[5].clear();
-    moveSets[6].clear();
-    moveSets[7].clear();
-    moveSets[8].clear();
-    moveSets[9].clear();
-    moveSets[10].clear();
-    moveSets[11].clear();
-    moveSets[12].clear();
-    moveSets[13].clear();
-    moveSets[14].clear();
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            moveSets[i][j].clear();
+        }
+    }
 }
 
 int ScrabbleVectorizer::points_of_word(const TString &word) const{
@@ -287,18 +279,6 @@ int ScrabbleVectorizer::points_of_word(const TString &word) const{
     return wordSum;
 }
 
-vector<int> ScrabbleVectorizer::find_points_of_word (const string& passed) const {
-    vector<int> values;
-    for (auto & curWordSet : moveSets) {
-        for (const auto& word : curWordSet) {
-            if(word == passed){
-                values.push_back(points_of_word(word));
-            }
-        }
-    }
-    return values;
-}
-
 void ScrabbleVectorizer::place_best_word_into_board() {
     for (int i = bestWord.read_at(0).x; i < bestWord.length() + bestWord.read_at(0).x; i++) {
         if (board[bestWord.read_at(0).y][i] == ' ')
@@ -333,18 +313,6 @@ vector<string> ScrabbleVectorizer::return_raw_char_board_copy() {
     return toReturn;
 }
 
-vector<TString> ScrabbleVectorizer::return_all_of_raw_word(const string& passed) const {
-    vector<TString> foundVersions;
-    for (auto & curWordSet : moveSets) {
-        for (const auto& word : curWordSet) {
-            if(word == passed){
-                foundVersions.push_back(word);
-            }
-        }
-    }
-    return foundVersions;
-}
-
 void ScrabbleVectorizer::build_dictionary_from(const char* filePath) {
     ifstream dictionaryFile;
     dictionaryFile.open(filePath);
@@ -366,4 +334,32 @@ void ScrabbleVectorizer::build_dictionary_from(const char* filePath) {
     cout << "HorizontalScrabbleVectorizer:: " << count << " words read from " << filePath << endl;
 
     dictionaryFile.close();
+}
+
+ScrabbleVectorizer::~ScrabbleVectorizer() {
+    for (int i = 0; i < 15; ++i) {
+        delete[] moveSets[i];
+    }
+    delete[] moveSets;
+}
+
+ScrabbleVectorizer::ScrabbleVectorizer() {
+    bestX = bestY = 8;
+
+    moveSets = new vector<TString>*[15];
+    for (int i = 0; i < 15; ++i) {
+        moveSets[i] = new vector<TString>[15];
+    }
+}
+
+ScrabbleVectorizer::ScrabbleVectorizer(const string &passed) {
+    bestX = bestY = 8;
+
+    moveSets = new vector<TString>*[15];
+    for (int i = 0; i < 15; ++i) {
+        moveSets[i] = new vector<TString>[15];
+    }
+
+    rack = passed;
+    sort(rack.begin(), rack.end());
 }

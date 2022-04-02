@@ -8,17 +8,19 @@ enum Type{HORIZONTAL, VERTICAL, UNDEFINED};
 
 class ScrabbleVectorizer {
 public:
-    virtual void build_board(const string &) = 0;
+    ScrabbleVectorizer();
+    explicit ScrabbleVectorizer(const string &passed);
+    virtual void build_board_from(const char*) = 0;
     virtual void console_print_formatted_board() const = 0;
     virtual void validate_board() const = 0;
     virtual vector<string> return_formatted_char_board_copy() const = 0;
     virtual vector<string> return_formatted_perkBoard_copy() const = 0;
     virtual TString update_best_word() = 0;
-    virtual vector<vector<TString>> return_formatted_answerSets_copy() const = 0;
     virtual vector<TString> return_formatted_board_copy() const = 0;
     virtual Type get_vectorizer_type() const = 0;
     virtual void set_board(const vector<string>&) = 0;
     virtual void set_perkBoard(const vector<string>&) = 0;
+    virtual vector<TString>& get_all_moves_at(int, int) = 0;
 
     virtual void search_for_intersecting_words();
     virtual void search_for_tangential_words();
@@ -37,11 +39,12 @@ public:
     string& get_hand(){ return rack; }
     void set_raw_board(const vector<TString>& passed){ board = passed; }
     unordered_set<string>& get_all_scrabble_words(){ return dictionary; }
-    vector<int> find_points_of_word(const string&) const;
-    vector<TString> return_all_of_raw_word(const string&) const;
-    vector<TString>* get_moveSets(){ return moveSets; }
+    vector<TString>** get_moveSets(){ return moveSets; }
     void set_dictionary(const unordered_set<string>& passed){ dictionary = passed; }
     void build_dictionary_from(const char*);
+    void build_CADS_from(const char* filePath) { wordDataset = CADS(filePath); }
+
+    ~ScrabbleVectorizer();
 
 protected:
     virtual int points_of_word(const TString &) const;                          //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type
@@ -52,9 +55,9 @@ protected:
     TString bestWord;
     string rack;
     unordered_set<string> dictionary;
-    vector<TString> moveSets[15];
+    vector<TString>** moveSets;
     vector<TString> board;
-    CADS wordDataset = CADS("../Data/scrabble_word_list.txt");
+    CADS wordDataset;
     char perkBoard[15][15] =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
                                 {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
                                 {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},

@@ -1,58 +1,11 @@
 #include "VerticalScrabbleVectorizer.h"
 #include <sstream>
 
-VerticalScrabbleVectorizer::VerticalScrabbleVectorizer() {
-    ifstream englishWords;
-    englishWords.open("../Data/scrabble_word_list.txt");
-    if(!englishWords.is_open())
-        throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
-
-    string curWord;
-    int count = 0;
-    while(englishWords.good()){
-        getline(englishWords, curWord);
-        count++;
-
-        while(isspace(curWord.back()))
-            curWord.pop_back();
-
-        dictionary.emplace(curWord);
-    }
-    cout << "VerticalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
-
-    englishWords.close();
-}
-
-VerticalScrabbleVectorizer::VerticalScrabbleVectorizer(const string &passed) {
-    rack = passed;
-    sort(rack.begin(), rack.end());
-
-    ifstream englishWords;
-    englishWords.open("../Data/scrabble_word_list.txt");
-    if(!englishWords.is_open())
-        throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
-
-    string curWord;
-    int count = 0;
-    while(englishWords.good()){
-        getline(englishWords, curWord);
-        count++;
-
-        while(isspace(curWord.back()))
-            curWord.pop_back();
-
-        dictionary.emplace(curWord);
-    }
-    cout << "VerticalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
-
-    englishWords.close();
-}
-
-void VerticalScrabbleVectorizer::build_board(const string& filePath) {
+void VerticalScrabbleVectorizer::build_board_from(const char* filePath) {
     ifstream boardFile;
     boardFile.open(filePath);
     if(!boardFile.is_open())
-        throw invalid_argument("could not open " + filePath);
+        throw invalid_argument("could not open file path passed to void VerticalScrabbleVectorizer::build_board_from(const char* filePath)");
 
     string row;
     int rowCount = 0;
@@ -114,59 +67,62 @@ string VerticalScrabbleVectorizer::to_string() const {
 }
 
 TString VerticalScrabbleVectorizer::update_best_word(){
-    int rowSubscript = 0;
+//    int rowSubscript = 0;
     bestWord.clear();
-    for (auto & wordSet : moveSets) {
-        for (const auto& word: wordSet) {
-            int wordPoints = points_of_word(word) + points_of_word(word);
-            int bestWordPoints = points_of_word(bestWord) + points_of_word(bestWord);
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            for (const auto& word: moveSets[i][j]) {
+                int wordPoints = points_of_word(word) + points_of_word(word);
+                int bestWordPoints = points_of_word(bestWord) + points_of_word(bestWord);
 
-            if (wordPoints > bestWordPoints) {
-                bestWord = word;
-                //x = y, y = 14 - x
-                bestX = (14 - rowSubscript) + 1;
-                bestY = (bestWord[0].x) + 1;
-            } else if (wordPoints != 0 && wordPoints == bestWordPoints) {
-                if (word.length() < bestWord.length() || bestWord.is_empty()) {
+                if (wordPoints > bestWordPoints) {
                     bestWord = word;
                     //x = y, y = 14 - x
-                    bestX = (14 - rowSubscript) + 1;
-                    bestY = (bestWord[0].x) + 1;
+                    bestX = (14 - i) + 1;
+                    bestY = j + 1;
+                } else if (wordPoints != 0 && wordPoints == bestWordPoints) {
+                    if (word.length() < bestWord.length() || bestWord.is_empty()) {
+                        bestWord = word;
+                        //x = y, y = 14 - x
+                        bestX = (14 - i) + 1;
+                        bestY = j + 1;
+                    }
                 }
             }
         }
-        rowSubscript++;
     }
 
     return bestWord;
 }
 
 void VerticalScrabbleVectorizer::validate_words() {
-    for (auto & wordSet : moveSets) {
-        for (auto& word: wordSet) {
-            vector<TString> boardCpy = return_raw_board_with(word);
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            for (auto& word: moveSets[i][j]) {
+                vector<TString> boardCpy = return_raw_board_with(word);
 
-            for (int i = 0; i < 15; i++) {
-                TString row;
-                TString column;
-                for (int j = 0; j < 15; ++j) {
-                    row += boardCpy[i].read_at(j);
-                    column += boardCpy[14 - j].read_at(i);
-                }
-
-                vector<string> colShards = column.string_fragments();
-
-                for (const auto& shard : colShards) {
-                    if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
-                        word.clear();
+                for (int i = 0; i < 15; i++) {
+                    TString row;
+                    TString column;
+                    for (int j = 0; j < 15; ++j) {
+                        row += boardCpy[i].read_at(j);
+                        column += boardCpy[14 - j].read_at(i);
                     }
-                }
 
-                vector<string> rowShards = row.string_fragments();
+                    vector<string> colShards = column.string_fragments();
 
-                for (const auto& shard : rowShards) {
-                    if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
-                        word.clear();
+                    for (const auto& shard : colShards) {
+                        if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
+                            word.clear();
+                        }
+                    }
+
+                    vector<string> rowShards = row.string_fragments();
+
+                    for (const auto& shard : rowShards) {
+                        if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
+                            word.clear();
+                        }
                     }
                 }
             }
@@ -257,14 +213,6 @@ vector<string> VerticalScrabbleVectorizer::return_formatted_char_board_copy() co
         boardCpy.push_back(column);
     }
     return boardCpy;
-}
-
-vector<vector<TString>> VerticalScrabbleVectorizer::return_formatted_answerSets_copy() const {
-    vector<vector<TString>> toReturn(15);
-    for (int i = 0; i < 15; ++i) {
-        toReturn.push_back(moveSets[14 - i]);
-    }
-    return toReturn;
 }
 
 vector<TString> VerticalScrabbleVectorizer::return_formatted_board_copy() const {

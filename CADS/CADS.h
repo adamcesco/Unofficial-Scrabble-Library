@@ -15,10 +15,8 @@ public:
     explicit CADS(const char*);
     CADS(const CADS&);
     CADS& operator =(const CADS&);
-    vector<AnchoredString>& at_with(int x, char toFind){
-        if(x > 14 || !isalpha(toFind))
-            throw invalid_argument("Error in vector<AnchoredString> at_with(int, int, char) | Invalid parameter value.\nX: " + to_string(x) + "\nChar: " + toFind);
-        return data[x][int(abs(toFind) & 31)]; }
+    vector<AnchoredString>& at_with(int x, char toFind);
+    CADS& clear_all();
     ~CADS();
 
 private:

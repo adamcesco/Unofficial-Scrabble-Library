@@ -3,6 +3,42 @@
 #include "../VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
 #include <sstream>
 
+TEST_CASE("Testing vector<TString>& get_all_moves_at(int x, int y)", "ScrabbleVectorizer"){
+    HorizontalScrabbleVectorizer hReader(string("ASDFGHJ"));
+    hReader.build_board_from("../Test_Folder/Board.csv");
+    hReader.validate_board();
+    hReader.clear_wordSets();
+
+    VerticalScrabbleVectorizer vReader(string("ASDFGHJ"));
+    vReader.build_board_from("../Test_Folder/Board.csv");
+    vReader.validate_board();
+    vReader.clear_wordSets();
+
+    vReader.search_for_intersecting_words();
+    vReader.search_for_tangential_words();
+
+    hReader.search_for_intersecting_words();
+    hReader.search_for_tangential_words();
+
+    vReader.validate_words();
+    hReader.validate_words();
+
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            for (auto& hword : hReader.get_all_moves_at(i, j)) {
+                if(hword.is_empty()){ continue; }
+                REQUIRE(hword[0].x == i);
+                REQUIRE(hword[0].y == j);
+            }
+            for (auto& vword : vReader.get_all_moves_at(i, j)) {
+                if(vword.is_empty()){ continue; }
+                REQUIRE(vword[0].y == 14 - i);
+                REQUIRE(vword[0].x == j);
+            }
+        }
+    }
+}
+
 TEST_CASE("Testing TString::erase_at(int)", "[TString]"){
     SECTION("Testing a populated TString"){
         TString testDummy = "Adam";
@@ -85,13 +121,13 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     word[3].y = 3;
 
     HorizontalScrabbleVectorizer defaultReader(rack);
-    defaultReader.build_board("../Test_Folder/Board.csv");
+    defaultReader.build_board_from("../Test_Folder/Board.csv");
 
     HorizontalScrabbleVectorizer hReader(rack);
-    hReader.build_board("../Test_Folder/Board.csv");
+    hReader.build_board_from("../Test_Folder/Board.csv");
 
     VerticalScrabbleVectorizer vReader(rack);
-    vReader.build_board("../Test_Folder/Board.csv");
+    vReader.build_board_from("../Test_Folder/Board.csv");
 
     ifstream boardFile;
     boardFile.open("../Test_Folder/Board.csv");
@@ -310,10 +346,10 @@ TEST_CASE("Testing manual board and perk-board setting", "[ScrabbleVectorizer]")
     string rack = "POIAUD?";
 
     HorizontalScrabbleVectorizer hReader(rack);
-    hReader.build_board("../Test_Folder/Board.csv");
+    hReader.build_board_from("../Test_Folder/Board.csv");
     hReader.validate_board();
     VerticalScrabbleVectorizer vReader(rack);
-    vReader.build_board("../Test_Folder/Board.csv");
+    vReader.build_board_from("../Test_Folder/Board.csv");
     vReader.validate_board();
     vector<string> customPerkBoard =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', '|', ' ', ' ', '3'},
                                         {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', '2', ' '},

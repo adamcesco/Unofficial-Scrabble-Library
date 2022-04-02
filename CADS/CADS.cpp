@@ -35,10 +35,12 @@ CADS::CADS(const char* filePath){
 }
 
 CADS::~CADS() {
-    for (int i = 0; i < 15; ++i) {
-        delete[] data[i];
+    if(data != nullptr){
+        for (int i = 0; i < 15; ++i) {
+            delete[] data[i];
+        }
+        delete[] data;
     }
-    delete[] data;
 }
 
 CADS::CADS(const CADS & toCpy) {
@@ -58,11 +60,12 @@ CADS &CADS::operator=(const CADS & toAssign) {
     if(this == &toAssign)
         return *this;
 
-    for (int i = 0; i < 15; ++i) {
-        delete[] data[i];
+    if(data != nullptr){
+        for (int i = 0; i < 15; ++i) {
+            delete[] data[i];
+        }
+        delete[] data;
     }
-    delete[] data;
-
     data = new vector<AnchoredString>*[15];
     for (int i = 0; i < 15; ++i) {
         data[i] = new vector<AnchoredString>[27];
@@ -75,4 +78,25 @@ CADS &CADS::operator=(const CADS & toAssign) {
     }
 
     return *this;
+}
+
+CADS &CADS::clear_all() {
+    if(data == nullptr) {
+        return *this;
+    }
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 1; j < 27; ++j) {
+            data[i][j].clear();
+        }
+    }
+
+    return *this;
+}
+
+vector<AnchoredString> &CADS::at_with(int x, char toFind) {
+    if(data == nullptr)
+        throw invalid_argument("Error in vector<AnchoredString> at_with(int, int, char) | CADS is not initialized");
+    if(x > 14 || !isalpha(toFind))
+        throw invalid_argument("Error in vector<AnchoredString> at_with(int, int, char) | Invalid parameter value.\nX: " + to_string(x) + "\nChar: " + toFind);
+    return data[x][int(abs(toFind) & 31)];
 }

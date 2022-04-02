@@ -15,13 +15,17 @@ int main(int argc, char* argv[]){
     string rack = "AHUIKOL";    //blank tiles should be marked as a '?'
 
     HorizontalScrabbleVectorizer hReader(rack);
-    hReader.build_board(argv[1]);
+    hReader.build_board_from(argv[1]);
+    hReader.build_dictionary_from(argv[2]);
+    hReader.build_CADS_from(argv[2]);
     hReader.validate_board();
     hReader.console_print_formatted_board();
     hReader.clear_wordSets();
 
     VerticalScrabbleVectorizer vReader(rack);
-    vReader.build_board(argv[1]);
+    vReader.build_board_from(argv[1]);
+    vReader.build_dictionary_from(argv[2]);
+    vReader.build_CADS_from(argv[2]);
     vReader.validate_board();
     vReader.console_print_formatted_board();
     vReader.clear_wordSets();
@@ -50,8 +54,10 @@ int main(int argc, char* argv[]){
     //printing the information of the best word for the board to the console
     cout << "Best Horizontal Word: " << bestHWord.to_string() << endl;
     cout << "\tPoints: " << hPoints << endl;
+    cout << '\t' << '(' << hReader.get_best_x() << ", " << hReader.get_best_y() << ')' << endl;
     cout << "Best Vertical Word: " << bestVWord.to_string() << endl;
     cout << "\tPoints: " << vPoints << endl;
+    cout << '\t' << '(' << vReader.get_best_x() << ", " << vReader.get_best_y() << ')' << endl;
 //
     cout << "Best word for the board: ";
     if (hPoints > vPoints) {

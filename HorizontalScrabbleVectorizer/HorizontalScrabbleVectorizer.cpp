@@ -1,61 +1,11 @@
 #include "HorizontalScrabbleVectorizer.h"
 #include <sstream>
 
-HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer() {
-    bestX = bestY = 8;
-
-    ifstream englishWords;
-    englishWords.open("../Data/scrabble_word_list.txt");
-    if(!englishWords.is_open())
-        throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
-
-    string curWord;
-    int count = 0;
-    while(englishWords.good()){
-        getline(englishWords, curWord);
-        count++;
-
-        while(isspace(curWord.back()))
-            curWord.pop_back();
-
-        dictionary.emplace(curWord);
-    }
-    cout << "HorizontalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
-
-    englishWords.close();
-}
-
-HorizontalScrabbleVectorizer::HorizontalScrabbleVectorizer(const string &passed) {
-    rack = passed;
-    sort(rack.begin(), rack.end());
-    bestX = bestY = 8;
-
-    ifstream englishWords;
-    englishWords.open("../Data/scrabble_word_list.txt");
-    if(!englishWords.is_open())
-        throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
-
-    string curWord;
-    int count = 0;
-    while(englishWords.good()){
-        getline(englishWords, curWord);
-        count++;
-
-        while(isspace(curWord.back()))
-            curWord.pop_back();
-
-        dictionary.emplace(curWord);
-    }
-    cout << "HorizontalScrabbleVectorizer:: " << count << " words read from ../Data/scrabble_word_list.txt" << endl;
-
-    englishWords.close();
-}
-
-void HorizontalScrabbleVectorizer::build_board(const string& filePath) {
+void HorizontalScrabbleVectorizer::build_board_from(const char* filePath) {
     ifstream boardFile;
     boardFile.open(filePath);
     if(!boardFile.is_open())
-        throw invalid_argument("could not open " + filePath);
+        throw invalid_argument("could not open file path passed to void HorizontalScrabbleVectorizer::build_board_from(const char* filePath)");
 
     string row;
     int rowCount = 0;
@@ -107,31 +57,33 @@ string HorizontalScrabbleVectorizer::to_string() const {
 }
 
 void HorizontalScrabbleVectorizer::validate_words() {
-    for (auto & wordSet : moveSets) {
-        for (auto& word: wordSet) {
-            vector<TString> boardCpy = return_raw_board_with(word);
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            for (auto& word: moveSets[i][j]) {
+                vector<TString> boardCpy = return_raw_board_with(word);
 
-            for (int i = 0; i < 15; i++) {
-                TString row;
-                TString column;
-                for (int j = 0; j < 15; ++j) {
-                    row += boardCpy[i].read_at(j);
-                    column += boardCpy[j].read_at(i);
-                }
-
-                vector<string> colShards = column.string_fragments();
-
-                for (const auto& shard : colShards) {
-                    if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
-                        word.clear();
+                for (int k = 0; k < 15; k++) {
+                    TString row;
+                    TString column;
+                    for (int l = 0; l < 15; ++l) {
+                        row += boardCpy[k].read_at(l);
+                        column += boardCpy[l].read_at(k);
                     }
-                }
 
-                vector<string> rowShards = row.string_fragments();
+                    vector<string> colShards = column.string_fragments();
 
-                for (const auto& shard : rowShards) {
-                    if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
-                        word.clear();
+                    for (const auto& shard : colShards) {
+                        if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
+                            word.clear();
+                        }
+                    }
+
+                    vector<string> rowShards = row.string_fragments();
+
+                    for (const auto& shard : rowShards) {
+                        if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
+                            word.clear();
+                        }
                     }
                 }
             }
@@ -140,26 +92,26 @@ void HorizontalScrabbleVectorizer::validate_words() {
 }
 
 TString HorizontalScrabbleVectorizer::update_best_word() {
-    int rowSubscript = 0;
     bestWord.clear();
-    for (auto & wordSet : moveSets) {
-        for (const auto& word: wordSet) {
-            int wordPoints = points_of_word(word);
-            int bestWordPoints = points_of_word(bestWord);
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            for (const auto& word: moveSets[i][j]) {
+                int wordPoints = points_of_word(word);
+                int bestWordPoints = points_of_word(bestWord);
 
-            if (wordPoints > bestWordPoints) {
-                bestWord = word;
-                bestX = bestWord[0].x + 1;
-                bestY = rowSubscript + 1;
-            } else if (wordPoints != 0 && wordPoints == bestWordPoints) {
-                if (word.length() < bestWord.length() || bestWord.is_empty()) {
+                if (wordPoints > bestWordPoints) {
                     bestWord = word;
                     bestX = bestWord[0].x + 1;
-                    bestY = rowSubscript + 1;
+                    bestY = i + 1;
+                } else if (wordPoints != 0 && wordPoints == bestWordPoints) {
+                    if (word.length() < bestWord.length() || bestWord.is_empty()) {
+                        bestWord = word;
+                        bestX = bestWord[0].x + 1;
+                        bestY = i + 1;
+                    }
                 }
             }
         }
-        rowSubscript++;
     }
 
     return bestWord;
@@ -219,14 +171,6 @@ vector<string> HorizontalScrabbleVectorizer::return_formatted_char_board_copy() 
         boardCpy.push_back(column);
     }
     return boardCpy;
-}
-
-vector<vector<TString>> HorizontalScrabbleVectorizer::return_formatted_answerSets_copy() const {
-    vector<vector<TString>> toReturn(15);
-    for (const auto & wordSet : moveSets) {
-        toReturn.push_back(wordSet);
-    }
-    return toReturn;
 }
 
 void HorizontalScrabbleVectorizer::set_board(const vector<TString> &passed) {
