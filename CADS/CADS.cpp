@@ -93,10 +93,10 @@ CADS &CADS::clear_all() {
     return *this;
 }
 
-vector<AnchoredString> &CADS::at_with(int x, char toFind) {
+vector<AnchoredString> &CADS::at_with(int x, unsigned char toFind) {
     if(data == nullptr)
         throw invalid_argument("Error in vector<AnchoredString> at_with(int, int, char) | CADS is not initialized");
     if(x > 14 || !isalpha(toFind))
-        throw invalid_argument("Error in vector<AnchoredString> at_with(int, int, char) | Invalid parameter value.\nX: " + to_string(x) + "\nChar: " + toFind);
-    return data[x][int(abs(toFind) & 31)];
+        throw invalid_argument("Error in vector<AnchoredString> at_with(int, int, char) | Invalid parameter value.\nX: " + to_string(x) + "\nChar: " + char(toFind));
+    return data[x][toFind & 31];
 }

@@ -65,30 +65,30 @@ RMAC::RMAC(const string &pRack, const unordered_set<string>& dictionary) {
     }
 }
 
-bool RMAC::is_descendent_of(TString& sub, const int* rackMap, int blankCount) const {
-    int slen = sub.length();
+bool RMAC::is_descendent_of(TString& desc, const int* rackMap, int blankCount) const {
+    int slen = desc.length();
     int rlen = rack.length();
     if(rlen == 0 || slen > rlen)
         return false;
 
-    int lCount[28];
-    for (int & i : lCount)
+    int descMap[28];
+    for (int & i : descMap)
         i = 0;
 
     for (int i = 0; i < slen; ++i)
-        lCount[sub[i].letter - 63]++;
+        descMap[desc[i].letter - 63]++;
 
     for (int i = 0; i < slen; ++i) {
-        sub[i].x = i;
-        int index = sub[i].letter - 63;
-        bool RLC = rackMap[index] < lCount[index];
+        desc[i].x = i;
+        int index = desc[i].letter - 63;
+        bool RLC = rackMap[index] < descMap[index];
         if(blankCount == 0 && RLC)
             return false;
         else if (RLC) {
-            sub[i].points = 0;
-            sub[i].isBlank = true;
+            desc[i].points = 0;
+            desc[i].isBlank = true;
             blankCount--;
-            lCount[index]--;
+            descMap[index]--;
             i--;
         }
     }

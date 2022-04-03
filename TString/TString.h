@@ -44,7 +44,7 @@ public:
     Tile& operator[](int);
     Tile read_at(int) const;
     inline int length() const{ return eleCount; }
-    static int max_capacity() { return 45; }
+    static int max_capacity() { return 20; }
     Tile read_back() const;
     Tile& back();
     int find_pos_of(char) const;

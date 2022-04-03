@@ -43,3 +43,16 @@ Tile &Tile::operator=(char invoked) {
         points = 0;
     return *this;
 }
+
+Tile::Tile(unsigned char passed, int xp, int yp, int fl) {
+    letter = passed;
+    x = xp;
+    y = yp;
+    flag = fl;
+    isBlank = false;
+
+    if(isalpha(letter))
+        points = legend[(letter & 31) - 1];
+    else
+        points = 0;
+}

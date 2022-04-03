@@ -7,12 +7,12 @@ TEST_CASE("Testing vector<TString>& get_all_moves_at(int x, int y)", "ScrabbleVe
     HorizontalScrabbleVectorizer hReader(string("ASDFGHJ"));
     hReader.build_board_from("../Test_Folder/Board.csv");
     hReader.validate_board();
-    hReader.clear_wordSets();
+    hReader.clear_all_moves();
 
     VerticalScrabbleVectorizer vReader(string("ASDFGHJ"));
     vReader.build_board_from("../Test_Folder/Board.csv");
     vReader.validate_board();
-    vReader.clear_wordSets();
+    vReader.clear_all_moves();
 
     vReader.search_for_intersecting_words();
     vReader.search_for_tangential_words();

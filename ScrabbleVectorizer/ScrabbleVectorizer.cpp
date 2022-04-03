@@ -9,6 +9,17 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
     if(dictionary.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
 
+    int originalRackCount[28];
+    int originalBlankCount = 0;
+    for (int & i : originalRackCount) {
+        i = 0;
+    }
+    for (unsigned char t : rack) {
+        if(t == '?')
+            originalBlankCount++;
+        originalRackCount[t - 63]++;
+    }
+
     int rowSubscript = 0;
     for (auto& row: board) {
         int tileCount = 0;
@@ -19,26 +30,21 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
             }
 
             vector<AnchoredString> wordsOfTile = wordDataset.at_with(tileCount, tile.letter);
-            for (const auto& it : wordsOfTile) {
+            for (const auto& word : wordsOfTile) {
                 TString curTStr;
-                int anchorIndex = it.second;
-                int rackCount[27];
-                int blankCount = 0;
-                for (int i = 0; i < 27; ++i) {
-                    rackCount[i] = 0;
-                }
-                for (int i = 0; i < rack.length(); ++i) {
-                    if(rack[i] == '?')
-                        blankCount++;
-                    else
-                        rackCount[abs(rack[i]) & 31]++;
+                int anchorIndex = word.second;
+
+                int blankCount = originalBlankCount;
+                int rackCount[28];
+                for (int i = 0; i < 28; ++i) {
+                    rackCount[i] = originalRackCount[i];
                 }
 
                 bool skip = false;
                 int start = 0 - anchorIndex;
-                int end = it.first.length() - anchorIndex;
+                int end = word.first.length() - anchorIndex;
                 for (int i = start; i < end; ++i) {
-                    char curChar = abs(it.first[i + anchorIndex]);
+                    unsigned char curChar = word.first[i + anchorIndex];
                     Tile curBoardTile = board[rowSubscript][tileCount + i];
 
                     if(curBoardTile == curChar) {
@@ -51,7 +57,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                     else{
                         curTStr += Tile(curChar, tileCount + i, rowSubscript, -1);
 
-                        if(rackCount[curChar & 31] == 0){
+                        if(rackCount[curChar - 63] == 0){
                             if(blankCount == 0){
                                 skip = true;
                                 break;
@@ -61,7 +67,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                             curTStr.back().isBlank = true;
                         }
                         else
-                            rackCount[curChar & 31]--;
+                            rackCount[curChar - 63]--;
                     }
                 }
                 if(skip)
@@ -103,8 +109,8 @@ void ScrabbleVectorizer::place_into_board(const TString &toPrint) {
 
 bool ScrabbleVectorizer::contains_letter_of_rack(const TString& passed) const {
     unordered_set<char> handSet;
-    for (int i = 0; i < rack.length(); ++i)
-        handSet.emplace(toupper(rack[i]));
+    for (char i : rack)
+        handSet.emplace(toupper(i));
 
     for (int i = 0; i < passed.length(); ++i) {
         if (handSet.find(toupper(passed.read_at(i).letter)) != handSet.end()) {
@@ -200,7 +206,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
     }
 }
 
-void ScrabbleVectorizer::clear_wordSets() {
+void ScrabbleVectorizer::clear_all_moves() {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             moveSets[i][j].clear();
@@ -312,6 +318,7 @@ void ScrabbleVectorizer::build_dictionaries_from(const char* filePath) {
         throw invalid_argument("could not open file passed to void ScrabbleVectorizer::build_dictionaries_from(const char* filePath)");
 
     dictionary.clear();
+    dictionarySub8.clear();
     string curWord;
     int count = 0;
     while(dictionaryFile.good()){
@@ -359,7 +366,7 @@ ScrabbleVectorizer::ScrabbleVectorizer(const string &passed) {
     sort(rack.begin(), rack.end());
 }
 
-void ScrabbleVectorizer::clean_perk_board() {
+void ScrabbleVectorizer::prep_perk_board() {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             if(board[i][j] != ' ')

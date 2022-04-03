@@ -8,6 +8,7 @@ void HorizontalScrabbleVectorizer::build_board_from(const char* filePath) {
         throw invalid_argument("could not open file path passed to void HorizontalScrabbleVectorizer::build_board_from(const char* filePath)");
 
     string row;
+    board.clear();
     int rowCount = 0;
     while (boardFile.good()){
         getline(boardFile, row);

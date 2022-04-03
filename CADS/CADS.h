@@ -15,7 +15,7 @@ public:
     explicit CADS(const char*);
     CADS(const CADS&);
     CADS& operator =(const CADS&);
-    vector<AnchoredString>& at_with(int x, char toFind);
+    vector<AnchoredString>& at_with(int x, unsigned char toFind);
     CADS& clear_all();
     ~CADS();
 

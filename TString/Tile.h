@@ -26,8 +26,10 @@ struct Tile {
 
     Tile();
     Tile(char, int, int, int);
+    Tile(unsigned char, int, int, int);
     bool operator==(const Tile& invoked) const{ return (invoked.letter == this->letter); }
     bool operator==(char invoked) const{ return (invoked == this->letter); }
+    bool operator==(unsigned char invoked) const{ return (invoked == this->letter); }
     bool operator!=(const Tile& invoked) const{ return (invoked.letter != this->letter); }
     bool operator!=(char invoked) const{ return (invoked != this->letter); }
     Tile& operator=(const Tile&);

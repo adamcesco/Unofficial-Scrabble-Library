@@ -28,7 +28,7 @@ public:
     virtual void place_best_word_into_board();
     virtual int points_of_placed_word(const TString &) const;                          //assumes that the passed word is found within the board and has proper coordinate values for the given vectorizer type
 
-    void clear_wordSets();
+    void clear_all_moves();
     TString& get_best_word(){ return bestWord; }
     void set_rack(const string& passed){ rack = passed; sort(rack.begin(), rack.end()); }
     vector<TString>& get_raw_board(){ return board; }
@@ -48,7 +48,7 @@ public:
     void build_CADS_from(const char* filePath) { wordDataset = CADS(filePath); }
     void set_RMAC_build_path(const string& filePath) { routeRMAC = FILEPATH; rmacFilePath = filePath; }
     void set_RMAC_build_path_dictionary() { routeRMAC = DICTIONARY; }
-    void clean_perk_board();
+    void prep_perk_board();
     bool contains_letter_of_rack(const TString&) const;
 
     ~ScrabbleVectorizer();
