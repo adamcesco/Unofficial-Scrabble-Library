@@ -81,25 +81,14 @@ void ScrabbleVectorizer::reset_all_data() {
     bestWord.clear();
     rack.clear();
     board.clear();
+    dictionary.clear();
+    dictionarySub8.clear();
 
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             moveSets[i][j].clear();
         }
     }
-
-    dictionary.clear();
-    ifstream englishWords;
-    englishWords.open("../Data/scrabble_word_list.txt");
-    if(!englishWords.is_open())
-        throw invalid_argument("could not open ../Data/scrabble_word_list.txt");
-
-    string curWord;
-    while(englishWords.good()){
-        getline(englishWords, curWord);
-        dictionary.emplace(curWord);
-    }
-    englishWords.close();
 }
 
 void ScrabbleVectorizer::place_into_board(const TString &toPrint) {
@@ -146,13 +135,16 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
     // optimize solution as much as possible
     // Implement custom data-structure for tile placement checking for tangential words only (so you do not have to do over under explicitly).
     // optimize solution as much as possible
+    if(routeRMAC == UNDEFINED_ROUTE)
+        throw invalid_argument("Error in ScrabbleVectorizer::search_for_tangential_words() | definition route for RMAC has not been set.");
     if(dictionary.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_tangential_words() | The set of all scrabble words is empty.");
 
-    if(rack.length() == 1)
-        return;
-
-    RMAC rackMap(rack, rackMapFilePath);
+    RMAC rackMap;
+    if(routeRMAC == DICTIONARY)
+        rackMap = RMAC(rack, dictionarySub8);
+    else
+        rackMap = RMAC(rack, rackMapFilePath);
 
     for (int i = 0; i < 15; ++i) {
         if(i - 1 > 0) {
@@ -313,11 +305,11 @@ vector<string> ScrabbleVectorizer::return_raw_char_board_copy() {
     return toReturn;
 }
 
-void ScrabbleVectorizer::build_dictionary_from(const char* filePath) {
+void ScrabbleVectorizer::build_dictionaries_from(const char* filePath) {
     ifstream dictionaryFile;
     dictionaryFile.open(filePath);
     if(!dictionaryFile.is_open())
-        throw invalid_argument("could not open file passed to void ScrabbleVectorizer::build_dictionary_from(const char* filePath)");
+        throw invalid_argument("could not open file passed to void ScrabbleVectorizer::build_dictionaries_from(const char* filePath)");
 
     dictionary.clear();
     string curWord;
@@ -330,8 +322,11 @@ void ScrabbleVectorizer::build_dictionary_from(const char* filePath) {
             curWord.pop_back();
 
         dictionary.emplace(curWord);
+
+        if(curWord.length() < 8)
+            dictionarySub8.emplace(curWord);
     }
-    cout << "HorizontalScrabbleVectorizer:: " << count << " words read from " << filePath << endl;
+    cout << "ScrabbleVectorizer:: " << count << " words read from " << filePath << endl;
 
     dictionaryFile.close();
 }

@@ -4,7 +4,8 @@
 #include "../CADS/CADS.h"
 #include "../RackMap/RMAC.h"
 
-enum Type{HORIZONTAL, VERTICAL, UNDEFINED};
+enum TYPE{HORIZONTAL, VERTICAL, UNDEFINED_TYPE};
+enum RMAC_ROUTE{DICTIONARY, FILEPATH, UNDEFINED_ROUTE};
 
 class ScrabbleVectorizer {
 public:
@@ -17,7 +18,7 @@ public:
     virtual vector<string> return_formatted_perkBoard_copy() const = 0;
     virtual TString update_best_word() = 0;
     virtual vector<TString> return_formatted_board_copy() const = 0;
-    virtual Type get_vectorizer_type() const = 0;
+    virtual TYPE get_vectorizer_type() const = 0;
     virtual void set_board(const vector<string>&) = 0;
     virtual void set_perkBoard(const vector<string>&) = 0;
     virtual vector<TString>& get_all_moves_at(int, int) = 0;
@@ -39,11 +40,14 @@ public:
     string& get_hand(){ return rack; }
     void set_raw_board(const vector<TString>& passed){ board = passed; }
     unordered_set<string>& get_all_scrabble_words(){ return dictionary; }
+    unordered_set<string>& get_all_small_scrabble_words(){ return dictionarySub8; }
     vector<TString>** get_moveSets(){ return moveSets; }
     void set_dictionary(const unordered_set<string>& passed){ dictionary = passed; }
-    void build_dictionary_from(const char*);
+    void set_dictionarySub8(const unordered_set<string>& passed){ dictionarySub8 = passed; }
+    void build_dictionaries_from(const char*);
     void build_CADS_from(const char* filePath) { wordDataset = CADS(filePath); }
-    void set_RMAC_filepath(const string& filePath) { rackMapFilePath = filePath; }
+    void build_RMAC_from(const string& filePath) { routeRMAC = FILEPATH; rackMapFilePath = filePath; }
+    void build_RMAC_from_dictionary() { routeRMAC = DICTIONARY; }
 
     ~ScrabbleVectorizer();
 
@@ -55,8 +59,10 @@ protected:
     int bestX, bestY;
     TString bestWord;
     string rack;
+    RMAC_ROUTE routeRMAC = UNDEFINED_ROUTE;
     string rackMapFilePath;
     unordered_set<string> dictionary;
+    unordered_set<string> dictionarySub8;
     vector<TString>** moveSets;
     vector<TString> board;
     CADS wordDataset;

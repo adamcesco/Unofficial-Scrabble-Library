@@ -13,7 +13,7 @@ public:
     string to_string() const;
     TString update_best_word();
     void validate_words();
-    Type get_vectorizer_type() const{ return VERTICAL; }
+    TYPE get_vectorizer_type() const{ return VERTICAL; }
     vector<TString> return_formatted_board_copy() const;
     void set_board(const vector<TString>&);                //assumes the passed board is oriented in a horizontal format
     void set_board(const vector<string>&);             //assumes the passed board is oriented in a horizontal format

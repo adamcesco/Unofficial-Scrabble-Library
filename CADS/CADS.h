@@ -21,6 +21,7 @@ public:
 
 private:
     vector<AnchoredString>** data;
+    //TODO: You could implement a CADS that is based off of Anchored-TStrings instead of AnchoredStrings
     //TODO: You could implement a CADS that is based off of Anchored-DAWGs instead of AnchoredStrings
 };
 

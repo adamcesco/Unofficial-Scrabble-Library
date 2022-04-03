@@ -10,7 +10,7 @@ public:
 
     void build_board_from(const char*);
     void console_print_formatted_board() const;
-    Type get_vectorizer_type() const{ return HORIZONTAL; }
+    TYPE get_vectorizer_type() const{ return HORIZONTAL; }
     vector<TString> return_formatted_board_copy() const{ return board; }
     void set_board(const vector<TString>&);            //assumes the passed board is oriented in a horizontal format
     void set_board(const vector<string>&);             //assumes the passed board is oriented in a horizontal format
