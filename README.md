@@ -34,18 +34,19 @@ Another main way of increasing this solution's speed would be to implement a DAW
 ## Road Map / To-Do List
 
 1. ~~Support the computation of words that are purely tangible to present words.~~
-    - This feature is now supported
+    - This feature is now supported.
 2. ~~Implementation of word grading that accounts for word/letter multipliers.~~
-    - This feature is now supported
+    - This feature is now supported.
 3. ~~Add support for blank tiles to be within the program's rack~~
-    - This feature is now supported
+    - This feature is now supported.
 4. ~~Increase the usability of classes for future users/editors of the project~~
-5. Test and Optimize solution to prime for finalization
-6. Provide an in-depth tutorial for users/editors of this library
-7. Implement a console-based solution with full gameplay support.
-8. Implement a U.I-based solution with full gameplay support.
-9. Enhance U.X features to support the user's U.I intuition.
-10. Implement dynamic gameplay structures that enhance competitive and casual play for players of this Scrabble application.
+5. Test and Optimize solution to prime for finalization.
+6. Publish this project as a C++ library for C++ Scrabble-solver developers and users.
+7. Provide an in-depth tutorial for users/editors of this library.
+8. Implement a console-based solution with full gameplay support.
+9. Implement a U.I-based solution with full gameplay support.
+10. Enhance U.X features to support the user's U.I intuition.
+11. Implement dynamic gameplay structures that enhance competitive and casual play for players of this Scrabble application.
 
 ## References
 
