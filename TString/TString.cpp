@@ -85,7 +85,7 @@ bool TString::operator==(const TString& dsv1) const{
 
 TString &TString::operator=(const string &toAssign) {
     int passedSize = toAssign.size();
-    eleCount = (passedSize < 46) ? passedSize : throw invalid_argument("invalid subscript for TString &TString::operator=(const string &toAssign) | Passed string is of a length that is larger than the max capacity for an TString");;
+    eleCount = (passedSize < 19) ? passedSize : throw invalid_argument("invalid subscript for TString &TString::operator=(const string &toAssign) | Passed string is of a length that is larger than the max capacity for an TString");;
 
     for (int i = 0; i < eleCount; ++i) {
         data[i] = toAssign[i];
@@ -95,7 +95,7 @@ TString &TString::operator=(const string &toAssign) {
 }
 
 TString& TString::operator+=(const Tile &pssd){
-    if(eleCount > 44)
+    if(eleCount > 18)
         throw invalid_argument("invalid call for TString& TString::operator+=(const Tile &) | Max capacity of TString has been reached");
     data[eleCount] = pssd;
     eleCount++;
@@ -103,7 +103,7 @@ TString& TString::operator+=(const Tile &pssd){
 }
 
 TString& TString::operator+=(char pssd) {
-    if(eleCount > 44)
+    if(eleCount > 18)
         throw invalid_argument("invalid call for TString& TString::operator+=(char) | Max capacity of TString has been reached");
     data[eleCount] = pssd;
     eleCount++;
@@ -133,7 +133,7 @@ TString::TString(const string toCpy) {
 
 TString &TString::operator=(const char* toAssign) {
     int passedSize = strlen(toAssign);
-    eleCount = (passedSize < 46) ? passedSize : throw invalid_argument("invalid subscript for TString &TString::operator=(char* toAssign) | Passed string is of a length that is larger than the max capacity for an TString");;
+    eleCount = (passedSize < 19) ? passedSize : throw invalid_argument("invalid subscript for TString &TString::operator=(char* toAssign) | Passed string is of a length that is larger than the max capacity for an TString");;
 
     for (int i = 0; i < eleCount; ++i)
         data[i] = toAssign[i];
@@ -252,7 +252,7 @@ vector<TString> TString::fragments() const{
 
 TString TString::operator+(const Tile& toAppend) const {
     TString temp(*this);
-    if(temp.eleCount > 44)
+    if(temp.eleCount > 18)
         throw invalid_argument("invalid call for TString TString::operator+(const Tile& toAppend) | Max capacity of TString has been reached");
     temp.data[temp.eleCount] = toAppend;
     temp.eleCount++;
@@ -261,7 +261,7 @@ TString TString::operator+(const Tile& toAppend) const {
 
 TString TString::operator+(char toAppend) const {
     TString temp(*this);
-    if(temp.eleCount > 44)
+    if(temp.eleCount > 18)
         throw invalid_argument("invalid call for TString TString::operator+(char toAppend) | Max capacity of TString has been reached");
     temp.data[temp.eleCount] = toAppend;
     temp.eleCount++;

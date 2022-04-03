@@ -101,7 +101,7 @@ void ScrabbleVectorizer::place_into_board(const TString &toPrint) {
     }
 }
 
-bool ScrabbleVectorizer::contains_letter_of_hand(const TString &passed) const {
+bool ScrabbleVectorizer::contains_letter_of_rack(const TString& passed) const {
     unordered_set<char> handSet;
     for (int i = 0; i < rack.length(); ++i)
         handSet.emplace(toupper(rack[i]));
@@ -140,18 +140,18 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
     if(dictionary.empty())
         throw invalid_argument("Error in ScrabbleVectorizer::search_for_tangential_words() | The set of all scrabble words is empty.");
 
-    RMAC rackMap;
+    RMAC rackMAC;
     if(routeRMAC == DICTIONARY)
-        rackMap = RMAC(rack, dictionarySub8);
+        rackMAC = RMAC(rack, dictionarySub8);
     else
-        rackMap = RMAC(rack, rackMapFilePath);
+        rackMAC = RMAC(rack, rmacFilePath);
 
     for (int i = 0; i < 15; ++i) {
         if(i - 1 > 0) {
             for (int j = 0; j < 15; ++j) {
                 if (board[i][j] == ' ' || board[i - 1][j] != ' ')
                     continue;
-                for (auto it: rackMap.data) {
+                for (auto it: rackMAC.data) {
                     int start = it.read_at(0).x + j;
                     int end = start + it.length();
                     if (start < 0 || end > 15)
@@ -176,7 +176,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
             for (int j = 0; j < 15; ++j) {
                 if (board[i][j] == ' ' || board[i + 1][j] != ' ')
                     continue;
-                for (auto it: rackMap.data) {
+                for (auto it: rackMAC.data) {
                     int start = it.read_at(0).x + j;
                     int end = start + it.length();
                     if (start < 0 || end > 15)
@@ -208,7 +208,7 @@ void ScrabbleVectorizer::clear_wordSets() {
     }
 }
 
-int ScrabbleVectorizer::points_of_word(const TString &word) const{
+int ScrabbleVectorizer::points_of_placed_word(const TString &word) const{
     // If a letter is shared between words, then count it's premium value for all words
     // Any word multiplier only gets assigned to the original word, and not any subsequently formed words
     // If a word is placed on two or more multiplier tiles, the words value is multiplied by both tile values
@@ -357,4 +357,13 @@ ScrabbleVectorizer::ScrabbleVectorizer(const string &passed) {
 
     rack = passed;
     sort(rack.begin(), rack.end());
+}
+
+void ScrabbleVectorizer::clean_perk_board() {
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            if(board[i][j] != ' ')
+                perkBoard[i][j] = ' ';
+        }
+    }
 }

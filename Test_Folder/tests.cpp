@@ -186,26 +186,6 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         REQUIRE(vReader.return_formatted_board_copy() == originalBoard);
     }
 
-    SECTION("ScrabbleVectorizer::set_board(const vector<TString> &passed)") {
-        hReader.set_board(originalBoard);
-        vReader.set_board(originalBoard);
-
-        REQUIRE(hReader.return_formatted_board_copy() == originalBoard);
-        REQUIRE(hReader.get_raw_board() == originalBoard);
-        REQUIRE(vReader.return_formatted_board_copy() == originalBoard);
-
-        vector<TString> vboardFormattedCopy = vReader.return_formatted_board_copy();
-        vector<TString> hboardFormattedCopy = hReader.return_formatted_board_copy();
-        for (int i = 0; i < 15; ++i) {
-            for (int j = 0; j < 15; ++j) {
-                REQUIRE(vboardFormattedCopy[i][j].x == i);
-                REQUIRE(vboardFormattedCopy[i][j].y == 14 - j);
-                REQUIRE(hboardFormattedCopy[i][j].x == j);
-                REQUIRE(hboardFormattedCopy[i][j].y == i);
-            }
-        }
-    }
-
     SECTION("ScrabbleVectorizer::return_formatted_char_board_copy()") {
         vector<string> testVBoard = vReader.return_formatted_char_board_copy();
         vector<string> testHBoard = hReader.return_formatted_char_board_copy();

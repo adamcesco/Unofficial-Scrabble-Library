@@ -2,11 +2,16 @@
 #define SCRABBLE_SOLVER_TSTRING_H
 
 #include "Tile.h"
+
+namespace unsigned_types {
+    typedef std::basic_string<unsigned char> string;
+}
+
 using namespace std;
 
 class TString{
 private:
-    Tile data[46];
+    Tile data[20];
     int eleCount = 0;
 
 public:

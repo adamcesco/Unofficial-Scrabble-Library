@@ -16,18 +16,20 @@ int main(int argc, char* argv[]){
 
     HorizontalScrabbleVectorizer hReader(rack);     //building HorizontalScrabbleVectorizer
     hReader.build_board_from(argv[1]);
+    hReader.clean_perk_board();
     hReader.build_dictionaries_from(argv[2]);
     hReader.validate_board();
     hReader.build_CADS_from(argv[2]);
-    hReader.build_RMAC_from_dictionary();
+    hReader.set_RMAC_build_path_dictionary();
     hReader.clear_wordSets();
 
     VerticalScrabbleVectorizer vReader(rack);       //building VerticalScrabbleVectorizer
     vReader.build_board_from(argv[1]);
+    hReader.clean_perk_board();
     vReader.build_dictionaries_from(argv[2]);
     vReader.validate_board();
     vReader.build_CADS_from(argv[2]);
-    vReader.build_RMAC_from_dictionary();
+    vReader.set_RMAC_build_path_dictionary();
     vReader.clear_wordSets();
 
     hReader.console_print_formatted_board();        //printing boards

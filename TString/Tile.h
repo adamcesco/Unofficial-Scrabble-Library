@@ -18,7 +18,7 @@
 const int legend[26] = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 
 struct Tile {
-    char letter;     //think of the letter variable as the face value of the Tile object, with all other letter members being the Tile objects description
+    unsigned char letter;     //think of the letter variable as the face value of the Tile object, with all other letter members being the Tile objects description
     int x, y;
     int points;
     int flag;
@@ -26,10 +26,10 @@ struct Tile {
 
     Tile();
     Tile(char, int, int, int);
-    bool operator==(const Tile& invoked) const{ return (abs(invoked.letter) == abs(this->letter)); }
-    bool operator==(char invoked) const{ return (abs(invoked) == abs(this->letter)); }
-    bool operator!=(const Tile& invoked) const{ return (abs(invoked.letter) != abs(this->letter)); }
-    bool operator!=(char invoked) const{ return (abs(invoked) != abs(this->letter)); }
+    bool operator==(const Tile& invoked) const{ return (invoked.letter == this->letter); }
+    bool operator==(char invoked) const{ return (invoked == this->letter); }
+    bool operator!=(const Tile& invoked) const{ return (invoked.letter != this->letter); }
+    bool operator!=(char invoked) const{ return (invoked != this->letter); }
     Tile& operator=(const Tile&);
     Tile& operator=(char);
 };

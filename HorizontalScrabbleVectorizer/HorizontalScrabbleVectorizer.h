@@ -5,14 +5,13 @@
 
 class HorizontalScrabbleVectorizer : public ScrabbleVectorizer{
 public:
-    HorizontalScrabbleVectorizer() : ScrabbleVectorizer(){};
+    HorizontalScrabbleVectorizer() : ScrabbleVectorizer(){}
     explicit HorizontalScrabbleVectorizer(const string &passed) : ScrabbleVectorizer(passed){}
 
     void build_board_from(const char*);
     void console_print_formatted_board() const;
     TYPE get_vectorizer_type() const{ return HORIZONTAL; }
     vector<TString> return_formatted_board_copy() const{ return board; }
-    void set_board(const vector<TString>&);            //assumes the passed board is oriented in a horizontal format
     void set_board(const vector<string>&);             //assumes the passed board is oriented in a horizontal format
     void set_perkBoard(const vector<string>&);
     void validate_board() const;
@@ -24,7 +23,10 @@ public:
 
     string to_string() const;
     void validate_words();
-    int points_of_best_word() const{ return points_of_word(bestWord); }
+    int points_of_best_word() const{ return points_of_placed_word(bestWord); }
+
+    void set_board(const char**);
+    void set_perkBoard(const char**);
 };
 
 #endif //SCRABBLEBOT_BOARDREADER_H
