@@ -29,7 +29,7 @@ The average time it takes this solution to compute all possible moves for a give
 
 I have optimized my solution to meet my personal goal of needing less than 2 seconds for all playable move generation. I am very happy to have met this goal, but I am still looking for ways to optimize this solution further. I am constantly trying to optimize/improve the logic within my program, and I am investigating the potential use of a database to handle queries for board/rack related pre-computed information.
 
-Another main way of increasing this solution's speed would be to implement a DAWG, a GADDAG, or a custom data structure of similar nature. I want to explore creativity within this field, so I plan to implement a custom data structure. I am drafting the logic and use-case map for an improved CADS data structure. This new approach would feature a DAWG-based CADS system that would dramatically reduce the amount of characters traversed over throughout computation.
+Another main way of increasing this solution's speed would be to implement a DAWG, a GADDAG, or a custom data structure of similar nature. I want to explore creativity within this field, so I plan to implement a custom data structure. I am drafting the logic and use-case map for an improved CADS data structure. This new approach would feature a DAWG-based CADS object that would dramatically reduce the amount of characters traversed over throughout move-computation.
 
 ## Road Map / To-Do List
 
