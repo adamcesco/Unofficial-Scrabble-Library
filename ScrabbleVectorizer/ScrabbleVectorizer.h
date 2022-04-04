@@ -21,6 +21,7 @@ public:
     virtual void build_board_from(const char**) = 0;
     virtual void build_perkBoard_from(const char**) = 0;
     virtual vector<TString>& get_all_moves_at(int, int) = 0;
+    virtual void validate_words() = 0;
 
     virtual void search_for_intersecting_words();
     virtual void search_for_tangential_words();

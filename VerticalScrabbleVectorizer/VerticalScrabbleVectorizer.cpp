@@ -95,12 +95,12 @@ void VerticalScrabbleVectorizer::validate_words() {
             for (auto& word: moveSets[i][j]) {
                 vector<TString> boardCpy = return_raw_board_with(word);
 
-                for (int i = 0; i < 15; i++) {
+                for (int k = 0; k < 15; k++) {
                     TString row;
                     TString column;
-                    for (int j = 0; j < 15; ++j) {
-                        row += boardCpy[i].read_at(j);
-                        column += boardCpy[14 - j].read_at(i);
+                    for (int l = 0; l < 15; ++l) {
+                        row += boardCpy[k].read_at(l);
+                        column += boardCpy[14 - l].read_at(k);
                     }
 
                     vector<string> colShards = column.string_fragments();

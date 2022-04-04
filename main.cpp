@@ -25,7 +25,7 @@ int main(int argc, char* argv[]){
 
     VerticalScrabbleVectorizer vReader(rack);       //building VerticalScrabbleVectorizer
     vReader.build_board_from(argv[1]);
-    hReader.prep_perkBoard();
+    vReader.prep_perkBoard();
     vReader.build_dictionaries_from(argv[2]);
     vReader.validate_board();
     vReader.build_CADS_from(argv[2]);
@@ -79,6 +79,7 @@ int main(int argc, char* argv[]){
     vReader.place_into_board(bestVWord);
     hReader.place_into_board(bestHWord);
     hReader.console_print_formatted_board();
+    cout << "----------------------------------" << endl;
     vReader.console_print_formatted_board();
 
     return 0;
