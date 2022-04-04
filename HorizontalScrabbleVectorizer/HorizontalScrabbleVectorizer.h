@@ -13,7 +13,6 @@ public:
     TYPE get_vectorizer_type() const{ return HORIZONTAL; }
     vector<TString> return_formatted_board_copy() const{ return board; }
     void set_board(const vector<string>&);             //assumes the passed board is oriented in a horizontal format
-    void set_perkBoard(const vector<string>&);
     void validate_board() const;
     vector<string> return_formatted_perkBoard_copy() const;
     vector<string> return_formatted_char_board_copy() const;
@@ -25,8 +24,8 @@ public:
     void validate_words();
     int points_of_best_word() const{ return points_of_placed_word(bestWord); }
 
-    void set_board(const char**);
-    void set_perkBoard(const char**);
+    void build_board_from(const char**);
+    void build_perkBoard_from(const char**);
 };
 
 #endif //SCRABBLEBOT_BOARDREADER_H

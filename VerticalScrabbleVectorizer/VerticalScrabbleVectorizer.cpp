@@ -192,12 +192,12 @@ vector<TString> VerticalScrabbleVectorizer::return_formatted_board_copy() const 
 
 void VerticalScrabbleVectorizer::set_board(const vector<string> &passed) {
     if(passed.size() != 15)
-        throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<string> passed) | passed argument is not of a proper size.");
+        throw invalid_argument("Error in VerticalScrabbleVectorizer::build_board_from(vector<string> passed) | passed argument is not of a proper size.");
 
     vector<TString> boardCpy;
     for (int i = 14; i >= 0; --i) {  //i = x
         if(passed[i].length() != 15)
-            throw invalid_argument("Error in VerticalScrabbleVectorizer::set_board(vector<string> passed) | passed argument has an element that is not of a proper size.");
+            throw invalid_argument("Error in VerticalScrabbleVectorizer::build_board_from(vector<string> passed) | passed argument has an element that is not of a proper size.");
         TString column;
         for (int j = 0; j < 15; j++) {  //j = y
             char cell = passed[j][i];
@@ -213,24 +213,11 @@ void VerticalScrabbleVectorizer::set_board(const vector<string> &passed) {
     board = boardCpy;
 }
 
-void VerticalScrabbleVectorizer::set_perkBoard(const vector<string> &passed) {
-    if(passed.size() != 15)
-        throw invalid_argument("Error in VerticalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument is not of a proper size.");
-
+void VerticalScrabbleVectorizer::build_board_from(const char** passed) {
+    board.clear();
     for (int i = 14; i >= 0; --i) {
-        if(passed[i].length() != 15)
-            throw invalid_argument("Error in VerticalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument has an element that is not of a proper size.");
-        for (int j = 0; j < 15; ++j) {
-            perkBoard[14 - i][j] = passed[j][i];
-        }
-    }
-}
-
-void VerticalScrabbleVectorizer::set_board(const char** passed) {
-    vector<TString> boardCpy;
-    for (int i = 14; i >= 0; --i) {  //i = x
         TString column;
-        for (int j = 0; j < 15; j++) {  //j = y
+        for (int j = 0; j < 15; j++) {
             char cell = passed[j][i];
             if(isalpha(cell)) {
                 column += Tile(cell, j, 14 - i, 1);
@@ -239,12 +226,11 @@ void VerticalScrabbleVectorizer::set_board(const char** passed) {
                 column += Tile(' ', j, 14 - i, 1);
             }
         }
-        boardCpy.push_back(column);
+        board.push_back(column);
     }
-    board = boardCpy;
 }
 
-void VerticalScrabbleVectorizer::set_perkBoard(const char** passed) {
+void VerticalScrabbleVectorizer::build_perkBoard_from(const char** passed) {
     for (int i = 14; i >= 0; --i) {
         for (int j = 0; j < 15; j++) {
             perkBoard[14 - i][j] = passed[j][i];

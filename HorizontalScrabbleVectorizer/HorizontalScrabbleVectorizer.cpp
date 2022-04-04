@@ -169,11 +169,11 @@ vector<string> HorizontalScrabbleVectorizer::return_formatted_char_board_copy() 
 
 void HorizontalScrabbleVectorizer::set_board(const vector<string> &passed) {
     if(passed.size() != 15)
-        throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<string> passed) | passed argument is not of a proper size.");
+        throw invalid_argument("Error in HorizontalScrabbleVectorizer::build_board_from(vector<string> passed) | passed argument is not of a proper size.");
     vector<TString> boardCpy;
     for (int i = 0; i < 15; ++i) {
         if(passed[i].length() != 15)
-            throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_board(vector<string> passed) | passed argument has an element that is not of a proper size.");
+            throw invalid_argument("Error in HorizontalScrabbleVectorizer::build_board_from(vector<string> passed) | passed argument has an element that is not of a proper size.");
 
         TString row;
         for (int j = 0; j < 15; ++j) {
@@ -190,21 +190,8 @@ void HorizontalScrabbleVectorizer::set_board(const vector<string> &passed) {
     board = boardCpy;
 }
 
-void HorizontalScrabbleVectorizer::set_perkBoard(const vector<string> &passed) {
-    if(passed.size() != 15)
-        throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument is not of a proper size.");
-
-    for (int i = 0; i < 15; ++i) {
-        if(passed[i].length() != 15)
-            throw invalid_argument("Error in HorizontalScrabbleVectorizer::set_perkBoard(vector<string> passed) | passed argument has an element that is not of a proper size.");
-        for (int j = 0; j < 15; ++j) {
-            perkBoard[i][j] = passed[i][j];
-        }
-    }
-}
-
-void HorizontalScrabbleVectorizer::set_board(const char** passed) {
-    vector<TString> boardCpy;
+void HorizontalScrabbleVectorizer::build_board_from(const char** passed) {
+    board.clear();
     for (int i = 0; i < 15; ++i) {
         TString row;
         for (int j = 0; j < 15; ++j) {
@@ -216,12 +203,11 @@ void HorizontalScrabbleVectorizer::set_board(const char** passed) {
                 row += Tile(' ', j, i, 1);
             }
         }
-        boardCpy.emplace_back(row);
+        board.emplace_back(row);
     }
-    board = boardCpy;
 }
 
-void HorizontalScrabbleVectorizer::set_perkBoard(const char** passed) {
+void HorizontalScrabbleVectorizer::build_perkBoard_from(const char** passed) {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             perkBoard[i][j] = passed[i][j];

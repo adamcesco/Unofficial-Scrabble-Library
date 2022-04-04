@@ -18,8 +18,8 @@ public:
     virtual vector<TString> return_formatted_board_copy() const = 0;
     virtual vector<string> return_formatted_perkBoard_copy() const = 0;
     virtual TYPE get_vectorizer_type() const = 0;
-    virtual void set_board(const char**) = 0;
-    virtual void set_perkBoard(const char**) = 0;
+    virtual void build_board_from(const char**) = 0;
+    virtual void build_perkBoard_from(const char**) = 0;
     virtual vector<TString>& get_all_moves_at(int, int) = 0;
 
     virtual void search_for_intersecting_words();
@@ -48,7 +48,7 @@ public:
     void build_CADS_from(const char* filePath) { wordDataset = CADS(filePath); }
     void set_RMAC_build_path(const string& filePath) { routeRMAC = FILEPATH; rmacFilePath = filePath; }
     void set_RMAC_build_path_dictionary() { routeRMAC = DICTIONARY; }
-    void prep_perk_board();
+    void prep_perkBoard();
     bool contains_letter_of_rack(const TString&) const;
 
     ~ScrabbleVectorizer();

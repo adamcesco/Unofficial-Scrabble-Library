@@ -363,14 +363,7 @@ TEST_CASE("Testing manual board and perk-board setting", "[ScrabbleVectorizer]")
                                         {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
                                         {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '}};
 
-    SECTION("ScrabbleVectorizer::set_perkBoard(const vector<string>&)"){
-        vReader.set_perkBoard(customPerkBoard);
-        hReader.set_perkBoard(customPerkBoard);
-
-        REQUIRE(vReader.return_formatted_perkBoard_copy() == hReader.return_formatted_perkBoard_copy());
-    }
-
-    SECTION("ScrabbleVectorizer::set_board(const vector<string>&)"){
+    SECTION("ScrabbleVectorizer::build_board_from(const vector<string>&)"){
         vReader.set_board(customBoard);
         hReader.set_board(customBoard);
 

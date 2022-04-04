@@ -366,7 +366,7 @@ ScrabbleVectorizer::ScrabbleVectorizer(const string &passed) {
     sort(rack.begin(), rack.end());
 }
 
-void ScrabbleVectorizer::prep_perk_board() {
+void ScrabbleVectorizer::prep_perkBoard() {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             if(board[i][j] != ' ')
