@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
 
     cout.precision(9);
 
-    string rack = "DRJKALE";    //blank tiles should be marked as a '?'
+    string rack = "AEORIOT";    //blank tiles should be marked as a '?'
 
     HorizontalScrabbleVectorizer hReader(rack);     //building HorizontalScrabbleVectorizer
     hReader.build_board_from(argv[1]);
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]){
     hReader.search_for_intersecting_words();
     hReader.search_for_tangential_words();
 
-    vReader.validate_words();           //uses ~0.03 seconds for horizontal and vertical word validation
+    vReader.validate_words();
     hReader.validate_words();
     auto end = chrono::high_resolution_clock::now();   //end timer here
     auto time_in_seconds = chrono::duration<double>(end - start);
