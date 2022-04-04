@@ -9,7 +9,7 @@
 
 - To run the scrabble-board solver, provide the following command line argument:
  
-   >*../Data/Board.csv*
+   >*../Data/Board.csv* *../Data/scrabble_word_list.txt*
 
 - To run the CATCH tests, provide no command line arguments.
 
