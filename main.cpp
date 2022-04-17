@@ -12,9 +12,9 @@ int main(int argc, char* argv[]){
 
     std::cout.precision(9);
 
-    std::string rack = "AEORI??";    //blank tiles should be marked as a '?'
+    std::string rack = "AEORITE";    //blank tiles should be marked as a '?'
 
-    ssl::HorizontalScrabbleVectorizer hReader(rack);     //building HorizontalScrabbleVectorizer
+    scl::HorizontalScrabbleVectorizer hReader(rack);     //building HorizontalScrabbleVectorizer
     hReader.build_board_from(argv[1]);
     hReader.prep_perkBoard();
     hReader.build_dictionaries_from(argv[2]);
@@ -23,7 +23,7 @@ int main(int argc, char* argv[]){
     hReader.set_RMAC_build_path_dictionary();
     hReader.clear_all_moves();
 
-    ssl::VerticalScrabbleVectorizer vReader(rack);       //building VerticalScrabbleVectorizer
+    scl::VerticalScrabbleVectorizer vReader(rack);       //building VerticalScrabbleVectorizer
     vReader.build_board_from(argv[1]);
     vReader.prep_perkBoard();
     vReader.build_dictionaries_from(argv[2]);
@@ -52,9 +52,9 @@ int main(int argc, char* argv[]){
     hReader.update_best_word();
 
     int vPoints = vReader.points_of_best_word();
-    ssl::Tstring bestVWord = vReader.get_best_word();
+    scl::Tstring bestVWord = vReader.get_best_word();
     int hPoints = hReader.points_of_best_word();
-    ssl::Tstring bestHWord = hReader.get_best_word();
+    scl::Tstring bestHWord = hReader.get_best_word();
 
     //printing the information of the best word for the board to the console
     std::cout << "Best Horizontal Word: " << bestHWord.to_string() << std::endl;

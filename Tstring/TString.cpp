@@ -1,13 +1,13 @@
 #include "Tstring.h"
 
-ssl::Tstring::Tstring(const ssl::Tstring& toCpy){
+scl::Tstring::Tstring(const scl::Tstring& toCpy){
     eleCount = toCpy.eleCount;
 
     for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy.data[i];
 }
 
-ssl::Tstring& ssl::Tstring::operator=(const ssl::Tstring& toAssign){
+scl::Tstring& scl::Tstring::operator=(const scl::Tstring& toAssign){
     if(this == &toAssign)
         return *this;
 
@@ -19,40 +19,40 @@ ssl::Tstring& ssl::Tstring::operator=(const ssl::Tstring& toAssign){
     return *this;
 }
 
-ssl::Tile& ssl::Tstring::operator[](int subscript){
+scl::Tile& scl::Tstring::operator[](int subscript){
     if(subscript < 0 || subscript >= eleCount)
-        throw std::invalid_argument("invalid subscript for ssl::Tstring::operator[](int) | subscript parameter is invalid");
+        throw std::invalid_argument("invalid subscript for scl::Tstring::operator[](int) | subscript parameter is invalid");
     return data[subscript];
 }
 
-ssl::Tile ssl::Tstring::read_at(int subscript) const{
+scl::Tile scl::Tstring::read_at(int subscript) const{
     if(subscript < 0 || subscript >= eleCount)
-        throw std::invalid_argument("invalid subscript for ssl::Tstring::read_at(int) | subscript parameter is invalid");
+        throw std::invalid_argument("invalid subscript for scl::Tstring::read_at(int) | subscript parameter is invalid");
     return data[subscript];
 }
 
-ssl::Tile ssl::Tstring::read_back() const{
+scl::Tile scl::Tstring::read_back() const{
     if(eleCount < 1)
-        throw std::invalid_argument("invalid call for ssl::Tstring::back() | eleCount parameter is less than 1");
+        throw std::invalid_argument("invalid call for scl::Tstring::back() | eleCount parameter is less than 1");
     return data[eleCount - 1];
 }
 
-ssl::Tile& ssl::Tstring::back(){
+scl::Tile& scl::Tstring::back(){
     if(eleCount < 1)
-        throw std::invalid_argument("invalid call for ssl::Tstring::back() | eleCount parameter is less than 1");
+        throw std::invalid_argument("invalid call for scl::Tstring::back() | eleCount parameter is less than 1");
     return data[eleCount - 1];
 }
 
-ssl::Tstring& ssl::Tstring::pop_back(){
+scl::Tstring& scl::Tstring::pop_back(){
     if(eleCount == 0)
-        throw std::invalid_argument("invalid subscript for ssl::Tstring::pop_front(int) | ssl::Tstring::length is 0");
+        throw std::invalid_argument("invalid subscript for scl::Tstring::pop_front(int) | scl::Tstring::length is 0");
     eleCount--;
     return *this;
 }
 
-ssl::Tstring& ssl::Tstring::erase_at(int subscript){
+scl::Tstring& scl::Tstring::erase_at(int subscript){
     if(subscript < 0 || subscript >= eleCount)
-        throw std::invalid_argument("invalid subscript for ssl::Tstring::erase_at()");
+        throw std::invalid_argument("invalid subscript for scl::Tstring::erase_at()");
 
     for (int i = (subscript + 1); i < eleCount; ++i) {
         data[i - 1] = data[i];
@@ -62,7 +62,7 @@ ssl::Tstring& ssl::Tstring::erase_at(int subscript){
     return *this;
 }
 
-bool ssl::Tstring::contains(ssl::Tile toFind) const{
+bool scl::Tstring::contains(scl::Tile toFind) const{
     for (int i = 0; i < eleCount; ++i) {
         if(data[i] == toFind)
             return true;
@@ -71,7 +71,7 @@ bool ssl::Tstring::contains(ssl::Tile toFind) const{
     return false;
 }
 
-bool ssl::Tstring::operator==(const ssl::Tstring& dsv1) const{
+bool scl::Tstring::operator==(const scl::Tstring& dsv1) const{
     if(eleCount != dsv1.eleCount)
         return false;
 
@@ -83,9 +83,9 @@ bool ssl::Tstring::operator==(const ssl::Tstring& dsv1) const{
     return true;
 }
 
-ssl::Tstring &ssl::Tstring::operator=(const std::string &toAssign) {
+scl::Tstring &scl::Tstring::operator=(const std::string &toAssign) {
     int passedSize = toAssign.size();
-    eleCount = (passedSize < 19) ? passedSize : throw std::invalid_argument("invalid subscript for ssl::Tstring &ssl::Tstring::operator=(const string &toAssign) | Passed string is of a length that is larger than the max capacity for an ssl::Tstring");;
+    eleCount = (passedSize < 19) ? passedSize : throw std::invalid_argument("invalid subscript for scl::Tstring &scl::Tstring::operator=(const string &toAssign) | Passed string is of a length that is larger than the max capacity for an scl::Tstring");;
 
     for (int i = 0; i < eleCount; ++i) {
         data[i] = toAssign[i];
@@ -94,23 +94,23 @@ ssl::Tstring &ssl::Tstring::operator=(const std::string &toAssign) {
     return *this;
 }
 
-ssl::Tstring& ssl::Tstring::operator+=(const ssl::Tile &pssd){
+scl::Tstring& scl::Tstring::operator+=(const scl::Tile &pssd){
     if(eleCount > 18)
-        throw std::invalid_argument("invalid call for ssl::Tstring& ssl::Tstring::operator+=(const ssl::Tile &) | Max capacity of ssl::Tstring has been reached");
+        throw std::invalid_argument("invalid call for scl::Tstring& scl::Tstring::operator+=(const scl::Tile &) | Max capacity of scl::Tstring has been reached");
     data[eleCount] = pssd;
     eleCount++;
     return *this;
 }
 
-ssl::Tstring& ssl::Tstring::operator+=(char pssd) {
+scl::Tstring& scl::Tstring::operator+=(char pssd) {
     if(eleCount > 18)
-        throw std::invalid_argument("invalid call for ssl::Tstring& ssl::Tstring::operator+=(char) | Max capacity of ssl::Tstring has been reached");
+        throw std::invalid_argument("invalid call for scl::Tstring& scl::Tstring::operator+=(char) | Max capacity of scl::Tstring has been reached");
     data[eleCount] = pssd;
     eleCount++;
     return *this;
 }
 
-bool ssl::Tstring::contains(char toFind) const {
+bool scl::Tstring::contains(char toFind) const {
     for (int i = 0; i < eleCount; ++i) {
         if(data[i] == toFind)
             return true;
@@ -118,22 +118,22 @@ bool ssl::Tstring::contains(char toFind) const {
     return false;
 }
 
-std::string ssl::Tstring::to_string() const{
+std::string scl::Tstring::to_string() const{
     std::string temp;
     for(int i = 0; i < eleCount; i++)
         temp += data[i].letter;
     return temp;
 }
 
-ssl::Tstring::Tstring(const std::string toCpy) {
+scl::Tstring::Tstring(const std::string toCpy) {
     eleCount = toCpy.length();
     for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy[i];
 }
 
-ssl::Tstring &ssl::Tstring::operator=(const char* toAssign) {
+scl::Tstring &scl::Tstring::operator=(const char* toAssign) {
     int passedSize = strlen(toAssign);
-    eleCount = (passedSize < 19) ? passedSize : throw std::invalid_argument("invalid subscript for ssl::Tstring &ssl::Tstring::operator=(char* toAssign) | Passed string is of a length that is larger than the max capacity for an ssl::Tstring");;
+    eleCount = (passedSize < 19) ? passedSize : throw std::invalid_argument("invalid subscript for scl::Tstring &scl::Tstring::operator=(char* toAssign) | Passed string is of a length that is larger than the max capacity for an scl::Tstring");;
 
     for (int i = 0; i < eleCount; ++i)
         data[i] = toAssign[i];
@@ -141,7 +141,7 @@ ssl::Tstring &ssl::Tstring::operator=(const char* toAssign) {
     return *this;
 }
 
-bool ssl::Tstring::row_is_descendent_of(const std::string& hand, const ssl::Tstring& row, ssl::Tstring& word) {
+bool scl::Tstring::row_is_descendent_of(const std::string& hand, const scl::Tstring& row, scl::Tstring& word) {
     if(eleCount == 0 || word.eleCount == 0)
         return false;
 
@@ -183,48 +183,48 @@ bool ssl::Tstring::row_is_descendent_of(const std::string& hand, const ssl::Tstr
     return true;
 }
 
-ssl::Tstring::Tstring(const char* toCpy) {
+scl::Tstring::Tstring(const char* toCpy) {
     eleCount = strlen(toCpy);
     for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy[i];
 }
 
-int ssl::Tstring::get_letter_points() const{
+int scl::Tstring::get_letter_points() const{
     int sum = 0;
     for (int i = 0; i < eleCount; ++i)
         sum += data[i].points;
     return sum;
 }
 
-int ssl::Tstring::get_letter_points(std::string passed) {
+int scl::Tstring::get_letter_points(std::string passed) {
     int sum = 0;
     for(char it : passed)
         sum += legend[(it & 31) - 1];
     return sum;
 }
 
-ssl::Tstring& ssl::Tstring::set_x_vals_to_subscripts() {
+scl::Tstring& scl::Tstring::set_x_vals_to_subscripts() {
     for (int i = 0; i < eleCount; ++i)
         data[i].x = i;
 
     return *this;
 }
 
-ssl::Tstring &ssl::Tstring::add_to_x_vals(int passed) {
+scl::Tstring &scl::Tstring::add_to_x_vals(int passed) {
     for (int i = 0; i < eleCount; ++i)
         data[i].x += passed;
 
     return *this;
 }
 
-ssl::Tstring &ssl::Tstring::set_x_vals_equal_to(int passed) {
+scl::Tstring &scl::Tstring::set_x_vals_equal_to(int passed) {
     for (int i = 0; i < eleCount; ++i)
         data[i].x = passed;
 
     return *this;
 }
 
-bool ssl::Tstring::contains_flag(int passed) const{
+bool scl::Tstring::contains_flag(int passed) const{
     for (int i = 0; i < eleCount; ++i) {
         if(data[i].flag == passed)
             return true;
@@ -232,9 +232,9 @@ bool ssl::Tstring::contains_flag(int passed) const{
     return false;
 }
 
-std::vector<ssl::Tstring> ssl::Tstring::fragments() const{
-    std::vector<ssl::Tstring> fragments;
-    ssl::Tstring curFragment;
+std::vector<scl::Tstring> scl::Tstring::fragments() const{
+    std::vector<scl::Tstring> fragments;
+    scl::Tstring curFragment;
     for (int i = 0; i < eleCount; ++i) {
         if(data[i].letter != ' ') {
             curFragment += data[i];
@@ -250,32 +250,32 @@ std::vector<ssl::Tstring> ssl::Tstring::fragments() const{
     return fragments;
 }
 
-ssl::Tstring ssl::Tstring::operator+(const ssl::Tile& toAppend) const {
-    ssl::Tstring temp(*this);
+scl::Tstring scl::Tstring::operator+(const scl::Tile& toAppend) const {
+    scl::Tstring temp(*this);
     if(temp.eleCount > 18)
-        throw std::invalid_argument("invalid call for ssl::Tstring ssl::Tstring::operator+(const ssl::Tile& toAppend) | Max capacity of ssl::Tstring has been reached");
+        throw std::invalid_argument("invalid call for scl::Tstring scl::Tstring::operator+(const scl::Tile& toAppend) | Max capacity of scl::Tstring has been reached");
     temp.data[temp.eleCount] = toAppend;
     temp.eleCount++;
     return temp;
 }
 
-ssl::Tstring ssl::Tstring::operator+(char toAppend) const {
-    ssl::Tstring temp(*this);
+scl::Tstring scl::Tstring::operator+(char toAppend) const {
+    scl::Tstring temp(*this);
     if(temp.eleCount > 18)
-        throw std::invalid_argument("invalid call for ssl::Tstring ssl::Tstring::operator+(char toAppend) | Max capacity of ssl::Tstring has been reached");
+        throw std::invalid_argument("invalid call for scl::Tstring scl::Tstring::operator+(char toAppend) | Max capacity of scl::Tstring has been reached");
     temp.data[temp.eleCount] = toAppend;
     temp.eleCount++;
     return temp;
 }
 
-ssl::Tstring &ssl::Tstring::set_y_vals_equal_to(int passed) {
+scl::Tstring &scl::Tstring::set_y_vals_equal_to(int passed) {
     for (int i = 0; i < eleCount; ++i)
         data[i].y = passed;
 
     return *this;
 }
 
-bool ssl::Tstring::is_all_whitespace() const {
+bool scl::Tstring::is_all_whitespace() const {
     for (int i = 0; i < eleCount; ++i) {
         if(isalpha(data[i].letter))
             return false;
@@ -283,7 +283,7 @@ bool ssl::Tstring::is_all_whitespace() const {
     return true;
 }
 
-bool ssl::Tstring::is_descendent_of(const std::string& rack) {
+bool scl::Tstring::is_descendent_of(const std::string& rack) {
     if(eleCount == 0 || eleCount > rack.length())
         return false;
 
@@ -318,7 +318,7 @@ bool ssl::Tstring::is_descendent_of(const std::string& rack) {
     return true;
 }
 
-int ssl::Tstring::find_pos_of(char toFind) const {
+int scl::Tstring::find_pos_of(char toFind) const {
     for (int i = 0; i < eleCount; ++i) {
         if(data[i] == toFind)
             return i;
@@ -326,7 +326,7 @@ int ssl::Tstring::find_pos_of(char toFind) const {
     return -1;
 }
 
-std::vector<std::string> ssl::Tstring::string_fragments() const {
+std::vector<std::string> scl::Tstring::string_fragments() const {
     std::vector<std::string> fragments;
     std::string curFragment;
     for (int i = 0; i < eleCount; ++i) {
@@ -344,7 +344,7 @@ std::vector<std::string> ssl::Tstring::string_fragments() const {
     return fragments;
 }
 
-bool ssl::Tstring::operator==(const std::string& toComp) const {
+bool scl::Tstring::operator==(const std::string& toComp) const {
     if(eleCount != toComp.length())
         return false;
 
@@ -356,7 +356,7 @@ bool ssl::Tstring::operator==(const std::string& toComp) const {
     return true;
 }
 
-bool ssl::Tstring::operator==(const char* toComp) const {
+bool scl::Tstring::operator==(const char* toComp) const {
     if(eleCount != strlen(toComp))
         return false;
 
@@ -368,7 +368,7 @@ bool ssl::Tstring::operator==(const char* toComp) const {
     return true;
 }
 
-bool ssl::Tstring::is_descendent_of(ssl::Tstring& sub, const std::string& rack) {
+bool scl::Tstring::is_descendent_of(scl::Tstring& sub, const std::string& rack) {
     int slen = sub.eleCount;
     int rlen = rack.length();
     if(rlen == 0 || slen > rack.length())

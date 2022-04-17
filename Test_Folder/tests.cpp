@@ -3,13 +3,13 @@
 #include "../VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
 #include <sstream>
 
-TEST_CASE("Testing std::vector<ssl::Tstring>& get_all_moves_at(int x, int y)", "ScrabbleVectorizer"){
-    ssl::HorizontalScrabbleVectorizer hReader(std::string("ASDFGHJ"));
+TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "ScrabbleVectorizer"){
+    scl::HorizontalScrabbleVectorizer hReader(std::string("ASDFGHJ"));
     hReader.build_board_from("../Test_Folder/Board.csv");
     hReader.validate_board();
     hReader.clear_all_moves();
 
-    ssl::VerticalScrabbleVectorizer vReader(std::string("ASDFGHJ"));
+    scl::VerticalScrabbleVectorizer vReader(std::string("ASDFGHJ"));
     vReader.build_board_from("../Test_Folder/Board.csv");
     vReader.validate_board();
     vReader.clear_all_moves();
@@ -39,15 +39,15 @@ TEST_CASE("Testing std::vector<ssl::Tstring>& get_all_moves_at(int x, int y)", "
     }
 }
 
-TEST_CASE("Testing ssl::Tstring::erase_at(int)", "[ssl::Tstring]"){
-    SECTION("Testing a populated ssl::Tstring"){
-        ssl::Tstring testDummy = "Adam";
+TEST_CASE("Testing scl::Tstring::erase_at(int)", "[scl::Tstring]"){
+    SECTION("Testing a populated scl::Tstring"){
+        scl::Tstring testDummy = "Adam";
         testDummy.erase_at(2);
         REQUIRE(testDummy == "Adm");
 
         bool error_thrown = false;
         try{
-            ssl::Tstring testDummy = "Adam";
+            scl::Tstring testDummy = "Adam";
             testDummy.erase_at(-1);
         } catch(const std::invalid_argument& e){
             error_thrown = true;
@@ -56,7 +56,7 @@ TEST_CASE("Testing ssl::Tstring::erase_at(int)", "[ssl::Tstring]"){
 
         error_thrown = false;
         try{
-            ssl::Tstring testDummy = "Adam";
+            scl::Tstring testDummy = "Adam";
             testDummy.erase_at(4);
         } catch(const std::invalid_argument& e){
             error_thrown = true;
@@ -64,10 +64,10 @@ TEST_CASE("Testing ssl::Tstring::erase_at(int)", "[ssl::Tstring]"){
         REQUIRE(error_thrown);
     }
 
-    SECTION("Testing an empty ssl::Tstring"){
+    SECTION("Testing an empty scl::Tstring"){
         bool error_thrown = false;
         try{
-            ssl::Tstring testDummy;
+            scl::Tstring testDummy;
             testDummy.erase_at(0);
         } catch(const std::invalid_argument& e){
             error_thrown = true;
@@ -77,17 +77,17 @@ TEST_CASE("Testing ssl::Tstring::erase_at(int)", "[ssl::Tstring]"){
 }
 
 TEST_CASE("Testing CADS Usage and Speed", "[CADS]"){
-    ssl::CADS wordData("../Data/scrabble_word_list.txt");
+    scl::CADS wordData("../Data/scrabble_word_list.txt");
 
     SECTION("Testing words with \'A\' as the first letter"){
-        std::vector<ssl::AnchoredString> data = wordData.at_with(2, 'A');
+        std::vector<scl::AnchoredString> data = wordData.at_with(2, 'A');
         for (auto& it : data) {
             REQUIRE(it.first[it.second] == 'A');
         }
     }
 
     SECTION("Testing words with \'S\' as the 5th tile of the 3rd row"){
-        std::vector<ssl::AnchoredString> data = wordData.at_with(4, 'S');
+        std::vector<scl::AnchoredString> data = wordData.at_with(4, 'S');
         for (auto& it : data) {
             REQUIRE(it.first[it.second] == 'S');
         }
@@ -98,7 +98,7 @@ TEST_CASE("Testing CADS Usage and Speed", "[CADS]"){
             for (int j = 0; j < 15; ++j) {
                 for (int k = 0; k < 26; ++k) {
                     char curChar = 'A' + k;
-                    std::vector<ssl::AnchoredString> data = wordData.at_with(j, curChar);
+                    std::vector<scl::AnchoredString> data = wordData.at_with(j, curChar);
                     for (auto& it : data) {
                         REQUIRE(it.first[it.second] == curChar);
                     }
@@ -110,7 +110,7 @@ TEST_CASE("Testing CADS Usage and Speed", "[CADS]"){
 
 TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     std::string rack = "GRO?LEE";
-    ssl::Tstring word = "ADAM";
+    scl::Tstring word = "ADAM";
     word[0].x = 10;
     word[1].x = 11;
     word[2].x = 12;
@@ -120,13 +120,13 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     word[2].y = 3;
     word[3].y = 3;
 
-    ssl::HorizontalScrabbleVectorizer defaultReader(rack);
+    scl::HorizontalScrabbleVectorizer defaultReader(rack);
     defaultReader.build_board_from("../Test_Folder/Board.csv");
 
-    ssl::HorizontalScrabbleVectorizer hReader(rack);
+    scl::HorizontalScrabbleVectorizer hReader(rack);
     hReader.build_board_from("../Test_Folder/Board.csv");
 
-    ssl::VerticalScrabbleVectorizer vReader(rack);
+    scl::VerticalScrabbleVectorizer vReader(rack);
     vReader.build_board_from("../Test_Folder/Board.csv");
 
     std::ifstream boardFile;
@@ -134,7 +134,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     if(!boardFile.is_open())
         throw std::invalid_argument("could not open ../Test_Folder/Board.csv");
 
-    std::vector<ssl::Tstring> originalBoard;
+    std::vector<scl::Tstring> originalBoard;
     std::string row;
     int rowCount = 0;
     while (boardFile.good()){
@@ -142,13 +142,13 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
         std::string cell;
         std::stringstream strStr(row);
         int cellCount = 0;
-        ssl::Tstring rowVect;
+        scl::Tstring rowVect;
         while (getline(strStr, cell, ',') && cellCount < 15){
             if(!cell.empty() && isalpha(cell[0])) {
-                rowVect += ssl::Tile(cell[0], cellCount, rowCount, 1);
+                rowVect += scl::Tile(cell[0], cellCount, rowCount, 1);
             }
             else {
-                rowVect += ssl::Tile(' ', cellCount, rowCount, 1);
+                rowVect += scl::Tile(' ', cellCount, rowCount, 1);
             }
             cellCount++;
         }
@@ -233,11 +233,11 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     }
 }
 
-TEST_CASE("Testing method ssl::Tstring::is_descendent_of", "[ssl::Tstring]"){
+TEST_CASE("Testing method scl::Tstring::is_descendent_of", "[scl::Tstring]"){
     std::string givenRack = "DOEWJ?K";
 
     SECTION("Testing different variations of the given word \"DOEWJ?K\" as input"){
-        ssl::Tstring toValidate = "JOOKED";
+        scl::Tstring toValidate = "JOOKED";
         REQUIRE(toValidate.is_descendent_of(givenRack));
 
         toValidate = "JOUKED";
@@ -266,14 +266,14 @@ TEST_CASE("Testing method ssl::Tstring::is_descendent_of", "[ssl::Tstring]"){
     }
 }
 
-TEST_CASE("Testing method ssl::Tstring::row_is_descendent_of", "[ssl::Tstring]"){
+TEST_CASE("Testing method scl::Tstring::row_is_descendent_of", "[scl::Tstring]"){
     std::string givenRack = "LEO?UDQ";
-    ssl::Tstring givenRow = "     R B  D    ";
+    scl::Tstring givenRow = "     R B  D    ";
     givenRow.set_x_vals_to_subscripts();
 
     SECTION("Testing different variations of the given word \"LEO?UDQ\" with row \"     R B  D    \" as input"){
-        ssl::Tstring toValidate = "     R BUDDY   ";
-        ssl::Tstring givenWord = "BUDDY";
+        scl::Tstring toValidate = "     R BUDDY   ";
+        scl::Tstring givenWord = "BUDDY";
         givenWord.set_x_vals_to_subscripts();
         givenWord.add_to_x_vals(7);
         REQUIRE(toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
@@ -325,10 +325,10 @@ TEST_CASE("Testing method ssl::Tstring::row_is_descendent_of", "[ssl::Tstring]")
 TEST_CASE("Testing manual board and perk-board setting", "[ScrabbleVectorizer]"){
     std::string rack = "POIAUD?";
 
-    ssl::HorizontalScrabbleVectorizer hReader(rack);
+    scl::HorizontalScrabbleVectorizer hReader(rack);
     hReader.build_board_from("../Test_Folder/Board.csv");
     hReader.validate_board();
-    ssl::VerticalScrabbleVectorizer vReader(rack);
+    scl::VerticalScrabbleVectorizer vReader(rack);
     vReader.build_board_from("../Test_Folder/Board.csv");
     vReader.validate_board();
     std::vector<std::string> customPerkBoard =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', '|', ' ', ' ', '3'},

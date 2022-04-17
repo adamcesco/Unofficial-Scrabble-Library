@@ -1,13 +1,13 @@
 #include "Tile.h"
 
-ssl::Tile::Tile() {
+scl::Tile::Tile() {
     x = y = flag = -1;
     points = 0;
     letter = ' ';
     isBlank = false;
 }
 
-ssl::Tile::Tile(char passed, int xp, int yp, int fl) {
+scl::Tile::Tile(char passed, int xp, int yp, int fl) {
     letter = abs(passed);
     x = xp;
     y = yp;
@@ -20,7 +20,7 @@ ssl::Tile::Tile(char passed, int xp, int yp, int fl) {
         points = 0;
 }
 
-ssl::Tile &ssl::Tile::operator=(const ssl::Tile &invoked) {
+scl::Tile &scl::Tile::operator=(const scl::Tile &invoked) {
     if(this == &invoked)
         return *this;
     letter = invoked.letter;
@@ -32,7 +32,7 @@ ssl::Tile &ssl::Tile::operator=(const ssl::Tile &invoked) {
     return *this;
 }
 
-ssl::Tile &ssl::Tile::operator=(char invoked) {
+scl::Tile &scl::Tile::operator=(char invoked) {
     letter = abs(invoked);
     y = x = flag = -1;
     isBlank = false;
@@ -44,7 +44,7 @@ ssl::Tile &ssl::Tile::operator=(char invoked) {
     return *this;
 }
 
-ssl::Tile::Tile(unsigned char passed, int xp, int yp, int fl) {
+scl::Tile::Tile(unsigned char passed, int xp, int yp, int fl) {
     letter = passed;
     x = xp;
     y = yp;

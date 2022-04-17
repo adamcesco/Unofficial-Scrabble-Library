@@ -4,7 +4,7 @@
 #include "../CADS/CADS.h"
 #include "../RackMap/RMAC.h"
 
-namespace ssl{
+namespace scl{
     enum TYPE{HORIZONTAL, VERTICAL, UNDEFINED_TYPE};
     enum RMAC_ROUTE{DICTIONARY, FILEPATH, UNDEFINED_ROUTE};
 
@@ -22,7 +22,7 @@ namespace ssl{
 
         virtual std::vector<std::string> return_formatted_char_board_copy() const = 0;
 
-        virtual std::vector<ssl::Tstring> return_formatted_board_copy() const = 0;
+        virtual std::vector<scl::Tstring> return_formatted_board_copy() const = 0;
 
         virtual std::vector<std::string> return_formatted_perkBoard_copy() const = 0;
 
@@ -32,7 +32,7 @@ namespace ssl{
 
         virtual void build_perkBoard_from(const char **) = 0;
 
-        virtual std::vector<ssl::Tstring> &get_all_moves_at(int, int) = 0;
+        virtual std::vector<scl::Tstring> &get_all_moves_at(int, int) = 0;
 
         virtual void validate_words() = 0;
 
@@ -40,23 +40,23 @@ namespace ssl{
 
         virtual void search_for_tangential_words();
 
-        virtual void place_into_board(const ssl::Tstring &);
+        virtual void place_into_board(const scl::Tstring &);
 
         virtual void place_best_word_into_board();
 
         virtual int points_of_placed_word(
-                const ssl::Tstring &) const;                          //assumes that the passed word is found within the board and has proper coordinate values for the given std::vectorizer type
+                const scl::Tstring &) const;                          //assumes that the passed word is found within the board and has proper coordinate values for the given std::vectorizer type
 
         void clear_all_moves();
 
-        ssl::Tstring &get_best_word() { return bestWord; }
+        scl::Tstring &get_best_word() { return bestWord; }
 
         void set_rack(const std::string &passed) {
             rack = passed;
             sort(rack.begin(), rack.end());
         }
 
-        std::vector<ssl::Tstring> &get_raw_board() { return board; }
+        std::vector<scl::Tstring> &get_raw_board() { return board; }
 
         std::vector<std::string> return_raw_char_board_copy();
 
@@ -70,13 +70,13 @@ namespace ssl{
 
         std::string &get_rack() { return rack; }
 
-        void set_raw_board(const std::vector<ssl::Tstring> &passed) { board = passed; }
+        void set_raw_board(const std::vector<scl::Tstring> &passed) { board = passed; }
 
         std::unordered_set<std::string> &get_dictionary() { return dictionary; }
 
         std::unordered_set<std::string> &get_sub8_dictionary() { return dictionarySub8; }
 
-        std::vector<ssl::Tstring> **get_moveSets() { return moveSets; }
+        std::vector<scl::Tstring> **get_moveSets() { return moveSets; }
 
         void set_dictionary(const std::unordered_set<std::string> &passed) { dictionary = passed; }
 
@@ -95,23 +95,23 @@ namespace ssl{
 
         void prep_perkBoard();
 
-        bool contains_letter_of_rack(const ssl::Tstring &) const;
+        bool contains_letter_of_rack(const scl::Tstring &) const;
 
         ~ScrabbleVectorizer();
 
     protected:
-        virtual std::vector<ssl::Tstring> return_raw_board_with(
-                const ssl::Tstring &) const;        //assumes that the passed word is formatted with respect to the current std::vectorizer type
+        virtual std::vector<scl::Tstring> return_raw_board_with(
+                const scl::Tstring &) const;        //assumes that the passed word is formatted with respect to the current std::vectorizer type
 
         int bestX, bestY;
-        ssl::Tstring bestWord;
+        scl::Tstring bestWord;
         std::string rack;
         RMAC_ROUTE routeRMAC = UNDEFINED_ROUTE;
         std::string rmacFilePath;
         std::unordered_set<std::string> dictionary;
         std::unordered_set<std::string> dictionarySub8;
-        std::vector<ssl::Tstring> **moveSets;
-        std::vector<ssl::Tstring> board;
+        std::vector<scl::Tstring> **moveSets;
+        std::vector<scl::Tstring> board;
         CADS wordDataset;
         char perkBoard[15][15] = {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
                                   {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},

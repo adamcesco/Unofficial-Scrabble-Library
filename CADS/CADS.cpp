@@ -1,6 +1,6 @@
 #include "CADS.h"
 
-ssl::CADS::CADS(const char* filePath){
+scl::CADS::CADS(const char* filePath){
     data = new std::vector<AnchoredString>*[15];
     for (int i = 0; i < 15; ++i) {
         data[i] = new std::vector<AnchoredString>[27];
@@ -9,7 +9,7 @@ ssl::CADS::CADS(const char* filePath){
     std::ifstream englishWords;
     englishWords.open(filePath);
     if(!englishWords.is_open())
-        throw std::invalid_argument("Could not open file path passed to ssl::CADS::ssl::CADS(const char* filePath)");
+        throw std::invalid_argument("Could not open file path passed to scl::CADS::scl::CADS(const char* filePath)");
 
     std::string curWord;
     int count = 0;
@@ -29,12 +29,12 @@ ssl::CADS::CADS(const char* filePath){
             }
         }
     }
-    std::cout << "ssl::CADS:: " << count << " words read from " <<  filePath << std::endl;
+    std::cout << "scl::CADS:: " << count << " words read from " <<  filePath << std::endl;
 
     englishWords.close();
 }
 
-ssl::CADS::~CADS() {
+scl::CADS::~CADS() {
     if(data != nullptr){
         for (int i = 0; i < 15; ++i) {
             delete[] data[i];
@@ -43,7 +43,7 @@ ssl::CADS::~CADS() {
     }
 }
 
-ssl::CADS::CADS(const ssl::CADS & toCpy) {
+scl::CADS::CADS(const scl::CADS & toCpy) {
     data = new std::vector<AnchoredString>*[15];
     for (int i = 0; i < 15; ++i) {
         data[i] = new std::vector<AnchoredString>[27];
@@ -56,7 +56,7 @@ ssl::CADS::CADS(const ssl::CADS & toCpy) {
     }
 }
 
-ssl::CADS &ssl::CADS::operator=(const ssl::CADS & toAssign) {
+scl::CADS &scl::CADS::operator=(const scl::CADS & toAssign) {
     if(this == &toAssign)
         return *this;
 
@@ -80,7 +80,7 @@ ssl::CADS &ssl::CADS::operator=(const ssl::CADS & toAssign) {
     return *this;
 }
 
-ssl::CADS &ssl::CADS::clear_all() {
+scl::CADS &scl::CADS::clear_all() {
     if(data == nullptr) {
         return *this;
     }
@@ -93,9 +93,9 @@ ssl::CADS &ssl::CADS::clear_all() {
     return *this;
 }
 
-std::vector<ssl::AnchoredString> &ssl::CADS::at_with(int x, unsigned char toFind) {
+std::vector<scl::AnchoredString> &scl::CADS::at_with(int x, unsigned char toFind) {
     if(data == nullptr)
-        throw std::invalid_argument("Error in vector<AnchoredString> at_with(int, int, char) | ssl::CADS is not initialized");
+        throw std::invalid_argument("Error in vector<AnchoredString> at_with(int, int, char) | scl::CADS is not initialized");
     if(x > 14 || !isalpha(toFind))
         throw std::invalid_argument("Error in vector<AnchoredString> at_with(int, int, char) | Invalid parameter value.\nX: " + std::to_string(x) + "\nChar: " + char(toFind));
     return data[x][toFind & 31];

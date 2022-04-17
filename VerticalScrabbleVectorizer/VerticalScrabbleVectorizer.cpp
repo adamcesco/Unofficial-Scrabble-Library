@@ -1,11 +1,11 @@
 #include "VerticalScrabbleVectorizer.h"
 #include <sstream>
 
-void ssl::VerticalScrabbleVectorizer::build_board_from(const char* filePath) {
+void scl::VerticalScrabbleVectorizer::build_board_from(const char* filePath) {
     std::ifstream boardFile;
     boardFile.open(filePath);
     if(!boardFile.is_open())
-        throw std::invalid_argument("could not open file path passed to void ssl::VerticalScrabbleVectorizer::build_board_from(const char* filePath)");
+        throw std::invalid_argument("could not open file path passed to void scl::VerticalScrabbleVectorizer::build_board_from(const char* filePath)");
 
     std::string row;
     board.clear();
@@ -15,13 +15,13 @@ void ssl::VerticalScrabbleVectorizer::build_board_from(const char* filePath) {
         std::string cell;
         std::stringstream strStr(row);
         int cellCount = 0;
-        ssl::Tstring LRow;
+        scl::Tstring LRow;
         while (getline(strStr, cell, ',') && cellCount < 15){
             if(!cell.empty() && isalpha(cell[0])) {
-                LRow += ssl::Tile(cell[0], cellCount, rowCount, 1);
+                LRow += scl::Tile(cell[0], cellCount, rowCount, 1);
             }
             else {
-                LRow += ssl::Tile(' ', cellCount, rowCount, 1);
+                LRow += scl::Tile(' ', cellCount, rowCount, 1);
             }
             cellCount++;
         }
@@ -30,18 +30,18 @@ void ssl::VerticalScrabbleVectorizer::build_board_from(const char* filePath) {
     }
     boardFile.close();
 
-    std::vector<ssl::Tstring> boardCpy;
+    std::vector<scl::Tstring> boardCpy;
     for (int i = 14; i >= 0; i--) {  //i = x
-        ssl::Tstring column;
+        scl::Tstring column;
         for (int j = 0; j < 15; j++) {  //j = y
-            column += ssl::Tile(board[j][i].letter, j, 14 - i, 1);
+            column += scl::Tile(board[j][i].letter, j, 14 - i, 1);
         }
         boardCpy.push_back(column);
     }
     board = boardCpy;
 }
 
-void ssl::VerticalScrabbleVectorizer::console_print_formatted_board() const{
+void scl::VerticalScrabbleVectorizer::console_print_formatted_board() const{
     for (int i = 0; i < 15; ++i) {
         for (int j = 14; j >= 0; --j) {
             std::cout << board[j].read_at(i).letter;
@@ -50,7 +50,7 @@ void ssl::VerticalScrabbleVectorizer::console_print_formatted_board() const{
     }
 }
 
-std::string ssl::VerticalScrabbleVectorizer::to_string() const {
+std::string scl::VerticalScrabbleVectorizer::to_string() const {
     std::string buffer = "Hand: " + rack + "\n";
     buffer += "Best Vertical Word: " + bestWord.to_string() + " - " + std::to_string(points_of_best_word());
     buffer += "\n\tPostion X: " + std::to_string(bestX);
@@ -60,7 +60,7 @@ std::string ssl::VerticalScrabbleVectorizer::to_string() const {
     return buffer;
 }
 
-ssl::Tstring ssl::VerticalScrabbleVectorizer::update_best_word(){
+scl::Tstring scl::VerticalScrabbleVectorizer::update_best_word(){
 //    int rowSubscript = 0;
     bestWord.clear();
     for (int i = 0; i < 15; ++i) {
@@ -89,15 +89,15 @@ ssl::Tstring ssl::VerticalScrabbleVectorizer::update_best_word(){
     return bestWord;
 }
 
-void ssl::VerticalScrabbleVectorizer::validate_words() {
+void scl::VerticalScrabbleVectorizer::validate_words() {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             for (auto& word: moveSets[i][j]) {
-                std::vector<ssl::Tstring> boardCpy = return_raw_board_with(word);
+                std::vector<scl::Tstring> boardCpy = return_raw_board_with(word);
 
                 for (int k = 0; k < 15; k++) {
-                    ssl::Tstring row;
-                    ssl::Tstring column;
+                    scl::Tstring row;
+                    scl::Tstring column;
                     for (int l = 0; l < 15; ++l) {
                         row += boardCpy[k].read_at(l);
                         column += boardCpy[14 - l].read_at(k);
@@ -124,17 +124,17 @@ void ssl::VerticalScrabbleVectorizer::validate_words() {
     }
 }
 
-void ssl::VerticalScrabbleVectorizer::validate_board() const{
+void scl::VerticalScrabbleVectorizer::validate_board() const{
     if(dictionary.empty())
-        throw std::invalid_argument("Error in ScrabbleVectorizer::validate_board() | unordered_map<ssl::Tstring> dictionary is empty.");
+        throw std::invalid_argument("Error in ScrabbleVectorizer::validate_board() | unordered_map<scl::Tstring> dictionary is empty.");
 
     for (int i = 0; i < 15; ++i) {
-        ssl::Tstring column;
+        scl::Tstring column;
         for (int j = 0; j < 15; ++j) {
             column += board[i].read_at(j);
         }
 
-        ssl::Tstring row;
+        scl::Tstring row;
         for (int j = 14; j >= 0; --j) {
             row += board[j].read_at(i);
         }
@@ -143,19 +143,19 @@ void ssl::VerticalScrabbleVectorizer::validate_board() const{
 
         for (const auto& shard : colShards) {
             if(shard.length() > 1 && dictionary.find(shard) == dictionary.end())
-                throw std::invalid_argument("Error in void ssl::VerticalScrabbleVectorizer::validate_board() | Invalid vertical Word in Data/Board.csv |" + shard + '|');
+                throw std::invalid_argument("Error in void scl::VerticalScrabbleVectorizer::validate_board() | Invalid vertical Word in Data/Board.csv |" + shard + '|');
         }
 
         std::vector<std::string> rowShards = row.string_fragments();
 
         for (const auto& shard : rowShards) {
             if(shard.length() > 1 && dictionary.find(shard) == dictionary.end())
-                throw std::invalid_argument("Error in void ssl::VerticalScrabbleVectorizer::validate_board() | Invalid horizontal Word in Data/Board.csv |" + shard + '|');
+                throw std::invalid_argument("Error in void scl::VerticalScrabbleVectorizer::validate_board() | Invalid horizontal Word in Data/Board.csv |" + shard + '|');
         }
     }
 }
 
-std::vector<std::string> ssl::VerticalScrabbleVectorizer::return_formatted_perkBoard_copy() const {
+std::vector<std::string> scl::VerticalScrabbleVectorizer::return_formatted_perkBoard_copy() const {
     std::vector<std::string> toReturn;
     for (int i = 0; i < 15; ++i) {
         std::string column;
@@ -167,7 +167,7 @@ std::vector<std::string> ssl::VerticalScrabbleVectorizer::return_formatted_perkB
     return toReturn;
 }
 
-std::vector<std::string> ssl::VerticalScrabbleVectorizer::return_formatted_char_board_copy() const {
+std::vector<std::string> scl::VerticalScrabbleVectorizer::return_formatted_char_board_copy() const {
     std::vector<std::string> boardCpy;
     for (int i = 0; i < 15; ++i) {
         std::string column;
@@ -179,10 +179,10 @@ std::vector<std::string> ssl::VerticalScrabbleVectorizer::return_formatted_char_
     return boardCpy;
 }
 
-std::vector<ssl::Tstring> ssl::VerticalScrabbleVectorizer::return_formatted_board_copy() const {
-    std::vector<ssl::Tstring> boardCpy;
+std::vector<scl::Tstring> scl::VerticalScrabbleVectorizer::return_formatted_board_copy() const {
+    std::vector<scl::Tstring> boardCpy;
     for (int i = 0; i < 15; ++i) {
-        ssl::Tstring column;
+        scl::Tstring column;
         for (int j = 14; j >= 0; --j)
             column += board[j].read_at(i);
         boardCpy.push_back(column);
@@ -190,22 +190,22 @@ std::vector<ssl::Tstring> ssl::VerticalScrabbleVectorizer::return_formatted_boar
     return boardCpy;
 }
 
-void ssl::VerticalScrabbleVectorizer::set_board(const std::vector<std::string> &passed) {
+void scl::VerticalScrabbleVectorizer::set_board(const std::vector<std::string> &passed) {
     if(passed.size() != 15)
-        throw std::invalid_argument("Error in ssl::VerticalScrabbleVectorizer::build_board_from(std::vector<std::string> passed) | passed argument is not of a proper size.");
+        throw std::invalid_argument("Error in scl::VerticalScrabbleVectorizer::build_board_from(std::vector<std::string> passed) | passed argument is not of a proper size.");
 
-    std::vector<ssl::Tstring> boardCpy;
+    std::vector<scl::Tstring> boardCpy;
     for (int i = 14; i >= 0; --i) {  //i = x
         if(passed[i].length() != 15)
-            throw std::invalid_argument("Error in ssl::VerticalScrabbleVectorizer::build_board_from(std::vector<std::string> passed) | passed argument has an element that is not of a proper size.");
-        ssl::Tstring column;
+            throw std::invalid_argument("Error in scl::VerticalScrabbleVectorizer::build_board_from(std::vector<std::string> passed) | passed argument has an element that is not of a proper size.");
+        scl::Tstring column;
         for (int j = 0; j < 15; j++) {  //j = y
             char cell = passed[j][i];
             if(isalpha(cell)) {
-                column += ssl::Tile(cell, j, 14 - i, 1);
+                column += scl::Tile(cell, j, 14 - i, 1);
             }
             else {
-                column += ssl::Tile(' ', j, 14 - i, 1);
+                column += scl::Tile(' ', j, 14 - i, 1);
             }
         }
         boardCpy.push_back(column);
@@ -213,24 +213,24 @@ void ssl::VerticalScrabbleVectorizer::set_board(const std::vector<std::string> &
     board = boardCpy;
 }
 
-void ssl::VerticalScrabbleVectorizer::build_board_from(const char** passed) {
+void scl::VerticalScrabbleVectorizer::build_board_from(const char** passed) {
     board.clear();
     for (int i = 14; i >= 0; --i) {
-        ssl::Tstring column;
+        scl::Tstring column;
         for (int j = 0; j < 15; j++) {
             char cell = passed[j][i];
             if(isalpha(cell)) {
-                column += ssl::Tile(cell, j, 14 - i, 1);
+                column += scl::Tile(cell, j, 14 - i, 1);
             }
             else {
-                column += ssl::Tile(' ', j, 14 - i, 1);
+                column += scl::Tile(' ', j, 14 - i, 1);
             }
         }
         board.push_back(column);
     }
 }
 
-void ssl::VerticalScrabbleVectorizer::build_perkBoard_from(const char** passed) {
+void scl::VerticalScrabbleVectorizer::build_perkBoard_from(const char** passed) {
     for (int i = 14; i >= 0; --i) {
         for (int j = 0; j < 15; j++) {
             perkBoard[14 - i][j] = passed[j][i];

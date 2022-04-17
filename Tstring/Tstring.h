@@ -3,8 +3,7 @@
 
 #include "Tile.h"
 
-namespace ssl {
-
+namespace scl {
     class Tstring {
     private:
         Tile data[20];

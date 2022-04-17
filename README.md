@@ -2,12 +2,12 @@
 
 ![Generic badge](https://img.shields.io/badge/build-passing-color.svg)
 ![Github Release](https://img.shields.io/badge/release-v0.3.0--beta-informational)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/adamcesco/ssl-solver/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/adamcesco/scl-solver/graphs/commit-activity)
 [![MIT-license](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE.txt)
 
 ## Usage
 
-- To run the ssl-board solver, provide the following command line argument:
+- To run the scl-board solver, provide the following command line argument:
  
    >*../Data/Board.csv* *../Data/scrabble_word_list.txt*
 
@@ -17,11 +17,11 @@
 
 This project uses the *Data/board.csv* file for game board input, the "rack" variable within *main.cpp* for the input of the program's current rack of letters, and the *Data/scrabble_word_list.txt* file to hold a word bank of all English words. Currently, users need to manually edit the program's rack and *board.csv* in order to use this solution throughout the course of a changing Scrabble game, this will be changed soon as I implement a U.I-based solution.
 
-Note that this solution may not compute all possible words that are in the official Scrabble dictionary, this is due to the requirement of a Scrabble-development license to obtain an official ssl dictionary in a text-file-based format. Obtaining a Scrabble-development license is coming soon.
+Note that this solution may not compute all possible words that are in the official Scrabble dictionary, this is due to the requirement of a Scrabble-development license to obtain an official scl dictionary in a text-file-based format. Obtaining a Scrabble-development license is coming soon.
 
 ## About This Solution
 
-I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for a horizontal-word-filter and vertical-word-filter, and they are both derived classes from an abstract Scrabble-Vectorizer class. Throughout implementation, I continue to enhance the usability of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application. I want the usability of this class to be so versatile that I could publish this project as a Scrabble-solver library for other C++ users who want to develop their own ssl-based projects.
+I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for a horizontal-word-filter and vertical-word-filter, and they are both derived classes from an abstract Scrabble-Vectorizer class. Throughout implementation, I continue to enhance the usability of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application. I want the usability of this class to be so versatile that I could publish this project as a Scrabble-solver library for other C++ users who want to develop their own scl-based projects.
 
 #### Time Measurements
 

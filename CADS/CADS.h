@@ -3,7 +3,7 @@
 
 #include "../Tstring/Tstring.h"
 
-namespace ssl{
+namespace scl{
     struct AnchoredString {
         AnchoredString(const std::string &str1, int subscript) {
             first = str1;

@@ -1,6 +1,6 @@
 #include "RMAC.h"
 
-RMAC::RMAC(const std::string& pRack, const std::string& filePath) {
+scl::RMAC::RMAC(const std::string& pRack, const std::string& filePath) {
     std::ifstream wordCorpus;
     wordCorpus.open(filePath);
     if(!wordCorpus.is_open())
@@ -23,7 +23,7 @@ RMAC::RMAC(const std::string& pRack, const std::string& filePath) {
 
         if(word.empty())
             continue;
-        ssl::Tstring toPush = word;
+        scl::Tstring toPush = word;
         while(isspace(toPush.back().letter))
             toPush.pop_back();
         if(is_descendent_of(toPush, rackMap, blankCount)){
@@ -39,7 +39,7 @@ RMAC::RMAC(const std::string& pRack, const std::string& filePath) {
     wordCorpus.close();
 }
 
-RMAC::RMAC(const std::string &pRack, const std::unordered_set<std::string>& dictionary) {
+scl::RMAC::RMAC(const std::string &pRack, const std::unordered_set<std::string>& dictionary) {
     rack = pRack;
     int rackMap[28];
     int blankCount = 0;
@@ -52,7 +52,7 @@ RMAC::RMAC(const std::string &pRack, const std::unordered_set<std::string>& dict
     }
 
     for (const auto& word : dictionary) {
-        ssl::Tstring toPush = word;
+        scl::Tstring toPush = word;
         if(is_descendent_of(toPush, rackMap, blankCount)){
             int len = toPush.length() - 1;
             toPush.set_x_vals_to_subscripts();
@@ -65,7 +65,7 @@ RMAC::RMAC(const std::string &pRack, const std::unordered_set<std::string>& dict
     }
 }
 
-bool RMAC::is_descendent_of(ssl::Tstring& desc, const int* rackMap, int blankCount) const {
+bool scl::RMAC::is_descendent_of(scl::Tstring& desc, const int* rackMap, int blankCount) const {
     int slen = desc.length();
     int rlen = rack.length();
     if(rlen == 0 || slen > rlen)
