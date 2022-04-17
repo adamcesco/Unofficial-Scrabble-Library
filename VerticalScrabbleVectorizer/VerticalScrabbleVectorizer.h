@@ -3,30 +3,43 @@
 
 #include "../ScrabbleVectorizer/ScrabbleVectorizer.h"
 
-class VerticalScrabbleVectorizer: public ScrabbleVectorizer{
-public:
-    VerticalScrabbleVectorizer() : ScrabbleVectorizer(){};
-    explicit VerticalScrabbleVectorizer(const string &passed) : ScrabbleVectorizer(passed){}
+namespace ssl{
+    class VerticalScrabbleVectorizer : public ScrabbleVectorizer {
+    public:
+        VerticalScrabbleVectorizer() : ScrabbleVectorizer() {};
 
-    void build_board_from(const char*);
-    void console_print_formatted_board() const;
-    string to_string() const;
-    TString update_best_word();
-    void validate_words();
-    TYPE get_vectorizer_type() const{ return VERTICAL; }
-    vector<TString> return_formatted_board_copy() const;
-    void set_board(const vector<string>&);             //assumes the passed board is oriented in a horizontal format
-    void validate_board() const;
-    int points_of_best_word() const{ return points_of_placed_word(bestWord); }
+        explicit VerticalScrabbleVectorizer(const std::string &passed) : ScrabbleVectorizer(passed) {}
 
-    vector<TString>& get_all_moves_at(int x, int y) { return moveSets[14 - x][y]; } //add bounds checking
+        void build_board_from(const char *);
 
-    vector<string> return_formatted_perkBoard_copy() const;
-    vector<string> return_formatted_char_board_copy() const;
+        void console_print_formatted_board() const;
 
-    void build_board_from(const char**);
-    void build_perkBoard_from(const char**);
-};
+        std::string to_string() const;
+
+        ssl::Tstring update_best_word();
+
+        void validate_words();
+
+        TYPE get_vectorizer_type() const { return VERTICAL; }
+
+        std::vector<ssl::Tstring> return_formatted_board_copy() const;
+
+        void set_board(const std::vector<std::string> &);             //assumes the passed board is oriented in a horizontal format
+        void validate_board() const;
+
+        int points_of_best_word() const { return points_of_placed_word(bestWord); }
+
+        std::vector<ssl::Tstring> &get_all_moves_at(int x, int y) { return moveSets[14 - x][y]; } //add bounds checking
+
+        std::vector<std::string> return_formatted_perkBoard_copy() const;
+
+        std::vector<std::string> return_formatted_char_board_copy() const;
+
+        void build_board_from(const char **);
+
+        void build_perkBoard_from(const char **);
+    };
+}
 
 
 #endif //SCRABBLE_SOLVER_VERTICALSCRABBLEVECTORIZER_H

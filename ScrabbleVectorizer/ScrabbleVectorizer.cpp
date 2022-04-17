@@ -1,13 +1,13 @@
 #include "ScrabbleVectorizer.h"
 
-void ScrabbleVectorizer::search_for_intersecting_words() {
+void ssl::ScrabbleVectorizer::search_for_intersecting_words() {
     //TODO: Remove as many if-statements as possible.
-    // Convert AnchoredString into AnchoredTString, so that ScrabbleDataset is composed of pre-defined TStrings.
+    // Convert AnchoredString into Anchoredsbl::Tstring, so that ScrabbleDataset is composed of pre-defined ssl::TStrings.
     // Turn rackCount into a class/struct.
     // optimize solution as much as possible
 
     if(dictionary.empty())
-        throw invalid_argument("Error in ScrabbleVectorizer::search_for_intersecting_words() | The set of all scrabble words is empty.");
+        throw std::invalid_argument("Error in ssl::ScrabbleVectorizer::search_for_intersecting_words() | The set of all ssl words is empty.");
 
     int originalRackCount[28];
     int originalBlankCount = 0;
@@ -29,9 +29,9 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 continue;
             }
 
-            vector<AnchoredString> wordsOfTile = wordDataset.at_with(tileCount, tile.letter);
+            std::vector<AnchoredString> wordsOfTile = wordDataset.at_with(tileCount, tile.letter);
             for (const auto& word : wordsOfTile) {
-                TString curTStr;
+                ssl::Tstring curTStr;
                 int anchorIndex = word.second;
 
                 int blankCount = originalBlankCount;
@@ -45,17 +45,17 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
                 int end = word.first.length() - anchorIndex;
                 for (int i = start; i < end; ++i) {
                     unsigned char curChar = word.first[i + anchorIndex];
-                    Tile curBoardTile = board[rowSubscript][tileCount + i];
+                    ssl::Tile curBoardTile = board[rowSubscript][tileCount + i];
 
                     if(curBoardTile == curChar) {
-                        curTStr += Tile(curChar, tileCount + i, rowSubscript, -1);
+                        curTStr += ssl::Tile(curChar, tileCount + i, rowSubscript, -1);
                     }
                     else if (curBoardTile != ' '){
                         skip = true;
                         break;
                     }
                     else{
-                        curTStr += Tile(curChar, tileCount + i, rowSubscript, -1);
+                        curTStr += ssl::Tile(curChar, tileCount + i, rowSubscript, -1);
 
                         if(rackCount[curChar - 63] == 0){
                             if(blankCount == 0){
@@ -82,7 +82,7 @@ void ScrabbleVectorizer::search_for_intersecting_words() {
     }
 }
 
-void ScrabbleVectorizer::reset_all_data() {
+void ssl::ScrabbleVectorizer::reset_all_data() {
     bestX = bestY = 8;
     bestWord.clear();
     rack.clear();
@@ -97,18 +97,18 @@ void ScrabbleVectorizer::reset_all_data() {
     }
 }
 
-void ScrabbleVectorizer::place_into_board(const TString &toPrint) {
+void ssl::ScrabbleVectorizer::place_into_board(const ssl::Tstring &toPrint) {
     for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
         if (board[toPrint.read_at(0).y][i] == ' ')
-            board[toPrint.read_at(0).y][i] = Tile(toPrint.read_at(i - toPrint.read_at(0).x).letter,
+            board[toPrint.read_at(0).y][i] = ssl::Tile(toPrint.read_at(i - toPrint.read_at(0).x).letter,
                                                   i,
                                                   toPrint.read_at(0).y, 1);
         perkBoard[toPrint.read_at(0).y][i] = ' ';
     }
 }
 
-bool ScrabbleVectorizer::contains_letter_of_rack(const TString& passed) const {
-    unordered_set<char> handSet;
+bool ssl::ScrabbleVectorizer::contains_letter_of_rack(const ssl::Tstring& passed) const {
+    std::unordered_set<char> handSet;
     for (char i : rack)
         handSet.emplace(toupper(i));
 
@@ -120,8 +120,8 @@ bool ScrabbleVectorizer::contains_letter_of_rack(const TString& passed) const {
     return false;
 }
 
-vector<TString> ScrabbleVectorizer::return_raw_board_with(const TString &toPrint) const {
-    vector<TString> boardCpy = board;
+std::vector<ssl::Tstring> ssl::ScrabbleVectorizer::return_raw_board_with(const ssl::Tstring &toPrint) const {
+    std::vector<ssl::Tstring> boardCpy = board;
     int toPrintX = toPrint.read_at(0).x;
     int toPrintY = toPrint.read_at(0).y;
     for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
@@ -136,15 +136,15 @@ vector<TString> ScrabbleVectorizer::return_raw_board_with(const TString &toPrint
     return boardCpy;
 }
 
-void ScrabbleVectorizer::search_for_tangential_words() {    //does not support blank tiles
+void ssl::ScrabbleVectorizer::search_for_tangential_words() {    //does not support blank tiles
     //TODO: Remove as many if-statements as possible.
     // optimize solution as much as possible
     // Implement custom data-structure for tile placement checking for tangential words only (so you do not have to do over under explicitly).
     // optimize solution as much as possible
     if(routeRMAC == UNDEFINED_ROUTE)
-        throw invalid_argument("Error in ScrabbleVectorizer::search_for_tangential_words() | definition route for RMAC has not been set.");
+        throw std::invalid_argument("Error in ssl::ScrabbleVectorizer::search_for_tangential_words() | definition route for RMAC has not been set.");
     if(dictionary.empty())
-        throw invalid_argument("Error in ScrabbleVectorizer::search_for_tangential_words() | The set of all scrabble words is empty.");
+        throw std::invalid_argument("Error in ssl::ScrabbleVectorizer::search_for_tangential_words() | The set of all ssl words is empty.");
 
     RMAC rackMAC;
     if(routeRMAC == DICTIONARY)
@@ -206,7 +206,7 @@ void ScrabbleVectorizer::search_for_tangential_words() {    //does not support b
     }
 }
 
-void ScrabbleVectorizer::clear_all_moves() {
+void ssl::ScrabbleVectorizer::clear_all_moves() {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             moveSets[i][j].clear();
@@ -214,7 +214,7 @@ void ScrabbleVectorizer::clear_all_moves() {
     }
 }
 
-int ScrabbleVectorizer::points_of_placed_word(const TString &word) const{
+int ssl::ScrabbleVectorizer::points_of_placed_word(const ssl::Tstring &word) const{
     // If a letter is shared between words, then count it's premium value for all words
     // Any word multiplier only gets assigned to the original word, and not any subsequently formed words
     // If a word is placed on two or more multiplier tiles, the words value is multiplied by both tile values
@@ -224,14 +224,14 @@ int ScrabbleVectorizer::points_of_placed_word(const TString &word) const{
         return 0;
 
     int crossWordSum = 0;
-    vector<TString> boardCpy = return_raw_board_with(word);
+    std::vector<ssl::Tstring> boardCpy = return_raw_board_with(word);
     for (int i = 0; i < 15; ++i) {
-        TString column;
+        ssl::Tstring column;
         for (int j = 0; j < 15; ++j) {
             column += boardCpy[j].read_at(i);
         }
 
-        vector<TString> colShards = column.fragments();
+        std::vector<ssl::Tstring> colShards = column.fragments();
 
         for (const auto& shard : colShards) {
             if(shard.contains_flag(-2) && shard.length() > 1){
@@ -277,20 +277,20 @@ int ScrabbleVectorizer::points_of_placed_word(const TString &word) const{
     return wordSum;
 }
 
-void ScrabbleVectorizer::place_best_word_into_board() {
+void ssl::ScrabbleVectorizer::place_best_word_into_board() {
     for (int i = bestWord.read_at(0).x; i < bestWord.length() + bestWord.read_at(0).x; i++) {
         if (board[bestWord.read_at(0).y][i] == ' ')
-            board[bestWord.read_at(0).y][i] = Tile(bestWord.read_at(i - bestWord.read_at(0).x).letter,
+            board[bestWord.read_at(0).y][i] = ssl::Tile(bestWord.read_at(i - bestWord.read_at(0).x).letter,
                                                    i,
                                                    bestWord.read_at(0).y, 1);
         perkBoard[bestWord.read_at(0).y][i] = ' ';
     }
 }
 
-vector<string> ScrabbleVectorizer::return_raw_perkBoard_copy() {
-    vector<string> toReturn;
+std::vector<std::string> ssl::ScrabbleVectorizer::return_raw_perkBoard_copy() {
+    std::vector<std::string> toReturn;
     for (int i = 0; i < 15; ++i) {
-        string row;
+        std::string row;
         for (int j = 0; j < 15; ++j) {
             row += perkBoard[i][j];
         }
@@ -299,10 +299,10 @@ vector<string> ScrabbleVectorizer::return_raw_perkBoard_copy() {
     return toReturn;
 }
 
-vector<string> ScrabbleVectorizer::return_raw_char_board_copy() {
-    vector<string> toReturn;
+std::vector<std::string> ssl::ScrabbleVectorizer::return_raw_char_board_copy() {
+    std::vector<std::string> toReturn;
     for (int i = 0; i < 15; ++i) {
-        string row;
+        std::string row;
         for (int j = 0; j < 15; ++j) {
             row += board[i][j].letter;
         }
@@ -311,15 +311,15 @@ vector<string> ScrabbleVectorizer::return_raw_char_board_copy() {
     return toReturn;
 }
 
-void ScrabbleVectorizer::build_dictionaries_from(const char* filePath) {
-    ifstream dictionaryFile;
+void ssl::ScrabbleVectorizer::build_dictionaries_from(const char* filePath) {
+    std::ifstream dictionaryFile;
     dictionaryFile.open(filePath);
     if(!dictionaryFile.is_open())
-        throw invalid_argument("could not open file passed to void ScrabbleVectorizer::build_dictionaries_from(const char* filePath)");
+        throw std::invalid_argument("could not open file passed to void ssl::ScrabbleVectorizer::build_dictionaries_from(const char* filePath)");
 
     dictionary.clear();
     dictionarySub8.clear();
-    string curWord;
+    std::string curWord;
     int count = 0;
     while(dictionaryFile.good()){
         getline(dictionaryFile, curWord);
@@ -333,40 +333,40 @@ void ScrabbleVectorizer::build_dictionaries_from(const char* filePath) {
         if(curWord.length() < 8)
             dictionarySub8.emplace(curWord);
     }
-    cout << "ScrabbleVectorizer:: " << count << " words read from " << filePath << endl;
+    std::cout << "ssl::ScrabbleVectorizer:: " << count << " words read from " << filePath << std::endl;
 
     dictionaryFile.close();
 }
 
-ScrabbleVectorizer::~ScrabbleVectorizer() {
+ssl::ScrabbleVectorizer::~ScrabbleVectorizer() {
     for (int i = 0; i < 15; ++i) {
         delete[] moveSets[i];
     }
     delete[] moveSets;
 }
 
-ScrabbleVectorizer::ScrabbleVectorizer() {
+ssl::ScrabbleVectorizer::ScrabbleVectorizer() {
     bestX = bestY = 8;
 
-    moveSets = new vector<TString>*[15];
+    moveSets = new std::vector<ssl::Tstring>*[15];
     for (int i = 0; i < 15; ++i) {
-        moveSets[i] = new vector<TString>[15];
+        moveSets[i] = new std::vector<ssl::Tstring>[15];
     }
 }
 
-ScrabbleVectorizer::ScrabbleVectorizer(const string &passed) {
+ssl::ScrabbleVectorizer::ScrabbleVectorizer(const std::string &passed) {
     bestX = bestY = 8;
 
-    moveSets = new vector<TString>*[15];
+    moveSets = new std::vector<ssl::Tstring>*[15];
     for (int i = 0; i < 15; ++i) {
-        moveSets[i] = new vector<TString>[15];
+        moveSets[i] = new std::vector<ssl::Tstring>[15];
     }
 
     rack = passed;
     sort(rack.begin(), rack.end());
 }
 
-void ScrabbleVectorizer::prep_perkBoard() {
+void ssl::ScrabbleVectorizer::prep_perkBoard() {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             if(board[i][j] != ' ')

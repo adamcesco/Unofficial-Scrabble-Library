@@ -1,10 +1,10 @@
 #include "RMAC.h"
 
-RMAC::RMAC(const string& pRack, const string& filePath) {
-    ifstream wordCorpus;
+RMAC::RMAC(const std::string& pRack, const std::string& filePath) {
+    std::ifstream wordCorpus;
     wordCorpus.open(filePath);
     if(!wordCorpus.is_open())
-        throw invalid_argument("Could not open file path passed to RMAC::RMAC(const string& pRack, const string& filePath)");
+        throw std::invalid_argument("Could not open file path passed to RMAC::RMAC(const string& pRack, const string& filePath)");
 
     rack = pRack;
     int rackMap[28];
@@ -17,13 +17,13 @@ RMAC::RMAC(const string& pRack, const string& filePath) {
         rackMap[abs(it) - 63]++;
     }
 
-    string word;
+    std::string word;
     while(wordCorpus.good()) {
         getline(wordCorpus, word);
 
         if(word.empty())
             continue;
-        TString toPush = word;
+        ssl::Tstring toPush = word;
         while(isspace(toPush.back().letter))
             toPush.pop_back();
         if(is_descendent_of(toPush, rackMap, blankCount)){
@@ -39,7 +39,7 @@ RMAC::RMAC(const string& pRack, const string& filePath) {
     wordCorpus.close();
 }
 
-RMAC::RMAC(const string &pRack, const unordered_set<string>& dictionary) {
+RMAC::RMAC(const std::string &pRack, const std::unordered_set<std::string>& dictionary) {
     rack = pRack;
     int rackMap[28];
     int blankCount = 0;
@@ -52,7 +52,7 @@ RMAC::RMAC(const string &pRack, const unordered_set<string>& dictionary) {
     }
 
     for (const auto& word : dictionary) {
-        TString toPush = word;
+        ssl::Tstring toPush = word;
         if(is_descendent_of(toPush, rackMap, blankCount)){
             int len = toPush.length() - 1;
             toPush.set_x_vals_to_subscripts();
@@ -65,7 +65,7 @@ RMAC::RMAC(const string &pRack, const unordered_set<string>& dictionary) {
     }
 }
 
-bool RMAC::is_descendent_of(TString& desc, const int* rackMap, int blankCount) const {
+bool RMAC::is_descendent_of(ssl::Tstring& desc, const int* rackMap, int blankCount) const {
     int slen = desc.length();
     int rlen = rack.length();
     if(rlen == 0 || slen > rlen)
