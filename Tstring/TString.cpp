@@ -1,13 +1,13 @@
-#include "TString.h"
+#include "Tstring.h"
 
-TString::TString(const TString& toCpy){
+ssl::Tstring::Tstring(const ssl::Tstring& toCpy){
     eleCount = toCpy.eleCount;
 
     for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy.data[i];
 }
 
-TString& TString::operator=(const TString& toAssign){
+ssl::Tstring& ssl::Tstring::operator=(const ssl::Tstring& toAssign){
     if(this == &toAssign)
         return *this;
 
@@ -19,40 +19,40 @@ TString& TString::operator=(const TString& toAssign){
     return *this;
 }
 
-Tile& TString::operator[](int subscript){
+ssl::Tile& ssl::Tstring::operator[](int subscript){
     if(subscript < 0 || subscript >= eleCount)
-        throw invalid_argument("invalid subscript for TString::operator[](int) | subscript parameter is invalid");
+        throw std::invalid_argument("invalid subscript for ssl::Tstring::operator[](int) | subscript parameter is invalid");
     return data[subscript];
 }
 
-Tile TString::read_at(int subscript) const{
+ssl::Tile ssl::Tstring::read_at(int subscript) const{
     if(subscript < 0 || subscript >= eleCount)
-        throw invalid_argument("invalid subscript for TString::read_at(int) | subscript parameter is invalid");
+        throw std::invalid_argument("invalid subscript for ssl::Tstring::read_at(int) | subscript parameter is invalid");
     return data[subscript];
 }
 
-Tile TString::read_back() const{
+ssl::Tile ssl::Tstring::read_back() const{
     if(eleCount < 1)
-        throw invalid_argument("invalid call for TString::back() | eleCount parameter is less than 1");
+        throw std::invalid_argument("invalid call for ssl::Tstring::back() | eleCount parameter is less than 1");
     return data[eleCount - 1];
 }
 
-Tile& TString::back(){
+ssl::Tile& ssl::Tstring::back(){
     if(eleCount < 1)
-        throw invalid_argument("invalid call for TString::back() | eleCount parameter is less than 1");
+        throw std::invalid_argument("invalid call for ssl::Tstring::back() | eleCount parameter is less than 1");
     return data[eleCount - 1];
 }
 
-TString& TString::pop_back(){
+ssl::Tstring& ssl::Tstring::pop_back(){
     if(eleCount == 0)
-        throw invalid_argument("invalid subscript for TString::pop_front(int) | TString::length is 0");
+        throw std::invalid_argument("invalid subscript for ssl::Tstring::pop_front(int) | ssl::Tstring::length is 0");
     eleCount--;
     return *this;
 }
 
-TString& TString::erase_at(int subscript){
+ssl::Tstring& ssl::Tstring::erase_at(int subscript){
     if(subscript < 0 || subscript >= eleCount)
-        throw invalid_argument("invalid subscript for TString::erase_at()");
+        throw std::invalid_argument("invalid subscript for ssl::Tstring::erase_at()");
 
     for (int i = (subscript + 1); i < eleCount; ++i) {
         data[i - 1] = data[i];
@@ -62,7 +62,7 @@ TString& TString::erase_at(int subscript){
     return *this;
 }
 
-bool TString::contains(Tile toFind) const{
+bool ssl::Tstring::contains(ssl::Tile toFind) const{
     for (int i = 0; i < eleCount; ++i) {
         if(data[i] == toFind)
             return true;
@@ -71,7 +71,7 @@ bool TString::contains(Tile toFind) const{
     return false;
 }
 
-bool TString::operator==(const TString& dsv1) const{
+bool ssl::Tstring::operator==(const ssl::Tstring& dsv1) const{
     if(eleCount != dsv1.eleCount)
         return false;
 
@@ -83,9 +83,9 @@ bool TString::operator==(const TString& dsv1) const{
     return true;
 }
 
-TString &TString::operator=(const string &toAssign) {
+ssl::Tstring &ssl::Tstring::operator=(const std::string &toAssign) {
     int passedSize = toAssign.size();
-    eleCount = (passedSize < 19) ? passedSize : throw invalid_argument("invalid subscript for TString &TString::operator=(const string &toAssign) | Passed string is of a length that is larger than the max capacity for an TString");;
+    eleCount = (passedSize < 19) ? passedSize : throw std::invalid_argument("invalid subscript for ssl::Tstring &ssl::Tstring::operator=(const string &toAssign) | Passed string is of a length that is larger than the max capacity for an ssl::Tstring");;
 
     for (int i = 0; i < eleCount; ++i) {
         data[i] = toAssign[i];
@@ -94,23 +94,23 @@ TString &TString::operator=(const string &toAssign) {
     return *this;
 }
 
-TString& TString::operator+=(const Tile &pssd){
+ssl::Tstring& ssl::Tstring::operator+=(const ssl::Tile &pssd){
     if(eleCount > 18)
-        throw invalid_argument("invalid call for TString& TString::operator+=(const Tile &) | Max capacity of TString has been reached");
+        throw std::invalid_argument("invalid call for ssl::Tstring& ssl::Tstring::operator+=(const ssl::Tile &) | Max capacity of ssl::Tstring has been reached");
     data[eleCount] = pssd;
     eleCount++;
     return *this;
 }
 
-TString& TString::operator+=(char pssd) {
+ssl::Tstring& ssl::Tstring::operator+=(char pssd) {
     if(eleCount > 18)
-        throw invalid_argument("invalid call for TString& TString::operator+=(char) | Max capacity of TString has been reached");
+        throw std::invalid_argument("invalid call for ssl::Tstring& ssl::Tstring::operator+=(char) | Max capacity of ssl::Tstring has been reached");
     data[eleCount] = pssd;
     eleCount++;
     return *this;
 }
 
-bool TString::contains(char toFind) const {
+bool ssl::Tstring::contains(char toFind) const {
     for (int i = 0; i < eleCount; ++i) {
         if(data[i] == toFind)
             return true;
@@ -118,22 +118,22 @@ bool TString::contains(char toFind) const {
     return false;
 }
 
-string TString::to_string() const{
-    string temp;
+std::string ssl::Tstring::to_string() const{
+    std::string temp;
     for(int i = 0; i < eleCount; i++)
         temp += data[i].letter;
     return temp;
 }
 
-TString::TString(const string toCpy) {
+ssl::Tstring::Tstring(const std::string toCpy) {
     eleCount = toCpy.length();
     for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy[i];
 }
 
-TString &TString::operator=(const char* toAssign) {
+ssl::Tstring &ssl::Tstring::operator=(const char* toAssign) {
     int passedSize = strlen(toAssign);
-    eleCount = (passedSize < 19) ? passedSize : throw invalid_argument("invalid subscript for TString &TString::operator=(char* toAssign) | Passed string is of a length that is larger than the max capacity for an TString");;
+    eleCount = (passedSize < 19) ? passedSize : throw std::invalid_argument("invalid subscript for ssl::Tstring &ssl::Tstring::operator=(char* toAssign) | Passed string is of a length that is larger than the max capacity for an ssl::Tstring");;
 
     for (int i = 0; i < eleCount; ++i)
         data[i] = toAssign[i];
@@ -141,7 +141,7 @@ TString &TString::operator=(const char* toAssign) {
     return *this;
 }
 
-bool TString::row_is_descendent_of(const string& hand, const TString& row, TString& word) {
+bool ssl::Tstring::row_is_descendent_of(const std::string& hand, const ssl::Tstring& row, ssl::Tstring& word) {
     if(eleCount == 0 || word.eleCount == 0)
         return false;
 
@@ -183,48 +183,48 @@ bool TString::row_is_descendent_of(const string& hand, const TString& row, TStri
     return true;
 }
 
-TString::TString(const char* toCpy) {
+ssl::Tstring::Tstring(const char* toCpy) {
     eleCount = strlen(toCpy);
     for (int i = 0; i < eleCount; ++i)
         data[i] = toCpy[i];
 }
 
-int TString::get_letter_points() const{
+int ssl::Tstring::get_letter_points() const{
     int sum = 0;
     for (int i = 0; i < eleCount; ++i)
         sum += data[i].points;
     return sum;
 }
 
-int TString::get_letter_points(string passed) {
+int ssl::Tstring::get_letter_points(std::string passed) {
     int sum = 0;
     for(char it : passed)
         sum += legend[(it & 31) - 1];
     return sum;
 }
 
-TString& TString::set_x_vals_to_subscripts() {
+ssl::Tstring& ssl::Tstring::set_x_vals_to_subscripts() {
     for (int i = 0; i < eleCount; ++i)
         data[i].x = i;
 
     return *this;
 }
 
-TString &TString::add_to_x_vals(int passed) {
+ssl::Tstring &ssl::Tstring::add_to_x_vals(int passed) {
     for (int i = 0; i < eleCount; ++i)
         data[i].x += passed;
 
     return *this;
 }
 
-TString &TString::set_x_vals_equal_to(int passed) {
+ssl::Tstring &ssl::Tstring::set_x_vals_equal_to(int passed) {
     for (int i = 0; i < eleCount; ++i)
         data[i].x = passed;
 
     return *this;
 }
 
-bool TString::contains_flag(int passed) const{
+bool ssl::Tstring::contains_flag(int passed) const{
     for (int i = 0; i < eleCount; ++i) {
         if(data[i].flag == passed)
             return true;
@@ -232,9 +232,9 @@ bool TString::contains_flag(int passed) const{
     return false;
 }
 
-vector<TString> TString::fragments() const{
-    vector<TString> fragments;
-    TString curFragment;
+std::vector<ssl::Tstring> ssl::Tstring::fragments() const{
+    std::vector<ssl::Tstring> fragments;
+    ssl::Tstring curFragment;
     for (int i = 0; i < eleCount; ++i) {
         if(data[i].letter != ' ') {
             curFragment += data[i];
@@ -250,32 +250,32 @@ vector<TString> TString::fragments() const{
     return fragments;
 }
 
-TString TString::operator+(const Tile& toAppend) const {
-    TString temp(*this);
+ssl::Tstring ssl::Tstring::operator+(const ssl::Tile& toAppend) const {
+    ssl::Tstring temp(*this);
     if(temp.eleCount > 18)
-        throw invalid_argument("invalid call for TString TString::operator+(const Tile& toAppend) | Max capacity of TString has been reached");
+        throw std::invalid_argument("invalid call for ssl::Tstring ssl::Tstring::operator+(const ssl::Tile& toAppend) | Max capacity of ssl::Tstring has been reached");
     temp.data[temp.eleCount] = toAppend;
     temp.eleCount++;
     return temp;
 }
 
-TString TString::operator+(char toAppend) const {
-    TString temp(*this);
+ssl::Tstring ssl::Tstring::operator+(char toAppend) const {
+    ssl::Tstring temp(*this);
     if(temp.eleCount > 18)
-        throw invalid_argument("invalid call for TString TString::operator+(char toAppend) | Max capacity of TString has been reached");
+        throw std::invalid_argument("invalid call for ssl::Tstring ssl::Tstring::operator+(char toAppend) | Max capacity of ssl::Tstring has been reached");
     temp.data[temp.eleCount] = toAppend;
     temp.eleCount++;
     return temp;
 }
 
-TString &TString::set_y_vals_equal_to(int passed) {
+ssl::Tstring &ssl::Tstring::set_y_vals_equal_to(int passed) {
     for (int i = 0; i < eleCount; ++i)
         data[i].y = passed;
 
     return *this;
 }
 
-bool TString::is_all_whitespace() const {
+bool ssl::Tstring::is_all_whitespace() const {
     for (int i = 0; i < eleCount; ++i) {
         if(isalpha(data[i].letter))
             return false;
@@ -283,7 +283,7 @@ bool TString::is_all_whitespace() const {
     return true;
 }
 
-bool TString::is_descendent_of(const string& rack) {
+bool ssl::Tstring::is_descendent_of(const std::string& rack) {
     if(eleCount == 0 || eleCount > rack.length())
         return false;
 
@@ -318,7 +318,7 @@ bool TString::is_descendent_of(const string& rack) {
     return true;
 }
 
-int TString::find_pos_of(char toFind) const {
+int ssl::Tstring::find_pos_of(char toFind) const {
     for (int i = 0; i < eleCount; ++i) {
         if(data[i] == toFind)
             return i;
@@ -326,9 +326,9 @@ int TString::find_pos_of(char toFind) const {
     return -1;
 }
 
-vector<string> TString::string_fragments() const {
-    vector<string> fragments;
-    string curFragment;
+std::vector<std::string> ssl::Tstring::string_fragments() const {
+    std::vector<std::string> fragments;
+    std::string curFragment;
     for (int i = 0; i < eleCount; ++i) {
         if(data[i].letter != ' ') {
             curFragment += data[i].letter;
@@ -344,7 +344,7 @@ vector<string> TString::string_fragments() const {
     return fragments;
 }
 
-bool TString::operator==(const string& toComp) const {
+bool ssl::Tstring::operator==(const std::string& toComp) const {
     if(eleCount != toComp.length())
         return false;
 
@@ -356,7 +356,7 @@ bool TString::operator==(const string& toComp) const {
     return true;
 }
 
-bool TString::operator==(const char* toComp) const {
+bool ssl::Tstring::operator==(const char* toComp) const {
     if(eleCount != strlen(toComp))
         return false;
 
@@ -368,7 +368,7 @@ bool TString::operator==(const char* toComp) const {
     return true;
 }
 
-bool TString::is_descendent_of(TString& sub, const string& rack) {
+bool ssl::Tstring::is_descendent_of(ssl::Tstring& sub, const std::string& rack) {
     int slen = sub.eleCount;
     int rlen = rack.length();
     if(rlen == 0 || slen > rack.length())
