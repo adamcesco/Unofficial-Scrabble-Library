@@ -1,6 +1,5 @@
 # Unofficial Scrabble Library (scl)
 
-![Generic badge](https://img.shields.io/badge/build-passing-color.svg)
 ![Github Release](https://img.shields.io/badge/release-v0.3.0--beta-informational)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/adamcesco/scl-solver/graphs/commit-activity)
 [![MIT-license](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE.txt)
