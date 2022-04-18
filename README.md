@@ -5,13 +5,13 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/adamcesco/scl-solver/graphs/commit-activity)
 [![MIT-license](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE.txt)
 
-#### Notes About This Solution's Applicability
-
-The scrabble vectorizers within the "scl" library base their word/move generation off of the dictionary you provide to them.
-
 ## About This Solution
 
 I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for a horizontal-word-vectorizers and vertical-word-vectorizers, and they are both derived classes from an abstracted Scrabble-vectorizer class. Throughout implementation, I continue to enhance the usability and ease of use of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application.
+
+#### Notes About This Solution's Applicability
+
+The scrabble vectorizers within the "scl" library base their word/move generation off of the dictionary you provide to them.
 
 #### Time Measurements and Speed
 
