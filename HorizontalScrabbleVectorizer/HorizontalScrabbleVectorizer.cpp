@@ -42,7 +42,7 @@ void scl::HorizontalScrabbleVectorizer::console_print_formatted_board() const{
 
 std::string scl::HorizontalScrabbleVectorizer::to_string() const {
     std::string buffer = "Hand: " + rack + "\n";
-    buffer += "\nBest Horizontal Word: " + bestWord.to_string() + " - " + std::to_string(points_of_best_word());
+    buffer += "\nBest Horizontal Word: " + bestWord.to_string() + " - " + std::to_string(points_of_best_boarded_move());
     buffer += "\n\tPostion X: " + std::to_string(bestX);
     buffer += "\n\tPostion Y: " + std::to_string(bestY);
     buffer += "\n\tHorizontal";
@@ -85,7 +85,7 @@ void scl::HorizontalScrabbleVectorizer::validate_words() {
     }
 }
 
-scl::Tstring scl::HorizontalScrabbleVectorizer::update_best_word() {
+scl::Tstring scl::HorizontalScrabbleVectorizer::update_best_move() {
     bestWord.clear();
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {

@@ -25,7 +25,7 @@ namespace scl{
 
         std::vector<std::string> return_formatted_char_board_copy() const;
 
-        scl::Tstring update_best_word();
+        scl::Tstring update_best_move();
 
         std::vector<scl::Tstring> &get_all_moves_at(int x, int y) { return moveSets[y][x]; }
 
@@ -33,7 +33,7 @@ namespace scl{
 
         void validate_words();
 
-        int points_of_best_word() const { return points_of_raw_boarded_tstr(bestWord); }
+        int points_of_best_boarded_move() const { return points_of_raw_boarded_tstr(bestWord); }
 
         void build_board_from(const char **);
 

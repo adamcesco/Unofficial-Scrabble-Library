@@ -52,7 +52,7 @@ void scl::VerticalScrabbleVectorizer::console_print_formatted_board() const{
 
 std::string scl::VerticalScrabbleVectorizer::to_string() const {
     std::string buffer = "Hand: " + rack + "\n";
-    buffer += "Best Vertical Word: " + bestWord.to_string() + " - " + std::to_string(points_of_best_word());
+    buffer += "Best Vertical Word: " + bestWord.to_string() + " - " + std::to_string(points_of_best_boarded_move());
     buffer += "\n\tPostion X: " + std::to_string(bestX);
     buffer += "\n\tPostion Y: " + std::to_string(bestY);
     buffer += "\n\tVertical";
@@ -60,7 +60,7 @@ std::string scl::VerticalScrabbleVectorizer::to_string() const {
     return buffer;
 }
 
-scl::Tstring scl::VerticalScrabbleVectorizer::update_best_word(){
+scl::Tstring scl::VerticalScrabbleVectorizer::update_best_move(){
 //    int rowSubscript = 0;
     bestWord.clear();
     for (int i = 0; i < 15; ++i) {

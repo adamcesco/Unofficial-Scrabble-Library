@@ -48,13 +48,13 @@ int main(int argc, char* argv[]){
     auto time_in_seconds = std::chrono::duration<double>(end - start);
     std::cout << "Time taken by move generation: " << time_in_seconds.count() << " seconds" << std::endl;
 
-    vReader.update_best_word();
-    hReader.update_best_word();
+    vReader.update_best_move();
+    hReader.update_best_move();
 
-    int vPoints = vReader.points_of_best_word();
-    scl::Tstring bestVWord = vReader.get_best_raw_boarded_word();
-    int hPoints = hReader.points_of_best_word();
-    scl::Tstring bestHWord = hReader.get_best_raw_boarded_word();
+    int vPoints = vReader.points_of_best_boarded_move();
+    scl::Tstring bestVWord = vReader.get_best_raw_boarded_move();
+    int hPoints = hReader.points_of_best_boarded_move();
+    scl::Tstring bestHWord = hReader.get_best_raw_boarded_move();
 
     //printing the information of the best word for the board to the console
     std::cout << "Best Horizontal Word: " << bestHWord.to_string() << std::endl;

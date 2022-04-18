@@ -16,7 +16,7 @@ namespace scl{
 
         std::string to_string() const;
 
-        scl::Tstring update_best_word();
+        scl::Tstring update_best_move();
 
         void validate_words();
 
@@ -27,7 +27,7 @@ namespace scl{
         void set_board(const std::vector<std::string> &);             //assumes the passed board is oriented in a horizontal format
         void validate_board() const;
 
-        int points_of_best_word() const { return points_of_raw_boarded_tstr(bestWord); }
+        int points_of_best_boarded_move() const { return points_of_raw_boarded_tstr(bestWord); }
 
         std::vector<scl::Tstring> &get_all_moves_at(int x, int y) { return moveSets[14 - x][y]; } //add bounds checking
 

@@ -51,7 +51,7 @@ namespace scl{
 
         void clear_all_moves();
 
-        scl::Tstring &get_best_raw_boarded_word() { return bestWord; }
+        scl::Tstring &get_best_raw_boarded_move() { return bestWord; }
 
         void set_rack(const std::string &passed) {
             rack = passed;
