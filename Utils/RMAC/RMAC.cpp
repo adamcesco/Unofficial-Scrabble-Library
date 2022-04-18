@@ -1,4 +1,5 @@
 #include "RMAC.h"
+#include <fstream>
 
 scl::RMAC::RMAC(const std::string& pRack, const std::string& filePath) {
     std::ifstream wordCorpus;

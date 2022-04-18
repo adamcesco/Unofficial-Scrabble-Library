@@ -1,7 +1,8 @@
 #include "catch.hpp"
-#include "../HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.h"
-#include "../VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
+#include "../Utils/HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.h"
+#include "../Utils/VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
 #include <sstream>
+#include <fstream>
 
 TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "ScrabbleVectorizer"){
     scl::HorizontalScrabbleVectorizer hReader(std::string("ASDFGHJ"));

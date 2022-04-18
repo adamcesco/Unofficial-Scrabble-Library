@@ -1,5 +1,8 @@
 #include "HorizontalScrabbleVectorizer.h"
 #include <sstream>
+#include <vector>
+#include <iostream>
+#include <fstream>
 
 void scl::HorizontalScrabbleVectorizer::build_board_from(const char* filePath) {
     std::ifstream boardFile;

@@ -1,4 +1,7 @@
 #include "ScrabbleVectorizer.h"
+#include <fstream>
+#include <iostream>
+#include <algorithm>
 
 void scl::ScrabbleVectorizer::search_for_intersecting_words() {
     //TODO: Remove as many if-statements as possible.
@@ -373,4 +376,9 @@ void scl::ScrabbleVectorizer::prep_perkBoard() {
                 perkBoard[i][j] = ' ';
         }
     }
+}
+
+void scl::ScrabbleVectorizer::set_rack(const std::string &passed) {
+    rack = passed;
+    sort(rack.begin(), rack.end());
 }

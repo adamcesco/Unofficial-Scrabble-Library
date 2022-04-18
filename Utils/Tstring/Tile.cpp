@@ -1,5 +1,7 @@
 #include "Tile.h"
 
+#include <fstream>
+
 scl::Tile::Tile() {
     x = y = flag = -1;
     points = 0;

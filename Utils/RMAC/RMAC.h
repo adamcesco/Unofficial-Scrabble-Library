@@ -1,7 +1,11 @@
 #ifndef SCRABBLE_SOLVER_RMAC_H
 #define SCRABBLE_SOLVER_RMAC_H
 
-#include "../CADS/CADS.h"
+#include "../../Utils/CADS/CADS.h"
+#include "../Tstring/Tstring.h"
+#include <unordered_set>
+#include <string>
+#include <vector>
 
 namespace scl{
     struct RMAC {    //Rack Map And Calculator

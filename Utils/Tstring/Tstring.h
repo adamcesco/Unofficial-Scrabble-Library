@@ -2,6 +2,8 @@
 #define SCRABBLE_SOLVER_TSTRING_H
 
 #include "Tile.h"
+#include <string>
+#include <vector>
 
 namespace scl {
     class Tstring {

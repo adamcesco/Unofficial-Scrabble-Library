@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_RUNNER
-#include "HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.h"
-#include "VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
+#include "Utils/HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.h"
+#include "Utils/VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
 #include "Test_Folder/catch.hpp"
 #include <chrono>
 

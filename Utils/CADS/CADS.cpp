@@ -1,4 +1,7 @@
 #include "CADS.h"
+#include <vector>
+#include <fstream>
+#include <iostream>
 
 scl::CADS::CADS(const char* filePath){
     data = new std::vector<AnchoredString>*[15];

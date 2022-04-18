@@ -1,5 +1,9 @@
 #include "Tstring.h"
 
+#include<string>
+#include<stdexcept>
+#include<cstring>
+
 scl::Tstring::Tstring(const scl::Tstring& toCpy){
     eleCount = toCpy.eleCount;
 

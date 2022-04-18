@@ -1,8 +1,8 @@
 #ifndef SCRABBLE_SOLVER_SCRABBLEVECTORIZER_H
 #define SCRABBLE_SOLVER_SCRABBLEVECTORIZER_H
 
-#include "../CADS/CADS.h"
-#include "../RackMap/RMAC.h"
+#include "../../Utils/CADS/CADS.h"
+#include "../../Utils/RMAC/RMAC.h"
 
 namespace scl{
     enum TYPE{HORIZONTAL, VERTICAL, UNDEFINED_TYPE};
@@ -53,10 +53,7 @@ namespace scl{
 
         scl::Tstring &get_best_raw_boarded_move() { return bestWord; }
 
-        void set_rack(const std::string &passed) {
-            rack = passed;
-            sort(rack.begin(), rack.end());
-        }
+        void set_rack(const std::string &passed);
 
         std::vector<scl::Tstring> &get_raw_board() { return board; }
 

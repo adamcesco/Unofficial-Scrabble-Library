@@ -2,6 +2,8 @@
 #define SCRABBLE_SOLVER_CADS_H
 
 #include "../Tstring/Tstring.h"
+#include <string>
+#include <vector>
 
 namespace scl{
     struct AnchoredString {
