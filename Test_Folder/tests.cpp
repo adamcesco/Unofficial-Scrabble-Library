@@ -6,12 +6,20 @@
 TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "ScrabbleVectorizer"){
     scl::HorizontalScrabbleVectorizer hReader(std::string("ASDFGHJ"));
     hReader.build_board_from("../Test_Folder/Board.csv");
+    hReader.prep_perkBoard();
+    hReader.build_dictionaries_from("../Test_Folder/scrabble_word_list.txt");
     hReader.validate_board();
+    hReader.build_CADS_from("../Test_Folder/scrabble_word_list.txt");
+    hReader.set_RMAC_build_path_dictionary();
     hReader.clear_all_moves();
 
     scl::VerticalScrabbleVectorizer vReader(std::string("ASDFGHJ"));
     vReader.build_board_from("../Test_Folder/Board.csv");
+    vReader.prep_perkBoard();
+    vReader.build_dictionaries_from("../Test_Folder/scrabble_word_list.txt");
     vReader.validate_board();
+    vReader.build_CADS_from("../Test_Folder/scrabble_word_list.txt");
+    vReader.set_RMAC_build_path_dictionary();
     vReader.clear_all_moves();
 
     vReader.search_for_intersecting_words();
@@ -125,9 +133,11 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
 
     scl::HorizontalScrabbleVectorizer hReader(rack);
     hReader.build_board_from("../Test_Folder/Board.csv");
+    hReader.prep_perkBoard();
 
     scl::VerticalScrabbleVectorizer vReader(rack);
     vReader.build_board_from("../Test_Folder/Board.csv");
+    vReader.prep_perkBoard();
 
     std::ifstream boardFile;
     boardFile.open("../Test_Folder/Board.csv");
@@ -327,10 +337,8 @@ TEST_CASE("Testing manual board and perk-board setting", "[ScrabbleVectorizer]")
 
     scl::HorizontalScrabbleVectorizer hReader(rack);
     hReader.build_board_from("../Test_Folder/Board.csv");
-    hReader.validate_board();
     scl::VerticalScrabbleVectorizer vReader(rack);
     vReader.build_board_from("../Test_Folder/Board.csv");
-    vReader.validate_board();
     std::vector<std::string> customPerkBoard =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', '|', ' ', ' ', '3'},
                                         {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', '2', ' '},
                                         {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', '2', ' ', ' '},
