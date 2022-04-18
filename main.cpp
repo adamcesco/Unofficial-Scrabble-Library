@@ -13,7 +13,8 @@ int main(int argc, char* argv[]){
 
     std::string rack = "AEORITE";    //blank tiles should be marked as a '?'
 
-    scl::HorizontalScrabbleVectorizer hReader(rack);     //building HorizontalScrabbleVectorizer
+    scl::HorizontalScrabbleVectorizer hReader;     //building HorizontalScrabbleVectorizer
+    hReader.set_rack(rack);
     hReader.build_board_from(argv[1]);
     hReader.prep_perkBoard();
     hReader.build_dictionaries_from(argv[2]);
@@ -22,7 +23,8 @@ int main(int argc, char* argv[]){
     hReader.set_RMAC_build_path_dictionary();
     hReader.clear_all_moves();
 
-    scl::VerticalScrabbleVectorizer vReader(rack);       //building VerticalScrabbleVectorizer
+    scl::VerticalScrabbleVectorizer vReader;       //building VerticalScrabbleVectorizer
+    vReader.set_rack(rack);
     vReader.build_board_from(argv[1]);
     vReader.prep_perkBoard();
     vReader.build_dictionaries_from(argv[2]);
