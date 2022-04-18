@@ -34,22 +34,24 @@ namespace scl{
 
         virtual std::vector<scl::Tstring> &get_all_moves_at(int, int) = 0;
 
+        virtual void guided_place(int, int, TYPE, const std::string&) = 0;
+
         virtual void validate_words() = 0;
 
         virtual void search_for_intersecting_words();
 
         virtual void search_for_tangential_words();
 
-        virtual void place_into_board(const scl::Tstring &);
+        virtual void raw_place_boarded_word(const scl::Tstring &);
 
-        virtual void place_best_word_into_board();
+        virtual void place_best_move_into_board();
 
-        virtual int points_of_placed_word(
-                const scl::Tstring &) const;                          //assumes that the passed word is found within the board and has proper coordinate values for the given std::vectorizer type
+        virtual int points_of_raw_boarded_tstr(
+                const scl::Tstring &word) const;                          //assumes that the passed word is found within the board and has proper coordinate values for the given std::vectorizer type
 
         void clear_all_moves();
 
-        scl::Tstring &get_best_word() { return bestWord; }
+        scl::Tstring &get_best_raw_boarded_word() { return bestWord; }
 
         void set_rack(const std::string &passed) {
             rack = passed;

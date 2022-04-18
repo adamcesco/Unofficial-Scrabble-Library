@@ -52,9 +52,9 @@ int main(int argc, char* argv[]){
     hReader.update_best_word();
 
     int vPoints = vReader.points_of_best_word();
-    scl::Tstring bestVWord = vReader.get_best_word();
+    scl::Tstring bestVWord = vReader.get_best_raw_boarded_word();
     int hPoints = hReader.points_of_best_word();
-    scl::Tstring bestHWord = hReader.get_best_word();
+    scl::Tstring bestHWord = hReader.get_best_raw_boarded_word();
 
     //printing the information of the best word for the board to the console
     std::cout << "Best Horizontal Word: " << bestHWord.to_string() << std::endl;
@@ -63,7 +63,7 @@ int main(int argc, char* argv[]){
     std::cout << "Best Vertical Word: " << bestVWord.to_string() << std::endl;
     std::cout << "\tPoints: " << vPoints << std::endl;
     std::cout << '\t' << '(' << vReader.get_best_x() << ", " << vReader.get_best_y() << ')' << std::endl;
-//
+
     std::cout << "Best word for the board: ";
     if (hPoints > vPoints) {
         std::cout << bestHWord.to_string() << std::endl;
@@ -76,8 +76,8 @@ int main(int argc, char* argv[]){
     }
 
     //printing to board
-    vReader.place_into_board(bestVWord);
-    hReader.place_into_board(bestHWord);
+    vReader.raw_place_boarded_word(bestVWord);
+    hReader.raw_place_boarded_word(bestHWord);
     hReader.console_print_formatted_board();
     std::cout << "----------------------------------" << std::endl;
     vReader.console_print_formatted_board();

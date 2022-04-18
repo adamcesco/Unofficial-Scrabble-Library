@@ -66,8 +66,8 @@ scl::Tstring scl::VerticalScrabbleVectorizer::update_best_word(){
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             for (const auto& word: moveSets[i][j]) {
-                int wordPoints = points_of_placed_word(word) + points_of_placed_word(word);
-                int bestWordPoints = points_of_placed_word(bestWord) + points_of_placed_word(bestWord);
+                int wordPoints = points_of_raw_boarded_tstr(word) + points_of_raw_boarded_tstr(word);
+                int bestWordPoints = points_of_raw_boarded_tstr(bestWord) + points_of_raw_boarded_tstr(bestWord);
 
                 if (wordPoints > bestWordPoints) {
                     bestWord = word;
@@ -236,4 +236,42 @@ void scl::VerticalScrabbleVectorizer::build_perkBoard_from(const char** passed) 
             perkBoard[14 - i][j] = passed[j][i];
         }
     }
+}
+
+void scl::VerticalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type, const scl::Tstring & tstr) {
+    if(type == HORIZONTAL){
+        for (int i = 0; i < tstr.length(); ++i) {
+            board[14 - x - i][y] = tstr.read_at(i);
+            board[14 - x - i][y].flag = 1;
+            perkBoard[14 - x - i][y] = ' ';
+        }
+    }
+    else if(type == VERTICAL){
+        for (int i = 0; i < tstr.length(); ++i) {
+            board[14 - x][y + i] = tstr.read_at(i);
+            board[14 - x][y + i].flag = 1;
+            perkBoard[14 - x + i][y] = ' ';
+        }
+    }
+    else
+        throw std::invalid_argument("Error in \"void scl::VerticalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type, const scl::Tstring & tstr)\" | Incorrect scl::TYPE passed. scl::TYPE(UNDEFINED_TYPE)");
+}
+
+void scl::VerticalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type, const std::string & str) {
+    if(type == HORIZONTAL){
+        for (int i = 0; i < str.length(); ++i) {
+            board[14 - x - i][y] = str.at(i);
+            board[14 - x - i][y].flag = 1;
+            perkBoard[14 - x - i][y] = ' ';
+        }
+    }
+    else if(type == VERTICAL){
+        for (int i = 0; i < str.length(); ++i) {
+            board[14 - x][y + i] = str.at(i);
+            board[14 - x][y + i].flag = 1;
+            perkBoard[14 - x + i][y] = ' ';
+        }
+    }
+    else
+        throw std::invalid_argument("Error in \"void scl::VerticalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type, const std::string & str)\" | Incorrect scl::TYPE passed. scl::TYPE(UNDEFINED_TYPE)");
 }

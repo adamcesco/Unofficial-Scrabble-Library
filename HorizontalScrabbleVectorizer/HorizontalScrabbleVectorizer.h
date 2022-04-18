@@ -33,11 +33,16 @@ namespace scl{
 
         void validate_words();
 
-        int points_of_best_word() const { return points_of_placed_word(bestWord); }
+        int points_of_best_word() const { return points_of_raw_boarded_tstr(bestWord); }
 
         void build_board_from(const char **);
 
         void build_perkBoard_from(const char **);
+
+        virtual void guided_place(int x, int y, TYPE type, const scl::Tstring &);
+
+        virtual void guided_place(int, int, TYPE, const std::string&);
+
     };
 }
 

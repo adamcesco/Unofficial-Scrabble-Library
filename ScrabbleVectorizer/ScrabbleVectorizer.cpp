@@ -97,7 +97,7 @@ void scl::ScrabbleVectorizer::reset_all_data() {
     }
 }
 
-void scl::ScrabbleVectorizer::place_into_board(const scl::Tstring &toPrint) {
+void scl::ScrabbleVectorizer::raw_place_boarded_word(const scl::Tstring &toPrint) {
     for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
         if (board[toPrint.read_at(0).y][i] == ' ')
             board[toPrint.read_at(0).y][i] = scl::Tile(toPrint.read_at(i - toPrint.read_at(0).x).letter,
@@ -214,7 +214,7 @@ void scl::ScrabbleVectorizer::clear_all_moves() {
     }
 }
 
-int scl::ScrabbleVectorizer::points_of_placed_word(const scl::Tstring &word) const{
+int scl::ScrabbleVectorizer::points_of_raw_boarded_tstr(const scl::Tstring &word) const{
     // If a letter is shared between words, then count it's premium value for all words
     // Any word multiplier only gets assigned to the original word, and not any subsequently formed words
     // If a word is placed on two or more multiplier tiles, the words value is multiplied by both tile values
@@ -277,7 +277,7 @@ int scl::ScrabbleVectorizer::points_of_placed_word(const scl::Tstring &word) con
     return wordSum;
 }
 
-void scl::ScrabbleVectorizer::place_best_word_into_board() {
+void scl::ScrabbleVectorizer::place_best_move_into_board() {
     for (int i = bestWord.read_at(0).x; i < bestWord.length() + bestWord.read_at(0).x; i++) {
         if (board[bestWord.read_at(0).y][i] == ' ')
             board[bestWord.read_at(0).y][i] = scl::Tile(bestWord.read_at(i - bestWord.read_at(0).x).letter,
