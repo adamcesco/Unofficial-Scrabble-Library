@@ -1,8 +1,26 @@
 # Unofficial Scrabble Library (scl)
 
-![Github Release](https://img.shields.io/badge/release-v0.3.0--beta-informational)
+![Github Release](https://img.shields.io/badge/release-v1.0.0-informational)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/adamcesco/scl-solver/graphs/commit-activity)
 [![MIT-license](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE.txt)
+
+## How to Use This Library
+
+1. Install the "Utils" folder and the "scl.h" file into your repository; with each being placed in the same folder as each other.
+2. Then include "scl.h" in your project source code to get access to all "scl" tools
+
+    > `#include "scl.h"`<br> or <br>
+    `#include "../directory/scl.h"`
+
+#### All "scl" tools and objects:
+ 
+- Tstring
+- Tile
+- HorizontalScrabbleVectorizer
+- VerticalScrabbleVectorizer
+- ScrabbleVectorizer
+- CADS
+- RMAC
 
 ## About This Solution
 
@@ -24,7 +42,7 @@ Another main way of increasing this solution's speed would be to implement a DAW
 
 - To run this demo of the "scl" library, provide the following command line arguments:
 
-  >*../Data/Board.csv* *../Data/scrabble_word_list.txt*
+  >`../Data/Board.csv ../Data/scrabble_word_list.txt`
 
 - To run the CATCH2 tests within this demo, provide no command line arguments.
 - This project uses the *Data/board.csv* file for game board input.
