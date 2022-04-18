@@ -1,4 +1,4 @@
-# Unofficial Scrabble Library (scl)
+# Unofficial Scrabble C++ Library (scl)
 
 ![Github Release](https://img.shields.io/badge/release-v1.0.0-informational)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/adamcesco/scl-solver/graphs/commit-activity)
@@ -9,7 +9,7 @@
 1. Install the "Utils" folder and the "scl.h" file into your repository; with each being placed in the same folder as each other.
 2. Then include "scl.h" in your project source code to get access to all "scl" tools
 
-    > `#include "scl.h"`<br> or <br>
+    > `#include "scl.h"` <br> or <br>
     `#include "../directory/scl.h"`
 
 #### All "scl" tools and objects:
