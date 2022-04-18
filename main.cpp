@@ -42,8 +42,8 @@ int main(int argc, char* argv[]){
     hReader.search_for_intersecting_words();
     hReader.search_for_tangential_words();
 
-    vReader.validate_words();
-    hReader.validate_words();
+    vReader.validate_generated_moves();
+    hReader.validate_generated_moves();
     auto end = std::chrono::high_resolution_clock::now();   //end timer here
     auto time_in_seconds = std::chrono::duration<double>(end - start);
     std::cout << "Time taken by move generation: " << time_in_seconds.count() << " seconds" << std::endl;

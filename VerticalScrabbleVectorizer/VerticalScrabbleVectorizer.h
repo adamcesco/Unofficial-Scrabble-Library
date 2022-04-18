@@ -18,7 +18,7 @@ namespace scl{
 
         scl::Tstring update_best_move();
 
-        void validate_words();
+        void validate_generated_moves();
 
         TYPE get_vectorizer_type() const { return VERTICAL; }
 

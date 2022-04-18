@@ -36,7 +36,7 @@ namespace scl{
 
         virtual void guided_place(int, int, TYPE, const std::string&) = 0;
 
-        virtual void validate_words() = 0;
+        virtual void validate_generated_moves() = 0;
 
         virtual void search_for_intersecting_words();
 

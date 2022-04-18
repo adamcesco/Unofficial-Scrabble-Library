@@ -89,7 +89,7 @@ scl::Tstring scl::VerticalScrabbleVectorizer::update_best_move(){
     return bestWord;
 }
 
-void scl::VerticalScrabbleVectorizer::validate_words() {
+void scl::VerticalScrabbleVectorizer::validate_generated_moves() {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             for (auto& word: moveSets[i][j]) {

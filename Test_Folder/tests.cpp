@@ -20,8 +20,8 @@ TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "
     hReader.search_for_intersecting_words();
     hReader.search_for_tangential_words();
 
-    vReader.validate_words();
-    hReader.validate_words();
+    vReader.validate_generated_moves();
+    hReader.validate_generated_moves();
 
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {

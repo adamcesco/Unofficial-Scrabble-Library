@@ -31,7 +31,7 @@ namespace scl{
 
         std::string to_string() const;
 
-        void validate_words();
+        void validate_generated_moves();
 
         int points_of_best_boarded_move() const { return points_of_raw_boarded_tstr(bestWord); }
 

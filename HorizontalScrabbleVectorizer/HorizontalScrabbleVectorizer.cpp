@@ -50,7 +50,7 @@ std::string scl::HorizontalScrabbleVectorizer::to_string() const {
     return buffer;
 }
 
-void scl::HorizontalScrabbleVectorizer::validate_words() {
+void scl::HorizontalScrabbleVectorizer::validate_generated_moves() {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             for (auto& word: moveSets[i][j]) {
