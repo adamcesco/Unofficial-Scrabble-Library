@@ -21,7 +21,6 @@ int main(int argc, char* argv[]){
     hReader.validate_board();
     hReader.build_CADS_from(argv[2]);
     hReader.set_RMAC_build_path_dictionary();
-    hReader.clear_all_moves();
 
     scl::VerticalScrabbleVectorizer vReader;       //building VerticalScrabbleVectorizer
     vReader.set_rack(rack);
@@ -31,7 +30,6 @@ int main(int argc, char* argv[]){
     vReader.validate_board();
     vReader.build_CADS_from(argv[2]);
     vReader.set_RMAC_build_path_dictionary();
-    vReader.clear_all_moves();
 
     hReader.console_print_formatted_board();        //printing boards
     vReader.console_print_formatted_board();
@@ -82,6 +80,9 @@ int main(int argc, char* argv[]){
     hReader.console_print_formatted_board();
     std::cout << "----------------------------------" << std::endl;
     vReader.console_print_formatted_board();
+
+    hReader.clear_all_moves();
+    vReader.clear_all_moves();
 
     return 0;
 }
