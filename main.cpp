@@ -53,7 +53,7 @@ int main(int argc, char* argv[]){
     vReader.update_best_move();     //<- This updates the best move for each vectorizer based off of highest points per move
     hReader.update_best_move();
 
-    int vPoints = vReader.points_of_best_boarded_move();            //<- The "points_of_best_boarded_move()" method gets the points of the boarded version of the best move: taking into adjacently formed words and board perks
+    int vPoints = vReader.points_of_best_boarded_move();            //<- The "points_of_best_boarded_move()" method gets the points of the boarded version of the best move: counting adjacently formed words and board perks
     scl::Tstring bestVWord = vReader.get_best_raw_boarded_move();
     int hPoints = hReader.points_of_best_boarded_move();
     scl::Tstring bestHWord = hReader.get_best_raw_boarded_move();
