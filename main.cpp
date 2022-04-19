@@ -61,10 +61,10 @@ int main(int argc, char* argv[]){
     //printing the information of the best word for the board to the console
     std::cout << "Best Horizontal Word: " << bestHWord.to_string() << std::endl;
     std::cout << "\tPoints: " << hPoints << std::endl;
-    std::cout << '\t' << '(' << hReader.get_best_x() << ", " << hReader.get_best_y() << ')' << std::endl;
+    std::cout << "\t(" << hReader.get_best_x() << ", " << hReader.get_best_y() << ')' << std::endl;
     std::cout << "Best Vertical Word: " << bestVWord.to_string() << std::endl;
     std::cout << "\tPoints: " << vPoints << std::endl;
-    std::cout << '\t' << '(' << vReader.get_best_x() << ", " << vReader.get_best_y() << ')' << std::endl;
+    std::cout << "\t(" << vReader.get_best_x() << ", " << vReader.get_best_y() << ')' << std::endl;
 
     std::cout << "Best word for the board: ";
     if (hPoints > vPoints) {
