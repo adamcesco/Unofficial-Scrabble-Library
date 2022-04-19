@@ -11,49 +11,49 @@ int main(int argc, char* argv[]){
 
     std::cout.precision(9);
 
-    std::string rack = "JEFFE??";    //blank tiles should be marked as a '?'
+    std::string rack = "ADHSERE";    //blank tiles should be marked as a '?'
 
-    scl::HorizontalScrabbleVectorizer hReader;     //building HorizontalScrabbleVectorizer
-    hReader.set_RMAC_build_path_dictionary();
-    hReader.build_CADS_from(argv[2]);
-    hReader.build_dictionaries_from(argv[2]);
+    scl::HorizontalScrabbleVectorizer hReader;  //building HorizontalScrabbleVectorizer (only generates horizontal words)
+    hReader.set_RMAC_build_path_dictionary();   //<- Meaning that everytime we build an RMAC, it is built from this vectorizer's dictionary
+    hReader.build_CADS_from(argv[2]);           //<- This tells the vectorizer to build the CADS from the given file directory
+    hReader.build_dictionaries_from(argv[2]);   //<- This tells the vectorizer to build it's dictionary from the given file
 
-    hReader.build_board_from(argv[1]);
-    hReader.prep_perkBoard();
-    hReader.validate_board();
+    hReader.build_board_from(argv[1]);          //<- This builds the board from the given file
+    hReader.validate_board();                   //<- This validates all vertical and horizontal words on the current board
+    hReader.prep_perkBoard();                   //<- This prepares the perk-board based off of the current board
 
-    scl::VerticalScrabbleVectorizer vReader;       //building VerticalScrabbleVectorizer
+    scl::VerticalScrabbleVectorizer vReader;    //building VerticalScrabbleVectorizer (only generates vertical words)
     vReader.build_dictionaries_from(argv[2]);
     vReader.build_CADS_from(argv[2]);
     vReader.set_RMAC_build_path_dictionary();
 
     vReader.build_board_from(argv[1]);
-    vReader.prep_perkBoard();
     vReader.validate_board();
+    vReader.prep_perkBoard();
 
-    hReader.console_print_formatted_board();        //printing boards
+    hReader.console_print_formatted_board();    //printing current boards to console
     vReader.console_print_formatted_board();
 
-    auto start = std::chrono::high_resolution_clock::now();  //start timer here (timing word generation)
+    auto start = std::chrono::high_resolution_clock::now();  //timing word generation
     hReader.set_rack(rack);
     vReader.set_rack(rack);
 
-    vReader.search_for_intersecting_words();
-    vReader.search_for_tangential_words();
+    vReader.search_for_intersecting_moves();    //searching for moves that intersect with another word on the current board
+    vReader.search_for_tangential_moves();
 
-    hReader.search_for_intersecting_words();
-    hReader.search_for_tangential_words();
+    hReader.search_for_intersecting_moves();    //searching for moves that are only touching another word and never intersecting with another word
+    hReader.search_for_tangential_moves();
 
-    vReader.validate_generated_moves();
+    vReader.validate_generated_moves();         //the generated moves need to be filtered and cleaned so that no invalid moves are left
     hReader.validate_generated_moves();
-    auto end = std::chrono::high_resolution_clock::now();   //end timer here
+    auto end = std::chrono::high_resolution_clock::now();   //Move generation is completed, ending timer here
     auto time_in_seconds = std::chrono::duration<double>(end - start);
     std::cout << "Time taken by move generation: " << time_in_seconds.count() << " seconds" << std::endl;
 
-    vReader.update_best_move();
+    vReader.update_best_move();     //this updates the best move for each vectorizer based off of highest points per move
     hReader.update_best_move();
 
-    int vPoints = vReader.points_of_best_boarded_move();
+    int vPoints = vReader.points_of_best_boarded_move();            //<- The "points_of_best_boarded_move()" method gets the points of the boarded version of the best move: taking into adjacently formed words and board perks
     scl::Tstring bestVWord = vReader.get_best_raw_boarded_move();
     int hPoints = hReader.points_of_best_boarded_move();
     scl::Tstring bestHWord = hReader.get_best_raw_boarded_move();
@@ -78,8 +78,11 @@ int main(int argc, char* argv[]){
     }
 
     //printing to board
-    vReader.raw_place_boarded_word(bestVWord);
+    vReader.raw_place_boarded_word(bestVWord);      //<- the "raw_place_boarded_word(scl::Tstring)" method places the passed scl::Tstring into the current board strictly based off of the coordinates of each scl::Tile in the scl::Tstring
+    vReader.prep_perkBoard();                       //<- the board was changes, so the prep board must be updated
     hReader.raw_place_boarded_word(bestHWord);
+    hReader.prep_perkBoard();
+
     hReader.console_print_formatted_board();
     std::cout << "----------------------------------" << std::endl;
     vReader.console_print_formatted_board();

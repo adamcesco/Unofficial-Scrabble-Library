@@ -38,9 +38,9 @@ namespace scl{
 
         virtual void validate_generated_moves() = 0;
 
-        virtual void search_for_intersecting_words();
+        virtual void search_for_intersecting_moves();
 
-        virtual void search_for_tangential_words();
+        virtual void search_for_tangential_moves();
 
         virtual void raw_place_boarded_word(const scl::Tstring &);
 

@@ -3,14 +3,14 @@
 #include <iostream>
 #include <algorithm>
 
-void scl::ScrabbleVectorizer::search_for_intersecting_words() {
+void scl::ScrabbleVectorizer::search_for_intersecting_moves() {
     //TODO: Remove as many if-statements as possible.
     // Convert AnchoredString into Anchoredsbl::Tstring, so that ScrabbleDataset is composed of pre-defined scl::TStrings.
     // Turn rackCount into a class/struct.
     // optimize solution as much as possible
 
     if(dictionary.empty())
-        throw std::invalid_argument("Error in scl::ScrabbleVectorizer::search_for_intersecting_words() | The set of all scl words is empty.");
+        throw std::invalid_argument("Error in scl::ScrabbleVectorizer::search_for_intersecting_moves() | The set of all scl words is empty.");
 
     int originalRackCount[28];
     int originalBlankCount = 0;
@@ -106,7 +106,6 @@ void scl::ScrabbleVectorizer::raw_place_boarded_word(const scl::Tstring &toPrint
             board[toPrint.read_at(0).y][i] = scl::Tile(toPrint.read_at(i - toPrint.read_at(0).x).letter,
                                                        i,
                                                        toPrint.read_at(0).y, 1);
-        perkBoard[toPrint.read_at(0).y][i] = ' ';
     }
 }
 
@@ -139,15 +138,15 @@ std::vector<scl::Tstring> scl::ScrabbleVectorizer::return_raw_board_with(const s
     return boardCpy;
 }
 
-void scl::ScrabbleVectorizer::search_for_tangential_words() {    //does not support blank tiles
+void scl::ScrabbleVectorizer::search_for_tangential_moves() {    //does not support blank tiles
     //TODO: Remove as many if-statements as possible.
     // optimize solution as much as possible
     // Implement custom data-structure for tile placement checking for tangential words only (so you do not have to do over under explicitly).
     // optimize solution as much as possible
     if(routeRMAC == UNDEFINED_ROUTE)
-        throw std::invalid_argument("Error in scl::ScrabbleVectorizer::search_for_tangential_words() | definition route for RMAC has not been set.");
+        throw std::invalid_argument("Error in scl::ScrabbleVectorizer::search_for_tangential_moves() | definition route for RMAC has not been set.");
     if(dictionary.empty())
-        throw std::invalid_argument("Error in scl::ScrabbleVectorizer::search_for_tangential_words() | The set of all scl words is empty.");
+        throw std::invalid_argument("Error in scl::ScrabbleVectorizer::search_for_tangential_moves() | The set of all scl words is empty.");
 
     RMAC rackMAC;
     if(routeRMAC == DICTIONARY)

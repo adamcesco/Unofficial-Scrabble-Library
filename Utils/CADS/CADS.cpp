@@ -12,7 +12,7 @@ scl::CADS::CADS(const char* filePath){
     std::ifstream englishWords;
     englishWords.open(filePath);
     if(!englishWords.is_open())
-        throw std::invalid_argument("Could not open file path passed to scl::CADS::scl::CADS(const char* filePath)");
+        throw std::invalid_argument("Could not open file path passed to scl::CADS::CADS(const char* filePath)");
 
     std::string curWord;
     int count = 0;

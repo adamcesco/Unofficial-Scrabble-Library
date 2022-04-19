@@ -23,11 +23,11 @@ TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "
     vReader.set_RMAC_build_path_dictionary();
     vReader.clear_all_moves();
 
-    vReader.search_for_intersecting_words();
-    vReader.search_for_tangential_words();
+    vReader.search_for_intersecting_moves();
+    vReader.search_for_tangential_moves();
 
-    hReader.search_for_intersecting_words();
-    hReader.search_for_tangential_words();
+    hReader.search_for_intersecting_moves();
+    hReader.search_for_tangential_moves();
 
     vReader.validate_generated_moves();
     hReader.validate_generated_moves();
