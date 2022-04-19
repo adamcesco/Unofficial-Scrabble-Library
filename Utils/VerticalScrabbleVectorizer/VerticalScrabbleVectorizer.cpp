@@ -75,14 +75,14 @@ scl::Tstring scl::VerticalScrabbleVectorizer::update_best_move(){
                 if (wordPoints > bestWordPoints) {
                     bestWord = word;
                     //x = y, y = 14 - x
-                    bestX = (14 - i) + 1;
-                    bestY = j + 1;
+                    bestX = (14 - i);
+                    bestY = j;
                 } else if (wordPoints != 0 && wordPoints == bestWordPoints) {
                     if (word.length() < bestWord.length() || bestWord.is_empty()) {
                         bestWord = word;
                         //x = y, y = 14 - x
-                        bestX = (14 - i) + 1;
-                        bestY = j + 1;
+                        bestX = (14 - i);
+                        bestY = j;
                     }
                 }
             }

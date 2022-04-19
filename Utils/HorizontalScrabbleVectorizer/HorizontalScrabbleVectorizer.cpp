@@ -98,13 +98,13 @@ scl::Tstring scl::HorizontalScrabbleVectorizer::update_best_move() {
 
                 if (wordPoints > bestWordPoints) {
                     bestWord = word;
-                    bestX = bestWord[0].x + 1;
-                    bestY = i + 1;
+                    bestX = bestWord[0].x;
+                    bestY = i;
                 } else if (wordPoints != 0 && wordPoints == bestWordPoints) {
                     if (word.length() < bestWord.length() || bestWord.is_empty()) {
                         bestWord = word;
-                        bestX = bestWord[0].x + 1;
-                        bestY = i + 1;
+                        bestX = bestWord[0].x;
+                        bestY = i;
                     }
                 }
             }
