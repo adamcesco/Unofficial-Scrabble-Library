@@ -1,3 +1,4 @@
+#pragma GCC optimize("Ofast")
 #define CATCH_CONFIG_RUNNER
 #include "scl.h"
 #include "Test_Folder/catch.hpp"
