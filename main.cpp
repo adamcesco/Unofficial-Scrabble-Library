@@ -11,30 +11,33 @@ int main(int argc, char* argv[]){
 
     std::cout.precision(9);
 
-    std::string rack = "AEORITE";    //blank tiles should be marked as a '?'
+    std::string rack = "JEFFE??";    //blank tiles should be marked as a '?'
 
     scl::HorizontalScrabbleVectorizer hReader;     //building HorizontalScrabbleVectorizer
-    hReader.set_rack(rack);
+    hReader.set_RMAC_build_path_dictionary();
+    hReader.build_CADS_from(argv[2]);
+    hReader.build_dictionaries_from(argv[2]);
+
     hReader.build_board_from(argv[1]);
     hReader.prep_perkBoard();
-    hReader.build_dictionaries_from(argv[2]);
     hReader.validate_board();
-    hReader.build_CADS_from(argv[2]);
-    hReader.set_RMAC_build_path_dictionary();
 
     scl::VerticalScrabbleVectorizer vReader;       //building VerticalScrabbleVectorizer
-    vReader.set_rack(rack);
-    vReader.build_board_from(argv[1]);
-    vReader.prep_perkBoard();
     vReader.build_dictionaries_from(argv[2]);
-    vReader.validate_board();
     vReader.build_CADS_from(argv[2]);
     vReader.set_RMAC_build_path_dictionary();
+
+    vReader.build_board_from(argv[1]);
+    vReader.prep_perkBoard();
+    vReader.validate_board();
 
     hReader.console_print_formatted_board();        //printing boards
     vReader.console_print_formatted_board();
 
     auto start = std::chrono::high_resolution_clock::now();  //start timer here (timing word generation)
+    hReader.set_rack(rack);
+    vReader.set_rack(rack);
+
     vReader.search_for_intersecting_words();
     vReader.search_for_tangential_words();
 
