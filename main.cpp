@@ -13,7 +13,7 @@ int main(int argc, char* argv[]){
 
     std::string rack = "ADHSERE";    //blank tiles should be marked as a '?'
 
-    scl::HorizontalScrabbleVectorizer hReader;  //building HorizontalScrabbleVectorizer (only generates horizontal words)
+    scl::HorizontalScrabbleVectorizer hReader;  //now building HorizontalScrabbleVectorizer (only generates horizontal moves)
     hReader.set_RMAC_build_path_dictionary();   //<- Meaning that everytime we build an RMAC, it is built from this vectorizer's dictionary
     hReader.build_CADS_from(argv[2]);           //<- This tells the vectorizer to build the CADS from the given file directory
     hReader.build_dictionaries_from(argv[2]);   //<- This tells the vectorizer to build it's dictionary from the given file
@@ -22,7 +22,7 @@ int main(int argc, char* argv[]){
     hReader.validate_board();                   //<- This validates all vertical and horizontal words on the current board
     hReader.prep_perkBoard();                   //<- This prepares the perk-board based off of the current board
 
-    scl::VerticalScrabbleVectorizer vReader;    //building VerticalScrabbleVectorizer (only generates vertical words)
+    scl::VerticalScrabbleVectorizer vReader;    //now building VerticalScrabbleVectorizer (only generates vertical moves)
     vReader.build_dictionaries_from(argv[2]);
     vReader.set_RMAC_build_path_dictionary();
     vReader.build_CADS_from(argv[2]);
