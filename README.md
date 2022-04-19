@@ -28,7 +28,7 @@ I use a test-driven solution that is primarily object-oriented. In its current s
 
 #### Notes About This Solution's Applicability
 
-The scrabble vectorizers within the "scl" library base their word/move generation off of the dictionary you provide to them. If you notice the absence of an otherwise viable move, 
+The scrabble vectorizers within the "scl" library base their word/move generation off of the dictionary you provide to them. If you notice the absence of an otherwise viable move, that move may not be present within your provided dictionary.
 
 #### Time Measurements and Speed
 
