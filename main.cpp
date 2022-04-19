@@ -24,8 +24,8 @@ int main(int argc, char* argv[]){
 
     scl::VerticalScrabbleVectorizer vReader;    //building VerticalScrabbleVectorizer (only generates vertical words)
     vReader.build_dictionaries_from(argv[2]);
-    vReader.build_CADS_from(argv[2]);
     vReader.set_RMAC_build_path_dictionary();
+    vReader.build_CADS_from(argv[2]);
 
     vReader.build_board_from(argv[1]);
     vReader.validate_board();
