@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
 
     std::cout.precision(9);
 
-    std::string rack = "ADHSERE";    //blank tiles should be marked as a '?', and the letter within the rack need to be upper-case
+    std::string rack = "ADHSERK";    //blank tiles should be marked as a '?', and the letter within the rack need to be upper-case
 
     scl::HorizontalScrabbleVectorizer hReader;  //now building HorizontalScrabbleVectorizer (only generates horizontal moves)
     hReader.set_RMAC_build_path_dictionary();   //<- Meaning that everytime we build an RMAC, it is built from this vectorizer's dictionary

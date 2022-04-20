@@ -373,8 +373,8 @@ TEST_CASE("Testing manual board and perk-board setting", "[ScrabbleVectorizer]")
                                         {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '}};
 
     SECTION("ScrabbleVectorizer::build_board_from(const std::vector<std::string>&)"){
-        vReader.set_board(customBoard);
-        hReader.set_board(customBoard);
+        vReader.build_board_from(customBoard);
+        hReader.build_board_from(customBoard);
 
         REQUIRE(vReader.return_formatted_board_copy() == hReader.return_formatted_board_copy());
     }

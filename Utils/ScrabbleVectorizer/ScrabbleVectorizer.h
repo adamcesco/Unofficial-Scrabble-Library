@@ -58,18 +58,15 @@ namespace scl{
          * @brief Builds the board of this vectorizer from the passed 2-D char array.
          * @warning The passed 2-D char array must be size 15 x 15.
          * @warning All chars within the passed 2-D char array must be Uppercase
+         * @warning This method assumes that the passed baord has proper formatting
          */
         virtual void build_board_from(const char **) = 0;
-
-        /**
-         * @brief Searches the move-set of this vectorizer, then saves and returns the move with the highest points into the board. The point calculation of each move includes perks and the points generated from creating neighboring words
-         */
-        virtual scl::Tstring update_best_move() = 0;
 
         /**
          * @brief Builds the perk-board of this vectorizer from the passed 2-D char array.
          * @warning The passed 2-D char array must be size 15 x 15.
          * @warning The perk-board to be built via this method may still need to be prepared via "void prep_perkBoard()".
+         * @warning This method assumes that the passed perk-baord has proper formatting
          */
         virtual void build_perkBoard_from(const char **) = 0;
 
@@ -107,13 +104,6 @@ namespace scl{
         virtual void raw_place_boarded_word(const scl::Tstring &);
 
         /**
-         * @brief Places the move with the highest points into the board.
-         * @warning The calculation of the best-move needs to done before hand via "scl::Tstring update_best_move()".
-         * @attention After placing the "best-move" into the board, the perk-board DOES NOT need to be prepared via "void prep_perkBoard()".
-         */
-        virtual void place_best_move_into_board();
-
-        /**
          * @brief Returns the points of the passed scl::Tstring, this point calculation includes perks and the points generated from creating neighboring words.
          * @attention Assumes that the passed scl::Tstring has proper coordinate values for the given vectorizer type.
          */
@@ -123,12 +113,6 @@ namespace scl{
          * @brief Removes all moves from this vectorizers move-set.
          */
         void clear_all_moves();
-
-        /**
-         * @brief Returns the pre-calculated move within this vectorizers move-set that produces that highest amount of points.
-         * @warning This method just returns the pre-calculated best-move of this vectorizer, the calculation of the best-move needs to done before hand via "scl::Tstring update_best_move()".
-         */
-        scl::Tstring &get_best_raw_boarded_move() { return bestWord; }
 
         /**
          * @brief Sets the rack of this vectorizer to the passed std::string.
@@ -150,18 +134,6 @@ namespace scl{
          * @brief Returns the current prep-board of this vectorizer in a char base, may have un-proper formatting.
          */
         std::vector<std::string> return_raw_perkBoard_copy();
-
-        /**
-         * @brief Returns the x coordinate/subscript of the pre-calculated best-move of this vectorizer.
-         * @warning The calculation of the best-move and it's coordinates needs to done before hand via "scl::Tstring update_best_move()".
-         */
-        int &get_best_x() { return bestX; }
-
-        /**
-         * @brief Returns the y coordinate/subscript of the pre-calculated best-move of this vectorizer.
-         * @warning The calculation of the best-move and it's coordinates needs to done before hand via "scl::Tstring update_best_move()".
-         */
-        int &get_best_y() { return bestY; }
 
         /**
          * @brief Resets this vectorizer completely.
@@ -252,8 +224,6 @@ namespace scl{
         virtual std::vector<scl::Tstring> return_raw_board_with(
                 const scl::Tstring &) const;        //assumes that the passed word is formatted with respect to the current std::vectorizer type
 
-        int bestX, bestY;
-        scl::Tstring bestWord;
         std::string rack;
         RMAC_ROUTE routeRMAC = UNDEFINED_ROUTE;
         std::string rmacFilePath;

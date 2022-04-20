@@ -43,16 +43,6 @@ void scl::HorizontalScrabbleVectorizer::console_print_formatted_board() const{
     }
 }
 
-std::string scl::HorizontalScrabbleVectorizer::to_string() const {
-    std::string buffer = "Hand: " + rack + "\n";
-    buffer += "\nBest Horizontal Word: " + bestWord.to_string() + " - " + std::to_string(points_of_best_boarded_move());
-    buffer += "\n\tPostion X: " + std::to_string(bestX);
-    buffer += "\n\tPostion Y: " + std::to_string(bestY);
-    buffer += "\n\tHorizontal";
-
-    return buffer;
-}
-
 void scl::HorizontalScrabbleVectorizer::validate_generated_moves() {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
@@ -170,7 +160,7 @@ std::vector<std::string> scl::HorizontalScrabbleVectorizer::return_formatted_cha
     return boardCpy;
 }
 
-void scl::HorizontalScrabbleVectorizer::set_board(const std::vector<std::string> &passed) {
+void scl::HorizontalScrabbleVectorizer::build_board_from(const std::vector<std::string> &passed) {
     if(passed.size() != 15)
         throw std::invalid_argument("Error in scl::HorizontalScrabbleVectorizer::build_board_from(std::vector<std::string> passed) | passed argument is not of a proper size.");
     std::vector<scl::Tstring> boardCpy;
@@ -250,4 +240,14 @@ void scl::HorizontalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE typ
     }
     else
         throw std::invalid_argument("Error in \"void scl::HorizontalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type, const std::string & str)\" | Incorrect scl::TYPE passed. scl::TYPE(UNDEFINED_TYPE)");
+}
+
+void scl::HorizontalScrabbleVectorizer::place_best_move_into_board() {
+    for (int i = bestWord.read_at(0).x; i < bestWord.length() + bestWord.read_at(0).x; i++) {
+        if (board[bestWord.read_at(0).y][i] == ' ')
+            board[bestWord.read_at(0).y][i] = scl::Tile(bestWord.read_at(i - bestWord.read_at(0).x).letter,
+                                                        i,
+                                                        bestWord.read_at(0).y, 1);
+        perkBoard[bestWord.read_at(0).y][i] = ' ';
+    }
 }

@@ -86,8 +86,6 @@ void scl::ScrabbleVectorizer::search_for_intersecting_moves() {
 }
 
 void scl::ScrabbleVectorizer::reset_all_data() {
-    bestX = bestY = 8;
-    bestWord.clear();
     rack.clear();
     board.clear();
     dictionary.clear();
@@ -279,16 +277,6 @@ int scl::ScrabbleVectorizer::points_of_raw_boarded_tstr(const scl::Tstring &word
     return wordSum;
 }
 
-void scl::ScrabbleVectorizer::place_best_move_into_board() {
-    for (int i = bestWord.read_at(0).x; i < bestWord.length() + bestWord.read_at(0).x; i++) {
-        if (board[bestWord.read_at(0).y][i] == ' ')
-            board[bestWord.read_at(0).y][i] = scl::Tile(bestWord.read_at(i - bestWord.read_at(0).x).letter,
-                                                        i,
-                                                        bestWord.read_at(0).y, 1);
-        perkBoard[bestWord.read_at(0).y][i] = ' ';
-    }
-}
-
 std::vector<std::string> scl::ScrabbleVectorizer::return_raw_perkBoard_copy() {
     std::vector<std::string> toReturn;
     for (int i = 0; i < 15; ++i) {
@@ -348,8 +336,6 @@ scl::ScrabbleVectorizer::~ScrabbleVectorizer() {
 }
 
 scl::ScrabbleVectorizer::ScrabbleVectorizer() {
-    bestX = bestY = 8;
-
     moveSets = new std::vector<scl::Tstring>*[15];
     for (int i = 0; i < 15; ++i) {
         moveSets[i] = new std::vector<scl::Tstring>[15];
@@ -357,8 +343,6 @@ scl::ScrabbleVectorizer::ScrabbleVectorizer() {
 }
 
 scl::ScrabbleVectorizer::ScrabbleVectorizer(const std::string &passed) {
-    bestX = bestY = 8;
-
     moveSets = new std::vector<scl::Tstring>*[15];
     for (int i = 0; i < 15; ++i) {
         moveSets[i] = new std::vector<scl::Tstring>[15];

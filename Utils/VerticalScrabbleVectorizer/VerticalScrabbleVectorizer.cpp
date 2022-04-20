@@ -53,16 +53,6 @@ void scl::VerticalScrabbleVectorizer::console_print_formatted_board() const{
     }
 }
 
-std::string scl::VerticalScrabbleVectorizer::to_string() const {
-    std::string buffer = "Hand: " + rack + "\n";
-    buffer += "Best Vertical Word: " + bestWord.to_string() + " - " + std::to_string(points_of_best_boarded_move());
-    buffer += "\n\tPostion X: " + std::to_string(bestX);
-    buffer += "\n\tPostion Y: " + std::to_string(bestY);
-    buffer += "\n\tVertical";
-
-    return buffer;
-}
-
 scl::Tstring scl::VerticalScrabbleVectorizer::update_best_move(){
 //    int rowSubscript = 0;
     bestWord.clear();
@@ -193,7 +183,7 @@ std::vector<scl::Tstring> scl::VerticalScrabbleVectorizer::return_formatted_boar
     return boardCpy;
 }
 
-void scl::VerticalScrabbleVectorizer::set_board(const std::vector<std::string> &passed) {
+void scl::VerticalScrabbleVectorizer::build_board_from(const std::vector<std::string> &passed) {
     if(passed.size() != 15)
         throw std::invalid_argument("Error in scl::VerticalScrabbleVectorizer::build_board_from(std::vector<std::string> passed) | passed argument is not of a proper size.");
 
@@ -273,4 +263,14 @@ void scl::VerticalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type,
     }
     else
         throw std::invalid_argument("Error in \"void scl::VerticalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type, const std::string & str)\" | Incorrect scl::TYPE passed. scl::TYPE(UNDEFINED_TYPE)");
+}
+
+void scl::VerticalScrabbleVectorizer::place_best_move_into_board() {
+    for (int i = bestWord.read_at(0).x; i < bestWord.length() + bestWord.read_at(0).x; i++) {
+        if (board[bestWord.read_at(0).y][i] == ' ')
+            board[bestWord.read_at(0).y][i] = scl::Tile(bestWord.read_at(i - bestWord.read_at(0).x).letter,
+                                                        i,
+                                                        bestWord.read_at(0).y, 1);
+        perkBoard[bestWord.read_at(0).y][i] = ' ';
+    }
 }
