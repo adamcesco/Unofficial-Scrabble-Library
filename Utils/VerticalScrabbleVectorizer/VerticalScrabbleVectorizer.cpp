@@ -4,11 +4,11 @@
 #include <iostream>
 #include <fstream>
 
-void scl::VerticalScrabbleVectorizer::build_board_from(const char* filePath) {
+void scl::VerticalScrabbleVectorizer::build_board_from(const char* fileDir) {
     std::ifstream boardFile;
-    boardFile.open(filePath);
+    boardFile.open(fileDir);
     if(!boardFile.is_open())
-        throw std::invalid_argument("could not open file path passed to void scl::VerticalScrabbleVectorizer::build_board_from(const char* filePath)");
+        throw std::invalid_argument("could not open file path passed to void scl::VerticalScrabbleVectorizer::build_board_from(const char* fileDir)");
 
     std::string row;
     board.clear();
@@ -246,14 +246,12 @@ void scl::VerticalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type,
         for (int i = 0; i < tstr.length(); ++i) {
             board[14 - x - i][y] = tstr.read_at(i);
             board[14 - x - i][y].flag = 1;
-            perkBoard[14 - x - i][y] = ' ';
         }
     }
     else if(type == VERTICAL){
         for (int i = 0; i < tstr.length(); ++i) {
             board[14 - x][y + i] = tstr.read_at(i);
             board[14 - x][y + i].flag = 1;
-            perkBoard[14 - x + i][y] = ' ';
         }
     }
     else
@@ -265,14 +263,12 @@ void scl::VerticalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type,
         for (int i = 0; i < str.length(); ++i) {
             board[14 - x - i][y] = str.at(i);
             board[14 - x - i][y].flag = 1;
-            perkBoard[14 - x - i][y] = ' ';
         }
     }
     else if(type == VERTICAL){
         for (int i = 0; i < str.length(); ++i) {
             board[14 - x][y + i] = str.at(i);
             board[14 - x][y + i].flag = 1;
-            perkBoard[14 - x + i][y] = ' ';
         }
     }
     else

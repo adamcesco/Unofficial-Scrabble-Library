@@ -223,14 +223,12 @@ void scl::HorizontalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE typ
         for (int i = 0; i < tstr.length(); ++i) {
             board[y][x + i] = tstr.read_at(i);
             board[y][x + i].flag = 1;
-            perkBoard[y][x + i] = ' ';
         }
     }
     else if(type == VERTICAL){
         for (int i = 0; i < tstr.length(); ++i) {
             board[y + i][x] = tstr.read_at(i);
             board[y + i][x].flag = 1;
-            perkBoard[y + i][x] = ' ';
         }
     }
     else
@@ -242,14 +240,12 @@ void scl::HorizontalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE typ
         for (int i = 0; i < str.length(); ++i) {
             board[y][x + i] = str.at(i);
             board[y][x + i].flag = 1;
-            perkBoard[y][x + i] = ' ';
         }
     }
     else if(type == VERTICAL){
         for (int i = 0; i < str.length(); ++i) {
             board[y + i][x] = str.at(i);
             board[y + i][x].flag = 1;
-            perkBoard[y + i][x] = ' ';
         }
     }
     else

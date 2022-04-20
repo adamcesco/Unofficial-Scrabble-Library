@@ -119,7 +119,6 @@ namespace scl {
 
         bool is_descendent_of(const std::string &);
 
-        static bool is_descendent_of(Tstring &, const std::string &);      //optimize
         int get_letter_points() const;
 
         static int get_letter_points(std::string);

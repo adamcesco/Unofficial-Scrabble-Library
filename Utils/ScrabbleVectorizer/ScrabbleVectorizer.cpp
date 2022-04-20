@@ -112,7 +112,7 @@ void scl::ScrabbleVectorizer::raw_place_boarded_word(const scl::Tstring &toPrint
 bool scl::ScrabbleVectorizer::contains_letter_of_rack(const scl::Tstring& passed) const {
     std::unordered_set<char> handSet;
     for (char i : rack)
-        handSet.emplace(toupper(i));
+        handSet.emplace(i);
 
     for (int i = 0; i < passed.length(); ++i) {
         if (handSet.find(toupper(passed.read_at(i).letter)) != handSet.end()) {
