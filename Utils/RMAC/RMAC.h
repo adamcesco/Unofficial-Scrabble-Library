@@ -15,7 +15,10 @@ namespace scl{
 
         RMAC(const std::string &, const std::unordered_set<std::string> &);
 
-        bool is_descendent_of(scl::Tstring &, const int *, int) const;
+        /**
+         * @brief Determines if the passed scl::Tstring is composed of Tiles from @param rackMap and the number of blanks tracked in @param blankCount
+         */
+        bool is_descendent_of(scl::Tstring& desc, const int* rackMap, int blankCount) const;
 
         std::string rack;
         std::vector<scl::Tstring> data;

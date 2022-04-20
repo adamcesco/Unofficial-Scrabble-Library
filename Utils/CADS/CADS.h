@@ -26,8 +26,14 @@ namespace scl{
 
         CADS &operator=(const CADS &);
 
+        /**
+         * @brief Returns the list of words that have the passed char at the passed x value.
+         */
         std::vector<AnchoredString> &at_with(int x, unsigned char toFind);
 
+        /**
+         * @brief Resets all member variables of this CADS instance.
+         */
         CADS &clear_all();
 
         ~CADS();

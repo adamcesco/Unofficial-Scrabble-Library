@@ -112,9 +112,10 @@ namespace scl {
 
         Tstring operator+(char) const;
 
+        //Methods below are unique to Tstring:
+
         virtual std::string to_string() const;
 
-        //Methods below are unique to Tstring
         bool row_is_descendent_of(const std::string &, const Tstring &, Tstring &);
 
         bool is_descendent_of(const std::string &);

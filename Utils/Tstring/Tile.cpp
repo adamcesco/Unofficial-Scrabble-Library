@@ -10,7 +10,7 @@ scl::Tile::Tile() {
 }
 
 scl::Tile::Tile(char passed, int xp, int yp, int fl) {
-    letter = abs(passed);
+    letter = toupper(passed);
     x = xp;
     y = yp;
     flag = fl;
@@ -35,7 +35,7 @@ scl::Tile &scl::Tile::operator=(const scl::Tile &invoked) {
 }
 
 scl::Tile &scl::Tile::operator=(char invoked) {
-    letter = abs(invoked);
+    letter = toupper(invoked);
     y = x = flag = -1;
     isBlank = false;
 
@@ -47,7 +47,7 @@ scl::Tile &scl::Tile::operator=(char invoked) {
 }
 
 scl::Tile::Tile(unsigned char passed, int xp, int yp, int fl) {
-    letter = passed;
+    letter = toupper(passed);
     x = xp;
     y = yp;
     flag = fl;
