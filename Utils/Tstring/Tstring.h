@@ -112,6 +112,7 @@ namespace scl {
 
         Tstring operator+(char) const;
 
+        //----------------------------------------------------------------------
         //Methods below are unique to Tstring:
 
         virtual std::string to_string() const;
