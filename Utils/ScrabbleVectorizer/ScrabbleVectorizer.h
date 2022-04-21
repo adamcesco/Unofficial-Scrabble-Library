@@ -178,7 +178,7 @@ namespace scl{
         void set_sub8_dictionary(const std::unordered_set<std::string> &passed) { dictionarySub8 = passed; }
 
         /**
-         * @brief Builds both the length-sub-8 dictionary and the all encompassing dictionary from the passed @param fileDir.
+         * @brief Builds both the length-sub-8 dictionary and the all encompassing dictionary from the passed file directory.
          * @warning The file at the passed file directory should be a list of all Uppercase of words.
          */
         void build_dictionaries_from(const char *fileDir);
