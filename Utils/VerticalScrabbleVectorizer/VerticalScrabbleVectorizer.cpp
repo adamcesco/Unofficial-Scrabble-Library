@@ -88,6 +88,11 @@ void scl::VerticalScrabbleVectorizer::validate_generated_moves() {
             for (auto& word: moveSets[i][j]) {
                 std::vector<scl::Tstring> boardCpy = return_raw_board_with(word);
 
+                if(!word.is_empty() && boardCpy == board) {
+                    word.clear();
+                    continue;
+                }
+
                 for (int k = 0; k < 15; k++) {
                     scl::Tstring row;
                     scl::Tstring column;
