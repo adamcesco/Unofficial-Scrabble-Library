@@ -49,7 +49,7 @@ void scl::HorizontalScrabbleVectorizer::validate_generated_moves() {
             for (auto& word: moveSets[i][j]) {
                 std::vector<scl::Tstring> boardCpy = return_raw_board_with(word);
 
-                if(!word.is_empty() && boardCpy == board) {
+                if(boardCpy == board) {
                     word.clear();
                     continue;
                 }
