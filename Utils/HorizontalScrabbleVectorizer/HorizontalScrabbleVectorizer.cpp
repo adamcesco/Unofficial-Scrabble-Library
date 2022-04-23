@@ -54,6 +54,8 @@ void scl::HorizontalScrabbleVectorizer::validate_generated_moves() {
                     continue;
                 }
 
+                //TODO: iterate only over every column(entire column) the word is intersecting
+                //TODO: iterate only over the row(entire row) the word is in once
                 for (int k = 0; k < 15; k++) {
                     scl::Tstring row;
                     scl::Tstring column;
