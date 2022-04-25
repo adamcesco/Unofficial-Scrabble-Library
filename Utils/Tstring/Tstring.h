@@ -89,10 +89,7 @@ namespace scl {
 
         Tstring &erase_at(int);
 
-        inline bool is_empty() const {
-            if (eleCount > 0) { return false; }
-            return true;
-        }
+        inline bool is_empty() const { return eleCount == 0; }
 
         virtual bool contains(Tile) const;
 

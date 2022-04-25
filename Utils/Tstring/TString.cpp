@@ -36,13 +36,13 @@ scl::Tile scl::Tstring::read_at(int subscript) const{
 }
 
 scl::Tile scl::Tstring::read_back() const{
-    if(eleCount < 1)
+    if(eleCount == 0)
         throw std::invalid_argument("invalid call for scl::Tstring::back() | eleCount parameter is less than 1");
     return data[eleCount - 1];
 }
 
 scl::Tile& scl::Tstring::back(){
-    if(eleCount < 1)
+    if(eleCount == 0)
         throw std::invalid_argument("invalid call for scl::Tstring::back() | eleCount parameter is less than 1");
     return data[eleCount - 1];
 }
@@ -89,7 +89,7 @@ bool scl::Tstring::operator==(const scl::Tstring& dsv1) const{
 
 scl::Tstring &scl::Tstring::operator=(const std::string &toAssign) {
     int passedSize = toAssign.size();
-    eleCount = (passedSize < 19) ? passedSize : throw std::invalid_argument("invalid subscript for scl::Tstring &scl::Tstring::operator=(const string &toAssign) | Passed string is of a length that is larger than the max capacity for an scl::Tstring");;
+    eleCount = (passedSize < 21) ? passedSize : throw std::invalid_argument("invalid subscript for scl::Tstring &scl::Tstring::operator=(const string &toAssign) | Passed string is of a length that is larger than the max capacity for an scl::Tstring");;
 
     for (int i = 0; i < eleCount; ++i) {
         data[i] = toAssign[i];
@@ -99,7 +99,7 @@ scl::Tstring &scl::Tstring::operator=(const std::string &toAssign) {
 }
 
 scl::Tstring& scl::Tstring::operator+=(const scl::Tile &pssd){
-    if(eleCount > 18)
+    if(eleCount > 19)
         throw std::invalid_argument("invalid call for scl::Tstring& scl::Tstring::operator+=(const scl::Tile &) | Max capacity of scl::Tstring has been reached");
     data[eleCount] = pssd;
     eleCount++;
@@ -107,7 +107,7 @@ scl::Tstring& scl::Tstring::operator+=(const scl::Tile &pssd){
 }
 
 scl::Tstring& scl::Tstring::operator+=(char pssd) {
-    if(eleCount > 18)
+    if(eleCount > 19)
         throw std::invalid_argument("invalid call for scl::Tstring& scl::Tstring::operator+=(char) | Max capacity of scl::Tstring has been reached");
     data[eleCount] = pssd;
     eleCount++;
@@ -137,7 +137,7 @@ scl::Tstring::Tstring(const std::string toCpy) {
 
 scl::Tstring &scl::Tstring::operator=(const char* toAssign) {
     int passedSize = strlen(toAssign);
-    eleCount = (passedSize < 19) ? passedSize : throw std::invalid_argument("invalid subscript for scl::Tstring &scl::Tstring::operator=(char* toAssign) | Passed string is of a length that is larger than the max capacity for an scl::Tstring");;
+    eleCount = (passedSize < 21) ? passedSize : throw std::invalid_argument("invalid subscript for scl::Tstring &scl::Tstring::operator=(char* toAssign) | Passed string is of a length that is larger than the max capacity for an scl::Tstring");;
 
     for (int i = 0; i < eleCount; ++i)
         data[i] = toAssign[i];
@@ -256,7 +256,7 @@ std::vector<scl::Tstring> scl::Tstring::fragments() const{
 
 scl::Tstring scl::Tstring::operator+(const scl::Tile& toAppend) const {
     scl::Tstring temp(*this);
-    if(temp.eleCount > 18)
+    if(temp.eleCount > 19)
         throw std::invalid_argument("invalid call for scl::Tstring scl::Tstring::operator+(const scl::Tile& toAppend) | Max capacity of scl::Tstring has been reached");
     temp.data[temp.eleCount] = toAppend;
     temp.eleCount++;
@@ -265,7 +265,7 @@ scl::Tstring scl::Tstring::operator+(const scl::Tile& toAppend) const {
 
 scl::Tstring scl::Tstring::operator+(char toAppend) const {
     scl::Tstring temp(*this);
-    if(temp.eleCount > 18)
+    if(temp.eleCount > 19)
         throw std::invalid_argument("invalid call for scl::Tstring scl::Tstring::operator+(char toAppend) | Max capacity of scl::Tstring has been reached");
     temp.data[temp.eleCount] = toAppend;
     temp.eleCount++;

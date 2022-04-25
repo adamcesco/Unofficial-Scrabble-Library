@@ -52,7 +52,7 @@ TEST_CASE("Testing scl::Tstring::erase_at(int)", "[scl::Tstring]"){
     SECTION("Testing a populated scl::Tstring"){
         scl::Tstring testDummy = "Adam";
         testDummy.erase_at(2);
-        REQUIRE(testDummy == "Adm");
+        REQUIRE(testDummy == "ADM");
 
         bool error_thrown = false;
         try{
