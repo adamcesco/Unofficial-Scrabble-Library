@@ -83,37 +83,67 @@ scl::Tstring scl::VerticalScrabbleVectorizer::update_best_move(){
 }
 
 void scl::VerticalScrabbleVectorizer::validate_generated_moves() {
+    dictionary.emplace("A");
+    dictionary.emplace("B");
+    dictionary.emplace("C");
+    dictionary.emplace("D");
+    dictionary.emplace("E");
+    dictionary.emplace("F");
+    dictionary.emplace("G");
+    dictionary.emplace("H");
+    dictionary.emplace("I");
+    dictionary.emplace("J");
+    dictionary.emplace("K");
+    dictionary.emplace("L");
+    dictionary.emplace("M");
+    dictionary.emplace("N");
+    dictionary.emplace("O");
+    dictionary.emplace("P");
+    dictionary.emplace("Q");
+    dictionary.emplace("R");
+    dictionary.emplace("S");
+    dictionary.emplace("T");
+    dictionary.emplace("U");
+    dictionary.emplace("V");
+    dictionary.emplace("W");
+    dictionary.emplace("X");
+    dictionary.emplace("Y");
+    dictionary.emplace("Z");
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             for (auto& word: moveSets[i][j]) {
                 std::vector<scl::Tstring> boardCpy = return_raw_board_with(word);
 
-                if(boardCpy == board) {
+                int fy = word[0].y;
+                int fx = word[0].x;
+                int lx = word.back().x;
+
+                if(boardCpy[fy] == board[fy]) {
                     word.clear();
                     continue;
                 }
 
-                for (int k = 0; k < 15; k++) {
-                    scl::Tstring row;
+                std::vector<std::string> rowShards = boardCpy[fy].string_fragments();
+
+                for (const auto& shard : rowShards) {
+                    if(dictionary.find(shard) == dictionary.end()) {
+                        word.clear();
+                        break;
+                    }
+                }
+
+                for (int k = fx; !word.is_empty() && k <= lx; k++) {
                     scl::Tstring column;
-                    for (int l = 0; l < 15; ++l) {
-                        row += boardCpy[k].read_at(l);
-                        column += boardCpy[14 - l].read_at(k);
+                    for (int l = 14; l >= 0; --l) {
+                        column += boardCpy[l][k];
                     }
 
                     std::vector<std::string> colShards = column.string_fragments();
 
                     for (const auto& shard : colShards) {
-                        if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
+                        if(dictionary.find(shard) == dictionary.end()) {
                             word.clear();
-                        }
-                    }
-
-                    std::vector<std::string> rowShards = row.string_fragments();
-
-                    for (const auto& shard : rowShards) {
-                        if(shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
-                            word.clear();
+                            break;
                         }
                     }
                 }
