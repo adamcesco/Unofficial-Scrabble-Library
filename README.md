@@ -32,7 +32,7 @@ The scrabble vectorizers within the "scl" library base their word/move generatio
 
 #### Time Measurements and Speed
 
-The average time it takes the "scl" scrabble vectorizers to compute all possible moves for a given board and rack is dependent on the number of words that can be made from the current rack. For example, with a board pre-set with 5 words on it, and a rack of 7 different common letters, the word-generation time metric was ~0.18 seconds (on my local machine) to compute all playable moves. Racks with blanks take more time to compute due to current move generation logic and cleaning, but this time metric is still low: With a rack of 2 blanks and 5 common letters, move-generation time was ~0.88 seconds (on my local machine). 
+The average time it takes the "scl" scrabble vectorizers to compute all possible moves for a given board and rack is dependent on the number of words that can be made from the current rack. For example, with a board pre-set with 5 words on it, and a rack of 7 different common letters, the word-generation time metric was ~0.18 seconds (on my local machine) to compute all playable moves. Racks with blanks take more time to compute due to current move generation logic and cleaning, but this time metric is still low: On the same 5 word board, with a rack of 2 blanks and 5 common letters, move-generation time was ~0.88 seconds (on my local machine). 
 
 I have optimized my solution to meet my personal goal of needing less than 2 seconds for all playable move generation. I am very happy to have met this goal, but I am still looking for ways to optimize this solution further. I am constantly trying to optimize/improve the logic within my program.
 
