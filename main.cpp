@@ -14,19 +14,21 @@ int main(int argc, char* argv[]){
 
     std::string rack = "ADHSERK";    //blank tiles should be marked as a '?', and the letter within the rack need to be upper-case
 
+    ////Building the CADS, setting the RMAC build path, and building the dictionary ONLY NEEDS TO BE DONE ONCE PER VECTORIZER
     scl::HorizontalScrabbleVectorizer hReader;  //now building HorizontalScrabbleVectorizer (only generates horizontal moves)
     hReader.build_CADS_from(argv[2]);           //<- This tells the vectorizer to build the CADS from the given file directory
     hReader.set_RMAC_build_path_dictionary();   //<- Meaning that everytime we build an RMAC, it is built from this vectorizer's dictionary
     hReader.build_dictionaries_from(argv[2]);   //<- This tells the vectorizer to build it's dictionary from the given file
 
-    hReader.build_board_from(argv[1]);          //<- This builds the board from the given file
-    hReader.validate_board();                   //<- This validates all vertical and horizontal words on the current board
-    hReader.prep_perkBoard();                   //<- This prepares the perk-board based off of the current board
-
+    ////Building the CADS, setting the RMAC build path, and building the dictionary ONLY NEEDS TO BE DONE ONCE PER VECTORIZER
     scl::VerticalScrabbleVectorizer vReader;    //Now building VerticalScrabbleVectorizer (only generates vertical moves)
     vReader.build_dictionaries_from(argv[2]);   //every vectorizer needs to have a built dictionary, set their RMAC dictionary build path, and have a built CADS
     vReader.set_RMAC_build_path_dictionary();
     vReader.build_CADS_from(argv[2]);
+
+    hReader.build_board_from(argv[1]);          //<- This builds the board from the given file
+    hReader.validate_board();                   //<- This validates all vertical and horizontal words on the current board
+    hReader.prep_perkBoard();                   //<- This prepares the perk-board based off of the current board
 
     vReader.build_board_from(argv[1]);          //every vectorizer needs a built board, a validated board, and a prepared perk-board
     vReader.validate_board();
@@ -87,6 +89,7 @@ int main(int argc, char* argv[]){
     hReader.console_print_formatted_board();
     std::cout << "----------------------------------" << std::endl;
     vReader.console_print_formatted_board();
+    std::cout << "==================================" << std::endl << std::endl;
 
     hReader.clear_all_moves();
     vReader.clear_all_moves();
