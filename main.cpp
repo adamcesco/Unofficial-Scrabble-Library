@@ -51,7 +51,7 @@ int main(int argc, char* argv[]){
     hReader.validate_generated_moves();
     auto end = std::chrono::high_resolution_clock::now();   //Move generation is completed, ending timer here
     auto time_in_seconds = std::chrono::duration<double>(end - start);
-    std::cout << "Time taken by move generation: " << time_in_seconds.count() << " seconds" << std::endl;
+    std::cout << "Time taken by move generation: " << time_in_seconds.count() << " seconds" << std::endl << std::endl;
 
     vReader.update_best_move();     //<- This updates the best move for each vectorizer based off of highest points per move
     hReader.update_best_move();
@@ -64,10 +64,10 @@ int main(int argc, char* argv[]){
     //printing the information of the best word for the board to the console
     std::cout << "Best Horizontal Word: " << bestHWord.to_string() << std::endl;
     std::cout << "\tPoints: " << hPoints << std::endl;
-    std::cout << "\t(" << hReader.get_best_x() << ", " << hReader.get_best_y() << ')' << std::endl;
+    std::cout << "\t(" << hReader.get_best_x() << ", " << hReader.get_best_y() << ')' << std::endl << std::endl;
     std::cout << "Best Vertical Word: " << bestVWord.to_string() << std::endl;
     std::cout << "\tPoints: " << vPoints << std::endl;
-    std::cout << "\t(" << vReader.get_best_x() << ", " << vReader.get_best_y() << ')' << std::endl;
+    std::cout << "\t(" << vReader.get_best_x() << ", " << vReader.get_best_y() << ')' << std::endl << std::endl;
 
     std::cout << "Best word for the board: ";
     if (hPoints > vPoints) {
@@ -93,6 +93,8 @@ int main(int argc, char* argv[]){
 
     hReader.clear_all_moves();
     vReader.clear_all_moves();
+
+    //TODO: add a joiner method that joins the two vectorizers to have the same board
 
     return 0;
 }
