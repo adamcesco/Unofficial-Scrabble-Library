@@ -89,7 +89,5 @@ int main(int argc, char* argv[]){
     hReader.clear_all_moves();
     vReader.clear_all_moves();
 
-    //TODO: add a joiner method that joins the two vectorizers to have the same board
-
     return 0;
 }

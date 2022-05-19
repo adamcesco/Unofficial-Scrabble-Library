@@ -371,3 +371,21 @@ bool scl::Tstring::operator==(const char* toComp) const {
 
     return true;
 }
+
+scl::Tstring &scl::Tstring::to_vertical_format() {
+    for (int i = 0; i < eleCount; ++i) {
+        int temp = 14 - data[i].x;
+        data[i].x = data[i].y;
+        data[i].y = temp;
+    }
+    return *this;
+}
+
+scl::Tstring &scl::Tstring::to_horizontal_format() {
+    for (int i = 0; i < eleCount; ++i) {
+        int temp = 14 - data[i].y;
+        data[i].y = data[i].x;
+        data[i].x = temp;
+    }
+    return *this;
+}

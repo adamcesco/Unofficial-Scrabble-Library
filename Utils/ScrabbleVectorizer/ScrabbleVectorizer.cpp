@@ -99,11 +99,10 @@ void scl::ScrabbleVectorizer::reset_all_data() {
 }
 
 void scl::ScrabbleVectorizer::raw_place_boarded_word(const scl::Tstring &toPrint) {
-    for (int i = toPrint.read_at(0).x; i < toPrint.length() + toPrint.read_at(0).x; i++) {
-        if (board[toPrint.read_at(0).y][i] == ' ')
-            board[toPrint.read_at(0).y][i] = scl::Tile(toPrint.read_at(i - toPrint.read_at(0).x).letter,
-                                                       i,
-                                                       toPrint.read_at(0).y, 1);
+    for (int i = 0; i < toPrint.length(); ++i) {
+        board[toPrint.read_at(i).y][toPrint.read_at(i).x] = scl::Tile(toPrint.read_at(i).letter,
+                                                                      toPrint.read_at(i).x,
+                                                                      toPrint.read_at(i).y, 1);
     }
 }
 

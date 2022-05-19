@@ -137,6 +137,10 @@ namespace scl {
         std::vector<std::string> string_fragments() const;
 
         bool is_all_whitespace() const;
+
+        Tstring &to_vertical_format();
+
+        Tstring &to_horizontal_format();
     };
 }
 #endif
