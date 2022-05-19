@@ -34,8 +34,9 @@ int main(int argc, char* argv[]){
     vReader.validate_board();
     vReader.prep_perkBoard();
 
+    //Printing current boards to console
     std::cout << std::endl;
-    hReader.console_print_formatted_board();    //Printing current boards to console
+    hReader.console_print_formatted_board();
     std::cout << std::endl << "----------------------------------" << std::endl << std::endl;
     vReader.console_print_formatted_board();
     std::cout << std::endl;
@@ -54,6 +55,7 @@ int main(int argc, char* argv[]){
     hReader.validate_generated_moves();
     auto end = std::chrono::high_resolution_clock::now();   //Move generation is completed, ending timer here
     auto time_in_seconds = std::chrono::duration<double>(end - start);
+
     std::cout << "Time taken by move generation: " << time_in_seconds.count() << " seconds" << std::endl << std::endl;
 
     vReader.update_best_move();     //<- This updates the best move for each vectorizer to be the move that has the highest amount of points
