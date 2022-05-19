@@ -45,9 +45,25 @@ void scl::VerticalScrabbleVectorizer::build_board_from(const char* fileDir) {
 }
 
 void scl::VerticalScrabbleVectorizer::console_print_formatted_board() const{
+    std::cout << "  ";
     for (int i = 0; i < 15; ++i) {
+        std::cout << ' ';
+        if(i < 10)
+            std::cout << ' ';
+        std::cout << i;
+    }
+    std::cout << std::endl;
+    for (int i = 0; i < 15; ++i) {
+        std::cout << i;
+        if(i < 10)
+            std::cout << ' ';
+
         for (int j = 14; j >= 0; --j) {
-            std::cout << board[j].read_at(i).letter;
+            std::cout << "  ";
+            if (board[j].read_at(i).letter == ' ')
+                std::cout << '.';
+            else
+                std::cout << board[j].read_at(i).letter;
         }
         std::cout << std::endl;
     }

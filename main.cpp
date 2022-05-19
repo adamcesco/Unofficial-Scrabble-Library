@@ -34,8 +34,11 @@ int main(int argc, char* argv[]){
     vReader.validate_board();
     vReader.prep_perkBoard();
 
+    std::cout << std::endl;
     hReader.console_print_formatted_board();    //Printing current boards to console
+    std::cout << std::endl << "----------------------------------" << std::endl << std::endl;
     vReader.console_print_formatted_board();
+    std::cout << std::endl;
 
     auto start = std::chrono::high_resolution_clock::now();  //Timing word generation
     hReader.set_rack(rack);
@@ -53,7 +56,7 @@ int main(int argc, char* argv[]){
     auto time_in_seconds = std::chrono::duration<double>(end - start);
     std::cout << "Time taken by move generation: " << time_in_seconds.count() << " seconds" << std::endl << std::endl;
 
-    vReader.update_best_move();     //<- This updates the best move for each vectorizer based off of highest points per move
+    vReader.update_best_move();     //<- This updates the best move for each vectorizer to be the move that has the highest amount of points
     hReader.update_best_move();
 
     int vPoints = vReader.points_of_best_boarded_move();            //<- The "points_of_best_boarded_move()" method gets the points of the boarded version of the best move: counting adjacently formed words and board perks
@@ -64,32 +67,22 @@ int main(int argc, char* argv[]){
     //printing the information of the best word for the board to the console
     std::cout << "Best Horizontal Word: " << bestHWord.to_string() << std::endl;
     std::cout << "\tPoints: " << hPoints << std::endl;
-    std::cout << "\t(" << hReader.get_best_x() << ", " << hReader.get_best_y() << ')' << std::endl << std::endl;
+    std::cout << "\t(" << hReader.get_best_x() << ", " << hReader.get_best_y() << ')' << std::endl;
     std::cout << "Best Vertical Word: " << bestVWord.to_string() << std::endl;
     std::cout << "\tPoints: " << vPoints << std::endl;
-    std::cout << "\t(" << vReader.get_best_x() << ", " << vReader.get_best_y() << ')' << std::endl << std::endl;
+    std::cout << "\t(" << vReader.get_best_x() << ", " << vReader.get_best_y() << ')' << std::endl;
 
-    std::cout << "Best word for the board: ";
-    if (hPoints > vPoints) {
-        std::cout << bestHWord.to_string() << std::endl;
-        std::cout << "\tPoints: " << hPoints << std::endl;
-        std::cout << "\thorizontal" << std::endl;
-    } else {
-        std::cout << bestVWord.to_string() << std::endl;
-        std::cout << "\tPoints: " << vPoints << std::endl;
-        std::cout << "\tvertical" << std::endl;
-    }
-
-    //printing to board
+    //placing each move into the board
     vReader.raw_place_boarded_word(bestVWord);      //<- the "raw_place_boarded_word(scl::Tstring)" method places the passed scl::Tstring into the current board strictly based off of the coordinates of each scl::Tile in the scl::Tstring
     vReader.prep_perkBoard();                       //<- the board was changed, so the prep board must be updated
     hReader.raw_place_boarded_word(bestHWord);
     hReader.prep_perkBoard();
 
+    std::cout << std::endl;
     hReader.console_print_formatted_board();
-    std::cout << "----------------------------------" << std::endl;
+    std::cout << std::endl << "----------------------------------" << std::endl << std::endl;
     vReader.console_print_formatted_board();
-    std::cout << "==================================" << std::endl << std::endl;
+    std::cout << std::endl;
 
     hReader.clear_all_moves();
     vReader.clear_all_moves();

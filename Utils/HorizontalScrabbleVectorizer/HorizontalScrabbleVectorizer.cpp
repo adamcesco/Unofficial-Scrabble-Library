@@ -35,9 +35,27 @@ void scl::HorizontalScrabbleVectorizer::build_board_from(const char* filePath) {
 }
 
 void scl::HorizontalScrabbleVectorizer::console_print_formatted_board() const{
-    for (const auto &row: board) {
-        for (int i = 0; i < row.length(); ++i) {
-            std::cout << row.read_at(i).letter;
+    std::cout << "  ";
+    for (int i = 0; i < 15; ++i) {
+        std::cout << ' ';
+        if(i < 10)
+            std::cout << ' ';
+        std::cout << i;
+    }
+    std::cout << std::endl;
+
+    for (int i = 0; i < board.size(); ++i) {
+        std::cout << i;
+        if(i < 10)
+            std::cout << ' ';
+
+        for (int j = 0; j < board[i].length(); ++j) {
+            std::cout << "  ";
+            if (board[i].read_at(j).letter == ' ')
+                std::cout << '.';
+            else
+                std::cout << board[i].read_at(j).letter;
+
         }
         std::cout << std::endl;
     }
