@@ -7,7 +7,7 @@
 TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "ScrabbleVectorizer"){
     scl::HorizontalScrabbleVectorizer hReader(std::string("ASDFGHJ"));
     hReader.build_board_from("../Test_Folder/Board.csv");
-    hReader.prep_perkBoard();
+    hReader.update_perkBoard();
     hReader.build_dictionaries_from("../Test_Folder/scrabble_word_list.txt");
     hReader.validate_board();
     hReader.build_CADS_from("../Test_Folder/scrabble_word_list.txt");
@@ -16,7 +16,7 @@ TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "
 
     scl::VerticalScrabbleVectorizer vReader(std::string("ASDFGHJ"));
     vReader.build_board_from("../Test_Folder/Board.csv");
-    vReader.prep_perkBoard();
+    vReader.update_perkBoard();
     vReader.build_dictionaries_from("../Test_Folder/scrabble_word_list.txt");
     vReader.validate_board();
     vReader.build_CADS_from("../Test_Folder/scrabble_word_list.txt");
@@ -134,11 +134,11 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
 
     scl::HorizontalScrabbleVectorizer hReader(rack);
     hReader.build_board_from("../Test_Folder/Board.csv");
-    hReader.prep_perkBoard();
+    hReader.update_perkBoard();
 
     scl::VerticalScrabbleVectorizer vReader(rack);
     vReader.build_board_from("../Test_Folder/Board.csv");
-    vReader.prep_perkBoard();
+    vReader.update_perkBoard();
 
     std::ifstream boardFile;
     boardFile.open("../Test_Folder/Board.csv");

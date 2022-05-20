@@ -54,7 +54,7 @@ namespace scl{
         /**
          * @brief Places the passed scl::Tstring into the current board of this vectorizer at the passed coordinate, regardless of the coordinates within the scl::Tiles within the passed scl::Tstring.
          * @param type: States whether this move is a VERTICAL or HORIZONTAL move.
-         * @warning After placing the passed string into the board, the perk-board may need to be prepared via "void prep_perkBoard()".
+         * @warning After placing the passed string into the board, the perk-board may need to be prepared via "void update_perkBoard()".
          */
         virtual void guided_place(int x, int y, TYPE type, const scl::Tstring &tstr);
 
@@ -81,7 +81,7 @@ namespace scl{
         /**
          * @brief Places the move with the highest points into the board.
          * @warning The calculation of the best-move needs to done before hand via "scl::Tstring update_best_move()".
-         * @attention After placing the "best-move" into the board, the perk-board DOES NOT need to be prepared via "void prep_perkBoard()".
+         * @attention After placing the "best-move" into the board, the perk-board DOES NOT need to be prepared via "void update_perkBoard()".
          */
         virtual void place_best_move_into_board();
 

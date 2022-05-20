@@ -65,7 +65,7 @@ namespace scl{
         /**
          * @brief Builds the perk-board of this vectorizer from the passed 2-D char array.
          * @warning The passed 2-D char array must be size 15 x 15.
-         * @warning The perk-board to be built via this method may still need to be prepared via "void prep_perkBoard()".
+         * @warning The perk-board to be built via this method may still need to be prepared via "void update_perkBoard()".
          * @warning This method assumes that the passed perk-baord has proper formatting
          */
         virtual void build_perkBoard_from(const char **) = 0;
@@ -78,7 +78,7 @@ namespace scl{
         /**
          * @brief Places the passed std::string into the current board of this vectorizer at the passed coordinate.
          * @param type: States whether this move is a VERTICAL or HORIZONTAL move.
-         * @warning After placing the passed string into the board, the perk-board may need to be prepared via "void prep_perkBoard()".
+         * @warning After placing the passed string into the board, the perk-board may need to be prepared via "void update_perkBoard()".
          */
         virtual void guided_place(int x, int y, TYPE type, const std::string& str) = 0;
 
@@ -99,7 +99,7 @@ namespace scl{
 
         /**
          * @brief Places the scl::Tiles of the passed scl::Tstring into the current board of this vectorizer based off of the coordinates of each scl::Tile in the passed scl::Tstring.
-         * @warning After placing the passed scl::Tstring into the board, the perk-board may need to be prepared via "void prep_perkBoard()".
+         * @warning After placing the passed scl::Tstring into the board, the perk-board may need to be prepared via "void update_perkBoard()".
          */
         virtual void raw_place_boarded_word(const scl::Tstring &);
 
@@ -206,7 +206,7 @@ namespace scl{
         /**
          * @brief Sets the RMAC to be built from this vectorizers length-sub-8 dictionary each time tangential move generation is executed.
          */
-        void prep_perkBoard();
+        void update_perkBoard();
 
         /**
          * @brief Returns true if the passed scl::Tstring contains at least one letter of the rack of this vectorizer.
