@@ -32,11 +32,11 @@ The scrabble vectorizers within the "scl" library base their word/move generatio
 
 #### Time Measurements and Speed
 
-Time Metrics on My Local Machine to Compute all Playable Moves:
-- On a board pre-set with 5 words placed on it
-  - With a rack of 0 blanks and 7 common letters: **~0.18 seconds**
-  - With a rack of 1 blank and 6 common letters: **~0.47 seconds**
-  - With a rack of 2 blanks and 5 common letters: **~0.88 seconds**
+- Time Metrics on My Local Machine to Compute all Playable Moves:
+  - On a board pre-set with 5 words placed on it
+    - With a rack of 0 blanks and 7 common letters: **~0.18 seconds**
+    - With a rack of 1 blank and 6 common letters: **~0.47 seconds**
+    - With a rack of 2 blanks and 5 common letters: **~0.88 seconds**
 
 The average time it takes the "scl" scrabble vectorizers to compute all possible moves for a given board and rack is dependent on the number of moves that can be made from the current rack. Therefor, racks with blanks take more time to compute due to current move generation logic and cleaning.
 
