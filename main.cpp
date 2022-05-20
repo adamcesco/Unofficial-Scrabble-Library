@@ -35,11 +35,9 @@ int main(int argc, char* argv[]){
     vReader.update_perkBoard();
 
     // Printing current boards to console
-    std::cout << std::endl;
-    std::cout << "Horizontal Vectorizer Board:" << std::endl;
+    std::cout << std::endl << "Horizontal Vectorizer Board:" << std::endl;
     hReader.console_print_formatted_board();
-    std::cout << std::endl;
-    std::cout << "Vertical Vectorizer Board:" << std::endl;
+    std::cout << std::endl << "Vertical Vectorizer Board:" << std::endl;
     vReader.console_print_formatted_board();
     std::cout << std::endl;
 
@@ -49,23 +47,23 @@ int main(int argc, char* argv[]){
         hReader.set_rack(rack);
         vReader.set_rack(rack);
 
-        vReader.search_for_intersecting_moves();    //<- Searching for moves that intersect with another word on the current board
-        vReader.search_for_tangential_moves();      //<- Searching for moves that are only touching another word and never intersecting with another word
+        vReader.search_for_intersecting_moves();    //<- searching for moves that intersect with another word on the current board
+        vReader.search_for_tangential_moves();      //<- searching for moves that are only touching another word and never intersecting with another word
 
         hReader.search_for_intersecting_moves();
         hReader.search_for_tangential_moves();
 
-        vReader.validate_generated_moves();         //<- The generated moves need to be filtered and cleaned so that no invalid moves remain
+        vReader.validate_generated_moves();         //<- the generated moves need to be filtered and cleaned so that no invalid moves remain
         hReader.validate_generated_moves();
         auto end = std::chrono::high_resolution_clock::now();
         auto time_in_seconds = std::chrono::duration<double>(end - start);
 
-        std::cout << std::endl << "====================================================" << std::endl << std::endl;
+        std::cout << "====================================================" << std::endl << std::endl;
         std::cout << "Time taken by move generation: " << time_in_seconds.count() << " seconds" << std::endl << std::endl;
 
 
         //// Calculating and printing the information of the best word for each vectorizer to the console
-        vReader.update_best_move();     //<- This updates the best move for each vectorizer
+        vReader.update_best_move();     //<- this updates the best move for each vectorizer
         hReader.update_best_move();
 
         int vPoints = vReader.points_of_best_boarded_move();
@@ -76,6 +74,7 @@ int main(int argc, char* argv[]){
         std::cout << "Best Horizontal Word: " << bestHWord.to_string() << std::endl;
         std::cout << "\tPoints: " << hPoints << std::endl;
         std::cout << "\t(" << hReader.get_best_x() << ", " << hReader.get_best_y() << ')' << std::endl;
+
         std::cout << "Best Vertical Word: " << bestVWord.to_string() << std::endl;
         std::cout << "\tPoints: " << vPoints << std::endl;
         std::cout << "\t(" << vReader.get_best_x() << ", " << vReader.get_best_y() << ')' << std::endl;
@@ -88,27 +87,24 @@ int main(int argc, char* argv[]){
             // the "raw_place_boarded_word(scl::Tstring)" method places the passed scl::Tstring into the current board strictly based off of the coordinates of each scl::Tile in the scl::Tstring
             hReader.raw_place_boarded_word(bestHWord);
 
-            bestHWord.to_vertical_format();     //<- The "to_vertical_format()" and "to_horizontal_format()" methods convert a scl::Tstring from one format into the other format
-            vReader.raw_place_boarded_word(bestHWord);
+            // the "return_vertical_format()" and "return_horizontal_format()" methods return that a version of the invoking scl::Tstring that has been changed from its original format into the other format
+            vReader.raw_place_boarded_word(bestHWord.return_vertical_format());
         }
         else{
             std::cout << std::endl << "Vertical word \"" << bestVWord.to_string() << "\" is the best word overall" << std::endl;
 
             vReader.raw_place_boarded_word(bestVWord);
 
-            bestVWord.to_horizontal_format();
-            hReader.raw_place_boarded_word(bestVWord);
+            hReader.raw_place_boarded_word(bestVWord.return_horizontal_format());
         }
         vReader.update_perkBoard();   //<- both boards have changed, so their perk board must be updated
         hReader.update_perkBoard();
 
 
         //// Printing current boards to console
-        std::cout << std::endl;
-        std::cout << "Horizontal Vectorizer Board:" << std::endl;
+        std::cout << std::endl << "Horizontal Vectorizer Board:" << std::endl;
         hReader.console_print_formatted_board();
-        std::cout << std::endl;
-        std::cout << "Vertical Vectorizer Board:" << std::endl;
+        std::cout << std::endl << "Vertical Vectorizer Board:" << std::endl;
         vReader.console_print_formatted_board();
         std::cout << std::endl;
 

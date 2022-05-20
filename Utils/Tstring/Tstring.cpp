@@ -389,3 +389,23 @@ scl::Tstring &scl::Tstring::to_horizontal_format() {
     }
     return *this;
 }
+
+scl::Tstring scl::Tstring::return_vertical_format() const {
+    Tstring toReturn = *this;
+    for (int i = 0; i < eleCount; ++i) {
+        int temp = 14 - data[i].x;
+        toReturn[i].x = data[i].y;
+        toReturn[i].y = temp;
+    }
+    return toReturn;
+}
+
+scl::Tstring scl::Tstring::return_horizontal_format() const {
+    Tstring toReturn = *this;
+    for (int i = 0; i < eleCount; ++i) {
+        int temp = 14 - data[i].y;
+        toReturn[i].y = data[i].x;
+        toReturn[i].x = temp;
+    }
+    return toReturn;
+}

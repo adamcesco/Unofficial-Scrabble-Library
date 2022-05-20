@@ -141,6 +141,10 @@ namespace scl {
         Tstring &to_vertical_format();
 
         Tstring &to_horizontal_format();
+
+        Tstring return_vertical_format() const;
+
+        Tstring return_horizontal_format() const;
     };
 }
 #endif
