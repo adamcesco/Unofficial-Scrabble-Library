@@ -65,7 +65,6 @@ A main way of increasing this solution's speed was found by implementing a DAWG/
     - This feature is now supported.
 4. ~~Increase the usability of classes for future users/editors of the project~~
 5. ~~Test and Optimize solution to prime for finalization.~~
-7. Provide an in-depth tutorial for users/editors of this library.
 
 ## References
 
