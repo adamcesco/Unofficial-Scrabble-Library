@@ -24,7 +24,7 @@
 
 ## About This Solution
 
-I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for horizontal-word-vectorizers and vertical-word-vectorizers, and they are both derived classes from an abstracted Scrabble-vectorizer class. Throughout implementation, I continue to enhance the usability and ease of use of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application.
+I use a test-driven solution that is primarily object-oriented. In its current state, there are separate classes for horizontal-word-vectorizers and vertical-word-vectorizers, and they are both derived classes from an abstracted Scrabble-vectorizer class - utilizing the "Prototype" Design Pattern. Throughout implementation, I continue to enhance the usability and ease of use of all classes within this solution, so that future editors or users of the class can intuitively implement all classes with little to no limitations for application.
 
 #### Notes About This Solution's Applicability
 
