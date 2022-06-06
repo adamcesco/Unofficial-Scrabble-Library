@@ -32,7 +32,7 @@ The scrabble vectorizers within the "scl" library base their word/move generatio
 
 #### Time Measurements and Speed
 
-- Time Metrics on My Local Machine to Compute all Playable Moves:
+- Time Metrics on My Local Machine to Compute All Playable Moves:
   - On a board pre-set with 5 words placed on it:
     - With a rack of 0 blanks and 7 common letters: **~0.18 seconds**
     - With a rack of 1 blank and 6 common letters: **~0.47 seconds**
