@@ -8,4 +8,4 @@
 #include "Utils/HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.h"
 #include "Utils/VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
 
-#endif //SCRABBLE_SOLVER_SCL_H
+#endif  // SCRABBLE_SOLVER_SCL_H

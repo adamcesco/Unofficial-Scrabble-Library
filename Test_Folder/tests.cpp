@@ -1,10 +1,11 @@
-#include "catch.hpp"
+#include <fstream>
+#include <sstream>
+
 #include "../Utils/HorizontalScrabbleVectorizer/HorizontalScrabbleVectorizer.h"
 #include "../Utils/VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
-#include <sstream>
-#include <fstream>
+#include "catch.hpp"
 
-TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "ScrabbleVectorizer"){
+TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "ScrabbleVectorizer") {
     scl::HorizontalScrabbleVectorizer hReader(std::string("ASDFGHJ"));
     hReader.build_board_from("../Test_Folder/Board.csv");
     hReader.update_perkBoard();
@@ -35,12 +36,16 @@ TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             for (auto& hword : hReader.get_all_moves_at(i, j)) {
-                if(hword.is_empty()){ continue; }
+                if (hword.is_empty()) {
+                    continue;
+                }
                 REQUIRE(hword[0].x == i);
                 REQUIRE(hword[0].y == j);
             }
             for (auto& vword : vReader.get_all_moves_at(i, j)) {
-                if(vword.is_empty()){ continue; }
+                if (vword.is_empty()) {
+                    continue;
+                }
                 REQUIRE(vword[0].y == 14 - i);
                 REQUIRE(vword[0].x == j);
             }
@@ -48,61 +53,61 @@ TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "
     }
 }
 
-TEST_CASE("Testing scl::Tstring::erase_at(int)", "[scl::Tstring]"){
-    SECTION("Testing a populated scl::Tstring"){
+TEST_CASE("Testing scl::Tstring::erase_at(int)", "[scl::Tstring]") {
+    SECTION("Testing a populated scl::Tstring") {
         scl::Tstring testDummy = "Adam";
         testDummy.erase_at(2);
         REQUIRE(testDummy == "ADM");
 
         bool error_thrown = false;
-        try{
+        try {
             scl::Tstring testDummy = "Adam";
             testDummy.erase_at(-1);
-        } catch(const std::invalid_argument& e){
+        } catch (const std::invalid_argument& e) {
             error_thrown = true;
         }
         REQUIRE(error_thrown);
 
         error_thrown = false;
-        try{
+        try {
             scl::Tstring testDummy = "Adam";
             testDummy.erase_at(4);
-        } catch(const std::invalid_argument& e){
+        } catch (const std::invalid_argument& e) {
             error_thrown = true;
         }
         REQUIRE(error_thrown);
     }
 
-    SECTION("Testing an empty scl::Tstring"){
+    SECTION("Testing an empty scl::Tstring") {
         bool error_thrown = false;
-        try{
+        try {
             scl::Tstring testDummy;
             testDummy.erase_at(0);
-        } catch(const std::invalid_argument& e){
+        } catch (const std::invalid_argument& e) {
             error_thrown = true;
         }
         REQUIRE(error_thrown);
     }
 }
 
-TEST_CASE("Testing CADS Usage and Speed", "[CADS]"){
+TEST_CASE("Testing CADS Usage and Speed", "[CADS]") {
     scl::CADS wordData("../Data/scrabble_word_list.txt");
 
-    SECTION("Testing words with \'A\' as the first letter"){
+    SECTION("Testing words with \'A\' as the first letter") {
         std::vector<scl::AnchoredString> data = wordData.at_with(2, 'A');
         for (auto& it : data) {
             REQUIRE(it.first[it.second] == 'A');
         }
     }
 
-    SECTION("Testing words with \'S\' as the 5th tile of the 3rd row"){
+    SECTION("Testing words with \'S\' as the 5th tile of the 3rd row") {
         std::vector<scl::AnchoredString> data = wordData.at_with(4, 'S');
         for (auto& it : data) {
             REQUIRE(it.first[it.second] == 'S');
         }
     }
 
-    SECTION("Testing all words formed within CADS"){
+    SECTION("Testing all words formed within CADS") {
         for (int i = 0; i < 15; ++i) {
             for (int j = 0; j < 15; ++j) {
                 for (int k = 0; k < 26; ++k) {
@@ -117,7 +122,7 @@ TEST_CASE("Testing CADS Usage and Speed", "[CADS]"){
     }
 }
 
-TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
+TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]") {
     std::string rack = "GRO?LEE";
     scl::Tstring word = "ADAM";
     word[0].x = 10;
@@ -142,23 +147,22 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
 
     std::ifstream boardFile;
     boardFile.open("../Test_Folder/Board.csv");
-    if(!boardFile.is_open())
+    if (!boardFile.is_open())
         throw std::invalid_argument("could not open ../Test_Folder/Board.csv");
 
     std::vector<scl::Tstring> originalBoard;
     std::string row;
     int rowCount = 0;
-    while (boardFile.good()){
+    while (boardFile.good()) {
         getline(boardFile, row);
         std::string cell;
         std::stringstream strStr(row);
         int cellCount = 0;
         scl::Tstring rowVect;
-        while (getline(strStr, cell, ',') && cellCount < 15){
-            if(!cell.empty() && isalpha(cell[0])) {
+        while (getline(strStr, cell, ',') && cellCount < 15) {
+            if (!cell.empty() && isalpha(cell[0])) {
                 rowVect += scl::Tile(cell[0], cellCount, rowCount, 1);
-            }
-            else {
+            } else {
                 rowVect += scl::Tile(' ', cellCount, rowCount, 1);
             }
             cellCount++;
@@ -168,28 +172,27 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     }
     boardFile.close();
 
-    char originalPerkBoard[15][15] =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
-                                        {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
-                                        {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
-                                        {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
-                                        {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
-                                        {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
-                                        {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
-                                        {'3', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
-                                        {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
-                                        {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
-                                        {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
-                                        {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
-                                        {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
-                                        {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
-                                        {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'}};
+    char originalPerkBoard[15][15] = {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
+                                      {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
+                                      {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
+                                      {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
+                                      {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
+                                      {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
+                                      {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
+                                      {'3', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
+                                      {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
+                                      {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
+                                      {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
+                                      {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
+                                      {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
+                                      {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
+                                      {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'}};
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
-            if(originalBoard[i][j].letter != ' ')
+            if (originalBoard[i][j].letter != ' ')
                 originalPerkBoard[i][j] = ' ';
         }
     }
-
 
     SECTION("ScrabbleVectorizer::return_formatted_board_copy() and ScrabbleVectorizer::get_raw_board()") {
         REQUIRE(hReader.return_formatted_board_copy() == originalBoard);
@@ -244,10 +247,10 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]"){
     }
 }
 
-TEST_CASE("Testing method scl::Tstring::is_descendent_of", "[scl::Tstring]"){
+TEST_CASE("Testing method scl::Tstring::is_descendent_of", "[scl::Tstring]") {
     std::string givenRack = "DOEWJ?K";
 
-    SECTION("Testing different variations of the given word \"DOEWJ?K\" as input"){
+    SECTION("Testing different variations of the given word \"DOEWJ?K\" as input") {
         scl::Tstring toValidate = "JOOKED";
         REQUIRE(toValidate.is_descendent_of(givenRack));
 
@@ -277,12 +280,12 @@ TEST_CASE("Testing method scl::Tstring::is_descendent_of", "[scl::Tstring]"){
     }
 }
 
-TEST_CASE("Testing method scl::Tstring::row_is_descendent_of", "[scl::Tstring]"){
+TEST_CASE("Testing method scl::Tstring::row_is_descendent_of", "[scl::Tstring]") {
     std::string givenRack = "LEO?UDQ";
     scl::Tstring givenRow = "     R B  D    ";
     givenRow.set_x_vals_to_subscripts();
 
-    SECTION("Testing different variations of the given word \"LEO?UDQ\" with row \"     R B  D    \" as input"){
+    SECTION("Testing different variations of the given word \"LEO?UDQ\" with row \"     R B  D    \" as input") {
         scl::Tstring toValidate = "     R BUDDY   ";
         scl::Tstring givenWord = "BUDDY";
         givenWord.set_x_vals_to_subscripts();
@@ -333,46 +336,46 @@ TEST_CASE("Testing method scl::Tstring::row_is_descendent_of", "[scl::Tstring]")
     }
 }
 
-TEST_CASE("Testing manual board and perk-board setting", "[ScrabbleVectorizer]"){
+TEST_CASE("Testing manual board and perk-board setting", "[ScrabbleVectorizer]") {
     std::string rack = "POIAUD?";
 
     scl::HorizontalScrabbleVectorizer hReader(rack);
     hReader.build_board_from("../Test_Folder/Board.csv");
     scl::VerticalScrabbleVectorizer vReader(rack);
     vReader.build_board_from("../Test_Folder/Board.csv");
-    std::vector<std::string> customPerkBoard =   {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', '|', ' ', ' ', '3'},
-                                        {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', '2', ' '},
-                                        {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', '2', ' ', ' '},
-                                        {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '|', ' ', ' ', 'B'},
-                                        {'=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '|', '=', '=', '='},
-                                        {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', 'C', ' '},
-                                        {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', 'B', ' ', ' '},
-                                        {'3', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', ' ', '|', ' ', ' ', '3'},
-                                        {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', 'B', ' ', ' '},
-                                        {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', 'C', ' '},
-                                        {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', '|', ' ', ' ', ' '},
-                                        {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '|', ' ', ' ', 'B'},
-                                        {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', '2', ' ', ' '},
-                                        {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', '2', ' '},
-                                        {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', '|', ' ', ' ', '3'}};
+    std::vector<std::string> customPerkBoard = {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', '|', ' ', ' ', '3'},
+                                                {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', '2', ' '},
+                                                {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', '2', ' ', ' '},
+                                                {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '|', ' ', ' ', 'B'},
+                                                {'=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '=', '|', '=', '=', '='},
+                                                {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', 'C', ' '},
+                                                {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', 'B', ' ', ' '},
+                                                {'3', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', ' ', '|', ' ', ' ', '3'},
+                                                {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', 'B', ' ', ' '},
+                                                {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', 'C', ' '},
+                                                {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', '|', ' ', ' ', ' '},
+                                                {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '|', ' ', ' ', 'B'},
+                                                {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', '|', '2', ' ', ' '},
+                                                {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', '|', ' ', '2', ' '},
+                                                {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', '|', ' ', ' ', '3'}};
 
-    std::vector<std::string> customBoard =       {{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', ' ', ' '},
-                                        {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', ' ', ' '},
-                                        {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', 'L', ' '},
-                                        {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', 'L', ' '},
-                                        {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
-                                        {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
-                                        {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
-                                        {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
-                                        {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
-                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
-                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-                                        {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '}};
+    std::vector<std::string> customBoard = {{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                                            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                                            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', ' ', ' '},
+                                            {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', ' ', ' '},
+                                            {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', 'L', ' '},
+                                            {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', 'B', 'B', 'B', 'B', 'B', 'L', ' '},
+                                            {' ', ' ', 'S', ' ', 'C', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                            {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                            {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                            {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                            {' ', ' ', 'S', ' ', 'C', ' ', 'R', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                            {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', 'L', ' '},
+                                            {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                                            {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+                                            {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'A', ' ', ' ', ' ', ' ', ' ', ' ', ' '}};
 
-    SECTION("ScrabbleVectorizer::build_board_from(const std::vector<std::string>&)"){
+    SECTION("ScrabbleVectorizer::build_board_from(const std::vector<std::string>&)") {
         vReader.build_board_from(customBoard);
         hReader.build_board_from(customBoard);
 

@@ -16,14 +16,14 @@ scl::Tile::Tile(char passed, int xp, int yp, int fl) {
     flag = fl;
     isBlank = false;
 
-    if(isalpha(letter))
+    if (isalpha(letter))
         points = legend[(letter & 31) - 1];
     else
         points = 0;
 }
 
 scl::Tile &scl::Tile::operator=(const scl::Tile &invoked) {
-    if(this == &invoked)
+    if (this == &invoked)
         return *this;
     letter = invoked.letter;
     y = invoked.y;
@@ -39,7 +39,7 @@ scl::Tile &scl::Tile::operator=(char invoked) {
     y = x = flag = -1;
     isBlank = false;
 
-    if(isalpha(letter))
+    if (isalpha(letter))
         points = legend[(letter & 31) - 1];
     else
         points = 0;
@@ -53,7 +53,7 @@ scl::Tile::Tile(unsigned char passed, int xp, int yp, int fl) {
     flag = fl;
     isBlank = false;
 
-    if(isalpha(letter))
+    if (isalpha(letter))
         points = legend[(letter & 31) - 1];
     else
         points = 0;

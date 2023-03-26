@@ -1,48 +1,48 @@
 #ifndef SCRABBLE_SOLVER_CADS_H
 #define SCRABBLE_SOLVER_CADS_H
 
-#include "../Tstring/Tstring.h"
 #include <string>
 #include <vector>
 
-namespace scl{
-    struct AnchoredString {
-        AnchoredString(const std::string &str1, int subscript) {
-            first = str1;
-            second = subscript;
-        }
+#include "../Tstring/Tstring.h"
 
-        std::string first;
-        int second;
-    };
+namespace scl {
+struct AnchoredString {
+    AnchoredString(const std::string &str1, int subscript) {
+        first = str1;
+        second = subscript;
+    }
 
-    class CADS {    //Coordinated Anchored Data Set
-    public:
-        CADS() { data = nullptr; }
+    std::string first;
+    int second;
+};
 
-        explicit CADS(const char *);
+class CADS {  // Coordinated Anchored Data Set
+   public:
+    CADS() { data = nullptr; }
 
-        CADS(const CADS &);
+    explicit CADS(const char *);
 
-        CADS &operator=(const CADS &);
+    CADS(const CADS &);
 
-        /**
-         * @brief Returns the list of words that have the passed char at the passed x value.
-         */
-        std::vector<AnchoredString> &at_with(int x, unsigned char toFind);
+    CADS &operator=(const CADS &);
 
-        /**
-         * @brief Resets all member variables of this CADS instance.
-         */
-        CADS &clear_all();
+    /**
+     * @brief Returns the list of words that have the passed char at the passed x value.
+     */
+    std::vector<AnchoredString> &at_with(int x, unsigned char toFind);
 
-        ~CADS();
+    /**
+     * @brief Resets all member variables of this CADS instance.
+     */
+    CADS &clear_all();
 
-    private:
-        std::vector<AnchoredString> **data;
-    };
+    ~CADS();
 
-}
+   private:
+    std::vector<AnchoredString> **data;
+};
 
+}  // namespace scl
 
-#endif //SCRABBLE_SOLVER_CADS_H
+#endif  // SCRABBLE_SOLVER_CADS_H

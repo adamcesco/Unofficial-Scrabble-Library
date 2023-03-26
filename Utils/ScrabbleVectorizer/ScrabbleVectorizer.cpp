@@ -1,33 +1,34 @@
 #include "ScrabbleVectorizer.h"
+
+#include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <algorithm>
 
 void scl::ScrabbleVectorizer::search_for_intersecting_moves() {
-    //TODO: Remove as many if-statements as possible.
-    // Convert AnchoredString into Anchoredsbl::Tstring, so that ScrabbleDataset is composed of pre-defined scl::TStrings.
-    // Turn rackCount into a class/struct.
-    // optimize solution as much as possible
+    // TODO: Remove as many if-statements as possible.
+    //  Convert AnchoredString into Anchoredsbl::Tstring, so that ScrabbleDataset is composed of pre-defined scl::TStrings.
+    //  Turn rackCount into a class/struct.
+    //  optimize solution as much as possible
 
-    if(dictionary.empty())
+    if (dictionary.empty())
         throw std::invalid_argument("Error in scl::ScrabbleVectorizer::search_for_intersecting_moves() | The set of all scl words is empty.");
 
     int originalRackCount[28];
     int originalBlankCount = 0;
-    for (int & i : originalRackCount) {
+    for (int& i : originalRackCount) {
         i = 0;
     }
     for (unsigned char t : rack) {
-        if(t == '?')
+        if (t == '?')
             originalBlankCount++;
         originalRackCount[t - 63]++;
     }
 
     int rowSubscript = 0;
-    for (auto& row: board) {
+    for (auto& row : board) {
         int tileCount = 0;
         for (auto& tile : row) {
-            if(tile == ' ') {
+            if (tile == ' ') {
                 tileCount++;
                 continue;
             }
@@ -50,33 +51,30 @@ void scl::ScrabbleVectorizer::search_for_intersecting_moves() {
                     unsigned char curChar = word.first[i + anchorIndex];
                     scl::Tile curBoardTile = board[rowSubscript][tileCount + i];
 
-                    if(curBoardTile == curChar) {
+                    if (curBoardTile == curChar) {
                         curTStr += scl::Tile(curChar, tileCount + i, rowSubscript, -1);
-                    }
-                    else if (curBoardTile != ' '){
+                    } else if (curBoardTile != ' ') {
                         skip = true;
                         break;
-                    }
-                    else{
+                    } else {
                         curTStr += scl::Tile(curChar, tileCount + i, rowSubscript, -1);
 
-                        if(rackCount[curChar - 63] == 0){
-                            if(blankCount == 0){
+                        if (rackCount[curChar - 63] == 0) {
+                            if (blankCount == 0) {
                                 skip = true;
                                 break;
                             }
                             blankCount--;
                             curTStr.back().points = 0;
                             curTStr.back().isBlank = true;
-                        }
-                        else
+                        } else
                             rackCount[curChar - 63]--;
                     }
                 }
-                if(skip)
+                if (skip)
                     continue;
 
-                moveSets[curTStr[0].y][curTStr[0].x].push_back(curTStr);    //problem: anchored index must be 0 for the word to be passed on
+                moveSets[curTStr[0].y][curTStr[0].x].push_back(curTStr);  // problem: anchored index must be 0 for the word to be passed on
             }
 
             tileCount++;
@@ -98,7 +96,7 @@ void scl::ScrabbleVectorizer::reset_all_data() {
     }
 }
 
-void scl::ScrabbleVectorizer::raw_place_boarded_word(const scl::Tstring &toPrint) {
+void scl::ScrabbleVectorizer::raw_place_boarded_word(const scl::Tstring& toPrint) {
     for (int i = 0; i < toPrint.length(); ++i) {
         board[toPrint.read_at(i).y][toPrint.read_at(i).x] = scl::Tile(toPrint.read_at(i).letter,
                                                                       toPrint.read_at(i).x,
@@ -119,44 +117,43 @@ bool scl::ScrabbleVectorizer::contains_letter_of_rack(const scl::Tstring& passed
     return false;
 }
 
-std::vector<scl::Tstring> scl::ScrabbleVectorizer::return_raw_board_with(const scl::Tstring &toPrint) const {
+std::vector<scl::Tstring> scl::ScrabbleVectorizer::return_raw_board_with(const scl::Tstring& toPrint) const {
     std::vector<scl::Tstring> boardCpy = board;
     int toPrintX = toPrint.read_at(0).x;
     int toPrintY = toPrint.read_at(0).y;
     for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
-        if(boardCpy[toPrintY][i] == ' ') {
+        if (boardCpy[toPrintY][i] == ' ') {
             boardCpy[toPrintY][i] = toPrint.read_at(i - toPrintX);
             boardCpy[toPrintY][i].flag = -2;
-        }
-        else
+        } else
             boardCpy[toPrintY][i].flag = 1;
     }
 
     return boardCpy;
 }
 
-void scl::ScrabbleVectorizer::search_for_tangential_moves() {    //does not support blank tiles
-    //TODO: Remove as many if-statements as possible.
-    // optimize solution as much as possible
-    // Implement custom data-structure for tile placement checking for tangential words only (so you do not have to do over under explicitly).
-    // optimize solution as much as possible
-    if(routeRMAC == UNDEFINED_ROUTE)
+void scl::ScrabbleVectorizer::search_for_tangential_moves() {  // does not support blank tiles
+    // TODO: Remove as many if-statements as possible.
+    //  optimize solution as much as possible
+    //  Implement custom data-structure for tile placement checking for tangential words only (so you do not have to do over under explicitly).
+    //  optimize solution as much as possible
+    if (routeRMAC == UNDEFINED_ROUTE)
         throw std::invalid_argument("Error in scl::ScrabbleVectorizer::search_for_tangential_moves() | definition route for RMAC has not been set.");
-    if(dictionary.empty())
+    if (dictionary.empty())
         throw std::invalid_argument("Error in scl::ScrabbleVectorizer::search_for_tangential_moves() | The set of all scl words is empty.");
 
     RMAC rackMAC;
-    if(routeRMAC == DICTIONARY)
+    if (routeRMAC == DICTIONARY)
         rackMAC = RMAC(rack, dictionarySub8);
     else
         rackMAC = RMAC(rack, rmacFilePath);
 
     for (int i = 0; i < 15; ++i) {
-        if(i - 1 > 0) {
+        if (i - 1 > 0) {
             for (int j = 0; j < 15; ++j) {
                 if (board[i][j] == ' ' || board[i - 1][j] != ' ')
                     continue;
-                for (auto it: rackMAC.data) {
+                for (auto it : rackMAC.data) {
                     int start = it.read_at(0).x + j;
                     int end = start + it.length();
                     if (start < 0 || end > 15)
@@ -177,11 +174,11 @@ void scl::ScrabbleVectorizer::search_for_tangential_moves() {    //does not supp
                 }
             }
         }
-        if(i + 1 < 15) {
+        if (i + 1 < 15) {
             for (int j = 0; j < 15; ++j) {
                 if (board[i][j] == ' ' || board[i + 1][j] != ' ')
                     continue;
-                for (auto it: rackMAC.data) {
+                for (auto it : rackMAC.data) {
                     int start = it.read_at(0).x + j;
                     int end = start + it.length();
                     if (start < 0 || end > 15)
@@ -213,13 +210,13 @@ void scl::ScrabbleVectorizer::clear_all_moves() {
     }
 }
 
-int scl::ScrabbleVectorizer::points_of_raw_boarded_tstr(const scl::Tstring &word) const{
+int scl::ScrabbleVectorizer::points_of_raw_boarded_tstr(const scl::Tstring& word) const {
     // If a letter is shared between words, then count it's premium value for all words
     // Any word multiplier only gets assigned to the original word, and not any subsequently formed words
     // If a word is placed on two or more multiplier tiles, the words value is multiplied by both tile values
     // If a word uses all the tiles in the rack then 50 is added to the final total
 
-    if(word.is_empty())
+    if (word.is_empty())
         return 0;
 
     int crossWordSum = 0;
@@ -233,13 +230,13 @@ int scl::ScrabbleVectorizer::points_of_raw_boarded_tstr(const scl::Tstring &word
         std::vector<scl::Tstring> colShards = column.fragments();
 
         for (const auto& shard : colShards) {
-            if(shard.contains_flag(-2) && shard.length() > 1){
+            if (shard.contains_flag(-2) && shard.length() > 1) {
                 int firstY = shard.read_at(0).y;
                 for (int j = firstY; j < firstY + shard.length(); ++j) {
                     char curPerk = perkBoard[j][i];
-                    if(isalpha(curPerk) && j == word.read_at(0).y)
+                    if (isalpha(curPerk) && j == word.read_at(0).y)
                         crossWordSum += shard.read_at(j - firstY).points * (curPerk & 31);
-                    else{
+                    else {
                         crossWordSum += shard.read_at(j - firstY).points;
                     }
                 }
@@ -254,24 +251,22 @@ int scl::ScrabbleVectorizer::points_of_raw_boarded_tstr(const scl::Tstring &word
     int firstY = word.read_at(0).y;
     for (int i = firstX; i < firstX + word.length(); ++i) {
         char curPerk = perkBoard[firstY][i];
-        if(isalpha(curPerk))
+        if (isalpha(curPerk))
             wordSum += word.read_at(i - firstX).points * (curPerk & 31);
-        else if(isdigit(curPerk)) {
+        else if (isdigit(curPerk)) {
             multiplier *= curPerk & 15;
             wordSum += word.read_at(i - firstX).points;
-        }
-        else
+        } else
             wordSum += word.read_at(i - firstX).points;
 
-        if(board[firstY].read_at(i) != ' ')
+        if (board[firstY].read_at(i) != ' ')
             letterCount++;
     }
     wordSum *= multiplier;
     wordSum += crossWordSum;
     int handLen = rack.length();
-    if(handLen == 7 && word.length() - letterCount == handLen)
+    if (handLen == 7 && word.length() - letterCount == handLen)
         wordSum += 50;
-
 
     return wordSum;
 }
@@ -303,23 +298,23 @@ std::vector<std::string> scl::ScrabbleVectorizer::return_raw_char_board_copy() {
 void scl::ScrabbleVectorizer::build_dictionaries_from(const char* filePath) {
     std::ifstream dictionaryFile;
     dictionaryFile.open(filePath);
-    if(!dictionaryFile.is_open())
+    if (!dictionaryFile.is_open())
         throw std::invalid_argument("could not open file passed to void scl::ScrabbleVectorizer::build_dictionaries_from(const char* filePath)");
 
     dictionary.clear();
     dictionarySub8.clear();
     std::string curWord;
     int count = 0;
-    while(dictionaryFile.good()){
+    while (dictionaryFile.good()) {
         getline(dictionaryFile, curWord);
         count++;
 
-        while(isspace(curWord.back()))
+        while (isspace(curWord.back()))
             curWord.pop_back();
 
         dictionary.emplace(curWord);
 
-        if(curWord.length() < 8)
+        if (curWord.length() < 8)
             dictionarySub8.emplace(curWord);
     }
     std::cout << "scl::ScrabbleVectorizer:: " << count << " words read from " << filePath << std::endl;
@@ -341,7 +336,7 @@ scl::ScrabbleVectorizer::ScrabbleVectorizer() {
     }
 }
 
-scl::ScrabbleVectorizer::ScrabbleVectorizer(const std::string &passed) {
+scl::ScrabbleVectorizer::ScrabbleVectorizer(const std::string& passed) {
     moveSets = new std::vector<scl::Tstring>*[15];
     for (int i = 0; i < 15; ++i) {
         moveSets[i] = new std::vector<scl::Tstring>[15];
@@ -369,7 +364,7 @@ void scl::ScrabbleVectorizer::update_perkBoard() {
                          {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'}};
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
-            if(board[i][j] != ' ')
+            if (board[i][j] != ' ')
                 perkBoard[i][j] = ' ';
             else
                 perkBoard[i][j] = temp[i][j];
@@ -377,7 +372,7 @@ void scl::ScrabbleVectorizer::update_perkBoard() {
     }
 }
 
-void scl::ScrabbleVectorizer::set_rack(const std::string &passed) {
+void scl::ScrabbleVectorizer::set_rack(const std::string& passed) {
     rack = passed;
     sort(rack.begin(), rack.end());
 }

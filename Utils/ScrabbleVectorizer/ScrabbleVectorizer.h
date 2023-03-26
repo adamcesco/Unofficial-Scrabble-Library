@@ -4,255 +4,259 @@
 #include "../../Utils/CADS/CADS.h"
 #include "../../Utils/RMAC/RMAC.h"
 
-namespace scl{
-    enum TYPE{HORIZONTAL, VERTICAL, UNDEFINED_TYPE};
-    enum RMAC_ROUTE{DICTIONARY, FILEPATH, UNDEFINED_ROUTE};
+namespace scl {
 
-    class ScrabbleVectorizer {
-    public:
-        ScrabbleVectorizer();
+enum TYPE { HORIZONTAL,
+            VERTICAL,
+            UNDEFINED_TYPE };
+enum RMAC_ROUTE { DICTIONARY,
+                  FILEPATH,
+                  UNDEFINED_ROUTE };
 
-        explicit ScrabbleVectorizer(const std::string &passed);
+class ScrabbleVectorizer {
+   public:
+    ScrabbleVectorizer();
 
-        /**
-         * @brief Builds the board of this vectorizer from the passed file directory.
-         * @param fileDir: The file directory of the board.
-         * @warning Tiles of the board must be comma seperated.
-         * @warning The Board must be size 15 x 15.
-         * @warning All chars within the file that represent Tiles must be Uppercase
-         */
-        virtual void build_board_from(const char *fileDir) = 0;
+    explicit ScrabbleVectorizer(const std::string &passed);
 
-        /**
-         * @brief Prints the current board of this vectorizer to the console with proper formatting.
-         */
-        virtual void console_print_formatted_board() const = 0;
+    /**
+     * @brief Builds the board of this vectorizer from the passed file directory.
+     * @param fileDir: The file directory of the board.
+     * @warning Tiles of the board must be comma seperated.
+     * @warning The Board must be size 15 x 15.
+     * @warning All chars within the file that represent Tiles must be Uppercase
+     */
+    virtual void build_board_from(const char *fileDir) = 0;
 
-        /**
-         * @brief Validates all words currently placed on the current board of this vectorizer.
-         * @warning Throw an std::invalid_argument when a word placed on the board is not valid.
-         */
-        virtual void validate_board() const = 0;
+    /**
+     * @brief Prints the current board of this vectorizer to the console with proper formatting.
+     */
+    virtual void console_print_formatted_board() const = 0;
 
-        /**
-         * @brief Returns the current board of this vectorizer in a char base and with proper formatting.
-         */
-        virtual std::vector<std::string> return_formatted_char_board_copy() const = 0;
+    /**
+     * @brief Validates all words currently placed on the current board of this vectorizer.
+     * @warning Throw an std::invalid_argument when a word placed on the board is not valid.
+     */
+    virtual void validate_board() const = 0;
 
-        /**
-         * @brief Returns the current board of this vectorizer in a scl::Tile base and with proper formatting.
-         */
-        virtual std::vector<scl::Tstring> return_formatted_board_copy() const = 0;
+    /**
+     * @brief Returns the current board of this vectorizer in a char base and with proper formatting.
+     */
+    virtual std::vector<std::string> return_formatted_char_board_copy() const = 0;
 
-        /**
-         * @brief Returns the current perk-board of this vectorizer in a char base and with proper formatting.
-         */
-        virtual std::vector<std::string> return_formatted_perkBoard_copy() const = 0;
+    /**
+     * @brief Returns the current board of this vectorizer in a scl::Tile base and with proper formatting.
+     */
+    virtual std::vector<scl::Tstring> return_formatted_board_copy() const = 0;
 
-        /**
-         * @brief Returns the type of this vectorizer, HORIZONTAL, VERTICAL, or UNDEFINED_TYPE.
-         */
-        virtual TYPE get_vectorizer_type() const = 0;
+    /**
+     * @brief Returns the current perk-board of this vectorizer in a char base and with proper formatting.
+     */
+    virtual std::vector<std::string> return_formatted_perkBoard_copy() const = 0;
 
-        /**
-         * @brief Builds the board of this vectorizer from the passed 2-D char array.
-         * @warning The passed 2-D char array must be size 15 x 15.
-         * @warning All chars within the passed 2-D char array must be Uppercase
-         * @warning This method assumes that the passed baord has proper formatting
-         */
-        virtual void build_board_from(const char **) = 0;
+    /**
+     * @brief Returns the type of this vectorizer, HORIZONTAL, VERTICAL, or UNDEFINED_TYPE.
+     */
+    virtual TYPE get_vectorizer_type() const = 0;
 
-        /**
-         * @brief Builds the perk-board of this vectorizer from the passed 2-D char array.
-         * @warning The passed 2-D char array must be size 15 x 15.
-         * @warning The perk-board to be built via this method may still need to be prepared via "void update_perkBoard()".
-         * @warning This method assumes that the passed perk-baord has proper formatting
-         */
-        virtual void build_perkBoard_from(const char **) = 0;
+    /**
+     * @brief Builds the board of this vectorizer from the passed 2-D char array.
+     * @warning The passed 2-D char array must be size 15 x 15.
+     * @warning All chars within the passed 2-D char array must be Uppercase
+     * @warning This method assumes that the passed baord has proper formatting
+     */
+    virtual void build_board_from(const char **) = 0;
 
-        /**
-         * @brief Returns all moves generated by this vectorizer whose first scl::Tile is placed at the passed coordinate.
-         */
-        virtual std::vector<scl::Tstring> &get_all_moves_at(int x, int y) = 0;
+    /**
+     * @brief Builds the perk-board of this vectorizer from the passed 2-D char array.
+     * @warning The passed 2-D char array must be size 15 x 15.
+     * @warning The perk-board to be built via this method may still need to be prepared via "void update_perkBoard()".
+     * @warning This method assumes that the passed perk-baord has proper formatting
+     */
+    virtual void build_perkBoard_from(const char **) = 0;
 
-        /**
-         * @brief Places the passed std::string into the current board of this vectorizer at the passed coordinate.
-         * @param type: States whether this move is a VERTICAL or HORIZONTAL move.
-         * @warning After placing the passed string into the board, the perk-board may need to be prepared via "void update_perkBoard()".
-         */
-        virtual void guided_place(int x, int y, TYPE type, const std::string& str) = 0;
+    /**
+     * @brief Returns all moves generated by this vectorizer whose first scl::Tile is placed at the passed coordinate.
+     */
+    virtual std::vector<scl::Tstring> &get_all_moves_at(int x, int y) = 0;
 
-        /**
-         * @brief Validates all generated moves and removes all invalid moves from this vectorizers move-set.
-         */
-        virtual void validate_generated_moves() = 0;
+    /**
+     * @brief Places the passed std::string into the current board of this vectorizer at the passed coordinate.
+     * @param type: States whether this move is a VERTICAL or HORIZONTAL move.
+     * @warning After placing the passed string into the board, the perk-board may need to be prepared via "void update_perkBoard()".
+     */
+    virtual void guided_place(int x, int y, TYPE type, const std::string &str) = 0;
 
-        /**
-         * @brief Generates all possible intersecting moves based off of the current rack and board of this vectorizer.
-         */
-        virtual void search_for_intersecting_moves();
+    /**
+     * @brief Validates all generated moves and removes all invalid moves from this vectorizers move-set.
+     */
+    virtual void validate_generated_moves() = 0;
 
-        /**
-         * @brief Generates all possible tangential moves based off of the current rack and board of this vectorizer.
-         */
-        virtual void search_for_tangential_moves();
+    /**
+     * @brief Generates all possible intersecting moves based off of the current rack and board of this vectorizer.
+     */
+    virtual void search_for_intersecting_moves();
 
-        /**
-         * @brief Places the scl::Tiles of the passed scl::Tstring into the current board of this vectorizer based off of the coordinates of each scl::Tile in the passed scl::Tstring.
-         * @warning After placing the passed scl::Tstring into the board, the perk-board may need to be prepared via "void update_perkBoard()".
-         */
-        virtual void raw_place_boarded_word(const scl::Tstring &);
+    /**
+     * @brief Generates all possible tangential moves based off of the current rack and board of this vectorizer.
+     */
+    virtual void search_for_tangential_moves();
 
-        /**
-         * @brief Returns the points of the passed scl::Tstring, this point calculation includes perks and the points generated from creating neighboring words.
-         * @attention Assumes that the passed scl::Tstring has proper coordinate values for the given vectorizer type.
-         */
-        virtual int points_of_raw_boarded_tstr(const scl::Tstring &word) const;
+    /**
+     * @brief Places the scl::Tiles of the passed scl::Tstring into the current board of this vectorizer based off of the coordinates of each scl::Tile in the passed scl::Tstring.
+     * @warning After placing the passed scl::Tstring into the board, the perk-board may need to be prepared via "void update_perkBoard()".
+     */
+    virtual void raw_place_boarded_word(const scl::Tstring &);
 
-        /**
-         * @brief Removes all moves from this vectorizers move-set.
-         */
-        void clear_all_moves();
+    /**
+     * @brief Returns the points of the passed scl::Tstring, this point calculation includes perks and the points generated from creating neighboring words.
+     * @attention Assumes that the passed scl::Tstring has proper coordinate values for the given vectorizer type.
+     */
+    virtual int points_of_raw_boarded_tstr(const scl::Tstring &word) const;
 
-        /**
-         * @brief Sets the rack of this vectorizer to the passed std::string.
-         */
-        void set_rack(const std::string &pRack);
+    /**
+     * @brief Removes all moves from this vectorizers move-set.
+     */
+    void clear_all_moves();
 
-        /**
-         * @brief Returns the board of this vectorizer by reference.
-         * @warning This board will have a different formatting based off of the type of this vectorizer.
-         */
-        std::vector<scl::Tstring> &get_raw_board() { return board; }
+    /**
+     * @brief Sets the rack of this vectorizer to the passed std::string.
+     */
+    void set_rack(const std::string &pRack);
 
-        /**
-         * @brief Returns the current board of this vectorizer in a char base, may have un-proper formatting.
-         */
-        std::vector<std::string> return_raw_char_board_copy();
+    /**
+     * @brief Returns the board of this vectorizer by reference.
+     * @warning This board will have a different formatting based off of the type of this vectorizer.
+     */
+    std::vector<scl::Tstring> &get_raw_board() { return board; }
 
-        /**
-         * @brief Returns the current prep-board of this vectorizer in a char base, may have un-proper formatting.
-         */
-        std::vector<std::string> return_raw_perkBoard_copy();
+    /**
+     * @brief Returns the current board of this vectorizer in a char base, may have un-proper formatting.
+     */
+    std::vector<std::string> return_raw_char_board_copy();
 
-        /**
-         * @brief Resets this vectorizer completely.
-         */
-        void reset_all_data();
+    /**
+     * @brief Returns the current prep-board of this vectorizer in a char base, may have un-proper formatting.
+     */
+    std::vector<std::string> return_raw_perkBoard_copy();
 
-        /**
-         * @brief Returns the rack of this vectorizer by reference.
-         */
-        std::string &get_rack() { return rack; }
+    /**
+     * @brief Resets this vectorizer completely.
+     */
+    void reset_all_data();
 
-        /**
-         * @brief Sets the board of this vectorizer to the passed std::vector<scl::Tstring>
-         * @warning The passed std::vector<scl::Tstring> needs to be formatted with respect to this vectorizer
-         */
-        void set_raw_board(const std::vector<scl::Tstring> &passed) { board = passed; }
+    /**
+     * @brief Returns the rack of this vectorizer by reference.
+     */
+    std::string &get_rack() { return rack; }
 
-        /**
-         * @brief Returns the dictionary of this vectorizer by reference.
-         */
-        std::unordered_set<std::string> &get_dictionary() { return dictionary; }
+    /**
+     * @brief Sets the board of this vectorizer to the passed std::vector<scl::Tstring>
+     * @warning The passed std::vector<scl::Tstring> needs to be formatted with respect to this vectorizer
+     */
+    void set_raw_board(const std::vector<scl::Tstring> &passed) { board = passed; }
 
-        /**
-         * @brief Returns the dictionary of this vectorizer that only contains words with a length less than 8 characters, by reference.
-         */
-        std::unordered_set<std::string> &get_sub8_dictionary() { return dictionarySub8; }
+    /**
+     * @brief Returns the dictionary of this vectorizer by reference.
+     */
+    std::unordered_set<std::string> &get_dictionary() { return dictionary; }
 
-        /**
-         * @brief Returns the move-set of this vectorizer by reference.
-         */
-        std::vector<scl::Tstring> **get_moveSets() { return moveSets; }
+    /**
+     * @brief Returns the dictionary of this vectorizer that only contains words with a length less than 8 characters, by reference.
+     */
+    std::unordered_set<std::string> &get_sub8_dictionary() { return dictionarySub8; }
 
-        /**
-         * @brief Sets the dictionary of this vectorizer to the passed std::unordered_set<std::string>.
-         */
-        void set_dictionary(const std::unordered_set<std::string> &passed) { dictionary = passed; }
+    /**
+     * @brief Returns the move-set of this vectorizer by reference.
+     */
+    std::vector<scl::Tstring> **get_moveSets() { return moveSets; }
 
-        /**
-         * @brief Sets the length-sub-8 dictionary of this vectorizer to the passed std::unordered_set<std::string>.
-         * @warning The dictionary set by the passed std::unordered_set<std::string> should only contain words that have a length of 1 to 7.
-         */
-        void set_sub8_dictionary(const std::unordered_set<std::string> &passed) { dictionarySub8 = passed; }
+    /**
+     * @brief Sets the dictionary of this vectorizer to the passed std::unordered_set<std::string>.
+     */
+    void set_dictionary(const std::unordered_set<std::string> &passed) { dictionary = passed; }
 
-        /**
-         * @brief Builds both the length-sub-8 dictionary and the all encompassing dictionary from the passed file directory.
-         * @warning The file at the passed file directory should be a list of all Uppercase of words.
-         */
-        void build_dictionaries_from(const char *fileDir);
+    /**
+     * @brief Sets the length-sub-8 dictionary of this vectorizer to the passed std::unordered_set<std::string>.
+     * @warning The dictionary set by the passed std::unordered_set<std::string> should only contain words that have a length of 1 to 7.
+     */
+    void set_sub8_dictionary(const std::unordered_set<std::string> &passed) { dictionarySub8 = passed; }
 
-        /**
-         * @brief Builds the CADS of this vectorizer from the passed @param fileDir.
-         * @warning The file at the passed file directory should be a list of all Uppercase of words.
-         */
-        void build_CADS_from(const char *fileDir) { wordDataset = CADS(fileDir); }
+    /**
+     * @brief Builds both the length-sub-8 dictionary and the all encompassing dictionary from the passed file directory.
+     * @warning The file at the passed file directory should be a list of all Uppercase of words.
+     */
+    void build_dictionaries_from(const char *fileDir);
 
-        /**
-         * @brief Sets the file directory of the file that the RMAC will be built from each time tangential move generation is executed.
-         * @warning The file at the passed file directory should be a list of all Uppercase of words.
-         */
-        void set_RMAC_build_path(const std::string &filePath) {
-            routeRMAC = FILEPATH;
-            rmacFilePath = filePath;
-        }
+    /**
+     * @brief Builds the CADS of this vectorizer from the passed @param fileDir.
+     * @warning The file at the passed file directory should be a list of all Uppercase of words.
+     */
+    void build_CADS_from(const char *fileDir) { wordDataset = CADS(fileDir); }
 
-        /**
-         * @brief Tells the RMAC to be built from this vectorizers dictionary each time tangential move generation is executed.
-         */
-        void set_RMAC_build_path_dictionary() { routeRMAC = DICTIONARY; }
+    /**
+     * @brief Sets the file directory of the file that the RMAC will be built from each time tangential move generation is executed.
+     * @warning The file at the passed file directory should be a list of all Uppercase of words.
+     */
+    void set_RMAC_build_path(const std::string &filePath) {
+        routeRMAC = FILEPATH;
+        rmacFilePath = filePath;
+    }
 
-        /**
-         * @brief Sets the RMAC to be built from this vectorizers length-sub-8 dictionary each time tangential move generation is executed.
-         */
-        void update_perkBoard();
+    /**
+     * @brief Tells the RMAC to be built from this vectorizers dictionary each time tangential move generation is executed.
+     */
+    void set_RMAC_build_path_dictionary() { routeRMAC = DICTIONARY; }
 
-        /**
-         * @brief Returns true if the passed scl::Tstring contains at least one letter of the rack of this vectorizer.
-         */
-        bool contains_letter_of_rack(const scl::Tstring &) const;
+    /**
+     * @brief Sets the RMAC to be built from this vectorizers length-sub-8 dictionary each time tangential move generation is executed.
+     */
+    void update_perkBoard();
 
-        ~ScrabbleVectorizer();
+    /**
+     * @brief Returns true if the passed scl::Tstring contains at least one letter of the rack of this vectorizer.
+     */
+    bool contains_letter_of_rack(const scl::Tstring &) const;
 
-    protected:
-        /**
-         * @brief Returns a copy of this vectorizers current board that has the passed scl::Tstring placed into it.
-         * @warning The board returned by this method is formatted with respect to this vectorizers type, and may be un-properly formatted.
-         * @attention This method does not modify the board of this vectorizer.
-         */
-        virtual std::vector<scl::Tstring> return_raw_board_with(
-                const scl::Tstring &) const;        //assumes that the passed word is formatted with respect to the current std::vectorizer type
+    ~ScrabbleVectorizer();
 
-        std::string rack;
-        RMAC_ROUTE routeRMAC = UNDEFINED_ROUTE;
-        std::string rmacFilePath;
-        std::unordered_set<std::string> dictionary;
-        std::unordered_set<std::string> dictionarySub8;
-        std::vector<scl::Tstring> **moveSets;
-        std::vector<scl::Tstring> board;
-        CADS wordDataset;
-        char perkBoard[15][15] = {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
-                                  {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
-                                  {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
-                                  {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
-                                  {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
-                                  {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
-                                  {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
-                                  {'3', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
-                                  {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
-                                  {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
-                                  {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
-                                  {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
-                                  {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
-                                  {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
-                                  {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'}};
-        //2 = double word premium
-        //3 = triple word premium
-        //B = double letter premium
-        //C = triple letter premium
-    };
-}
+   protected:
+    /**
+     * @brief Returns a copy of this vectorizers current board that has the passed scl::Tstring placed into it.
+     * @warning The board returned by this method is formatted with respect to this vectorizers type, and may be un-properly formatted.
+     * @warning This function assumes that the passed word is formatted with respect to the current std::vectorizer type
+     * @attention This method does not modify the board of this vectorizer.
+     */
+    virtual std::vector<scl::Tstring> return_raw_board_with(const scl::Tstring &) const;
 
+    std::string rack;
+    RMAC_ROUTE routeRMAC = UNDEFINED_ROUTE;
+    std::string rmacFilePath;
+    std::unordered_set<std::string> dictionary;
+    std::unordered_set<std::string> dictionarySub8;
+    std::vector<scl::Tstring> **moveSets;
+    std::vector<scl::Tstring> board;
+    CADS wordDataset;
+    char perkBoard[15][15] = {{'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
+                              {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
+                              {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
+                              {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
+                              {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
+                              {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
+                              {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
+                              {'3', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', '3'},
+                              {' ', ' ', 'B', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ', ' '},
+                              {' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' '},
+                              {' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' ', ' ', '2', ' ', ' ', ' ', ' '},
+                              {'B', ' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' ', 'B'},
+                              {' ', ' ', '2', ' ', ' ', ' ', 'B', ' ', 'B', ' ', ' ', ' ', '2', ' ', ' '},
+                              {' ', '2', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '2', ' '},
+                              {'3', ' ', ' ', 'B', ' ', ' ', ' ', '3', ' ', ' ', ' ', 'B', ' ', ' ', '3'}};
+    // 2 = double word premium
+    // 3 = triple word premium
+    // B = double letter premium
+    // C = triple letter premium
+};
+}  // namespace scl
 
-#endif //SCRABBLE_SOLVER_SCRABBLEVECTORIZER_H
+#endif  // SCRABBLE_SOLVER_SCRABBLEVECTORIZER_H
