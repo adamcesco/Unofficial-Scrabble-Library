@@ -6,7 +6,7 @@
 
 void scl::ScrabbleVectorizer::search_for_intersecting_moves() {
     // TODO: Remove as many if-statements as possible.
-    //  Convert AnchoredString into Anchoredsbl::Tstring, so that ScrabbleDataset is composed of pre-defined scl::TStrings.
+    //  Convert AnchoredString into Anchoredsbl::ScrabbleWord, so that ScrabbleDataset is composed of pre-defined scl::TStrings.
     //  Turn rackCount into a class/struct.
     //  optimize solution as much as possible
 
@@ -27,7 +27,8 @@ void scl::ScrabbleVectorizer::search_for_intersecting_moves() {
     int rowSubscript = 0;
     for (auto& row : board) {
         int tileCount = 0;
-        for (auto& tile : row) {
+        for (int j = 0; j < row.length(); j++){
+            scl::Tile tile = row.at(j);
             if (tile == ' ') {
                 tileCount++;
                 continue;
@@ -35,7 +36,7 @@ void scl::ScrabbleVectorizer::search_for_intersecting_moves() {
 
             std::vector<AnchoredString> wordsOfTile = wordDataset.at_with(tileCount, tile.letter);
             for (const auto& word : wordsOfTile) {
-                scl::Tstring curTStr;
+                scl::ScrabbleString curTStr;
                 int anchorIndex = word.second;
 
                 int blankCount = originalBlankCount;
@@ -66,7 +67,6 @@ void scl::ScrabbleVectorizer::search_for_intersecting_moves() {
                             }
                             blankCount--;
                             curTStr.back().points = 0;
-                            curTStr.back().isBlank = true;
                         } else
                             rackCount[curChar - 63]--;
                     }
@@ -96,34 +96,34 @@ void scl::ScrabbleVectorizer::reset_all_data() {
     }
 }
 
-void scl::ScrabbleVectorizer::raw_place_boarded_word(const scl::Tstring& toPrint) {
+void scl::ScrabbleVectorizer::raw_place_boarded_word(const scl::ScrabbleString& toPrint) {
     for (int i = 0; i < toPrint.length(); ++i) {
-        board[toPrint.read_at(i).y][toPrint.read_at(i).x] = scl::Tile(toPrint.read_at(i).letter,
-                                                                      toPrint.read_at(i).x,
-                                                                      toPrint.read_at(i).y, 1);
+        board[toPrint.at(i).y][toPrint.at(i).x] = scl::Tile(toPrint.at(i).letter,
+                                                                      toPrint.at(i).x,
+                                                                      toPrint.at(i).y, 1);
     }
 }
 
-bool scl::ScrabbleVectorizer::contains_letter_of_rack(const scl::Tstring& passed) const {
+bool scl::ScrabbleVectorizer::contains_letter_of_rack(const scl::ScrabbleString& passed) const {
     std::unordered_set<char> handSet;
     for (char i : rack)
         handSet.emplace(i);
 
     for (int i = 0; i < passed.length(); ++i) {
-        if (handSet.find(toupper(passed.read_at(i).letter)) != handSet.end()) {
+        if (handSet.find(toupper(passed.at(i).letter)) != handSet.end()) {
             return true;
         }
     }
     return false;
 }
 
-std::vector<scl::Tstring> scl::ScrabbleVectorizer::return_raw_board_with(const scl::Tstring& toPrint) const {
-    std::vector<scl::Tstring> boardCpy = board;
-    int toPrintX = toPrint.read_at(0).x;
-    int toPrintY = toPrint.read_at(0).y;
+std::vector<scl::ScrabbleString> scl::ScrabbleVectorizer::return_raw_board_with(const scl::ScrabbleString& toPrint) const {
+    std::vector<scl::ScrabbleString> boardCpy = board;
+    int toPrintX = toPrint.at(0).x;
+    int toPrintY = toPrint.at(0).y;
     for (int i = toPrintX; i < toPrint.length() + toPrintX; i++) {
         if (boardCpy[toPrintY][i] == ' ') {
-            boardCpy[toPrintY][i] = toPrint.read_at(i - toPrintX);
+            boardCpy[toPrintY][i] = toPrint.at(i - toPrintX);
             boardCpy[toPrintY][i].flag = -2;
         } else
             boardCpy[toPrintY][i].flag = 1;
@@ -154,7 +154,7 @@ void scl::ScrabbleVectorizer::search_for_tangential_moves() {  // does not suppo
                 if (board[i][j] == ' ' || board[i - 1][j] != ' ')
                     continue;
                 for (auto it : rackMAC.data) {
-                    int start = it.read_at(0).x + j;
+                    int start = it.at(0).x + j;
                     int end = start + it.length();
                     if (start < 0 || end > 15)
                         continue;
@@ -179,7 +179,7 @@ void scl::ScrabbleVectorizer::search_for_tangential_moves() {  // does not suppo
                 if (board[i][j] == ' ' || board[i + 1][j] != ' ')
                     continue;
                 for (auto it : rackMAC.data) {
-                    int start = it.read_at(0).x + j;
+                    int start = it.at(0).x + j;
                     int end = start + it.length();
                     if (start < 0 || end > 15)
                         continue;
@@ -210,34 +210,34 @@ void scl::ScrabbleVectorizer::clear_all_moves() {
     }
 }
 
-int scl::ScrabbleVectorizer::points_of_raw_boarded_tstr(const scl::Tstring& word) const {
+int scl::ScrabbleVectorizer::points_of_raw_boarded_tstr(const scl::ScrabbleString& word) const {
     // If a letter is shared between words, then count it's premium value for all words
     // Any word multiplier only gets assigned to the original word, and not any subsequently formed words
     // If a word is placed on two or more multiplier tiles, the words value is multiplied by both tile values
     // If a word uses all the tiles in the rack then 50 is added to the final total
 
-    if (word.is_empty())
+    if (word.IsEmpty())
         return 0;
 
     int crossWordSum = 0;
-    std::vector<scl::Tstring> boardCpy = return_raw_board_with(word);
+    std::vector<scl::ScrabbleString> boardCpy = return_raw_board_with(word);
     for (int i = 0; i < 15; ++i) {
-        scl::Tstring column;
+        scl::ScrabbleString column;
         for (int j = 0; j < 15; ++j) {
-            column += boardCpy[j].read_at(i);
+            column += boardCpy[j].at(i);
         }
 
-        std::vector<scl::Tstring> colShards = column.fragments();
+        std::vector<scl::ScrabbleString> colShards = column.Fragments();
 
         for (const auto& shard : colShards) {
-            if (shard.contains_flag(-2) && shard.length() > 1) {
-                int firstY = shard.read_at(0).y;
+            if (shard.ContainsFlag(-2) && shard.length() > 1) {
+                int firstY = shard.at(0).y;
                 for (int j = firstY; j < firstY + shard.length(); ++j) {
                     char curPerk = perkBoard[j][i];
-                    if (isalpha(curPerk) && j == word.read_at(0).y)
-                        crossWordSum += shard.read_at(j - firstY).points * (curPerk & 31);
+                    if (isalpha(curPerk) && j == word.at(0).y)
+                        crossWordSum += shard.at(j - firstY).points * (curPerk & 31);
                     else {
-                        crossWordSum += shard.read_at(j - firstY).points;
+                        crossWordSum += shard.at(j - firstY).points;
                     }
                 }
             }
@@ -247,19 +247,19 @@ int scl::ScrabbleVectorizer::points_of_raw_boarded_tstr(const scl::Tstring& word
     int wordSum = 0;
     int multiplier = 1;
     char letterCount = 0;
-    int firstX = word.read_at(0).x;
-    int firstY = word.read_at(0).y;
+    int firstX = word.at(0).x;
+    int firstY = word.at(0).y;
     for (int i = firstX; i < firstX + word.length(); ++i) {
         char curPerk = perkBoard[firstY][i];
         if (isalpha(curPerk))
-            wordSum += word.read_at(i - firstX).points * (curPerk & 31);
+            wordSum += word.at(i - firstX).points * (curPerk & 31);
         else if (isdigit(curPerk)) {
             multiplier *= curPerk & 15;
-            wordSum += word.read_at(i - firstX).points;
+            wordSum += word.at(i - firstX).points;
         } else
-            wordSum += word.read_at(i - firstX).points;
+            wordSum += word.at(i - firstX).points;
 
-        if (board[firstY].read_at(i) != ' ')
+        if (board[firstY].at(i) != ' ')
             letterCount++;
     }
     wordSum *= multiplier;
@@ -330,16 +330,16 @@ scl::ScrabbleVectorizer::~ScrabbleVectorizer() {
 }
 
 scl::ScrabbleVectorizer::ScrabbleVectorizer() {
-    moveSets = new std::vector<scl::Tstring>*[15];
+    moveSets = new std::vector<scl::ScrabbleString>*[15];
     for (int i = 0; i < 15; ++i) {
-        moveSets[i] = new std::vector<scl::Tstring>[15];
+        moveSets[i] = new std::vector<scl::ScrabbleString>[15];
     }
 }
 
 scl::ScrabbleVectorizer::ScrabbleVectorizer(const std::string& passed) {
-    moveSets = new std::vector<scl::Tstring>*[15];
+    moveSets = new std::vector<scl::ScrabbleString>*[15];
     for (int i = 0; i < 15; ++i) {
-        moveSets[i] = new std::vector<scl::Tstring>[15];
+        moveSets[i] = new std::vector<scl::ScrabbleString>[15];
     }
 
     rack = passed;

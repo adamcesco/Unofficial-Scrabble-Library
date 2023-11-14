@@ -71,35 +71,35 @@ int main(int argc, char* argv[]) {
         hReader.update_best_move();
 
         int vPoints = vReader.points_of_best_boarded_move();
-        scl::Tstring bestVWord = vReader.get_best_raw_boarded_move();
+        scl::ScrabbleString bestVWord = vReader.get_best_raw_boarded_move();
         int hPoints = hReader.points_of_best_boarded_move();
-        scl::Tstring bestHWord = hReader.get_best_raw_boarded_move();
+        scl::ScrabbleString bestHWord = hReader.get_best_raw_boarded_move();
 
-        std::cout << "Best Horizontal Word: " << bestHWord.to_string() << std::endl;
+        std::cout << "Best Horizontal Word: " << bestHWord.ToString() << std::endl;
         std::cout << "\tPoints: " << hPoints << std::endl;
         std::cout << "\t(" << hReader.get_best_x() << ", " << hReader.get_best_y() << ')' << std::endl;
 
-        std::cout << "Best Vertical Word: " << bestVWord.to_string() << std::endl;
+        std::cout << "Best Vertical Word: " << bestVWord.ToString() << std::endl;
         std::cout << "\tPoints: " << vPoints << std::endl;
         std::cout << "\t(" << vReader.get_best_x() << ", " << vReader.get_best_y() << ')' << std::endl;
 
         // The following if-statement places the best word overall into both boards, making both boards have the same content
         if (hPoints > vPoints) {
             std::cout << std::endl
-                      << "Horizontal word \"" << bestHWord.to_string() << "\" is the best word overall" << std::endl;
+                      << "Horizontal word \"" << bestHWord.ToString() << "\" is the best word overall" << std::endl;
 
             // the "raw_place_boarded_word(scl::Tstring)" method places the passed scl::Tstring into the current board strictly based off of the coordinates of each scl::Tile in the scl::Tstring
             hReader.raw_place_boarded_word(bestHWord);
 
             // the "return_vertical_format()" and "return_horizontal_format()" methods return that a version of the invoking scl::Tstring that has been changed from its original format into the other format
-            vReader.raw_place_boarded_word(bestHWord.return_vertical_format());
+            vReader.raw_place_boarded_word(bestHWord.ReturnVerticalFormat());
         } else {
             std::cout << std::endl
-                      << "Vertical word \"" << bestVWord.to_string() << "\" is the best word overall" << std::endl;
+                      << "Vertical word \"" << bestVWord.ToString() << "\" is the best word overall" << std::endl;
 
             vReader.raw_place_boarded_word(bestVWord);
 
-            hReader.raw_place_boarded_word(bestVWord.return_horizontal_format());
+            hReader.raw_place_boarded_word(bestVWord.ReturnHorizontalFormat());
         }
         vReader.update_perkBoard();  //<- both boards have changed, so their perk board must be updated
         hReader.update_perkBoard();

@@ -22,18 +22,22 @@ scl::RMAC::RMAC(const std::string& pRack, const std::string& filePath) {
     std::string word;
     while (wordCorpus.good()) {
         getline(wordCorpus, word);
-
-        if (word.empty())
+        
+        // get rid of trailing whitespace characters from word
+        while (isspace(word.back())){
+            word.pop_back();
+        }
+        if (word.empty()){
             continue;
-        scl::Tstring toPush = word;
-        while (isspace(toPush.back().letter))
-            toPush.pop_back();
+        }
+        
+        scl::ScrabbleString toPush = word;
         if (is_descendent_of(toPush, rackMap, blankCount)) {
             int len = toPush.length() - 1;
-            toPush.set_x_vals_to_subscripts();
-            toPush.add_to_x_vals(0 - len);
+            toPush.SetXValsToSubscripts();
+            toPush.AddToXVals(0 - len);
             for (int i = 0; i < len; ++i) {
-                toPush.add_to_x_vals(1);
+                toPush.AddToXVals(1);
                 data.push_back(toPush);
             }
         }
@@ -54,20 +58,20 @@ scl::RMAC::RMAC(const std::string& pRack, const std::unordered_set<std::string>&
     }
 
     for (const auto& word : dictionary) {
-        scl::Tstring toPush = word;
+        scl::ScrabbleString toPush = word;
         if (is_descendent_of(toPush, rackMap, blankCount)) {
             int len = toPush.length() - 1;
-            toPush.set_x_vals_to_subscripts();
-            toPush.add_to_x_vals(0 - len);
+            toPush.SetXValsToSubscripts();
+            toPush.AddToXVals(0 - len);
             for (int i = 0; i < len; ++i) {
-                toPush.add_to_x_vals(1);
+                toPush.AddToXVals(1);
                 data.push_back(toPush);
             }
         }
     }
 }
 
-bool scl::RMAC::is_descendent_of(scl::Tstring& desc, const int* rackMap, int blankCount) const {
+bool scl::RMAC::is_descendent_of(scl::ScrabbleString& desc, const int* rackMap, int blankCount) const {
     int slen = desc.length();
     int rlen = rack.length();
     if (rlen == 0 || slen > rlen)
@@ -88,7 +92,6 @@ bool scl::RMAC::is_descendent_of(scl::Tstring& desc, const int* rackMap, int bla
             return false;
         else if (RLC) {
             desc[i].points = 0;
-            desc[i].isBlank = true;
             blankCount--;
             descMap[index]--;
             i--;

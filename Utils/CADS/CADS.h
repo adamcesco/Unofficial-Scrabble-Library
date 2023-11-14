@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "../Tstring/Tstring.h"
+#include "../ScrabbleString/ScrabbleString.h"
 
 namespace scl {
 struct AnchoredString {

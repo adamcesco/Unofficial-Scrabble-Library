@@ -5,7 +5,7 @@
 #include "../Utils/VerticalScrabbleVectorizer/VerticalScrabbleVectorizer.h"
 #include "catch.hpp"
 
-TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "ScrabbleVectorizer") {
+TEST_CASE("Testing std::vector<scl::ScrabbleWord>& get_all_moves_at(int x_, int y)", "ScrabbleVectorizer") {
     scl::HorizontalScrabbleVectorizer hReader(std::string("ASDFGHJ"));
     hReader.build_board_from("../Test_Folder/Board.csv");
     hReader.update_perkBoard();
@@ -36,57 +36,20 @@ TEST_CASE("Testing std::vector<scl::Tstring>& get_all_moves_at(int x, int y)", "
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             for (auto& hword : hReader.get_all_moves_at(i, j)) {
-                if (hword.is_empty()) {
+                if (hword.IsEmpty()) {
                     continue;
                 }
                 REQUIRE(hword[0].x == i);
                 REQUIRE(hword[0].y == j);
             }
             for (auto& vword : vReader.get_all_moves_at(i, j)) {
-                if (vword.is_empty()) {
+                if (vword.IsEmpty()) {
                     continue;
                 }
                 REQUIRE(vword[0].y == 14 - i);
                 REQUIRE(vword[0].x == j);
             }
         }
-    }
-}
-
-TEST_CASE("Testing scl::Tstring::erase_at(int)", "[scl::Tstring]") {
-    SECTION("Testing a populated scl::Tstring") {
-        scl::Tstring testDummy = "Adam";
-        testDummy.erase_at(2);
-        REQUIRE(testDummy == "ADM");
-
-        bool error_thrown = false;
-        try {
-            scl::Tstring testDummy = "Adam";
-            testDummy.erase_at(-1);
-        } catch (const std::invalid_argument& e) {
-            error_thrown = true;
-        }
-        REQUIRE(error_thrown);
-
-        error_thrown = false;
-        try {
-            scl::Tstring testDummy = "Adam";
-            testDummy.erase_at(4);
-        } catch (const std::invalid_argument& e) {
-            error_thrown = true;
-        }
-        REQUIRE(error_thrown);
-    }
-
-    SECTION("Testing an empty scl::Tstring") {
-        bool error_thrown = false;
-        try {
-            scl::Tstring testDummy;
-            testDummy.erase_at(0);
-        } catch (const std::invalid_argument& e) {
-            error_thrown = true;
-        }
-        REQUIRE(error_thrown);
     }
 }
 
@@ -124,7 +87,7 @@ TEST_CASE("Testing CADS Usage and Speed", "[CADS]") {
 
 TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]") {
     std::string rack = "GRO?LEE";
-    scl::Tstring word = "ADAM";
+    scl::ScrabbleString word("ADAM");
     word[0].x = 10;
     word[1].x = 11;
     word[2].x = 12;
@@ -150,7 +113,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]") {
     if (!boardFile.is_open())
         throw std::invalid_argument("could not open ../Test_Folder/Board.csv");
 
-    std::vector<scl::Tstring> originalBoard;
+    std::vector<scl::ScrabbleString> originalBoard;
     std::string row;
     int rowCount = 0;
     while (boardFile.good()) {
@@ -158,7 +121,7 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]") {
         std::string cell;
         std::stringstream strStr(row);
         int cellCount = 0;
-        scl::Tstring rowVect;
+        scl::ScrabbleString rowVect;
         while (getline(strStr, cell, ',') && cellCount < 15) {
             if (!cell.empty() && isalpha(cell[0])) {
                 rowVect += scl::Tile(cell[0], cellCount, rowCount, 1);
@@ -205,8 +168,8 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]") {
         std::vector<std::string> testHBoard = hReader.return_formatted_char_board_copy();
 
         for (int i = 0; i < 15; ++i) {
-            REQUIRE(testHBoard[i] == originalBoard[i].to_string());
-            REQUIRE(testHBoard[i] == originalBoard[i].to_string());
+            REQUIRE(testHBoard[i] == originalBoard[i].ToString());
+            REQUIRE(testHBoard[i] == originalBoard[i].ToString());
         }
     }
 
@@ -247,92 +210,92 @@ TEST_CASE("Testing user-oriented methods", "[ScrabbleVectorizer]") {
     }
 }
 
-TEST_CASE("Testing method scl::Tstring::is_descendent_of", "[scl::Tstring]") {
+TEST_CASE("Testing method scl::ScrabbleWord::is_descendent_of", "[scl::ScrabbleWord]") {
     std::string givenRack = "DOEWJ?K";
 
     SECTION("Testing different variations of the given word \"DOEWJ?K\" as input") {
-        scl::Tstring toValidate = "JOOKED";
-        REQUIRE(toValidate.is_descendent_of(givenRack));
+        scl::ScrabbleString toValidate("JOOKED");
+        REQUIRE(toValidate.IsDescendentOf(givenRack));
 
         toValidate = "JOUKED";
-        REQUIRE(toValidate.is_descendent_of(givenRack));
+        REQUIRE(toValidate.IsDescendentOf(givenRack));
 
         toValidate = "JOWLED";
-        REQUIRE(toValidate.is_descendent_of(givenRack));
+        REQUIRE(toValidate.IsDescendentOf(givenRack));
 
         toValidate = "WORKED";
-        REQUIRE(toValidate.is_descendent_of(givenRack));
+        REQUIRE(toValidate.IsDescendentOf(givenRack));
 
         toValidate = "WORK";
-        REQUIRE(toValidate.is_descendent_of(givenRack));
+        REQUIRE(toValidate.IsDescendentOf(givenRack));
 
         toValidate = "JOKEY";
-        REQUIRE(toValidate.is_descendent_of(givenRack));
+        REQUIRE(toValidate.IsDescendentOf(givenRack));
 
         toValidate = "JOKERS";
-        REQUIRE(!toValidate.is_descendent_of(givenRack));
+        REQUIRE(!toValidate.IsDescendentOf(givenRack));
 
         toValidate = "JOKING";
-        REQUIRE(!toValidate.is_descendent_of(givenRack));
+        REQUIRE(!toValidate.IsDescendentOf(givenRack));
 
         toValidate = "";
-        REQUIRE(!toValidate.is_descendent_of(givenRack));
+        REQUIRE(!toValidate.IsDescendentOf(givenRack));
     }
 }
 
-TEST_CASE("Testing method scl::Tstring::row_is_descendent_of", "[scl::Tstring]") {
+TEST_CASE("Testing method scl::ScrabbleWord::row_is_descendent_of", "[scl::ScrabbleWord]") {
     std::string givenRack = "LEO?UDQ";
-    scl::Tstring givenRow = "     R B  D    ";
-    givenRow.set_x_vals_to_subscripts();
+    scl::ScrabbleString givenRow("     R B  D    ");
+    givenRow.SetXValsToSubscripts();
 
     SECTION("Testing different variations of the given word \"LEO?UDQ\" with row \"     R B  D    \" as input") {
-        scl::Tstring toValidate = "     R BUDDY   ";
-        scl::Tstring givenWord = "BUDDY";
-        givenWord.set_x_vals_to_subscripts();
-        givenWord.add_to_x_vals(7);
-        REQUIRE(toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
+        scl::ScrabbleString toValidate("     R BUDDY   ");
+        scl::ScrabbleString givenWord("BUDDY");
+        givenWord.SetXValsToSubscripts();
+        givenWord.AddToXVals(7);
+        REQUIRE(toValidate.RowIsDescendentOf(givenRack, givenRow, givenWord));
 
         toValidate = "     ROB  D    ";
         givenWord = "ROB";
-        givenWord.set_x_vals_to_subscripts();
-        givenWord.add_to_x_vals(5);
-        REQUIRE(toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
+        givenWord.SetXValsToSubscripts();
+        givenWord.AddToXVals(5);
+        REQUIRE(toValidate.RowIsDescendentOf(givenRack, givenRow, givenWord));
 
         toValidate = "     R BLED    ";
         givenWord = "BLED";
-        givenWord.set_x_vals_to_subscripts();
-        givenWord.add_to_x_vals(7);
-        REQUIRE(toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
+        givenWord.SetXValsToSubscripts();
+        givenWord.AddToXVals(7);
+        REQUIRE(toValidate.RowIsDescendentOf(givenRack, givenRow, givenWord));
 
         toValidate = "     R B  DAD  ";
         givenWord = "DAD";
-        givenWord.set_x_vals_to_subscripts();
-        givenWord.add_to_x_vals(10);
-        REQUIRE(toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
+        givenWord.SetXValsToSubscripts();
+        givenWord.AddToXVals(10);
+        REQUIRE(toValidate.RowIsDescendentOf(givenRack, givenRow, givenWord));
 
         toValidate = "     RUB  D    ";
         givenWord = "RUB";
-        givenWord.set_x_vals_to_subscripts();
-        givenWord.add_to_x_vals(5);
-        REQUIRE(toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
+        givenWord.SetXValsToSubscripts();
+        givenWord.AddToXVals(5);
+        REQUIRE(toValidate.RowIsDescendentOf(givenRack, givenRow, givenWord));
 
         toValidate = "     R BADDY   ";
         givenWord = "BADDY";
-        givenWord.set_x_vals_to_subscripts();
-        givenWord.add_to_x_vals(7);
-        REQUIRE(!toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
+        givenWord.SetXValsToSubscripts();
+        givenWord.AddToXVals(7);
+        REQUIRE(!toValidate.RowIsDescendentOf(givenRack, givenRow, givenWord));
 
         toValidate = "     R B  DUCK ";
         givenWord = "DUCK";
-        givenWord.set_x_vals_to_subscripts();
-        givenWord.add_to_x_vals(10);
-        REQUIRE(!toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
+        givenWord.SetXValsToSubscripts();
+        givenWord.AddToXVals(10);
+        REQUIRE(!toValidate.RowIsDescendentOf(givenRack, givenRow, givenWord));
 
         toValidate = "";
         givenWord = "ROB";
-        givenWord.set_x_vals_to_subscripts();
-        givenWord.add_to_x_vals(5);
-        REQUIRE(!toValidate.row_is_descendent_of(givenRack, givenRow, givenWord));
+        givenWord.SetXValsToSubscripts();
+        givenWord.AddToXVals(5);
+        REQUIRE(!toValidate.RowIsDescendentOf(givenRack, givenRow, givenWord));
     }
 }
 

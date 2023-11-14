@@ -19,7 +19,7 @@ void scl::HorizontalScrabbleVectorizer::build_board_from(const char* filePath) {
         std::string cell;
         std::stringstream strStr(row);
         int cellCount = 0;
-        scl::Tstring LRow;
+        scl::ScrabbleString LRow;
         while (getline(strStr, cell, ',') && cellCount < 15) {
             if (!cell.empty() && isalpha(cell[0])) {
                 LRow += scl::Tile(cell[0], cellCount, rowCount, 1);
@@ -51,10 +51,10 @@ void scl::HorizontalScrabbleVectorizer::console_print_formatted_board() const {
 
         for (int j = 0; j < board[i].length(); ++j) {
             std::cout << "  ";
-            if (board[i].read_at(j).letter == ' ')
+            if (board[i].at(j).letter == ' ')
                 std::cout << '.';
             else
-                std::cout << board[i].read_at(j).letter;
+                std::cout << board[i].at(j).letter;
         }
         std::cout << std::endl;
     }
@@ -90,37 +90,37 @@ void scl::HorizontalScrabbleVectorizer::validate_generated_moves() {
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             for (auto& word : moveSets[i][j]) {
-                std::vector<scl::Tstring> boardCpy = return_raw_board_with(word);
+                std::vector<scl::ScrabbleString> boardCpy = return_raw_board_with(word);
 
                 int fy = word[0].y;
                 int fx = word[0].x;
                 int lx = word.back().x;
 
                 if (boardCpy[fy] == board[fy]) {
-                    word.clear();
+                    word.Clear();
                     continue;
                 }
 
-                std::vector<std::string> rowShards = boardCpy[fy].string_fragments();
+                std::vector<std::string> rowShards = boardCpy[fy].StringFragments();
 
                 for (const auto& shard : rowShards) {
                     if (dictionary.find(shard) == dictionary.end()) {
-                        word.clear();
+                        word.Clear();
                         break;
                     }
                 }
 
-                for (int k = fx; !word.is_empty() && k <= lx; k++) {
-                    scl::Tstring column;
+                for (int k = fx; !word.IsEmpty() && k <= lx; k++) {
+                    scl::ScrabbleString column;
                     for (int l = 0; l < 15; ++l) {
                         column += boardCpy[l][k];
                     }
 
-                    std::vector<std::string> colShards = column.string_fragments();
+                    std::vector<std::string> colShards = column.StringFragments();
 
                     for (const auto& shard : colShards) {
                         if (dictionary.find(shard) == dictionary.end()) {
-                            word.clear();
+                            word.Clear();
                             break;
                         }
                     }
@@ -130,8 +130,8 @@ void scl::HorizontalScrabbleVectorizer::validate_generated_moves() {
     }
 }
 
-scl::Tstring scl::HorizontalScrabbleVectorizer::update_best_move() {
-    bestWord.clear();
+scl::ScrabbleString scl::HorizontalScrabbleVectorizer::update_best_move() {
+    bestWord.Clear();
     for (int i = 0; i < 15; ++i) {
         for (int j = 0; j < 15; ++j) {
             for (const auto& word : moveSets[i][j]) {
@@ -143,7 +143,7 @@ scl::Tstring scl::HorizontalScrabbleVectorizer::update_best_move() {
                     bestX = bestWord[0].x;
                     bestY = i;
                 } else if (wordPoints != 0 && wordPoints == bestWordPoints) {
-                    if (word.length() < bestWord.length() || bestWord.is_empty()) {
+                    if (word.length() < bestWord.length() || bestWord.IsEmpty()) {
                         bestWord = word;
                         bestX = bestWord[0].x;
                         bestY = i;
@@ -161,17 +161,17 @@ void scl::HorizontalScrabbleVectorizer::validate_board() const {
         throw std::invalid_argument("Error in void scl::HorizontalScrabbleVectorizer::validate_board() const | unordered_map<scl::Tstring> dictionary is empty.");
 
     for (int i = 0; i < 15; ++i) {
-        scl::Tstring row;
+        scl::ScrabbleString row;
         for (int j = 0; j < 15; ++j) {
-            row += board[i].read_at(j);
+            row += board[i].at(j);
         }
 
-        scl::Tstring column;
+        scl::ScrabbleString column;
         for (int j = 0; j < 15; ++j) {
-            column += board[j].read_at(i);
+            column += board[j].at(i);
         }
 
-        std::vector<std::string> colShards = column.string_fragments();
+        std::vector<std::string> colShards = column.StringFragments();
 
         for (const auto& shard : colShards) {
             if (shard.length() > 1 && dictionary.find(shard) == dictionary.end()) {
@@ -179,7 +179,7 @@ void scl::HorizontalScrabbleVectorizer::validate_board() const {
             }
         }
 
-        std::vector<std::string> rowShards = row.string_fragments();
+        std::vector<std::string> rowShards = row.StringFragments();
 
         for (const auto& shard : rowShards) {
             if (shard.length() > 1 && dictionary.find(shard) == dictionary.end())
@@ -205,7 +205,7 @@ std::vector<std::string> scl::HorizontalScrabbleVectorizer::return_formatted_cha
     for (int i = 0; i < 15; ++i) {
         std::string column;
         for (int j = 0; j < 15; ++j) {
-            column += board[i].read_at(j).letter;
+            column += board[i].at(j).letter;
         }
         boardCpy.push_back(column);
     }
@@ -215,12 +215,12 @@ std::vector<std::string> scl::HorizontalScrabbleVectorizer::return_formatted_cha
 void scl::HorizontalScrabbleVectorizer::build_board_from(const std::vector<std::string>& passed) {
     if (passed.size() != 15)
         throw std::invalid_argument("Error in scl::HorizontalScrabbleVectorizer::build_board_from(std::vector<std::string> passed) | passed argument is not of a proper size.");
-    std::vector<scl::Tstring> boardCpy;
+    std::vector<scl::ScrabbleString> boardCpy;
     for (int i = 0; i < 15; ++i) {
         if (passed[i].length() != 15)
             throw std::invalid_argument("Error in scl::HorizontalScrabbleVectorizer::build_board_from(std::vector<std::string> passed) | passed argument has an element that is not of a proper size.");
 
-        scl::Tstring row;
+        scl::ScrabbleString row;
         for (int j = 0; j < 15; ++j) {
             char cell = passed[i][j];
             if (isalpha(cell)) {
@@ -237,7 +237,7 @@ void scl::HorizontalScrabbleVectorizer::build_board_from(const std::vector<std::
 void scl::HorizontalScrabbleVectorizer::build_board_from(const char** passed) {
     board.clear();
     for (int i = 0; i < 15; ++i) {
-        scl::Tstring row;
+        scl::ScrabbleString row;
         for (int j = 0; j < 15; ++j) {
             char cell = passed[i][j];
             if (isalpha(cell)) {
@@ -258,19 +258,19 @@ void scl::HorizontalScrabbleVectorizer::build_perkBoard_from(const char** passed
     }
 }
 
-void scl::HorizontalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type, const scl::Tstring& tstr) {
+void scl::HorizontalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type, const scl::ScrabbleString& tstr) {
     if (type == HORIZONTAL) {
         for (int i = 0; i < tstr.length(); ++i) {
-            board[y][x + i] = tstr.read_at(i);
+            board[y][x + i] = tstr.at(i);
             board[y][x + i].flag = 1;
         }
     } else if (type == VERTICAL) {
         for (int i = 0; i < tstr.length(); ++i) {
-            board[y + i][x] = tstr.read_at(i);
+            board[y + i][x] = tstr.at(i);
             board[y + i][x].flag = 1;
         }
     } else
-        throw std::invalid_argument("Error in \"void scl::HorizontalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type, const scl::Tstring & tstr)\" | Incorrect scl::TYPE passed. scl::TYPE(UNDEFINED_TYPE)");
+        throw std::invalid_argument("Error in \"void scl::HorizontalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type, const scl::ScrabbleWord & tstr)\" | Incorrect scl::TYPE passed. scl::TYPE(UNDEFINED_TYPE)");
 }
 
 void scl::HorizontalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE type, const std::string& str) {
@@ -289,11 +289,11 @@ void scl::HorizontalScrabbleVectorizer::guided_place(int x, int y, scl::TYPE typ
 }
 
 void scl::HorizontalScrabbleVectorizer::place_best_move_into_board() {
-    for (int i = bestWord.read_at(0).x; i < bestWord.length() + bestWord.read_at(0).x; i++) {
-        if (board[bestWord.read_at(0).y][i] == ' ')
-            board[bestWord.read_at(0).y][i] = scl::Tile(bestWord.read_at(i - bestWord.read_at(0).x).letter,
+    for (int i = bestWord.at(0).x; i < bestWord.length() + bestWord.at(0).x; i++) {
+        if (board[bestWord.at(0).y][i] == ' ')
+            board[bestWord.at(0).y][i] = scl::Tile(bestWord.at(i - bestWord.at(0).x).letter,
                                                         i,
-                                                        bestWord.read_at(0).y, 1);
-        perkBoard[bestWord.read_at(0).y][i] = ' ';
+                                                        bestWord.at(0).y, 1);
+        perkBoard[bestWord.at(0).y][i] = ' ';
     }
 }

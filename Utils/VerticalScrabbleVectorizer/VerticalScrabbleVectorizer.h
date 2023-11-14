@@ -6,7 +6,7 @@
 namespace scl {
 class VerticalScrabbleVectorizer : public ScrabbleVectorizer {
    public:
-    VerticalScrabbleVectorizer() : ScrabbleVectorizer(){};
+    VerticalScrabbleVectorizer() {};
 
     explicit VerticalScrabbleVectorizer(const std::string &passed) : ScrabbleVectorizer(passed) {}
 
@@ -17,13 +17,13 @@ class VerticalScrabbleVectorizer : public ScrabbleVectorizer {
     /**
      * @brief Searches the move-set of this vectorizer, then saves and returns the move with the highest points into the board. The point calculation of each move includes perks and the points generated from creating neighboring words
      */
-    scl::Tstring update_best_move();
+    scl::ScrabbleString update_best_move();
 
     void validate_generated_moves();
 
     TYPE get_vectorizer_type() const { return VERTICAL; }
 
-    std::vector<scl::Tstring> return_formatted_board_copy() const;
+    std::vector<scl::ScrabbleString> return_formatted_board_copy() const;
 
     /**
      * @brief Builds the board of this vectorizer from the passed std::vector<std::string>.
@@ -41,7 +41,7 @@ class VerticalScrabbleVectorizer : public ScrabbleVectorizer {
      */
     int points_of_best_boarded_move() const { return points_of_raw_boarded_tstr(bestWord); }
 
-    std::vector<scl::Tstring> &get_all_moves_at(int x, int y) { return moveSets[14 - x][y]; }  // add bounds checking
+    std::vector<scl::ScrabbleString> &get_all_moves_at(int x, int y) { return moveSets[14 - x][y]; }  // add bounds checking
 
     std::vector<std::string> return_formatted_perkBoard_copy() const;
 
@@ -56,7 +56,7 @@ class VerticalScrabbleVectorizer : public ScrabbleVectorizer {
      * @param type: States whether this move is a VERTICAL or HORIZONTAL move.
      * @warning After placing the passed string into the board, the perk-board may need to be prepared via "void update_perkBoard()".
      */
-    virtual void guided_place(int x, int y, TYPE type, const scl::Tstring &tstr);
+    virtual void guided_place(int x, int y, TYPE type, const scl::ScrabbleString &tstr);
 
     virtual void guided_place(int x, int y, TYPE type, const std::string &str);
 
@@ -64,7 +64,7 @@ class VerticalScrabbleVectorizer : public ScrabbleVectorizer {
      * @brief Returns the pre-calculated move within this vectorizers move-set that produces that highest amount of points.
      * @warning This method just returns the pre-calculated best-move of this vectorizer, the calculation of the best-move needs to done before hand via "scl::Tstring update_best_move()".
      */
-    scl::Tstring &get_best_raw_boarded_move() { return bestWord; }
+    scl::ScrabbleString &get_best_raw_boarded_move() { return bestWord; }
 
     /**
      * @brief Returns the x coordinate/subscript of the pre-calculated best-move of this vectorizer.
@@ -87,7 +87,7 @@ class VerticalScrabbleVectorizer : public ScrabbleVectorizer {
 
    protected:
     int bestX, bestY;
-    scl::Tstring bestWord;
+    scl::ScrabbleString bestWord;
 };
 }  // namespace scl
 
