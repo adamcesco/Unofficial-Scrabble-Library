@@ -21,15 +21,13 @@ class ScrabbleString {
 
     // operator overloads
 
-    ScrabbleString &operator=(const std::string &);
-
     ScrabbleString &operator=(const char *);
 
     virtual bool operator==(const ScrabbleString &) const;
 
     bool operator==(const std::string &) const;
 
-    bool operator==(const char *) const;
+    bool operator==(const char * const) const;
 
     ScrabbleString &operator+=(const Tile &);
 
@@ -45,8 +43,6 @@ class ScrabbleString {
 
     inline int8_t size() const { return this->len_; }
 
-    Tile read_back() const;
-
     Tile &back();
 
     // member functions
@@ -61,19 +57,19 @@ class ScrabbleString {
 
     bool IsDescendentOf(const std::string &);
 
-    int GetLetterPoints() const;
+    int16_t GetLetterPoints() const;
 
-    static int GetLetterPoints(std::string);
+    static int16_t GetLetterPoints(std::string);
 
     ScrabbleString &SetXValsToSubscripts();
 
-    ScrabbleString &AddToXVals(int);
+    ScrabbleString &AddToXVals(int16_t);
 
-    ScrabbleString &SetXValsEqualTo(int);
+    ScrabbleString &SetXValsEqualTo(int16_t);
 
-    ScrabbleString &SetYValsEqualTo(int);
+    ScrabbleString &SetYValsEqualTo(int16_t);
 
-    bool ContainsFlag(int) const;
+    bool ContainsFlag(int16_t) const;
 
     std::vector<ScrabbleString> Fragments() const;
 

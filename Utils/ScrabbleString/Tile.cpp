@@ -8,7 +8,7 @@ scl::Tile::Tile() {
     this->letter = ' ';
 }
 
-scl::Tile::Tile(unsigned char passed, int8_t xp, int8_t yp, int8_t fl) {
+scl::Tile::Tile(unsigned char passed, int16_t xp, int16_t yp, int16_t fl) {
     this->letter = toupper(passed);
     this->x = xp;
     this->y = yp;

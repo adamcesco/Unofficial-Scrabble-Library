@@ -11,7 +11,7 @@ const int8_t kPointLegend[26] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3,
 struct Tile {
     Tile();
 
-    Tile(unsigned char, int8_t, int8_t, int8_t);
+    Tile(unsigned char, int16_t, int16_t, int16_t);
 
     Tile &operator=(unsigned char);
 
@@ -20,10 +20,10 @@ struct Tile {
     bool inline operator!=(unsigned char invoked) const { return (invoked != this->letter); }
     
     unsigned char letter;
-    int8_t x;
-    int8_t y;
-    int8_t points;
-    int8_t flag;
+    int16_t x;
+    int16_t y;
+    int16_t points;
+    int16_t flag;
 };
 
 }  // namespace scl

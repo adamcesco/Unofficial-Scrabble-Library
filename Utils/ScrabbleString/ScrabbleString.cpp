@@ -15,11 +15,6 @@ scl::Tile scl::ScrabbleString::at(int8_t subscript) const {
     return this->data_[subscript];
 }
 
-scl::Tile scl::ScrabbleString::read_back() const {
-    assert(this->len_ > 0);
-    return this->data_[this->len_ - 1];
-}
-
 scl::Tile& scl::ScrabbleString::back() {
     assert(this->len_ > 0);
     return this->data_[this->len_ - 1];
@@ -35,17 +30,6 @@ bool scl::ScrabbleString::operator==(const scl::ScrabbleString& dsv1) const {
     }
 
     return true;
-}
-
-scl::ScrabbleString& scl::ScrabbleString::operator=(const std::string& toAssign) {
-    int passedSize = toAssign.size();
-    this->len_ = (passedSize < 21) ? passedSize : throw std::invalid_argument("invalid subscript for scl::ScrabbleWord &scl::ScrabbleWord::operator=(const string &toAssign) | Passed string is of a length that is larger than the max capacity for an scl::ScrabbleWord");
-
-    for (int i = 0; i < this->len_; ++i) {
-        this->data_[i] = toAssign[i];
-    }
-
-    return *this;
 }
 
 scl::ScrabbleString& scl::ScrabbleString::operator+=(const scl::Tile& pssd) {
@@ -111,8 +95,8 @@ bool scl::ScrabbleString::RowIsDescendentOf(const std::string& hand, const scl::
     sumMap[32] = 0;
     letterCount[32] = 0;
 
-    for (int i = word[0].x; i < word.length() + word[0].x; ++i) {
-        char curChar = abs(toupper(data_[i].letter));
+    for (int8_t i = word[0].x; i < word.length() + word[0].x; ++i) {
+        unsigned char curChar = abs(toupper(data_[i].letter));
         if (sumMap[curChar] < letterCount[curChar] && blankCount == 0)
             return false;
         else if (sumMap[curChar] < letterCount[curChar]) {
@@ -133,19 +117,19 @@ scl::ScrabbleString::ScrabbleString(const char* const toCpy, std::optional<int8_
     assert(len.value() < 21);
 
     this->len_ = len.value();
-    for (int i = 0; i < len_; ++i)
+    for (int8_t i = 0; i < len_; ++i)
         this->data_[i] = toCpy[i];
 }
 
-int scl::ScrabbleString::GetLetterPoints() const {
-    int sum = 0;
-    for (int i = 0; i < len_; ++i)
+int16_t scl::ScrabbleString::GetLetterPoints() const {
+    int16_t sum = 0;
+    for (int8_t i = 0; i < len_; ++i)
         sum += data_[i].points;
     return sum;
 }
 
-int scl::ScrabbleString::GetLetterPoints(std::string passed) {
-    int sum = 0;
+int16_t scl::ScrabbleString::GetLetterPoints(std::string passed) {
+    int16_t sum = 0;
     for (char it : passed)
         sum += kPointLegend[(it & 31) - 1];
     return sum;
@@ -158,21 +142,21 @@ scl::ScrabbleString& scl::ScrabbleString::SetXValsToSubscripts() {
     return *this;
 }
 
-scl::ScrabbleString& scl::ScrabbleString::AddToXVals(int passed) {
+scl::ScrabbleString& scl::ScrabbleString::AddToXVals(int16_t passed) {
     for (int i = 0; i < this->len_; ++i)
         this->data_[i].x += passed;
 
     return *this;
 }
 
-scl::ScrabbleString& scl::ScrabbleString::SetXValsEqualTo(int passed) {
+scl::ScrabbleString& scl::ScrabbleString::SetXValsEqualTo(int16_t passed) {
     for (int i = 0; i < this->len_; ++i)
         this->data_[i].x = passed;
 
     return *this;
 }
 
-bool scl::ScrabbleString::ContainsFlag(int passed) const {
+bool scl::ScrabbleString::ContainsFlag(int16_t passed) const {
     for (int i = 0; i < this->len_; ++i) {
         if (this->data_[i].flag == passed)
             return true;
@@ -197,7 +181,7 @@ std::vector<scl::ScrabbleString> scl::ScrabbleString::Fragments() const {
     return fragments;
 }
 
-scl::ScrabbleString& scl::ScrabbleString::SetYValsEqualTo(int passed) {
+scl::ScrabbleString& scl::ScrabbleString::SetYValsEqualTo(int16_t passed) {
     for (int i = 0; i < this->len_; ++i)
         this->data_[i].y = passed;
 
