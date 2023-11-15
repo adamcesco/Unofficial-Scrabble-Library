@@ -21,13 +21,13 @@ class ScrabbleString {
 
     // operator overloads
 
-    ScrabbleString &operator=(const char *);
+    ScrabbleString &operator=(const char *const);
 
     virtual bool operator==(const ScrabbleString &) const;
 
     bool operator==(const std::string &) const;
 
-    bool operator==(const char * const) const;
+    bool operator==(const char *const) const;
 
     ScrabbleString &operator+=(const Tile &);
 
