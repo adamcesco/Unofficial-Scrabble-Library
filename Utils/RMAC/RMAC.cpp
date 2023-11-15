@@ -1,12 +1,12 @@
 #include "RMAC.h"
 
 #include <fstream>
+#include <cassert>
 
 scl::RMAC::RMAC(const std::string& pRack, const std::string& filePath) {
     std::ifstream wordCorpus;
     wordCorpus.open(filePath);
-    if (!wordCorpus.is_open())
-        throw std::invalid_argument("Could not open file path passed to RMAC::RMAC(const string& pRack, const string& filePath)");
+    assert(wordCorpus.is_open());
 
     rack = pRack;
     int rackMap[28];
@@ -19,8 +19,8 @@ scl::RMAC::RMAC(const std::string& pRack, const std::string& filePath) {
         rackMap[abs(it) - 63]++;
     }
 
-    std::string word;
     while (wordCorpus.good()) {
+        std::string word;
         getline(wordCorpus, word);
         
         // get rid of trailing whitespace characters from word
@@ -31,7 +31,7 @@ scl::RMAC::RMAC(const std::string& pRack, const std::string& filePath) {
             continue;
         }
         
-        scl::ScrabbleString toPush = word;
+        scl::ScrabbleString toPush(word);
         if (is_descendent_of(toPush, rackMap, blankCount)) {
             int len = toPush.length() - 1;
             toPush.SetXValsToSubscripts();
@@ -58,7 +58,7 @@ scl::RMAC::RMAC(const std::string& pRack, const std::unordered_set<std::string>&
     }
 
     for (const auto& word : dictionary) {
-        scl::ScrabbleString toPush = word;
+        scl::ScrabbleString toPush(word);
         if (is_descendent_of(toPush, rackMap, blankCount)) {
             int len = toPush.length() - 1;
             toPush.SetXValsToSubscripts();

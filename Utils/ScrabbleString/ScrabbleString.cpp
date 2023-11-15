@@ -25,38 +25,27 @@ bool scl::ScrabbleString::operator==(const scl::ScrabbleString& dsv1) const {
         return false;
 
     for (int i = 0; i < this->len_; i++) {
-        if (dsv1.data_[i].letter != this->data_[i].letter)
+        if (dsv1.data_[i].letter != this->data_[i].letter) {
             return false;
+        }
     }
 
     return true;
 }
 
-scl::ScrabbleString& scl::ScrabbleString::operator+=(const scl::Tile& pssd) {
+scl::ScrabbleString& scl::ScrabbleString::operator+=(scl::Tile pssd) {
     assert(this->len_ < 20);
-    this->data_[this->len_] = pssd;
-    this->len_++;
-    return *this;
-}
-
-scl::ScrabbleString& scl::ScrabbleString::operator+=(char pssd) {
-    assert(this->len_ < 20);
-    this->data_[this->len_] = pssd;
+    this->data_[this->len_] = std::move(pssd);
     this->len_++;
     return *this;
 }
 
 std::string scl::ScrabbleString::ToString() const {
     std::string temp(this->len_, '\0');
-    for (int i = 0; i < this->len_; i++)
+    for (int i = 0; i < this->len_; i++) {
         temp[i] = this->data_[i].letter;
+    }
     return temp;
-}
-
-scl::ScrabbleString::ScrabbleString(const std::string toCpy) {
-    this->len_ = toCpy.length();
-    for (int i = 0; i < this->len_; ++i)
-        this->data_[i] = toCpy[i];
 }
 
 scl::ScrabbleString& scl::ScrabbleString::operator=(const char* toAssign) {
@@ -65,201 +54,138 @@ scl::ScrabbleString& scl::ScrabbleString::operator=(const char* toAssign) {
 
     this->len_ = passedSize;
 
-    for (int i = 0; i < this->len_; ++i)
+    for (int i = 0; i < this->len_; ++i) {
         this->data_[i] = toAssign[i];
+    }
 
     return *this;
 }
 
-bool scl::ScrabbleString::RowIsDescendentOf(const std::string& hand, const scl::ScrabbleString& row, scl::ScrabbleString& word) {
-    if (this->len_ == 0 || word.len_ == 0)
-        return false;
+scl::ScrabbleString::ScrabbleString(std::string_view toCpy) {
+    assert(toCpy.size() < 21);
 
-    int sumMap[123];
-    int letterCount[123];
-    int blankCount = 0;
-    for (int i = 0; i < 123; ++i) {
-        sumMap[i] = 0;
-        letterCount[i] = 0;
+    this->len_ = toCpy.size();
+    for (int8_t i = 0; i < this->len_; ++i) {
+        this->data_[i] = toCpy[i];
     }
-
-    for (int i = 0; i < hand.length(); ++i) {
-        if (hand[i] == '?')
-            blankCount++;
-        sumMap[abs(toupper(hand[i]))]++;
-    }
-    for (int i = word[0].x; i < word.length() + word[0].x; ++i)
-        sumMap[abs(toupper(row.at(i).letter))]++;
-
-    for (int i = word[0].x; i < word.length() + word[0].x; ++i)
-        letterCount[abs(toupper(this->data_[i].letter))]++;
-
-    sumMap[32] = 0;
-    letterCount[32] = 0;
-
-    for (int8_t i = word[0].x; i < word.length() + word[0].x; ++i) {
-        unsigned char curChar = abs(toupper(data_[i].letter));
-        if (sumMap[curChar] < letterCount[curChar] && blankCount == 0)
-            return false;
-        else if (sumMap[curChar] < letterCount[curChar]) {
-            word[i - word[0].x].points = 0;
-            blankCount--;
-            letterCount[curChar]--;
-            i--;
-        }
-    }
-
-    return true;
 }
 
-scl::ScrabbleString::ScrabbleString(const char* const toCpy, std::optional<int8_t> len) {
-    if (len.has_value() == false) {
-        len = strlen(toCpy);
-    }
-    assert(len.value() < 21);
+scl::ScrabbleString::ScrabbleString(const Tile* const toCpy, int8_t len) {
+    assert(len < 21);
 
-    this->len_ = len.value();
-    for (int8_t i = 0; i < len_; ++i)
+    this->len_ = len;
+    for (int8_t i = 0; i < this->len_; ++i) {
         this->data_[i] = toCpy[i];
+    }
 }
 
 int16_t scl::ScrabbleString::GetLetterPoints() const {
     int16_t sum = 0;
-    for (int8_t i = 0; i < this->len_; ++i)
+    for (int8_t i = 0; i < this->len_; ++i) {
         sum += this->data_[i].points;
+    }
     return sum;
 }
 
-int16_t scl::ScrabbleString::GetLetterPoints(std::string passed) {
+int16_t scl::ScrabbleString::GetLetterPoints(std::string_view passed) {
     int16_t sum = 0;
-    for (char it : passed)
+    for (char it : passed) {
         sum += kPointLegend[(it & 31) - 1];
+    }
     return sum;
 }
 
 scl::ScrabbleString& scl::ScrabbleString::SetXValsToSubscripts() {
-    for (int i = 0; i < this->len_; ++i)
+    for (int i = 0; i < this->len_; ++i) {
         this->data_[i].x = i;
+    }
 
     return *this;
 }
 
 scl::ScrabbleString& scl::ScrabbleString::AddToXVals(int16_t passed) {
-    for (int i = 0; i < this->len_; ++i)
+    for (int i = 0; i < this->len_; ++i) {
         this->data_[i].x += passed;
+    }
 
     return *this;
 }
 
 scl::ScrabbleString& scl::ScrabbleString::SetXValsEqualTo(int16_t passed) {
-    for (int i = 0; i < this->len_; ++i)
+    for (int i = 0; i < this->len_; ++i) {
         this->data_[i].x = passed;
+    }
 
     return *this;
 }
 
 bool scl::ScrabbleString::ContainsFlag(int16_t passed) const {
     for (int i = 0; i < this->len_; ++i) {
-        if (this->data_[i].flag == passed)
+        if (this->data_[i].flag == passed) {
             return true;
+        }
     }
     return false;
 }
 
 std::vector<scl::ScrabbleString> scl::ScrabbleString::Fragments() const {
     std::vector<scl::ScrabbleString> fragments;
-    scl::ScrabbleString curFragment;
+    scl::Tile curFragment[this->len_];
+    int8_t j = 0;
     for (int i = 0; i < this->len_; ++i) {
-        if (this->data_[i].letter != ' ') {
-            curFragment += this->data_[i];
-        } else if (curFragment.len_ != 0) {
-            fragments.push_back(curFragment);
-            curFragment.Clear();
+        if (isspace(this->data_[i].letter) == false) {
+            curFragment[j] = this->data_[i];
+            j++;
+        } else if (j > 0) {
+            fragments.push_back(std::move(scl::ScrabbleString(curFragment, j)));
+            j = 0;
         }
     }
-    if (curFragment.len_ != 0)
-        fragments.push_back(curFragment);
+    if (j > 0) {
+        fragments.push_back(std::move(scl::ScrabbleString(curFragment, j)));
+    }
 
     return fragments;
 }
 
 scl::ScrabbleString& scl::ScrabbleString::SetYValsEqualTo(int16_t passed) {
-    for (int i = 0; i < this->len_; ++i)
+    for (int i = 0; i < this->len_; ++i) {
         this->data_[i].y = passed;
+    }
 
     return *this;
 }
 
-bool scl::ScrabbleString::IsDescendentOf(const std::string& rack) {
-    if (this->len_ == 0 || this->len_ > rack.length())
-        return false;
-
-    int handMap[123];
-    int letterCount[123];
-    int blankCount = 0;
-    for (int i = 0; i < 123; ++i)
-        handMap[i] = letterCount[i] = 0;
-
-    for (char it : rack) {
-        if (it == '?')
-            blankCount++;
-        handMap[abs(toupper(it))]++;
-    }
-
-    for (int i = 0; i < this->len_; ++i)
-        letterCount[abs(toupper(this->data_[i].letter))]++;
-
-    for (int i = 0; i < this->len_; ++i) {
-        int index = abs(toupper(this->data_[i].letter));
-        if (handMap[index] < letterCount[index] && blankCount == 0)
-            return false;
-        else if (handMap[index] < letterCount[index]) {
-            this->data_[i].points = 0;
-            blankCount--;
-            letterCount[index]--;
-            i--;
-        }
-    }
-
-    return true;
-}
-
 std::vector<std::string> scl::ScrabbleString::StringFragments() const {
     std::vector<std::string> fragments;
-    std::string curFragment;
+    char curFragment[this->len_ + 1];
+    int8_t j = 0;
     for (int i = 0; i < this->len_; ++i) {
-        if (this->data_[i].letter != ' ') {
-            curFragment += this->data_[i].letter;
-        } else if (curFragment.length() != 0) {
+        if (isspace(this->data_[i].letter) == false) {
+            curFragment[j] = this->data_[i].letter;
+            j++;
+        } else if (j > 0) {
+            curFragment[j] = '\0';
             fragments.push_back(curFragment);
-            curFragment.clear();
+            j = 0;
         }
     }
-    if (curFragment.length() != 0)
+    if (j > 0) {
         fragments.push_back(curFragment);
+    }
 
     return fragments;
 }
 
-bool scl::ScrabbleString::operator==(const std::string& toComp) const {
-    if (this->len_ != toComp.length())
+bool scl::ScrabbleString::operator==(std::string_view toComp) const {
+    if (this->len_ != toComp.size()) {
         return false;
-
-    for (int i = 0; i < this->len_; i++) {
-        if (toComp[i] != this->data_[i].letter)
-            return false;
     }
 
-    return true;
-}
-
-bool scl::ScrabbleString::operator==(const char* const toComp) const {
-    if (this->len_ != strlen(toComp))
-        return false;
-
     for (int i = 0; i < this->len_; i++) {
-        if (toComp[i] != this->data_[i].letter)
+        if (toComp[i] != this->data_[i].letter) {
             return false;
+        }
     }
 
     return true;

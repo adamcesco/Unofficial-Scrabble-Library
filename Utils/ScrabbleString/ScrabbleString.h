@@ -15,23 +15,19 @@ class ScrabbleString {
 
     ScrabbleString() = default;
 
-    ScrabbleString(std::string);
+    explicit ScrabbleString(std::string_view);
 
-    ScrabbleString(const char *const, std::optional<int8_t>);
+    explicit ScrabbleString(const Tile * const, int8_t);
 
     // operator overloads
 
     ScrabbleString &operator=(const char *const);
 
-    virtual bool operator==(const ScrabbleString &) const;
+    bool operator==(const ScrabbleString &) const;
 
-    bool operator==(const std::string &) const;
+    bool operator==(std::string_view) const;
 
-    bool operator==(const char *const) const;
-
-    ScrabbleString &operator+=(const Tile &);
-
-    ScrabbleString &operator+=(char);
+    ScrabbleString &operator+=(Tile);
 
     // accessors and mutators
 
@@ -49,17 +45,13 @@ class ScrabbleString {
 
     inline void Clear() { this->len_ = 0; }
 
-    inline bool IsEmpty() const { return this->len_ == 0; }
+    inline bool IsEmpty() const { return (this->len_ == 0); }
 
-    virtual std::string ToString() const;
-
-    bool RowIsDescendentOf(const std::string &, const ScrabbleString &, ScrabbleString &);
-
-    bool IsDescendentOf(const std::string &);
+    std::string ToString() const;
 
     int16_t GetLetterPoints() const;
 
-    static int16_t GetLetterPoints(std::string);
+    static int16_t GetLetterPoints(std::string_view);
 
     ScrabbleString &SetXValsToSubscripts();
 

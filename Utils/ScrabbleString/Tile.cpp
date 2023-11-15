@@ -3,7 +3,9 @@
 #include <fstream>
 
 scl::Tile::Tile() {
-    this->x = this->y = this->flag = -1;
+    this->x = -1;
+    this->y = -1;
+    this->flag = -1;
     this->points = 0;
     this->letter = ' ';
 }
@@ -22,7 +24,9 @@ scl::Tile::Tile(unsigned char passed, int16_t xp, int16_t yp, int16_t fl) {
 
 scl::Tile &scl::Tile::operator=(unsigned char invoked) {
     this->letter = toupper(invoked);
-    this->y = this->x = this->flag = -1;
+    this->y = -1;
+    this->x = -1;
+    this->flag = -1;
 
     if (isalpha(letter))
         this->points = kPointLegend[(this->letter & 31) - 1];
