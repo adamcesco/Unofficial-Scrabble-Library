@@ -8,6 +8,7 @@
 #include "../ScrabbleString/ScrabbleString.h"
 
 namespace scl {
+
 struct RMAC {  // Rack Map And Calculator
     RMAC() = default;
 

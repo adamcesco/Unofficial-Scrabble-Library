@@ -48,12 +48,10 @@ std::string scl::ScrabbleString::ToString() const {
     return temp;
 }
 
-scl::ScrabbleString& scl::ScrabbleString::operator=(const char* toAssign) {
-    size_t passedSize = strlen(toAssign);
-    assert(passedSize < 21);
+scl::ScrabbleString& scl::ScrabbleString::operator=(std::string_view toAssign) {
+    assert(toAssign.size() < 21);
 
-    this->len_ = passedSize;
-
+    this->len_ = toAssign.size();
     for (int i = 0; i < this->len_; ++i) {
         this->data_[i] = toAssign[i];
     }
@@ -165,13 +163,13 @@ std::vector<std::string> scl::ScrabbleString::StringFragments() const {
             curFragment[j] = this->data_[i].letter;
             j++;
         } else if (j > 0) {
-            curFragment[j] = '\0';
-            fragments.push_back(curFragment);
+            curFragment[j] = '\0';  // not required but is good practice
+            fragments.push_back(std::move(std::string(curFragment, j)));
             j = 0;
         }
     }
     if (j > 0) {
-        fragments.push_back(curFragment);
+        fragments.push_back(std::move(std::string(curFragment, j)));
     }
 
     return fragments;

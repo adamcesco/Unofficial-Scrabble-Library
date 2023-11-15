@@ -4,6 +4,7 @@
 #include "../ScrabbleVectorizer/ScrabbleVectorizer.h"
 
 namespace scl {
+
 class HorizontalScrabbleVectorizer : public ScrabbleVectorizer {
    public:
     HorizontalScrabbleVectorizer() : ScrabbleVectorizer() {}

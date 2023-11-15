@@ -9,6 +9,7 @@
 #include "Tile.h"
 
 namespace scl {
+
 class ScrabbleString {
    public:
     // constructors
@@ -21,7 +22,7 @@ class ScrabbleString {
 
     // operator overloads
 
-    ScrabbleString &operator=(const char *const);
+    ScrabbleString &operator=(std::string_view);
 
     bool operator==(const ScrabbleString &) const;
 
